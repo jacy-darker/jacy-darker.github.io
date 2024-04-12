@@ -1,0 +1,6016 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta http-equiv="x-dns-prefetch-control" content="on">
+      <link rel="dns-prefetch" href="//Jacy.org">
+      <link rel="dns-prefetch" href="//search.Jacy.org">
+      <link rel="dns-prefetch" href="//api.github.com">
+      <link rel="dns-prefetch" href="//www.google-analytics.com">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Jacy的个人博客，总结有SLAM、视觉、算法以及数学知识的学习笔记">
+      
+      
+        <meta name="author" content="Jacy">
+      
+      
+        <link rel="canonical" href="http://www.jacycoder.com/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E4%BF%A1%E6%81%AF%E8%AE%BA/">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.11">
+    
+    
+      
+        <title>熵、相对熵与互信息 - jacycoder_blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d9cc33f8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}@font-face{font-family:'Fira Sans';font-style:normal;font-weight:300;src:url(//lib.baomitu.com/fonts/fira-sans/fira-sans-300.eot);src:local('Fira Sans'),local('FiraSans-Normal'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-300.eot?#iefix) format('embedded-opentype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-300.woff2) format('woff2'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-300.woff) format('woff'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-300.ttf) format('truetype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-300.svg#FiraSans) format('svg')}@font-face{font-family:'Fira Sans';font-style:normal;font-weight:regular;src:url(//lib.baomitu.com/fonts/fira-sans/fira-sans-regular.eot);src:local('Fira Sans'),local('FiraSans-Normal'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-regular.eot?#iefix) format('embedded-opentype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-regular.woff2) format('woff2'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-regular.woff) format('woff'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-regular.ttf) format('truetype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-regular.svg#FiraSans) format('svg')}@font-face{font-family:'Fira Sans';font-style:italic;font-weight:regular;src:url(//lib.baomitu.com/fonts/fira-sans/fira-sans-italic.eot);src:local('Fira Sans'),local('FiraSans-Italic'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-italic.eot?#iefix) format('embedded-opentype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-italic.woff2) format('woff2'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-italic.woff) format('woff'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-italic.ttf) format('truetype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-italic.svg#FiraSans) format('svg')}@font-face{font-family:'Fira Sans';font-style:normal;font-weight:700;src:url(//lib.baomitu.com/fonts/fira-sans/fira-sans-700.eot);src:local('Fira Sans'),local('FiraSans-Normal'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-700.eot?#iefix) format('embedded-opentype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-700.woff2) format('woff2'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-700.woff) format('woff'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-700.ttf) format('truetype'),url(//lib.baomitu.com/fonts/fira-sans/fira-sans-700.svg#FiraSans) format('svg')}@font-face{font-family:'Fira Mono';font-style:normal;font-weight:regular;src:url(//lib.baomitu.com/fonts/fira-mono/fira-mono-regular.eot);src:local('Fira Mono'),local('FiraMono-Normal'),url(//lib.baomitu.com/fonts/fira-mono/fira-mono-regular.eot?#iefix) format('embedded-opentype'),url(//lib.baomitu.com/fonts/fira-mono/fira-mono-regular.woff2) format('woff2'),url(//lib.baomitu.com/fonts/fira-mono/fira-mono-regular.woff) format('woff'),url(//lib.baomitu.com/fonts/fira-mono/fira-mono-regular.ttf) format('truetype'),url(//lib.baomitu.com/fonts/fira-mono/fira-mono-regular.svg#FiraMono) format('svg')}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../_static/css/extra.css?v=14">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-124485594-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#熵相对熵与互信息" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="jacycoder_blog" class="md-header__button md-logo" aria-label="jacycoder_blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jacycoder_blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              熵、相对熵与互信息
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E9%A1%B9%E7%9B%AE/" class="md-tabs__link">
+        项目研究
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/01_2D%E5%B0%84%E5%BD%B1%E5%87%A0%E4%BD%95%E4%B8%8E%E5%8F%98%E6%8D%A2/" class="md-tabs__link">
+        SLAM
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/01_%E7%BB%AA%E8%AE%BA/" class="md-tabs__link">
+        算法
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/01_%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        数学知识
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/01_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="md-tabs__link">
+        计算机基础
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/01_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="md-tabs__link">
+        图像处理
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="jacycoder_blog" class="md-nav__button md-logo" aria-label="jacycoder_blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/></svg>
+
+    </a>
+    jacycoder_blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          项目研究
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="项目研究" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          项目研究
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%A1%B9%E7%9B%AE/" class="md-nav__link">
+        项目研究
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%A1%B9%E7%9B%AE/%E5%AE%B6%E6%94%BF%E6%9C%8D%E5%8A%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        家政服务机器人
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%A1%B9%E7%9B%AE/%E6%9C%9D%E9%97%BB%E9%81%93%E6%9C%BA%E6%A2%B0%E8%87%82/" class="md-nav__link">
+        朝闻道机械臂
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
+        CO-DENSE集群无人机稠密见图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%A1%B9%E7%9B%AE/UWB%E9%94%9A%E7%82%B9%E8%BE%85%E5%8A%A9VIO%E5%AE%A4%E5%86%85%E5%AE%9A%E4%BD%8D/" class="md-nav__link">
+        UWB定位辅助VIO融合定位
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          SLAM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SLAM" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          SLAM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          多视图几何
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="多视图几何" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          多视图几何
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/01_2D%E5%B0%84%E5%BD%B1%E5%87%A0%E4%BD%95%E4%B8%8E%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        2D射影几何与变换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/02_3D%E5%B0%84%E5%BD%B1%E5%87%A0%E4%BD%95%E4%B8%8E%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        3D射影几何与变换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/03_%E4%BC%B0%E8%AE%A1%E2%80%942D%E5%B0%84%E5%BD%B1%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        估计—2D射影变换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/04_%E7%AE%97%E6%B3%95%E8%AF%84%E4%BB%B7%E5%92%8C%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90/" class="md-nav__link">
+        算法评价和误差分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/05_%E6%91%84%E5%83%8F%E6%9C%BA%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        摄像机模型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/06_%E6%91%84%E5%83%8F%E6%9C%BA%E7%9F%A9%E9%98%B5%24P%24%E7%9A%84%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+        摄像机矩阵$P$的计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/07_%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%AE%A8%E8%AE%BA%E5%8D%95%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/" class="md-nav__link">
+        进一步讨论单视图几何
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/08_%E5%AF%B9%E6%9E%81%E5%87%A0%E4%BD%95%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        对极几何和基本矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/09_%E6%91%84%E5%83%8F%E6%9C%BA%E5%92%8C%E7%BB%93%E6%9E%84%E7%9A%843D%E9%87%8D%E6%9E%84/" class="md-nav__link">
+        摄像机和结构的3D重构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/10_%E5%9F%BA%E6%9C%AC%E7%9F%A9%E9%98%B5F%E7%9A%84%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+        基本矩阵F的计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/11_%E7%BB%93%E6%9E%84%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+        结构计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/12_%E5%9C%BA%E6%99%AF%E5%B9%B3%E9%9D%A2%E5%92%8C%E5%8D%95%E5%BA%94/" class="md-nav__link">
+        场景平面和单应
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/13_%E4%BB%BF%E5%B0%84%E5%AF%B9%E6%9E%81%E5%87%A0%E4%BD%95/" class="md-nav__link">
+        仿射对极几何
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          视觉SLAM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="视觉SLAM" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          视觉SLAM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/01_%E4%B8%89%E7%BB%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/" class="md-nav__link">
+        三维刚体运动
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/02_%E6%9D%8E%E7%BE%A4%E4%B8%8E%E6%9D%8E%E4%BB%A3%E6%95%B0/" class="md-nav__link">
+        李群与李代数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/03_%E7%9B%B8%E6%9C%BA%E4%B8%8E%E5%9B%BE%E5%83%8F/" class="md-nav__link">
+        相机与图像
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/04_%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        非线性优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/05_%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1/" class="md-nav__link">
+        视觉里程计
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/06_%E5%90%8E%E7%AB%AF/" class="md-nav__link">
+        后端
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/07_%E5%9B%9E%E7%8E%AF%E6%A3%80%E6%B5%8B/" class="md-nav__link">
+        回环检测
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/08_%E5%BB%BA%E5%9B%BE/" class="md-nav__link">
+        建图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SLAM/SLAM/09_%E6%89%8B%E5%86%99SLAM%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        手写SLAM系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="算法" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          数据结构
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数据结构" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          数据结构
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/01_%E7%BB%AA%E8%AE%BA/" class="md-nav__link">
+        绪论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/02_%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="md-nav__link">
+        线性表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/03_%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" class="md-nav__link">
+        栈和队列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/04_%E4%B8%B2/" class="md-nav__link">
+        串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/05_%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        树与二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/06_%E5%9B%BE/" class="md-nav__link">
+        图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/07_%E6%9F%A5%E6%89%BE/" class="md-nav__link">
+        查找
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/08_%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/09_%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%AD%A6/" class="md-nav__link">
+        计算几何学
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/10_NP%E5%AE%8C%E5%85%A8%E6%80%A7/" class="md-nav__link">
+        NP完全性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/11_%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        近似算法
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        算法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          动态规划
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="动态规划" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          动态规划
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/01_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-nav__link">
+        动态规划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/03_%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        矩阵连乘问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/04_%E5%87%B8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E6%9C%80%E4%BC%98%E4%B8%89%E8%A7%92%E5%89%96%E5%88%86/" class="md-nav__link">
+        凸多边形最优三角剖分
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/05_%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        最长公共子序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/06_%E7%94%B5%E8%B7%AF%E5%B8%83%E7%BA%BF/" class="md-nav__link">
+        电路布线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/07_%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        最大子段和问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/08_%E6%8A%95%E8%B5%84%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        投资问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/09_0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        0-1背包问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/10_%E6%9C%80%E4%BC%98%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="md-nav__link">
+        最优二叉搜索树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/11_%E6%B5%81%E6%B0%B4%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6/" class="md-nav__link">
+        流水作业调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/12_%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%E5%90%AB%E6%89%8B%E7%BB%AD%E8%B4%B9/" class="md-nav__link">
+        买卖股票的最佳时机含手续费
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/13_%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="md-nav__link">
+        最大子序和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/14_%E7%BB%9F%E8%AE%A1%E5%85%A8%E4%B8%BA_1_%E7%9A%84%E6%AD%A3%E6%96%B9%E5%BD%A2%E5%AD%90%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        统计全为_1_的正方形子矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/15_%E7%A1%AC%E5%B8%81/" class="md-nav__link">
+        硬币
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/16_%E6%9C%80%E9%95%BF%E4%B8%8D%E4%B8%8B%E9%99%8D%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        最长不下降的子序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/17_%E6%9C%80%E9%95%BF%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        最长斐波那契序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/18_%E5%A4%9A%E7%B1%B3%E8%AF%BA%E5%92%8C%E6%89%98%E7%B1%B3%E8%AF%BA%E5%B9%B3%E9%93%BA/" class="md-nav__link">
+        多米诺和托米诺平铺
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/19_%E6%89%A3%E5%88%86%E5%90%8E%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/" class="md-nav__link">
+        扣分后的最大得分
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/20_%E7%9F%A9%E9%98%B5%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%9E%E8%B4%9F%E7%A7%AF/" class="md-nav__link">
+        矩阵的最大非负积
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/21_%E7%AC%ACk%E4%B8%AA%E6%95%B0/" class="md-nav__link">
+        第k个数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/22_%E7%8E%AF%E7%BB%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%94%AF%E4%B8%80%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        环绕字符串中的唯一子字符串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/23_%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        二叉树染色
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/24_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%81%AF%E9%A5%B0%E5%93%81/" class="md-nav__link">
+        二叉树灯饰品
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/25_%E5%9C%A8%E6%A0%91%E4%B8%8A%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E4%BB%A5%E5%90%8E%E5%BE%97%E5%88%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0/" class="md-nav__link">
+        在树上执行操作以后得到的最大分数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/26_%E5%88%86%E6%B1%A4/" class="md-nav__link">
+        分汤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/27_%E6%96%B021%E7%82%B9/" class="md-nav__link">
+        新21点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/28_%E7%BB%9F%E8%AE%A1%E5%AD%90%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%94%AF%E4%B8%80%E5%AD%97%E7%AC%A6/" class="md-nav__link">
+        统计子串中的唯一字符
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/29_%E5%B7%A5%E4%BD%9C%E8%AE%A1%E5%88%92%E7%9A%84%E6%9C%80%E4%BD%8E%E9%9A%BE%E5%BA%A6/" class="md-nav__link">
+        工作计划的最低难度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/30_%E6%95%B0%E4%BD%8D%E6%88%90%E6%9C%AC%E5%92%8C%E4%B8%BA%E7%9B%AE%E6%A0%87%E5%80%BC%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E5%AD%97/" class="md-nav__link">
+        数位成本和为目标值的最大数字
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/31_%E5%A0%86%E5%8F%A0%E9%95%BF%E6%96%B9%E4%BD%93%E7%9A%84%E6%9C%80%E5%A4%A7%E9%AB%98%E5%BA%A6/" class="md-nav__link">
+        堆叠长方体的最大高度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/32_%E7%A7%BB%E9%99%A4%E6%89%80%E6%9C%89%E8%BD%BD%E6%9C%89%E8%BF%9D%E7%A6%81%E8%B4%A7%E7%89%A9%E7%9A%84%E8%BD%A6%E5%8E%A2/" class="md-nav__link">
+        移除所有载有违禁货物的车厢
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/33_%E5%AE%8C%E6%88%90%E6%AF%94%E8%B5%9B%E7%9A%84%E6%9C%80%E5%B0%91%E6%97%B6%E9%97%B4/" class="md-nav__link">
+        完成比赛的最少时间
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/34_%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%88%92%E5%88%86/" class="md-nav__link">
+        等差数列划分
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          二分查找
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="二分查找" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          二分查找
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/01_%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="md-nav__link">
+        二分查找
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/03_%E9%87%8D%E5%A4%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8C%BA%E9%97%B4/" class="md-nav__link">
+        重复出现的区间
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/04_%E5%B1%B1%E5%B3%B0%E6%95%B0%E7%BB%84%E7%9A%84%E5%B3%B0%E5%80%BC%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        山峰数组的峰值索引
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/05_%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC_II/" class="md-nav__link">
+        寻找旋转排序数组中的最小值_II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/06_%E5%9C%A8D%E5%A4%A9%E5%86%85%E9%80%81%E8%BE%BE%E5%8C%85%E8%A3%B9%E7%9A%84%E8%83%BD%E5%8A%9B/" class="md-nav__link">
+        在D天内送达包裹的能力
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/07_%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8DIV/" class="md-nav__link">
+        打家劫舍IV
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/08_H%E6%8C%87%E6%95%B0II/" class="md-nav__link">
+        H指数II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/09_%E5%88%B0%E8%BE%BE%E7%BB%88%E7%82%B9%E6%95%B0%E5%AD%97/" class="md-nav__link">
+        到达终点数字
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10_%E6%94%B6%E8%8B%B9%E6%9E%9C/" class="md-nav__link">
+        收苹果
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          分支限界法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="分支限界法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          分支限界法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C%E6%B3%95/01_%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C%E6%B3%95/" class="md-nav__link">
+        分支限界法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C%E6%B3%95/03_%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        装载问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C%E6%B3%95/04_0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        0-1背包问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C%E6%B3%95/05_%E8%B4%A7%E9%83%8E%E6%8B%85%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        货郎担问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C%E6%B3%95/06_%E5%B8%83%E7%BA%BF%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        布线问题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          分治法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="分治法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          分治法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/01_%E5%88%86%E6%B2%BB%E6%B3%95/" class="md-nav__link">
+        分治法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/03_%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        全排列问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/04_%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        整数划分问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/05_%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        汉诺塔问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/06_%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2/" class="md-nav__link">
+        二分搜索
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/07_%E5%90%88%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        合并排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/08_%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        快速排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/09_%E6%9C%80%E6%8E%A5%E8%BF%91%E7%82%B9%E5%AF%B9%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        最接近点对问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/10_%E6%A3%8B%E7%9B%98%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        棋盘覆盖问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E6%B3%95/11_%E7%BB%9F%E8%AE%A1%E6%9C%89%E5%BA%8F%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B4%9F%E6%95%B0/" class="md-nav__link">
+        统计有序矩阵中的负数
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          高级数据结构
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="高级数据结构" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          高级数据结构
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/01_%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="md-nav__link">
+        二叉搜索树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/02_%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="md-nav__link">
+        并查集
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/03_%E5%AD%97%E5%85%B8%E6%A0%91/" class="md-nav__link">
+        字典树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/04_%E7%BA%BF%E6%AE%B5%E6%A0%91/" class="md-nav__link">
+        线段树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/05_%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        树状数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/06_%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        后缀数组
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          回溯法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="回溯法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          回溯法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/01_%E5%9B%9E%E6%BA%AF%E6%B3%95/" class="md-nav__link">
+        回溯法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/03_N%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        N皇后问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/04_%E8%B4%A7%E9%83%8E%E6%8B%85%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        货郎担问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/05_%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        装载问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/06_%E6%89%B9%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        批作业调度问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/07_0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        0-1背包问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/08_%E6%9C%80%E5%A4%A7%E5%9B%A2%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        最大团问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E6%B3%95/09_%E5%9B%BE%E7%9A%84m%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        图的m着色问题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          记忆化搜索
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="记忆化搜索" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          记忆化搜索
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/01_%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" class="md-nav__link">
+        记忆化搜索
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/02_%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98/" class="md-nav__link">
+        经典例题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/03_%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        斐波那契问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/04_%E6%88%91%E8%83%BD%E8%B5%A2%E5%90%97/" class="md-nav__link">
+        我能赢吗
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          技巧
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="技巧" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          技巧
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/01_%E5%89%8D%E7%BC%80%E5%92%8C/" class="md-nav__link">
+        前缀和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/02_%E5%8F%8C%E6%8C%87%E9%92%88/" class="md-nav__link">
+        双指针
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/03_%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/04_%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" class="md-nav__link">
+        滑动窗口
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/05_%E8%AE%A1%E6%95%B0/" class="md-nav__link">
+        计数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/06_%E8%B6%8A%E7%95%8C%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        越界问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/07_%E4%BD%8D%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        位运算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/08_%E9%9B%86%E5%90%88/" class="md-nav__link">
+        集合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/09_%E5%8D%95%E8%B0%83%E6%A0%88/" class="md-nav__link">
+        单调栈
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          脑筋急转弯
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="脑筋急转弯" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          脑筋急转弯
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%84%91%E7%AD%8B%E6%80%A5%E8%BD%AC%E5%BC%AF/02_%E7%A7%BB%E5%8A%A8%E7%89%87%E6%AE%B5%E5%BE%97%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        移动片段得到字符串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%84%91%E7%AD%8B%E6%80%A5%E8%BD%AC%E5%BC%AF/03_%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        移动机器人
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_12" type="checkbox" id="__nav_4_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_12">
+          深度广度优先搜索
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="深度广度优先搜索" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_12">
+          <span class="md-nav__icon md-icon"></span>
+          深度广度优先搜索
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/01_%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="md-nav__link">
+        深度广度优先搜索
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/03_%E6%A0%91%E7%9A%84%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        树的非递归遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/04_Morris%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        Morris遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/05_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="md-nav__link">
+        二叉树的最近公共祖先
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/06_%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE/" class="md-nav__link">
+        二叉搜索树的最小差
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/07_%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        对称二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/08_%E5%8F%8D%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A5%87%E6%95%B0%E5%B1%82/" class="md-nav__link">
+        反转二叉树的奇数层
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/09_%E5%88%A0%E7%82%B9%E6%88%90%E6%9E%97/" class="md-nav__link">
+        删点成林
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/10_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/" class="md-nav__link">
+        二叉树的直径
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/11_%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/" class="md-nav__link">
+        节点与其祖先之间的最大差值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/12_%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%AA%E6%9E%9D/" class="md-nav__link">
+        二叉树剪枝
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/13_%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        二叉树展开为链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/14_%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CIII/" class="md-nav__link">
+        路径总和III
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/15_%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        二叉搜索树最近节点查询
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/16_%E6%9C%80%E6%B7%B1%E5%8F%B6%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="md-nav__link">
+        最深叶节点的最近公共祖先
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/17_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9D%80%E8%89%B2%E6%B8%B8%E6%88%8F/" class="md-nav__link">
+        二叉树着色游戏
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/18_%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6/" class="md-nav__link">
+        二叉树最大宽度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/19_%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        填充每一个节点的下一个右侧节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/20_%E5%85%8B%E9%9A%86%E5%9B%BE/" class="md-nav__link">
+        克隆图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/21_%E6%B0%B4%E5%9F%9F%E5%A4%A7%E5%B0%8F/" class="md-nav__link">
+        水域大小
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/22_%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF/" class="md-nav__link">
+        岛屿的周长
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/23_%E7%BB%9F%E8%AE%A1%E5%AE%8C%E5%85%A8%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E7%9A%84%E6%95%B0%E9%87%8F/" class="md-nav__link">
+        统计完全连通分量的数量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/24_%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        拓扑排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/25_%E4%BB%8E%E7%BB%99%E5%AE%9A%E5%8E%9F%E6%9D%90%E6%96%99%E4%B8%AD%E6%89%BE%E5%87%BA%E6%89%80%E6%9C%89%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%87%BA%E7%9A%84%E8%8F%9C/" class="md-nav__link">
+        从给定原材料中找出所有可以做出的菜
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/26_%E9%A2%9C%E8%89%B2%E4%BA%A4%E6%9B%BF%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" class="md-nav__link">
+        颜色交替的最短路径
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/27_%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        序列化与反序列化二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/28_%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%9C%80%E7%9F%AD%E7%8E%AF/" class="md-nav__link">
+        图中的最短环
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_13" type="checkbox" id="__nav_4_13" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_13">
+          数学
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数学" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_13">
+          <span class="md-nav__icon md-icon"></span>
+          数学
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/01_%E6%95%B0%E8%AE%BA/" class="md-nav__link">
+        数论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/02_%E4%BD%BF%E6%95%B0%E7%BB%84%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E5%8F%98%E6%88%901%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/" class="md-nav__link">
+        使数组所有元素变成1的最小操作数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/03_%E9%9A%8F%E6%9C%BA%E5%8C%96/" class="md-nav__link">
+        随机化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/04_%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        组合数学
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/05_%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        概率与统计
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_14" type="checkbox" id="__nav_4_14" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_14">
+          贪心
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="贪心" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_14">
+          <span class="md-nav__icon md-icon"></span>
+          贪心
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/01_%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        贪心算法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/03_%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92/" class="md-nav__link">
+        活动安排
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/04_%E6%9C%80%E4%BC%98%E8%A3%85%E8%BD%BD/" class="md-nav__link">
+        最优装载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/05_%E6%9C%80%E4%BC%98%E5%89%8D%E7%BC%80%E7%A0%81%5B%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81%5D/" class="md-nav__link">
+        最优前缀码[哈夫曼编码]
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/06_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" class="md-nav__link">
+        最小生成树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/07_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" class="md-nav__link">
+        单源最短路径
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/08_%E6%8B%9F%E9%98%B5%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        拟阵理论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/09_%E5%8D%95%E6%9C%BA%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/" class="md-nav__link">
+        单机任务调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/10_%E5%A4%9A%E7%BA%A7%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        多级调度问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/11_%E5%88%86%E6%95%B0%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        分数背包问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/12_%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        不同字符的最小子序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/13_%E6%9C%80%E5%BC%B1%E6%B8%B8%E6%88%8F%E8%A7%92%E8%89%B2/" class="md-nav__link">
+        最弱游戏角色
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/14_%E5%90%83%E8%8B%B9%E6%9E%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/" class="md-nav__link">
+        吃苹果的最大数目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/15_%E9%94%80%E5%94%AE%E4%BB%B7%E5%80%BC%E5%87%8F%E5%B0%91%E7%9A%84%E9%A2%9C%E8%89%B2%E7%90%83/" class="md-nav__link">
+        销售价值减少的颜色球
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/16_%E7%A0%B4%E8%A7%A3%E9%97%AF%E5%85%B3%E5%AF%86%E7%A0%81/" class="md-nav__link">
+        破解闯关密码
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/17_%E5%88%A0%E9%99%A4%E6%95%B0%E5%AF%B9%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6/" class="md-nav__link">
+        删除数对后的最小数组长度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/18_%E9%9D%92%E8%9B%99%E8%BF%87%E6%B2%B3II/" class="md-nav__link">
+        青蛙过河II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/19_%E8%93%84%E6%B0%B4/" class="md-nav__link">
+        蓄水
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/20_%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%AC%ACK%E5%A4%A7%E5%85%83%E7%B4%A0/" class="md-nav__link">
+        数据流中的第K大元素
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/21_%E4%BD%A0%E8%83%BD%E6%9E%84%E9%80%A0%E5%87%BA%E8%BF%9E%E7%BB%AD%E5%80%BC%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/" class="md-nav__link">
+        你能构造出连续值的最大数目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/22_%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8/" class="md-nav__link">
+        任务调度器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/23_%E6%9E%84%E9%80%A0%E6%9C%80%E9%95%BF%E7%9A%84%E6%96%B0%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        构造最长的新字符串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/24_%E4%BD%BF%E6%89%80%E6%9C%89%E5%AD%97%E7%AC%A6%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC/" class="md-nav__link">
+        使所有字符相等的最小成本
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/25_%E5%9D%8F%E4%BA%86%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8/" class="md-nav__link">
+        坏了的计算器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/26_%E6%AE%B5%E5%BC%8F%E5%9B%9E%E6%96%87/" class="md-nav__link">
+        段式回文
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E8%B4%AA%E5%BF%83/27_%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%86%E5%89%B2%E6%88%90%E5%80%BC%E4%B8%8D%E8%B6%85%E8%BF%87k%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        将字符串分割成值不超过k的子字符串
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_15" type="checkbox" id="__nav_4_15" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_15">
+          状态压缩
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="状态压缩" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_15">
+          <span class="md-nav__icon md-icon"></span>
+          状态压缩
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/01_%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/" class="md-nav__link">
+        状态压缩
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/02_%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98/" class="md-nav__link">
+        经典例题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/03_%E5%88%86%E9%A5%BC%E5%B9%B2/" class="md-nav__link">
+        分饼干
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/04_%E4%BC%98%E7%BE%8E%E7%9A%84%E6%8E%92%E5%88%97/" class="md-nav__link">
+        优美的排列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/05_%E5%8D%9A%E5%BC%88%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/" class="md-nav__link">
+        博弈状态压缩
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          数学知识
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数学知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          高等公式
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="高等公式" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          高等公式
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/01_%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+        基础预备知识
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/02_%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F/" class="md-nav__link">
+        泰勒公式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/03_%E5%B8%B8%E7%94%A8%E6%97%A0%E7%A9%B7%E5%B0%8F/" class="md-nav__link">
+        常用无穷小
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/04_%E5%9F%BA%E6%9C%AC%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/" class="md-nav__link">
+        基本求导公式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/05_%E9%AB%98%E9%98%B6%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F/" class="md-nav__link">
+        高阶求导公式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/06_%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        中值定理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/07_%E5%B8%B8%E8%A7%81%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0%E6%9E%84%E9%80%A0/" class="md-nav__link">
+        常见辅助函数构造
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/08_%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/" class="md-nav__link">
+        不定积分公式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/09_%E5%AE%9A%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/" class="md-nav__link">
+        定积分公式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/10_%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E7%A7%AF%E5%88%86%E5%AD%A6%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        一元函数微分积分学应用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/11_%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E8%AE%A1%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        二重积分计算法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/12_%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B1%82%E8%A7%A3/" class="md-nav__link">
+        常微分方程的求解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/13_%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E6%94%B6%E6%95%9B%E6%80%A7%E5%88%A4%E6%96%AD/" class="md-nav__link">
+        无穷级数收敛性判断
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/14_%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/" class="md-nav__link">
+        傅里叶级数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/15_%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+        多元函数积分学基础知识
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E6%95%B0%E5%85%AC%E5%BC%8F/16_%E4%B8%89%E9%87%8D%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        三重积分
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          概率论
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="概率论" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          概率论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/01_%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        随机事件与概率
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/02_%E4%B8%80%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        一维随机变量及其分布
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/03_%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        多维随机变量及其分布
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/04_%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        随机变量的数字特征
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/05_%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86%E4%B8%8E%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        大数定理与中心极限定理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/06_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        数理统计
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          线性代数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="线性代数" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          线性代数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/01_%E8%A1%8C%E5%88%97%E5%BC%8F/" class="md-nav__link">
+        行列式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/02_%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/03_%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" class="md-nav__link">
+        线性方程组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/04_%E5%90%91%E9%87%8F%E7%BB%84/" class="md-nav__link">
+        向量组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/05_%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" class="md-nav__link">
+        特征值与特征向量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/06_%E4%BA%8C%E6%AC%A1%E5%9E%8B/" class="md-nav__link">
+        二次型
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          矩阵论
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="矩阵论" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          矩阵论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/01_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        矩阵的相似变换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/02_%E8%8C%83%E6%95%B0%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        范数理论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/03_%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90/" class="md-nav__link">
+        矩阵分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/04_%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/" class="md-nav__link">
+        矩阵分解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/05_%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E4%BC%B0%E8%AE%A1%E4%B8%8E%E8%A1%A8%E7%A4%BA/" class="md-nav__link">
+        特征值的估计与表示
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/06_%E5%B9%BF%E4%B9%89%E9%80%86%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        广义逆矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/07_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E6%AE%8A%E4%B9%98%E7%A7%AF/" class="md-nav__link">
+        矩阵的特殊乘积
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E8%AE%BA/08_%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        线性空间与线性变换
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          数值分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数值分析" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          数值分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/01_%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+        基础知识
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/02_%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9/" class="md-nav__link">
+        非线性方程求根
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/03_%E8%A7%A3%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%B3%95/" class="md-nav__link">
+        解线性代数方程组的直接法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/04_%E8%A7%A3%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E6%B3%95/" class="md-nav__link">
+        解线性代数方程组的迭代法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/05_%E5%87%BD%E6%95%B0%E6%8F%92%E5%80%BC/" class="md-nav__link">
+        函数插值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/06_%E5%87%BD%E6%95%B0%E7%9A%84%E6%9C%80%E4%BD%B3%E5%B9%B3%E6%96%B9%E9%80%BC%E8%BF%91%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%8B%9F%E5%90%88/" class="md-nav__link">
+        函数的最佳平方逼近与数据的最小二乘拟合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/07_%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E4%B8%8E%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86/" class="md-nav__link">
+        数值积分与数值微分
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/08_%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/" class="md-nav__link">
+        常微分方程初值问题的数值解法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/09_%E7%9F%A9%E9%98%B5%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+        矩阵特征值与特征向量的计算
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_6">
+          凸优化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="凸优化" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          凸优化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%87%B8%E4%BC%98%E5%8C%96/01_%E5%87%B8%E9%9B%86/" class="md-nav__link">
+        凸集
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%87%B8%E4%BC%98%E5%8C%96/02_%E5%87%B8%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        凸函数
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_7">
+          信息论
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="信息论" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          信息论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01_%E7%86%B5%E3%80%81%E7%9B%B8%E5%AF%B9%E7%86%B5%E4%B8%8E%E4%BA%92%E4%BF%A1%E6%81%AF/" class="md-nav__link">
+        熵、相对熵与互信息
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02_%E6%B8%90%E8%BF%9B%E5%9D%87%E5%88%86%E6%80%A7/" class="md-nav__link">
+        渐进均分性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03_%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E7%86%B5%E7%8E%87/" class="md-nav__link">
+        随机过程的熵率
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04_%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/" class="md-nav__link">
+        数据压缩
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05_%E4%BF%A1%E9%81%93%E5%AE%B9%E9%87%8F/" class="md-nav__link">
+        信道容量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06_%E5%BE%AE%E5%88%86%E7%86%B5/" class="md-nav__link">
+        微分熵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07_%E9%AB%98%E6%96%AF%E4%BF%A1%E9%81%93/" class="md-nav__link">
+        高斯信道
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08_%E7%8E%87%E5%A4%B1%E7%9C%9F%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        率失真理论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09_%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BB%9F%E8%AE%A1%E5%AD%A6/" class="md-nav__link">
+        信息论与统计学
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10_%E6%9C%80%E5%A4%A7%E7%86%B5/" class="md-nav__link">
+        最大熵
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          计算机基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="计算机基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          计算机基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_1">
+          计算机组成原理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="计算机组成原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          计算机组成原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/01_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        计算机系统概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/02_%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        数据的表示和运算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/03_%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        存储系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/04_%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        指令系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/05_%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8/" class="md-nav__link">
+        中央处理器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/06_%E6%80%BB%E7%BA%BF/" class="md-nav__link">
+        总线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/07_%E8%BE%93%E5%85%A5_%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        输入_输出系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          计算机操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="计算机操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          计算机操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/01_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        计算机系统概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/02_%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        进程管理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          图像处理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="图像处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          图像处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          数字图像处理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数字图像处理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          数字图像处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/01_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        基础概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/02_%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        灰度变换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/03_%E5%9B%BE%E5%83%8F%E6%BB%A4%E6%B3%A2/" class="md-nav__link">
+        图像滤波
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/04_%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/" class="md-nav__link">
+        空间滤波
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/05_%E9%A2%91%E7%8E%87%E5%9F%9F%E6%BB%A4%E6%B3%A2/" class="md-nav__link">
+        频率域滤波
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/06_%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E4%B8%8E%E9%87%8D%E5%BB%BA/" class="md-nav__link">
+        图像复原与重建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/07_%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="md-nav__link">
+        彩色图像处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/08_%E5%BD%A2%E6%80%81%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="md-nav__link">
+        形态学图像处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/09_%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" class="md-nav__link">
+        图像分割
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/10_%E8%A1%A8%E7%A4%BA%E5%92%8C%E6%8F%8F%E8%BF%B0/" class="md-nav__link">
+        表示和描述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/11_%E5%85%B6%E4%BB%96%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="md-nav__link">
+        其他图像处理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#熵" class="md-nav__link">
+    熵
+  </a>
+  
+    <nav class="md-nav" aria-label="熵">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#熵_1" class="md-nav__link">
+    熵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#联合熵" class="md-nav__link">
+    联合熵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#条件熵" class="md-nav__link">
+    条件熵
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#互信息" class="md-nav__link">
+    互信息
+  </a>
+  
+    <nav class="md-nav" aria-label="互信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#互信息_1" class="md-nav__link">
+    互信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#条件互信息" class="md-nav__link">
+    条件互信息
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#相对熵" class="md-nav__link">
+    相对熵
+  </a>
+  
+    <nav class="md-nav" aria-label="相对熵">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#相对熵_1" class="md-nav__link">
+    相对熵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#条件相对熵" class="md-nav__link">
+    条件相对熵
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#凸函数" class="md-nav__link">
+    凸函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jensen不等式" class="md-nav__link">
+    Jensen不等式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#对数和不等式及其应用" class="md-nav__link">
+    对数和不等式及其应用
+  </a>
+  
+    <nav class="md-nav" aria-label="对数和不等式及其应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#对数和不等式" class="md-nav__link">
+    对数和不等式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#相对熵的凸性" class="md-nav__link">
+    相对熵的凸性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#熵的凸性" class="md-nav__link">
+    熵的凸性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#互信息的凹凸性" class="md-nav__link">
+    互信息的凹凸性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#数据处理不等式" class="md-nav__link">
+    数据处理不等式
+  </a>
+  
+    <nav class="md-nav" aria-label="数据处理不等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#马尔可夫链" class="md-nav__link">
+    马尔可夫链
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数据处理不等式_1" class="md-nav__link">
+    数据处理不等式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#充分统计量" class="md-nav__link">
+    充分统计量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#费诺不等式" class="md-nav__link">
+    费诺不等式
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+
+<h1 id="熵相对熵与互信息">熵、相对熵与互信息<a class="headerlink" href="#熵相对熵与互信息" title="Permanent link">&para;</a></h1>
+<h2 id="熵">熵<a class="headerlink" href="#熵" title="Permanent link">&para;</a></h2>
+<h3 id="熵_1">熵<a class="headerlink" href="#熵_1" title="Permanent link">&para;</a></h3>
+<p>信息是对不确定性的消除。熵是随机变量不确定度的度量。设<span class="arithmatex">\(X\)</span>是一个离散型随机变量，其字母的取值空间为<span class="arithmatex">\(\mathcal{X}\)</span>，概率密度函数<span class="arithmatex">\(p(x)=Pr(X=x),x \in \mathcal{X}\)</span>。
+一个离散型随机变量<span class="arithmatex">\(X\)</span>的熵<span class="arithmatex">\(H(X)\)</span>定义为</p>
+<div class="arithmatex">\[
+H(X) = - \sum_{x\in \mathcal{X}} p(x) \log_2 {p(x)}
+\]</div>
+<p>也记作<span class="arithmatex">\(H(p)\)</span>。对数的底为<code>2</code>，熵的单位用比特表示。
+如果使用底为<span class="arithmatex">\(b\)</span>的对数，则相应的熵记为<span class="arithmatex">\(H_b(x)\)</span>。当对数底为<span class="arithmatex">\(e\)</span>时，熵的单位用奈特<code>nat</code>表示。</p>
+<div class="arithmatex">\[
+E_pg(x) = \sum_{x\in \chi} g(x)p(x)
+\]</div>
+<p><span class="arithmatex">\(X\)</span>的熵又可解释为随机变量<span class="arithmatex">\(\log \frac{1}{p(X)}\)</span>的数学期望，</p>
+<div class="arithmatex">\[
+H(X)=E_p \log{\frac 1 {p(X)}}
+\]</div>
+<ul>
+<li>非负性：<span class="arithmatex">\(H(X) \geq 0\)</span></li>
+<li>换底公式：<span class="arithmatex">\(H_b(X)=(\log_b a)H_a(X)\)</span></li>
+<li>可加性/熵的链式法则：<span class="arithmatex">\(H(X_1,X_2,\cdots,X_n)=\sum_{i=1}^n H(X_i \mid X_{i-1},\cdots,X_1)\)</span></li>
+<li>最大离散熵定理
+<span class="arithmatex">\(H(X) \leq \log \mid \mathcal X\mid\)</span>,其中<span class="arithmatex">\(\log \mid \mathcal X \mid\)</span>表示字母表或定义域集合<span class="arithmatex">\(\mathcal X\)</span>中元素的个数，当且仅当X服从<span class="arithmatex">\(\mathcal X\)</span>上的均匀分布，等号成立。</li>
+<li>熵的独立界
+设<span class="arithmatex">\(X_1,X_2,\cdots,X_n\)</span>服从<span class="arithmatex">\(p(x_1,x_2,\cdots,x_n)\)</span>,则</li>
+</ul>
+<div class="arithmatex">\[
+H(X_1,X_2,\cdots,X_n) \leq \sum_{i=1}^n H(X_i)
+\]</div>
+<p>当且仅当<span class="arithmatex">\(X_i\)</span>相互独立，等号成立</p>
+<h3 id="联合熵">联合熵<a class="headerlink" href="#联合熵" title="Permanent link">&para;</a></h3>
+<p>对于服从联合分布<span class="arithmatex">\(p(x,y)\)</span>的一对离散随机变量<span class="arithmatex">\((X,Y)\)</span>,其联合熵<span class="arithmatex">\(H(X,Y)\)</span> <code>joint entropy</code>：</p>
+<div class="arithmatex">\[
+H(X,Y) = - \sum_{x\in \chi} \sum_{y\in Y} p(x,y) \log p(x,y)=-E\log p(X,Y)
+\]</div>
+<h3 id="条件熵">条件熵<a class="headerlink" href="#条件熵" title="Permanent link">&para;</a></h3>
+<p>若<span class="arithmatex">\((X,Y) \sim p(x,y)\)</span>,条件熵<code>conditional entropy</code> <span class="arithmatex">\(H(Y \mid X)\)</span>定义为</p>
+<div class="arithmatex">\[
+H(Y \mid X)= \sum_{x\in \chi}p(x) H(Y\mid X=x)
+\\= -\sum_{x\in \chi}p(x) \sum_{y\in Y}p(y\mid x)\log p(y \mid x)\\
+= - \sum_{x \in \chi} \sum_{y\in Y}p(x,y) \log p(y \mid x) = -E \log p(Y \mid X) 
+\]</div>
+<ul>
+<li>条件作用使熵减小，信息不会有负面影响：<span class="arithmatex">\(H(X \mid Y) \leq H(X)\)</span></li>
+<li>可加性/链式法则：</li>
+</ul>
+<div class="arithmatex">\[
+H(X,Y) = H(X)+ H(Y \mid X) \iff \log p(X,Y) = \log p(X) + \log p(y \mid x)
+\]</div>
+<div class="arithmatex">\[
+H(X,Y \mid Z) = H(X \mid Z) + H(Y \mid X,Z)
+\]</div>
+<h2 id="互信息">互信息<a class="headerlink" href="#互信息" title="Permanent link">&para;</a></h2>
+<h3 id="互信息_1">互信息<a class="headerlink" href="#互信息_1" title="Permanent link">&para;</a></h3>
+<p>它是一个随机变量包含另一个随机变量信息量的度量。互信息也是在给定另一随机变量知识的条件下，原随机变量不确定度的缩减量。</p>
+<div class="arithmatex">\[
+I(X;Y)=H(X)-H(X|Y)
+\]</div>
+<p>数学展开表达式</p>
+<div class="arithmatex">\[
+I(X;Y)=\sum_{x\in \chi} \sum_{y\in \mathcal{Y}}p(x,y) \log \frac{p(x,y)}{p(x)p(y)}
+\\=E_{p(x,y)}\log\frac{p(X,Y)}{p(X)p(Y)}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(I(X;Y)=H(Y)-H(Y\mid X)\)</span></li>
+<li><span class="arithmatex">\(I(X;Y)=H(X)+H(Y)-H(X,Y)\)</span></li>
+<li><span class="arithmatex">\(I(X;Y)=I(Y;X)\)</span></li>
+<li>若<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(Y\)</span>独立，<span class="arithmatex">\(I(X;Y)=0\)</span></li>
+<li>若<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(Y\)</span>一一映射，则<span class="arithmatex">\(I(X;Y)=H(X)\)</span></li>
+<li>非负性：<span class="arithmatex">\(I(X;Y) \geq 0\)</span>,了解一个随机变量对于了解另一个随机变量总有一些帮助</li>
+<li>极值性：<span class="arithmatex">\(I(X;Y) \leq \min\{H(X),H(Y)\}\)</span>,两个随机变量的互信息不可能比自身还大</li>
+<li>可加性/链式法则：<span class="arithmatex">\(I(X_1,X_2,\cdots,X_n;Y)=\sum_{i=1}^n I(X_i;Y \mid X_{i-1},\cdots,X_1)\)</span></li>
+<li>随机变量与其自身的互信息为该随机变量的熵，所以熵有时候称为自信息<code>self-information</code>，<span class="arithmatex">\(H(X;X)=H(X)\)</span></li>
+</ul>
+<h3 id="条件互信息">条件互信息<a class="headerlink" href="#条件互信息" title="Permanent link">&para;</a></h3>
+<p>随机变量<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(Y\)</span>在给定随机变量<span class="arithmatex">\(Z\)</span>时的条件互信息<code>conditional mutual information</code></p>
+<div class="arithmatex">\[
+I(X;Y \mid Z) = H(X \mid Z) - H(X \mid Y,Z)
+=E_{p(x,y,z)} \log \frac{p(X,Y \mid Z)}{p(X \mid Z)p(Y \mid Z)}
+\]</div>
+<h2 id="相对熵">相对熵<a class="headerlink" href="#相对熵" title="Permanent link">&para;</a></h2>
+<h3 id="相对熵_1">相对熵<a class="headerlink" href="#相对熵_1" title="Permanent link">&para;</a></h3>
+<p>相对熵时两个随机分布之间距离的度量，又称鉴别信息。相对熵<span class="arithmatex">\(D(p \mid \mid q)\)</span>度量当真实分布为<span class="arithmatex">\(p\)</span>而假定分布为<span class="arithmatex">\(p\)</span>时的无效性。</p>
+<div class="arithmatex">\[
+D(p \mid\mid q) = \sum_{x\in \chi}p(x) \log\frac{p(x)}{q(x)}= E_p \log \frac{p(X)}{q(X)}
+\]</div>
+<ul>
+<li>非负性/信息不等式：<span class="arithmatex">\(D(p \mid\mid q) \geq 0\)</span></li>
+<li>不是严格的距离函数：不满足对称性和三角不等式</li>
+<li><span class="arithmatex">\(H(X) = \log \mid \mathcal X \mid - D(p\mid\mid u)\)</span></li>
+<li><span class="arithmatex">\(I(X;Y) = D(p(x,y)\mid\mid p(x)p(y))\)</span></li>
+</ul>
+<h3 id="条件相对熵">条件相对熵<a class="headerlink" href="#条件相对熵" title="Permanent link">&para;</a></h3>
+<p>条件相对熵<code>conditional relative entropy</code>：<span class="arithmatex">\(D(p(y\mid x) \mid\mid q(y\mid x))\)</span>定义为条件概率密度函数<span class="arithmatex">\(p(y\mid x)\)</span>和<span class="arithmatex">\(q(y\mid x)\)</span>之间的平均相对熵，其中取平均时关于概率密度函数<span class="arithmatex">\(p(x)\)</span>而言的</p>
+<div class="arithmatex">\[
+D(p(y\mid x) \mid\mid q(y\mid x)) = \sum_x p(x) \sum_y p(y\mid x) \log \frac{p(y\mid x)}{q(y\mid x)}=E_{p(x,y)}\log \frac{p(Y\mid X)}{q(Y\mid X)}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(D(p(y\mid x)\mid\mid q(y\mid x)) \geq 0\)</span>,当且仅当对任意y以及满足<span class="arithmatex">\(p(x)&gt;0\)</span>的<span class="arithmatex">\(x\)</span>,有<span class="arithmatex">\(p(y\mid x) = q(y\mid x)\)</span>,等号成立</li>
+<li><span class="arithmatex">\(I(X;Y\mid Z) \geq 0\)</span>,当且仅当对给定随机变量<span class="arithmatex">\(Z\)</span>,<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(Y\)</span>是条件独立的，等号成立</li>
+<li>可加性/相对熵的链式法则</li>
+</ul>
+<div class="arithmatex">\[
+D(p(x,y) \mid\mid q(x,y))=D(p(x)\mid\mid q(x)) + D(p(y\mid x)\mid\mid q(y\mid x))
+\]</div>
+<h2 id="凸函数">凸函数<a class="headerlink" href="#凸函数" title="Permanent link">&para;</a></h2>
+<p>如果函数总是位于任何一条弦的下面，则该函数是下凸的；如果函数总是位于任何一条弦的上面，则该函数是上凸。</p>
+<h2 id="jensen不等式">Jensen不等式<a class="headerlink" href="#jensen不等式" title="Permanent link">&para;</a></h2>
+<p>若给定下凸函数<span class="arithmatex">\(f\)</span>和一个随机变量<span class="arithmatex">\(X\)</span>,则</p>
+<div class="arithmatex">\[
+Ef(X) \geq f(EX)
+\]</div>
+<p>若<span class="arithmatex">\(f\)</span>是严格下凸的，等号成立<span class="arithmatex">\(X=EX\)</span></p>
+<h2 id="对数和不等式及其应用">对数和不等式及其应用<a class="headerlink" href="#对数和不等式及其应用" title="Permanent link">&para;</a></h2>
+<h3 id="对数和不等式">对数和不等式<a class="headerlink" href="#对数和不等式" title="Permanent link">&para;</a></h3>
+<p>对于非负数<span class="arithmatex">\(a_1,a_2,\cdots,a_n\)</span>和<span class="arithmatex">\(b_1,b_2,\cdots,b_n\)</span>,</p>
+<div class="arithmatex">\[
+\sum_{i=1}^n a_i \log \frac{a_i}{b_i} \geq (\sum_{i=1}^n a_i) \log \frac{\sum_{i=1}^n a_i}{\sum_{i=1}^n b_i}
+\]</div>
+<p>当且仅当<span class="arithmatex">\(\frac{a_i}{b_i}=C\)</span>,等号成立</p>
+<h3 id="相对熵的凸性">相对熵的凸性<a class="headerlink" href="#相对熵的凸性" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(D(p\mid \mid q)\)</span>关于对<span class="arithmatex">\((p,q)\)</span>是下凸的，即如果<span class="arithmatex">\((p_1,q_1)\)</span>和<span class="arithmatex">\((p_2,q_2)\)</span>为两对概率密度函数，则对所有的<span class="arithmatex">\(0 \leq \lambda 1\)</span>,有</p>
+<div class="arithmatex">\[
+D(\lambda p_1 +(1- \lambda)p_2 \mid\mid \lambda q_1+(1-\lambda)q_2) \leq \lambda D(p_1\mid\mid q_1) + (1-\lambda) D(p_2 \mid\mid q_2)
+\]</div>
+<h3 id="熵的凸性">熵的凸性<a class="headerlink" href="#熵的凸性" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(H(p)\)</span>是关于<span class="arithmatex">\(p\)</span>的上凸函数</p>
+<h3 id="互信息的凹凸性">互信息的凹凸性<a class="headerlink" href="#互信息的凹凸性" title="Permanent link">&para;</a></h3>
+<p>设<span class="arithmatex">\((X,Y) \sim p(x,y)=p(x)p(y\mid x)\)</span>。如果固定<span class="arithmatex">\(p(y\mid x)\)</span>,则互信息<span class="arithmatex">\(I(X;Y)\)</span>是关于<span class="arithmatex">\(p(x)\)</span>的上凸函数；而如果固定<span class="arithmatex">\(p(x)\)</span>,则互信息<span class="arithmatex">\(I(X;Y)\)</span>是关于<span class="arithmatex">\(p(y\mid x)\)</span>的下凸函数。</p>
+<h2 id="数据处理不等式">数据处理不等式<a class="headerlink" href="#数据处理不等式" title="Permanent link">&para;</a></h2>
+<p>数据处理不等式说明，不存在对数据的优良操作能使从数据中所获得的推理得到改善。</p>
+<h3 id="马尔可夫链">马尔可夫链<a class="headerlink" href="#马尔可夫链" title="Permanent link">&para;</a></h3>
+<p>如果<span class="arithmatex">\(Z\)</span>的条件分布仅依赖于Y的分布，而与X是条件独立的，则称随机变量<span class="arithmatex">\(X,Y,Z\)</span>依序构成马尔可夫链，记为<span class="arithmatex">\(X \rightarrow Y \rightarrow Z\)</span>。可构成马尔可夫链的数学定义是</p>
+<div class="arithmatex">\[
+p(x,y,z) = p(x) p(y\mid x) p(z\mid y)
+\]</div>
+<h3 id="数据处理不等式_1">数据处理不等式<a class="headerlink" href="#数据处理不等式_1" title="Permanent link">&para;</a></h3>
+<p>若<span class="arithmatex">\(X \rightarrow Y \rightarrow Z\)</span>,则有<span class="arithmatex">\(I(X;Y) \geq I(X;Z)\)</span>
+- 如果<span class="arithmatex">\(Z=g(Y)\)</span>,则<span class="arithmatex">\(I(X;Y) \geq I(X;g(Y))\)</span>,即数据Y的函数不会增加X的信息量
+- 如果<span class="arithmatex">\(X \rightarrow Y \rightarrow Z\)</span>，则<span class="arithmatex">\(I(X;Y \mid Z) \le I(X;Y)\)</span></p>
+<h2 id="充分统计量">充分统计量<a class="headerlink" href="#充分统计量" title="Permanent link">&para;</a></h2>
+<p>假定有一族以参数<span class="arithmatex">\(\theta\)</span>指示的概率密度函数<span class="arithmatex">\(\{f_\theta(x)\}\)</span>,设<span class="arithmatex">\(X\)</span>是从其中一个分布抽取的样本。设<span class="arithmatex">\(T(X)\)</span>为任意一个统计量，如样本均值或样本方差，那么<span class="arithmatex">\(\theta \rightarrow X \rightarrow T(X)\)</span>,且由数据处理不等式，对于<span class="arithmatex">\(\theta\)</span>的任何分布，有</p>
+<div class="arithmatex">\[
+I(\theta;T(X)) \leq I(\theta;X)
+\]</div>
+<p>若等号成立，表明无信息损失。
+如果<span class="arithmatex">\(T(X)\)</span>包含了<span class="arithmatex">\(X\)</span>所含的关于<span class="arithmatex">\(\theta\)</span>的全部信息，则称该统计量<span class="arithmatex">\(T(X)\)</span>关于<span class="arithmatex">\(\theta\)</span>是充分的。
+- 如果对<span class="arithmatex">\(\theta\)</span>的任何分布，在给定<span class="arithmatex">\(T(X)\)</span>的情况下，<span class="arithmatex">\(X\)</span>独立于<span class="arithmatex">\(\theta\)</span>，即<span class="arithmatex">\((\theta \rightarrow T(X) \rightarrow X)\)</span>构成马尔可夫链，则称函数<span class="arithmatex">\(T(X)\)</span>是关于分布族<span class="arithmatex">\(\{f_\theta (x)\}\)</span>的<strong>充分统计量</strong>(<code>sufficient statistic</code>)，即<span class="arithmatex">\(I(\theta;X)=I(\theta;T(X))\)</span>
+- 如果一个充分统计量<span class="arithmatex">\(T(X)\)</span>是其他所有充分统计量<span class="arithmatex">\(U\)</span>的函数，则称<span class="arithmatex">\(T(X)\)</span>是关于<span class="arithmatex">\(\{f_\theta (x)\}\)</span>的<strong>最小充分统计量</strong>(<code>minimal sufficient statistic</code>),即<span class="arithmatex">\(\theta \rightarrow T(X) \rightarrow U(X) \rightarrow X\)</span></p>
+<h2 id="费诺不等式">费诺不等式<a class="headerlink" href="#费诺不等式" title="Permanent link">&para;</a></h2>
+<p>假定知道随机变量<span class="arithmatex">\(Y\)</span>，想进一步推测与之相关的随机变量<span class="arithmatex">\(X\)</span>的值。费诺不等式将推测随机变量X的误差概率与它的条件熵<span class="arithmatex">\(H(X \mid Y)\)</span>联系到一起。
+对任何满足<span class="arithmatex">\(X \rightarrow Y \rightarrow \hat{X}\)</span>的估计量<span class="arithmatex">\(\hat X\)</span>,设<span class="arithmatex">\(P_e=\Pr \{X \neq \hat X\}\)</span>,有</p>
+<div class="arithmatex">\[
+H(P_e) + P_e \log \mid \mathcal X \mid \geq H(X \mid \hat X) \geq H(X \mid Y)
+\]</div>
+<ul>
+<li>对任意两个随机变量<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(Y\)</span>,设<span class="arithmatex">\(p=\Pr(X \neq Y)\)</span>, <span class="arithmatex">\(H(p)+p\log \mid \mathcal X \mid \geq H(X \mid Y)\)</span></li>
+<li>设<span class="arithmatex">\(P_e = \Pr (X \neq \hat X),\hat X:\mathcal Y \rightarrow \mathcal X\)</span>,则<span class="arithmatex">\(H(P_e)+P_e \log(\mid \mathcal X \mid -1) \geq H(X\mid Y)\)</span></li>
+<li>如果<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(X'\)</span>独立同分布，具有熵<span class="arithmatex">\(H(X)\)</span>,则<span class="arithmatex">\(\Pr(X = X') \geq 2^{-H(X)}\)</span>,仅当<span class="arithmatex">\(X\)</span>服从均匀分布，等号成立</li>
+</ul>
+<h1 id="渐进均分性">渐进均分性<a class="headerlink" href="#渐进均分性" title="Permanent link">&para;</a></h1>
+<h2 id="渐进均分性定理">渐进均分性定理<a class="headerlink" href="#渐进均分性定理" title="Permanent link">&para;</a></h2>
+<p>若<span class="arithmatex">\(X_1,X_2,\cdots ,X_n\)</span>为<span class="arithmatex">\(i.i.d \sim p(x)\)</span>,则</p>
+<div class="arithmatex">\[
+-\frac 1 n \log p(X_1,X_2,\cdots,X_n) \rightarrow H(X)  \tag{AEP}
+\]</div>
+<p>关于<span class="arithmatex">\(p(X)\)</span>的典型集<span class="arithmatex">\(A_{\varepsilon}^{(n)}\)</span>是序列<span class="arithmatex">\((x_1,x_2,\cdots,x_n) \in \mathcal X^n\)</span>的集合，且满足性质</p>
+<div class="arithmatex">\[
+2^{-n(H(X)+\varepsilon)} \leq p(x_1,x_2,\cdots,x_n) \leq 2^{-n(H(X)-\varepsilon)}
+\]</div>
+<p>可以证明典型集<span class="arithmatex">\(A^{(n)}_\varepsilon\)</span>有如下性质：</p>
+<ul>
+<li>如果<span class="arithmatex">\((x_1,x_2,\cdots,x_n) \in A_\varepsilon^{(n)}\)</span>,则<span class="arithmatex">\(H(X)-\varepsilon \leq -\frac 1n \log p(x_1,x_2,\cdots,x_n) \leq H(X) + \varepsilon\)</span></li>
+<li>当<span class="arithmatex">\(n\)</span>充分大时，<span class="arithmatex">\(\Pr \{A_\varepsilon ^{(n)}\} &gt; 1- \varepsilon\)</span></li>
+<li><span class="arithmatex">\(\mid A_\varepsilon^{(n)} \mid \leq 2^{n(H(X)+\varepsilon)}\)</span></li>
+<li>当<span class="arithmatex">\(n\)</span>充分大时，<span class="arithmatex">\(\mid A_\varepsilon^{(n)}\mid \geq (1-\varepsilon)2^{n(H(X)-\varepsilon)}\)</span> </li>
+</ul>
+<p>由此可知，典型集的概率近似为1，典型集中的所有元素几乎是等可能的，且典型集的元素个数近似等于<span class="arithmatex">\(2^{nH}\)</span></p>
+<h2 id="aep的推论数据压缩">AEP的推论：数据压缩<a class="headerlink" href="#aep的推论数据压缩" title="Permanent link">&para;</a></h2>
+<p>设<span class="arithmatex">\(X^n\)</span>为服从<span class="arithmatex">\(p(x)\)</span>的<span class="arithmatex">\(i.i.d\)</span>序列，<span class="arithmatex">\(\varepsilon&gt;0\)</span>,则存在一个编码将长度为n的序列<span class="arithmatex">\(x^n\)</span>映射为比特串，使得映射是<span class="arithmatex">\(1-1\)</span>的，且对于充分大的<span class="arithmatex">\(n\)</span>,有</p>
+<div class="arithmatex">\[
+E[\frac 1 n l(X^n)] \leq H(X) + \varepsilon \tag{香农第一定理}
+\]</div>
+<p>因而在平均意义上，用<span class="arithmatex">\(nH(X)\)</span>比特科表示序列<span class="arithmatex">\(X^n\)</span>。该定理又称<strong>信源无失真定长编码定理</strong></p>
+<h2 id="高概率集与典型集">高概率集与典型集<a class="headerlink" href="#高概率集与典型集" title="Permanent link">&para;</a></h2>
+<p>设<span class="arithmatex">\(X_1,X_2,\cdots ,X_n\)</span>为<span class="arithmatex">\(i.i.d \sim p(x)\)</span>。对<span class="arithmatex">\(\delta &lt; \frac 12\)</span>，设<span class="arithmatex">\(B_\delta^{(n) } \subset \mathcal X^n\)</span>为使<span class="arithmatex">\(\Pr \{B_\delta^{(n) }\} \geq    1 - \delta\)</span>成立的最小集合,则</p>
+<div class="arithmatex">\[
+\mid B_\delta^{(n)} \mid  = 2^{nH}
+\]</div>
+<h1 id="随机过程的熵率">随机过程的熵率<a class="headerlink" href="#随机过程的熵率" title="Permanent link">&para;</a></h1>
+<p><code>TODO</code></p>
+<h1 id="数据压缩">数据压缩<a class="headerlink" href="#数据压缩" title="Permanent link">&para;</a></h1>
+<h2 id="编码的概念">编码的概念<a class="headerlink" href="#编码的概念" title="Permanent link">&para;</a></h2>
+<h4 id="信源编码">信源编码<a class="headerlink" href="#信源编码" title="Permanent link">&para;</a></h4>
+<p>关于随机变量<span class="arithmatex">\(X\)</span>的<strong>信源编码</strong><span class="arithmatex">\(C\)</span>是从<span class="arithmatex">\(X\)</span>的取值空间<span class="arithmatex">\(\mathcal X\)</span>到<span class="arithmatex">\(\mathcal D ^*\)</span>的一个映射，其中<span class="arithmatex">\(\mathcal D ^*\)</span>表示<span class="arithmatex">\(D\)</span>元字母表<span class="arithmatex">\(\mathcal D\)</span>上有限长度的字符串所构成的集合。用<span class="arithmatex">\(C(x)\)</span>表示<span class="arithmatex">\(x\)</span>的码字并用<span class="arithmatex">\(l(x)\)</span>表示<span class="arithmatex">\(C(x)\)</span>的长度。</p>
+<h4 id="期望长度">期望长度<a class="headerlink" href="#期望长度" title="Permanent link">&para;</a></h4>
+<p>设随机变量<span class="arithmatex">\(X\)</span>的概率密度函数为<span class="arithmatex">\(p(x)\)</span>,<span class="arithmatex">\(l(x)\)</span>为对应于<span class="arithmatex">\(x\)</span>的码字长度，定义信源编码<span class="arithmatex">\(C(x)\)</span>的<strong>期望长度</strong><span class="arithmatex">\(L(C)\)</span>为</p>
+<div class="arithmatex">\[
+L(C)=\sum_{x \in \mathcal X} p(x)l(x)
+\]</div>
+<h4 id="非奇异编码">非奇异编码<a class="headerlink" href="#非奇异编码" title="Permanent link">&para;</a></h4>
+<p>如果编码将<span class="arithmatex">\(X\)</span>的取值空间中的每个元素映射称<span class="arithmatex">\(\mathcal D ^*\)</span>中的不同字符串，即</p>
+<div class="arithmatex">\[
+x \neq x' \Rightarrow C(x) \neq C(x')
+\]</div>
+<p>则称这个编码是非奇异的</p>
+<h4 id="扩展编码">扩展编码<a class="headerlink" href="#扩展编码" title="Permanent link">&para;</a></h4>
+<p>编码<span class="arithmatex">\(C\)</span>的扩展<span class="arithmatex">\(C^*\)</span>是从<span class="arithmatex">\(\mathcal X\)</span>上的有限长字符串到<span class="arithmatex">\(\mathcal D\)</span>上的有限长字符串的映射，定义为</p>
+<div class="arithmatex">\[
+C(x_1 x_2 \cdots x_n) = C(x_1)C(x_2)\cdots C(x_n)
+\]</div>
+<p>其中<span class="arithmatex">\(C(x_1)C(x_2)\cdots C(x_n)\)</span>表示相应码字的串联。</p>
+<h4 id="唯一可译编码">唯一可译编码<a class="headerlink" href="#唯一可译编码" title="Permanent link">&para;</a></h4>
+<p>如果一个编码的扩展编码是非奇异的，则称该编码是唯一可译的。</p>
+<h4 id="前缀码">前缀码<a class="headerlink" href="#前缀码" title="Permanent link">&para;</a></h4>
+<p>若码中无任何码字是其他码字的前缀，则称该编码为前缀码或即时码。</p>
+<h2 id="kraft不等式">Kraft不等式<a class="headerlink" href="#kraft不等式" title="Permanent link">&para;</a></h2>
+<ul>
+<li>对于<span class="arithmatex">\(D\)</span>元字母表上的即时码（前缀码），码字长度<span class="arithmatex">\(l_1,l_2,\cdots,l_m\)</span>必须满足不等式</li>
+</ul>
+<div class="arithmatex">\[
+\sum_{i} D^{-l_i} \leq 1        \tag{Kraft不等式}
+\]</div>
+<p>反之，若给定满足以上不等式的一组码字长度，则存在一个相应的即时码，其码字长度就是给定的长度。</p>
+<ul>
+<li>对任何构成前缀码的可数无限码字集，码字长度也满足推广的<span class="arithmatex">\(Kraft\)</span>不等式</li>
+</ul>
+<div class="arithmatex">\[
+\sum_{i=1}^\infty D^{-l_i} \leq 1       \tag{推广的Kraft不等式}
+\]</div>
+<p>反之，若给定满足推广的<code>Kraft</code>不等式的<span class="arithmatex">\(l_1,l_2,\cdots,\)</span>则可构造出具有相应码字长度的前缀码。</p>
+<h2 id="最优码">最优码<a class="headerlink" href="#最优码" title="Permanent link">&para;</a></h2>
+<p>随机变量<span class="arithmatex">\(X\)</span>的任一<span class="arithmatex">\(D\)</span>元即时码的期望长度必定大于或等于熵<span class="arithmatex">\(H_D(X)\)</span>,即</p>
+<div class="arithmatex">\[
+L \geq H_D(X)
+\]</div>
+<p>当且仅当<span class="arithmatex">\(D^{-l_i}=p_i\)</span>，等号成立。</p>
+<p>对于某个<span class="arithmatex">\(n\)</span>,如果概率分布的每一个概率值均等于<span class="arithmatex">\(D^{-n}\)</span>，则称这个概率分布是<span class="arithmatex">\(D\)</span>进制的<code>D-adic</code>。因此，当且仅当<span class="arithmatex">\(X\)</span>的分布式<span class="arithmatex">\(D\)</span>进制的，上述等号成立。</p>
+<h2 id="最优码长的界">最优码长的界<a class="headerlink" href="#最优码长的界" title="Permanent link">&para;</a></h2>
+<ul>
+<li>设<span class="arithmatex">\(l_1^*,l_2^*,\cdots,l_m^*\)</span>是关于信源分布<span class="arithmatex">\(\pmb p\)</span>和一个<span class="arithmatex">\(D\)</span>元字母表的一组最优码长，<span class="arithmatex">\(L^*\)</span>为最优码的相应期望长度<span class="arithmatex">\((L^*=\sum p_il_i^*)\)</span>，则</li>
+</ul>
+<div class="arithmatex">\[
+  H_D(X) \leq L^* \leq H_D(X)+1
+\]</div>
+<ul>
+<li>每字符最小期望码字长满足</li>
+</ul>
+<div class="arithmatex">\[
+  \frac {H(X_1,X_2,\cdots,X_n)}{n} \leq L_n^* &lt;\frac{H(X_1,X_2,\cdots,X_n)}{n} +\frac 1n \tag{分组前缀码}
+\]</div>
+<p>进一步，若<span class="arithmatex">\(X_1,X_2,\cdots,X_n\)</span>是平稳随机过程则</p>
+<p>$$
+  L_n^* \rightarrow H(\mathcal X)
+$$
+  其中<span class="arithmatex">\(H(\mathcal X)\)</span>为随机过程的熵率。</p>
+<ul>
+<li>（<strong>偏码</strong><code>wrong code</code>）码字长度分配<span class="arithmatex">\(l(x) = \lceil \log \frac 1{q(x)} \rceil\)</span>（香农码）关于<span class="arithmatex">\(p(x)\)</span>的期望码长满足</li>
+</ul>
+<div class="arithmatex">\[
+  H(p) + D(p \mid\mid q) \leq E_pl(X) &lt; H(p) + D(p\mid\mid q) +1
+\]</div>
+<p>于是，若真实分布为<span class="arithmatex">\(p(x)\)</span>，而编码使用的是非真实分布<span class="arithmatex">\(q(x)\)</span>，则会导致期望描述长度增加<span class="arithmatex">\(D(p \mid \mid q)\)</span>。</p>
+<h2 id="唯一可译码的kraft不等式">唯一可译码的Kraft不等式<a class="headerlink" href="#唯一可译码的kraft不等式" title="Permanent link">&para;</a></h2>
+<p>任意唯一可以的D元码的码字长度必然满足<code>Kraft</code>不等式</p>
+<div class="arithmatex">\[
+\sum D^{-l_i} \leq 1 \tag{McMillan}
+\]</div>
+<p>反之，若给定满足上述不等式的一组码字长度，则可以构造出具有同样码字长度的唯一可译码。</p>
+<ul>
+<li>推论：无限信源字母表<span class="arithmatex">\(\mathcal X\)</span>的唯一可译码亦满足<code>Kraft</code>不等式。</li>
+</ul>
+<p>这个定理说明：从码字长度集的角度考虑，唯一可译码类不能提供比前缀码类更优的选择。对唯一可译码与即时码而言，码字长度集是一样的。因而，当将允许的编码扩展到唯一可译码类的范畴，关于最优码字长度的界也是成立的。</p>
+<h2 id="霍夫曼编码">霍夫曼编码<a class="headerlink" href="#霍夫曼编码" title="Permanent link">&para;</a></h2>
+<p>霍夫曼编码是最优前缀编码</p>
+<h1 id="信道容量">信道容量<a class="headerlink" href="#信道容量" title="Permanent link">&para;</a></h1>
+<p>离散信道<code>discret channel</code>是由输入字母表<span class="arithmatex">\(\mathcal X\)</span>,输出字母表<span class="arithmatex">\(\mathcal Y\)</span>和概率转移矩阵<span class="arithmatex">\(p(y \mid x)\)</span>构成的系统，其中<span class="arithmatex">\(p(y\mid x)\)</span>表示发送字符<span class="arithmatex">\(x\)</span>的条件下收到字符<span class="arithmatex">\(y\)</span>的概率。如果输出的概率分布仅依赖于他所对应的输入，而与先前信道的输入或者输出条件独立，就称这个信道是无记忆的<code>memoryless</code>。
+离散无记忆信道的"信息"信道容量<code>channnel capacity</code>定义为</p>
+<div class="arithmatex">\[
+C = \max_{p(x)} I(X;Y)
+\]</div>
+<p>这里的最大值取自所有可能的输入分布<span class="arithmatex">\(p(x)\)</span></p>
+<h2 id="信道的例子">信道的例子<a class="headerlink" href="#信道的例子" title="Permanent link">&para;</a></h2>
+<ul>
+<li>无噪声二元信道</li>
+<li>无重叠输出的有噪声信道</li>
+<li>有噪声的打字机信道</li>
+<li>二元对称信道</li>
+<li>二元擦除信道</li>
+</ul>
+<h2 id="对称信道">对称信道<a class="headerlink" href="#对称信道" title="Permanent link">&para;</a></h2>
+<p>如果信道转移矩阵<span class="arithmatex">\(p(y\mid x)\)</span>的任何两行互相置换；任何两列也互相置换，那么称该信道是<strong>对称</strong>的。如果转移矩阵的每一行<span class="arithmatex">\(p(\cdot \mid x)\)</span>都是其他每行的置换，而所有列的元素和<span class="arithmatex">\(\sum_x p(y\mid x)\)</span>相等，则称这个信道是<strong>弱对称</strong>的。
+对于弱对称，包括对称信道，</p>
+<div class="arithmatex">\[
+C = \log \mid \mathcal Y \mid - H(转移矩阵的行)
+\]</div>
+<p>当输入字母表上的分布为均匀时达到该容量。</p>
+<h2 id="信道容量的性质">信道容量的性质<a class="headerlink" href="#信道容量的性质" title="Permanent link">&para;</a></h2>
+<ul>
+<li><span class="arithmatex">\(C \geq 0\)</span></li>
+<li><span class="arithmatex">\(C = \max I(X;Y) \leq \max H(X) \leq  \log \mid \mathcal X\mid\)</span></li>
+<li><span class="arithmatex">\(C \leq \log \mid \mathcal Y \mid\)</span></li>
+<li><span class="arithmatex">\(C=I(X;Y)\)</span>是关于<span class="arithmatex">\(p(x)\)</span>的连续函数</li>
+<li><span class="arithmatex">\(C=I(X;Y)\)</span>是关于<span class="arithmatex">\(p(x)\)</span>的上凸函数</li>
+</ul>
+<h2 id="一些定义">一些定义<a class="headerlink" href="#一些定义" title="Permanent link">&para;</a></h2>
+<ul>
+<li>用<span class="arithmatex">\((\mathcal X,p(y\mid x),\mathcal Y)\)</span>表示的离散信道由两个有限集<span class="arithmatex">\(\mathcal X\)</span>和<span class="arithmatex">\(\mathcal Y\)</span>以及一簇概率密度函数<span class="arithmatex">\(p(y \mid x)(x\in \mathcal X)\)</span>构成，其中对任意<span class="arithmatex">\(x\)</span>与<span class="arithmatex">\(y\)</span>，有<span class="arithmatex">\(p(y\mid x) \geq 0\)</span>,以及对任意的<span class="arithmatex">\(x\)</span>,有<span class="arithmatex">\(\sum_x p(y\mid x)=1\)</span>,而<span class="arithmatex">\(X\)</span>和<span class="arithmatex">\(Y\)</span>分别看作信道的输入和输出。</li>
+<li>离散无记忆信道<code>DMC</code>的<span class="arithmatex">\(n\)</span>次扩展是指信道<span class="arithmatex">\((\mathcal X^n,p(y^n\mid x^n),\mathcal Y^n)\)</span>,其中</li>
+</ul>
+<div class="arithmatex">\[
+  p(y_k\mid x^k,y^{k-1}) = p(y_k \mid x_k),k=1,2,\cdots,n
+\]</div>
+<ul>
+<li>信道<span class="arithmatex">\((\mathcal X,p(y\mid x),\mathcal Y)\)</span>的<span class="arithmatex">\((M,n)\)</span>码由以下几部分构成<ol>
+<li>下标集<span class="arithmatex">\(\{1,2,\cdots,M\}\)</span></li>
+<li>编码函数<span class="arithmatex">\(X^n:\{1,2,\cdots,M\} \rightarrow \mathcal X^n\)</span>,生成码字<span class="arithmatex">\(x^n(1),x^n(2),\cdots,x^n(M)\)</span>。所有码字的集合称为码簿<code>codebook</code></li>
+<li>译码函数
+$$
+   g:\mathcal Y^n \rightarrow {1,2,\cdots,M}
+$$
+   它是一个确定性规则，为每个收到的字符向量指定一个猜测。</li>
+</ol>
+</li>
+<li><strong>条件误差概率</strong>，设
+$$
+  \lambda_i = \Pr(g(Y^n) \neq i \mid X^n = x^n(i)) = \sum_{y^n} p(y^n\mid x<sup>n(i))I(g(y</sup>n) \neq i)
+$$
+  为已知下标<span class="arithmatex">\(i\)</span>被发送的条件下的条件误差概率<code>conditional probability of error</code>,其中<span class="arithmatex">\(I(\cdot)\)</span>为示性函数。</li>
+<li><span class="arithmatex">\((M,n)\)</span>码的最大误差概率<span class="arithmatex">\(\lambda^{(n)}\)</span> <code>maximum probability of error</code>定义为
+$$
+  \lambda^{(n)} = \max_{i \in (1,2,\cdots,M)} \lambda_i
+$$</li>
+<li><span class="arithmatex">\((M,n)\)</span>码的平均误差概率<span class="arithmatex">\(P_e^{(n)}\)</span> <code>average probability of error</code>定义为
+$$
+  P_e^{(n)} = \frac 1M \sum_{i=1}^M \lambda_i
+$$
+  注意，如果原消息<span class="arithmatex">\(W\)</span>是从集合<span class="arithmatex">\(\{1,2,\cdots,M\}\)</span>中的均匀分布中选出的，以及<span class="arithmatex">\(X^n=x^n(W)\)</span>,则
+$$
+  P_e^{(n)} = \Pr(W \neq g(Y^n)) \leq \lambda^{(n)}
+$$</li>
+<li><span class="arithmatex">\((M,n)\)</span>码的码率<span class="arithmatex">\(R\)</span> <code>rate</code>为
+$$
+  R = \frac {\log M} {n}  （比特/传输）
+$$</li>
+<li>如果存在一个<span class="arithmatex">\((\lceil 2^{nR} \rceil,n)\)</span>码序列，满足当<span class="arithmatex">\(n \rightarrow 0 <span class="arithmatex">\(时，最大误差概率\)</span>\lambda^{(n)} \rightarrow 0\)</span>,则称码率<span class="arithmatex">\(R\)</span>是可达的</li>
+<li>信道的容量定义为所有可达码率的上确界</li>
+</ul>
+<h2 id="联合典型序列">联合典型序列<a class="headerlink" href="#联合典型序列" title="Permanent link">&para;</a></h2>
+<p>服从分布<span class="arithmatex">\(p(x,y)\)</span>的联合典型序列<span class="arithmatex">\(\{\{x^n,y^n\}\}\)</span>所构成的集合<span class="arithmatex">\(A_\varepsilon^{(n)}\)</span>是满足下列条件的集合
+$$
+\begin{aligned}
+A_\varepsilon^{(n)} = &amp; {(x<sup>n,y</sup>n)\in \mathcal X^n \times \mathcal Y^n: 
+\&amp; \mid -\frac1n \log p(x^n) - H(X) \mid &lt; \varepsilon
+\&amp; \mid -\frac1n \log p(y^n) - H(Y) \mid &lt; \varepsilon
+\&amp; \mid -\frac1n \log p(x<sup>n,y</sup>n) - H(X,Y) \mid &lt; \varepsilon }
+\end{aligned}
+$$
+其中
+$$
+p(x<sup>n,y</sup>n) = \prod_{i=1}^n p (x_i,y_i)
+$$
+(联合<code>AEP</code>)设<span class="arithmatex">\((X^n,Y^n)\)</span>为服从<span class="arithmatex">\(p(x^n,y^n)=\prod_{i=1}^np(x_i,y_i)\)</span>的<span class="arithmatex">\(i.i.d\)</span>的<span class="arithmatex">\(n\)</span>长序列，则满足：
+1. 当<span class="arithmatex">\(n \rightarrow \infty\)</span>时，<span class="arithmatex">\(\Pr((X^n,Y^n) \in A_\varepsilon^{(n)}) \rightarrow 1\)</span>
+2. <span class="arithmatex">\(\mid A_\varepsilon^{(n)} \mid \leq 2^{n(H(X,Y)+\varepsilon)}\)</span>
+3. 如果<span class="arithmatex">\((\tilde X^n,\tilde Y^n) \sim p(x^n)p(y^n)\)</span>,即<span class="arithmatex">\(\tilde X^n\)</span>与<span class="arithmatex">\(\tilde Y^n\)</span>是独立的且与<span class="arithmatex">\(p(x^n,y^n)\)</span>有相同的边缘分布，那么
+$$
+   \Pr((\tilde X^n,\tilde Y^n)\in A_\varepsilon^{(n)}) \leq 2^{-n(I(X;Y)-3\varepsilon)}
+$$
+   而且对于充分大的<span class="arithmatex">\(n\)</span>，
+$$
+   \Pr((\tilde X^n,\tilde Y^n)\in A_\varepsilon^{(n)}) \geq (1-\varepsilon)2^{-n(I(X;Y)+3\varepsilon)}
+$$</p>
+<h2 id="信道编码定理">信道编码定理<a class="headerlink" href="#信道编码定理" title="Permanent link">&para;</a></h2>
+<p>对于离散无记忆信道，小于信道容量<span class="arithmatex">\(C\)</span>的所有码率都是可达的。具体来说，对任意码率<span class="arithmatex">\(R &lt; C\)</span>,存在一个<span class="arithmatex">\((2^{nR},n)\)</span>码序列，它的最大误差概率为<span class="arithmatex">\(\lambda^{(n)} \rightarrow 0\)</span>
+反之，任何满足<span class="arithmatex">\(\lambda^{(n)} \rightarrow 0\)</span>的<span class="arithmatex">\((2^{nR},n)\)</span>码序列必有<span class="arithmatex">\(R \leq C\)</span>。
+这一定理又被称为<strong>香农第二定理</strong></p>
+<h2 id="反馈容量">反馈容量<a class="headerlink" href="#反馈容量" title="Permanent link">&para;</a></h2>
+<p>对于离散无记忆信道，反馈并不能增加信道容量，即<span class="arithmatex">\(C_{FB}=C\)</span></p>
+<h2 id="信源信道定理">信源信道定理<a class="headerlink" href="#信源信道定理" title="Permanent link">&para;</a></h2>
+<p>如果随机过程的熵<span class="arithmatex">\(H&gt;C\)</span>,则该过程不能通过离散无记忆信道被可靠的传输。相反，如果随机过程满足<code>AEP</code>,且<span class="arithmatex">\(H&lt;C\)</span>,则信源可以被可靠的传输。</p>
+<h1 id="微分熵">微分熵<a class="headerlink" href="#微分熵" title="Permanent link">&para;</a></h1>
+<p>$$
+\begin{aligned}
+&amp;h(X) = h(f) = -\int_S f(x) \log f(x)dx\
+&amp;f(X<sup>n)=2</sup>{-nh(X)}\
+&amp;Vol(A_\varepsilon^{(n)}) = 2^{nh(X)}\
+&amp;h(\mathcal N(0,\sigma^2)) = \frac12 \log 2\pi e \sigma^2\
+&amp;h(\mathcal N_n(\mu,K)) = \frac 12 \log (2\pi e)^n\mid K \mid\
+&amp;D(f\mid\mid g) = \int f\log \frac fig \geq 0\
+&amp;h(X_1,X_2,\cdots,X_n)= \sum_{i=1}^n h(X_i\mid X_1,X_2,\cdots,X_{i-1})\
+&amp;h(X\mid Y) \leq h(X)\
+&amp;h(aX) = h(X) + \log \mid a\mid\
+&amp;I(X;Y)=\int f(x,y) \log \frac {f(x,y)}{f(x)f(y)} \geq 0\
+&amp;\max_{E\pmb X\pmb X'=\pmb K}h(\pmb X) = \frac12 \log (2\pi e)^n \mid K \mid\
+&amp;E(X-\hat{X}(Y))^2 \geq \frac1{2\pi e} e^{2h(X \mid Y)}
+\end{aligned}
+$$
+- <span class="arithmatex">\(2^{nH(X)}\)</span>是一个离散随机变量的有效字母表的大小
+- <span class="arithmatex">\(2^{nh(X)}\)</span>是一个连续随机变量的有效支撑集的大小
+- <span class="arithmatex">\(2^C\)</span>是一个容量为<span class="arithmatex">\(C\)</span>的信道的有效字母表的大小</p>
+<h1 id="高斯信道">高斯信道<a class="headerlink" href="#高斯信道" title="Permanent link">&para;</a></h1>
+<ul>
+<li>最大熵
+$$
+   \max_{EX^2=\alpha} = \frac 12 \log 2\pi e \alpha
+$$</li>
+<li>高斯信道
+  <span class="arithmatex">\(Y_i = X_i+Z_i,Z_i \sim \mathcal N(0,N)\)</span>，且满足功率限制<span class="arithmatex">\(\frac 1n \sum_{i=1}^n x_i^2 \leq P\)</span>,
+$$
+  C = \frac 12 \log (1+\frac PN)    \tag{比特/传输}
+$$</li>
+<li>带宽有限的可加高斯白噪声信道
+  带宽为<span class="arithmatex">\(W\)</span>,双边功率谱密度为<span class="arithmatex">\(N_0/2\)</span>,信号功率为<span class="arithmatex">\(P\)</span>,
+$$
+  C = W\log (1+\frac P{N_0W})   \tag{比特/秒}
+$$</li>
+<li><span class="arithmatex">\(k\)</span>级并联高斯信道
+  <span class="arithmatex">\(Y_j=X_j+Z_j,j=1,2,\cdots,k,Z_j \sim \mathcal N(0,N_j),\sum_{j=1}^kX_j^2 \leq P,\)</span>
+$$
+  C = \sum_{i=1}^k \frac 12 \log(1+\frac{(v-N_i)^+}{N_i})
+$$
+  其中对<span class="arithmatex">\(v\)</span>的选取满足<span class="arithmatex">\(\sum(v-N_i)^+=nP\)</span></li>
+<li>可加高斯非白噪声信道
+  <span class="arithmatex">\(Y_i=X_i+Z_i,Z^n\sim \mathcal N(0,K_Z)\)</span>
+$$
+  C =\frac 1n \sum_{i=1}^n \frac 12 \log (1+\frac {(v-\lambda_i)^+}{\lambda_i})
+$$
+  其中<span class="arithmatex">\(\lambda_1,\lambda_2,\cdots,\lambda_n)\)</span>是<span class="arithmatex">\(K_Z\)</span>的特征值，且对<span class="arithmatex">\(v\)</span>的选取满足<span class="arithmatex">\(\sum_{i}(v-\lambda_i)^+=P\)</span></li>
+<li>不带反馈容量
+$$
+  C_n = \max_{tr(K_X)\leq nP} \frac1{2n} \log \frac{\mid K_X+K_Z\mid}{\mid K_Z \mid}
+$$</li>
+<li>带反馈容量
+$$
+  C_{n,FB} = \max_{tr(K_X)\leq nP} \frac 1{2n} \log \frac{\mid K_{X+Z}}{\mid K_Z \mid}
+$$</li>
+<li>反馈界
+$$
+  C_{n,FB} \leq C_n +\frac12
+$$
+$$
+  C_{n,FB} \leq 2C_n
+$$</li>
+</ul>
+<h1 id="率失真理论">率失真理论<a class="headerlink" href="#率失真理论" title="Permanent link">&para;</a></h1>
+<h2 id="量化">量化<a class="headerlink" href="#量化" title="Permanent link">&para;</a></h2>
+<p>设<span class="arithmatex">\(X\)</span>是表示的随机变量，记<span class="arithmatex">\(X\)</span>的表示为<span class="arithmatex">\(\hat X(X)\)</span>。如果使用<span class="arithmatex">\(R\)</span>比特表示<span class="arithmatex">\(X\)</span>,则函数<span class="arithmatex">\(\hat X\)</span>可以有<span class="arithmatex">\(2^R\)</span>个取值。要寻找<span class="arithmatex">\(\hat X\)</span>的最优取值（称作再生点或码点）集合以及每个曲直所对应的原像区域。</p>
+<h2 id="定义">定义<a class="headerlink" href="#定义" title="Permanent link">&para;</a></h2>
+<ul>
+<li>失真函数<code>distortion function</code>或者失真度量<code>distortion measure</code>指从信源字母表与再生字母表的乘积空间到非负实数集上的映射<span class="arithmatex">\(d:\mathcal X \times \hat{\mathcal X} \rightarrow \mathcal R^+\)</span>。失真<span class="arithmatex">\(d(x,\hat x)\)</span>是用来刻画使用<span class="arithmatex">\(\hat x\)</span>表示<span class="arithmatex">\(x\)</span>时的代价度量。</li>
+<li>称失真度量是有界的，如果失真的最大值有限
+$$
+  d_{max} = \max_{x\in \mathcal X,\hat x \in \hat{\mathcal X}} d(x,\hat x) \leq \infty
+$$
+  在大多数情况下，再生字母表<span class="arithmatex">\(\hat{\mathcal X}\)</span>和信源字母表<span class="arithmatex">\(\mathcal X\)</span>是相同的</li>
+<li>常用的失真函数的例子<ul>
+<li>汉明失真
+$$
+  d(x,\hat x)= 
+  \begin{cases}
+  0 &amp;x = \hat x\
+  1 &amp; x \neq \hat x
+  \end{cases}
+$$</li>
+<li>平方误差失真
+$$
+  d(x,\hat x) = (x-\hat x)^2
+$$</li>
+<li>语音编码中的<span class="arithmatex">\(Itakura-Saito\)</span>距离</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(x^n\)</span>与<span class="arithmatex">\(\hat x^n\)</span>序列间的失真定义为
+$$
+  d(x^n,\hat x^n) = \frac 1n \sum_{i=1}^n d(x_i,\hat x_i)
+$$</li>
+<li>一个<span class="arithmatex">\((2^{nR},n)\)</span>率失真码<code>rate distortion code</code>包括<ul>
+<li>一个编码函数<span class="arithmatex">\(f_n:\mathcal X^n \rightarrow \{1,2,\cdots,2^{nR}\}\)</span></li>
+<li>一个译码(再生)函数<span class="arithmatex">\(g_n:\{1,2,\cdots,2^{nR}\} \rightarrow \mathcal X^n\)</span></li>
+<li>关于这个<span class="arithmatex">\((2^{nR},n)\)</span>码的失真定义为<span class="arithmatex">\(D=Ed(X^n,g_n(f_n(X^n)))\)</span>,其中所取的期望是针对<span class="arithmatex">\(X\)</span>的概率分布而言的
+$$
+  D = \sum_{x^n} p(x<sup>n)d(x</sup>n,g_n(f_n(X^n)))
+$$</li>
+<li>将<span class="arithmatex">\(n\)</span>元组<span class="arithmatex">\(g_n(1),g_n(2),\cdots,g_n(2^{nR})\)</span>记为<span class="arithmatex">\(\hat X^n(1),\hat X^n(2),\cdots,\hat X^n(2^{nR})\)</span>，它构成一个码簿</li>
+<li><span class="arithmatex">\(f^{-1}(1),f^{-1}(2),\cdots,f^{-1}(2^{nR})\)</span>为相应的分配区域</li>
+</ul>
+</li>
+<li>称率失真对<span class="arithmatex">\((R,D)\)</span>是可达的，若存在一个<span class="arithmatex">\((2^{nR},n)\)</span>率失真码序列<span class="arithmatex">\((f_n,g_n)\)</span>,满足<span class="arithmatex">\(\lim_{n\rightarrow \infty}Ed(X^n,g_n(f_n(X^n))) \leq D\)</span></li>
+<li>全体可达率失真对<span class="arithmatex">\((R,D)\)</span>所构成的集合闭包称为信源的率失真区域。</li>
+<li>对于给定的失真<span class="arithmatex">\(D\)</span>，满足<span class="arithmatex">\((R,D)\)</span>包含于信源的率失真区域中的所有码率<span class="arithmatex">\(R\)</span>的下确界称为率失真函数<span class="arithmatex">\(R(D)\)</span></li>
+<li>对于给定的码率<span class="arithmatex">\(R\)</span>，满足<span class="arithmatex">\((R,D)\)</span>包含于信源的率失真区域中的所有失真<span class="arithmatex">\(D\)</span>的下确界称为失真率函数<span class="arithmatex">\(D(R)\)</span></li>
+<li>设信源<span class="arithmatex">\(X\)</span>的失真度量为<span class="arithmatex">\(d(x,\hat x)\)</span>，定义其信息率失真函数<span class="arithmatex">\(R^{(I)}(D)\)</span>为
+$$
+  R^{(I)}(D) = \max_{p(\hat x\mid x):\sum_{(x,\hat x)}p(x)p(\hat x \mid x)d(x,\hat x) \leq D} I(X;\hat X)
+$$</li>
+<li>对于独立同分布的信源<span class="arithmatex">\(X\)</span>,若公共分布为<span class="arithmatex">\(p(x)\)</span>且失真函数<span class="arithmatex">\(d(x,\hat x)\)</span>有界，那么其率失真函数与对应的信息率失真函数相等。于是
+$$
+  R(D) = R^{(I)}(D) = \max_{p(\hat x\mid x):\sum_{(x,\hat x)}p(x)p(\hat x \mid x)d(x,\hat x) \leq D} I(X;\hat X)
+$$
+  为在失真<span class="arithmatex">\(D\)</span>下的最小可达码率</li>
+</ul>
+<h2 id="伯努利信源">伯努利信源<a class="headerlink" href="#伯努利信源" title="Permanent link">&para;</a></h2>
+<p>在汉明失真度量意义下，对于伯努利信源，有
+$$
+R(D) = H(p) - H(D)
+$$</p>
+<h2 id="高斯信源">高斯信源<a class="headerlink" href="#高斯信源" title="Permanent link">&para;</a></h2>
+<p>在失真度量是平方误差误差的意义下，对于高斯信源，有
+$$
+R(D) = \frac 12 \log \frac{\sigma^2}{D}
+$$</p>
+<h2 id="率失真定理香农第三定理">率失真定理/香农第三定理<a class="headerlink" href="#率失真定理香农第三定理" title="Permanent link">&para;</a></h2>
+<p>如果<span class="arithmatex">\(R&gt;R(D)\)</span>,则存在码字数目为<span class="arithmatex">\(\mid \hat X^n(\cdot)\mid \leq 2^{nR}\)</span>的码序列<span class="arithmatex">\(\hat X^n(X^n)\)</span>,使<span class="arithmatex">\(Ed(X^n,\hat X^n(X^n)) \rightarrow D\)</span>。若<span class="arithmatex">\(R&lt; R(D)\)</span>,则这样的码序列不存在。</p>
+<h2 id="信源信道分离性">信源信道分离性<a class="headerlink" href="#信源信道分离性" title="Permanent link">&para;</a></h2>
+<p>率失真为<span class="arithmatex">\(R(D)\)</span>的信源能够在信道容量为<span class="arithmatex">\(C\)</span>的信道中传输并且失真为<span class="arithmatex">\(D\)</span>,当且仅当<span class="arithmatex">\(R(D)&lt;C\)</span>。</p>
+<h1 id="信息论与统计学">信息论与统计学<a class="headerlink" href="#信息论与统计学" title="Permanent link">&para;</a></h1>
+<p><code>TODO</code></p>
+<h1 id="最大熵">最大熵<a class="headerlink" href="#最大熵" title="Permanent link">&para;</a></h1>
+<p><code>More need TODO</code></p>
+<h2 id="最大熵分布定理">最大熵分布定理<a class="headerlink" href="#最大熵分布定理" title="Permanent link">&para;</a></h2>
+<p>设<span class="arithmatex">\(f\)</span>为概率密度函数且满足如下约束条件
+$$
+\int_S f(x)r_i(x) =\alpha_i(1 \leq i \leq m)
+$$
+令<span class="arithmatex">\(f^*(x) = f_\lambda(x) = e^{\lambda_0+\sum_{i=1}^m \lambda_ir_i(x)},x \in S\)</span>,再选择<span class="arithmatex">\(\lambda_0,\lambda_1,\cdots,\lambda_m\)</span>使得<span class="arithmatex">\(f^*\)</span>满足上式，那么，在所有这些满足约束条件的密度函数<span class="arithmatex">\(f\)</span>中，<span class="arithmatex">\(f^*\)</span>是唯一使得<span class="arithmatex">\(h(f)\)</span>达到最大值的分布函数。</p>
+<h2 id="最小鉴别信息定理">最小鉴别信息定理<a class="headerlink" href="#最小鉴别信息定理" title="Permanent link">&para;</a></h2>
+<p>某随机变量<span class="arithmatex">\(X\)</span>,概率分布<span class="arithmatex">\(q(x)\)</span>未知，已知其先验概率密度<span class="arithmatex">\(p(x)\)</span>及若干函数的期望
+$$
+\int_S q(x) f_m(x) dx = C_m,m=1,2,\cdots,M
+$$
+求在上述条件下对<span class="arithmatex">\(q(x)\)</span>的最佳估计，等价于取先验分布与目标分布之间的鉴别信息作为目标函数
+$$
+D(p \mid\mid q) = \int_s q(x) \log \frac {q(x)}{p(x)}dx
+$$
+在上述约束条件下的解。</p>
+
+
+  
+
+
+
+ 
+ 
+ 
+<hr><blockquote class="page-copyright">
+  <span><i class="md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.7 19-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4Z"/></svg></i>本页面最近更新：</span><span class="facts_modified"></span>，<a class="edit_history">更新历史</a><br>
+  <span><i class="md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg></i>发现错误？想一起完善？ <a href="mailto:jx1661463472@qq.com" title="发送邮件给我">联系我</a><br>
+  <span><i class="md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 17v2H2v-2s0-4 7-4 7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59 5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7Z"/></svg></i>本页面贡献者：</span><span class="page_contributors">Jacy</span><br>
+  <span><i class="md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.08 10.86c.05-.33.16-.62.3-.86.3-.56.81-.85 1.5-.86.45 0 .86.2 1.15.49.28.31.47.74.47 1.17h1.8c-.02-.47-.11-.9-.3-1.3-.15-.38-.38-.72-.68-1-1.45-1.34-4.14-1.15-5.37.37-1.29 1.67-1.32 4.59-.01 6.26 1.21 1.49 3.86 1.7 5.3.37.31-.25.56-.56.76-.92.16-.36.27-.74.28-1.15H13.5c0 .21-.07.4-.16.57-.09.19-.21.34-.34.47-.33.26-.72.4-1.14.4-.36-.01-.66-.08-.89-.23a1.41 1.41 0 0 1-.59-.64c-.5-.9-.42-2.15-.3-3.14M12 2C6.5 2 2 6.5 2 12c.53 13.27 19.5 13.26 20 0 0-5.5-4.5-10-10-10m0 18c-4.41 0-8-3.59-8-8 .44-10.61 15.56-10.61 16 0 0 4.41-3.59 8-8 8Z"/></svg></i>本页面的全部内容在 <strong><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a></strong> 协议之条款下提供，附加条款亦可能应用</span>
+</blockquote>
+
+
+<div id="__comments" class="giscus" data-no-instant></div>
+<div id="__comments_script"></div>
+<script>var comments=document.createElement("script"),commentsTheme="slate"===document.body.dataset.mdColorScheme?"dark":"light";Object.entries({async:!0,src:"https://giscus.app/client.js",crossOrigin:"anonymous","data-repo":"Jacy/gitment","data-repo-id":"MDEwOlJlcG9zaXRvcnkxNDQzODg5NjU=","data-category":"评论","data-category-id":"DIC_kwDOCJszZc4CS54y","data-mapping":"specific","data-term":"熵、相对熵与互信息","data-strict":"1","data-reactions-enabled":"1","data-emit-metadata":"0","data-input-position":"top","data-theme":commentsTheme,"data-lang":"zh-CN","data-loading":"lazy"}).forEach(e=>comments.setAttribute(e[0],e[1])),document.getElementById("__comments_script").replaceWith(comments)</script>
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <script>function scrollFunction(){20<document.body.scrollTop||20<document.documentElement.scrollTop?document.getElementById("myBtn").style.display="block":document.getElementById("myBtn").style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}window.onscroll=function(){scrollFunction()}</script>
+<button onclick="topFunction()" id="myBtn" class="data-tip-left" data-tip="回到顶部">
+  <svg class="Zi Zi--BackToTop data-tip-left" data-tip="回到顶部" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path>
+  </svg>
+</button>
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - 2025 Jacy
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+      <div id="miitbeian"></div>
+    </a>
+  
+</div>
+
+<div style="float:right" class="build_date_utc">
+  <a href="https://github.com/Jacy/Jacy">
+    最近更新：, 2024-04-12
+  </a>
+</div>
+<script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant"], "search": "../../assets/javascripts/workers/search.8e7a41fd.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.561f57c7.min.js"></script>
+      
+        <script src="../../_static/js/math-csr.js?math-csr"></script>
+      
+        <script src="../../assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr"></script>
+      
+      <script>"use strict";"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js",{scope:"/"}).then(function(e){console.log("PWA Registration succeeded. Scope is "+e.scope)}).catch(function(e){console.log("PWA Registration failed with "+e)})</script>
+    
+    
+  </body>
+</html>
