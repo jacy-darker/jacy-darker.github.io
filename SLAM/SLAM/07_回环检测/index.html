@@ -474,7 +474,7 @@
   
     <li class="md-nav__item">
       <a href="../../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密见图
+        CO-DENSE集群无人机稠密建图
       </a>
     </li>
   
@@ -5493,9 +5493,56 @@
 <h3 id="字典">字典<a class="headerlink" href="#字典" title="Permanent link">&para;</a></h3>
 <p>字典由许多单词组成，而每一个单词代表了一个概念。一个单词与一个单独的特征点不同，它不是从单幅图像上提取出来的，而是某一类特征的组合。所以，字典生成问题类似于一个聚类问题。我们使用<span class="arithmatex">\(\rm K-means\)</span>这一机器学习算法进行聚类，生成一个含有<span class="arithmatex">\(k\)</span>个单词的字典。为了查找和匹配更加方便，使用与之相应的<span class="arithmatex">\(K\)</span>叉树进行存储（<span class="arithmatex">\(k\)</span>个分支，深度为<span class="arithmatex">\(d\)</span>，可容纳<span class="arithmatex">\(k^d\)</span>个单词）</p>
 <h4 id="代码实现">代码实现<a class="headerlink" href="#代码实现" title="Permanent link">&para;</a></h4>
-<blockquote>
-<p><a href="program\loop_detection\feature_training.cpp">创建词典</a></p>
-</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;reading images... &quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">images</span><span class="p">;</span><span class="w"> </span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./data/&quot;</span><span class="o">+</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;.png&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">images</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="w"> </span><span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// detect ORB features</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;detecting ORB features ... &quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">Ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Feature2D</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">detector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ORB</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">descriptors</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="o">:</span><span class="n">images</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">KeyPoint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Mat</span><span class="w"> </span><span class="n">descriptor</span><span class="p">;</span>
+<span class="w">    </span><span class="n">detector</span><span class="o">-&gt;</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">Mat</span><span class="p">(),</span><span class="w"> </span><span class="n">keypoints</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">descriptors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="w"> </span><span class="n">descriptor</span><span class="w"> </span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// create vocabulary </span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;creating vocabulary ... &quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">DBoW3</span><span class="o">::</span><span class="n">Vocabulary</span><span class="w"> </span><span class="n">vocab</span><span class="p">;</span>
+<span class="n">vocab</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="w"> </span><span class="n">descriptors</span><span class="w"> </span><span class="p">);</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;vocabulary info: &quot;</span><span class="o">&lt;&lt;</span><span class="n">vocab</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">vocab</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;vocabulary.yml.gz&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;done&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="相似度计算">相似度计算<a class="headerlink" href="#相似度计算" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(\rm TF-IDF(Term Frequency-Inverse Document Frequency)\)</span>，频率-逆文档频率，是文本检索中常用的一种加权方式，也用于<span class="arithmatex">\(\rm Bow\)</span>模型中。<span class="arithmatex">\(\rm TF\)</span>部分的思想是，某单词在一幅图像中经常出现，它的区分度就很高。<span class="arithmatex">\(\rm IDF\)</span>的思想是，某单词在字典中出现的频率越低，分类图像时区分度就越高。</p>
 <p>我们可以在建立字典时计算<span class="arithmatex">\(\rm IDF\)</span>：统计某个叶子结点<span class="arithmatex">\(w_i\)</span>中特征数量相对于所有特征数量的比例，作为<span class="arithmatex">\(\rm IDF\)</span>部分。假设所有特征数量为<span class="arithmatex">\(n\)</span>,<span class="arithmatex">\(w_i\)</span>数量为<span class="arithmatex">\(n_i\)</span>，那么该单词的<span class="arithmatex">\(\rm IDF\)</span>为</p>
@@ -5520,13 +5567,106 @@ A = \{(w_1,\eta_1),(w_2,\eta_2),\cdots,(w_N,\eta_N)\} \triangleq \pmb v_A
 s(\pmb v_A - \pmb v_B) =  2 \sum_{i=1}^N \mid \pmb v_{Ai}\mid + \mid \pmb v_{Bi}\mid - \mid \pmb v_{Ai} - \pmb v_{Bi}\mid
 \]</div>
 <h4 id="代码实现_1">代码实现<a class="headerlink" href="#代码实现_1" title="Permanent link">&para;</a></h4>
-<blockquote>
-<p><a href="program\loop_detection\loop_closure.cpp">相似度的计算</a></p>
-</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;reading database&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">DBoW3</span><span class="o">::</span><span class="n">Vocabulary</span><span class="w"> </span><span class="n">vocab</span><span class="p">(</span><span class="s">&quot;./vocabulary.yml.gz&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vocab</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Vocabulary does not exist.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;reading images... &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">images</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./data/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;.png&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">images</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;detecting ORB features ... &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Feature2D</span><span class="o">&gt;</span><span class="w"> </span><span class="n">detector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ORB</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">descriptors</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="o">:</span><span class="n">images</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">KeyPoint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Mat</span><span class="w"> </span><span class="n">descriptor</span><span class="p">;</span>
+<span class="w">    </span><span class="n">detector</span><span class="o">-&gt;</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">Mat</span><span class="p">(),</span><span class="w"> </span><span class="n">keypoints</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="w">    </span><span class="n">descriptors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">descriptor</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;comparing images with images &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DBoW3</span><span class="o">::</span><span class="n">BowVector</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vocab</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">descriptors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">v1</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DBoW3</span><span class="o">::</span><span class="n">BowVector</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
+<span class="w">        </span><span class="n">vocab</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">descriptors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vocab</span><span class="p">.</span><span class="n">score</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;image &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; vs image &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// or with database </span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;comparing images with database &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">DBoW3</span><span class="o">::</span><span class="n">Database</span><span class="w"> </span><span class="nf">db</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">descriptors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="n">db</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">descriptors</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;database info: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">descriptors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DBoW3</span><span class="o">::</span><span class="n">QueryResults</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="n">db</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">descriptors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">      </span><span class="c1">// max result=4</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;searching for image &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; returns &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;done.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="more">More<a class="headerlink" href="#more" title="Permanent link">&para;</a></h3>
 <p>为了提高词袋模型算法的能力，可以考虑下面的改进措施</p>
 <ul>
-<li><a href="program\loop_detection\gen_vocab_large.cpp">增加字典规模</a></li>
+<li>增加字典规模</li>
 <li>相似性评分处理时，可以先于其最近的一帧相近图像进行归一化处理</li>
 <li>把相近的回环聚成一类，使算法不要反复地检测同一类的回环</li>
 <li>检测后加以验证</li>

@@ -474,7 +474,7 @@
   
     <li class="md-nav__item">
       <a href="../../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密见图
+        CO-DENSE集群无人机稠密建图
       </a>
     </li>
   
@@ -5775,7 +5775,7 @@ A&amp;B\\C&amp;D
 \]</div>
 <p>对于<span class="arithmatex">\(\pmb H\)</span>矩阵中处于非对角线的矩阵块来说，如果该矩阵块非零，则其位置所对应的变量之间在图中会存在一条边。所以，<span class="arithmatex">\(\pmb H\)</span>矩阵中的非对角部分的非零矩阵可以理解为其对应的两个变量之间存在联系，或者可以称之为约束。于是，我们发现图优化结构与增量方程的稀疏性存在着明显的联系。</p>
 <p>利用<span class="arithmatex">\(\pmb H\)</span>矩阵的稀疏性，我们可以在迭代优化的时候加速求解。对于求解<span class="arithmatex">\(\pmb H\)</span>的方法，比较常见的是<span class="arithmatex">\(\rm Schur\)</span>消元，也称为<span class="arithmatex">\(\rm Marginalization\)</span>边缘化。</p>
-<p><img src="pic/SLAM/H.jpg" alt="H" style="" /></p>
+<p><img src="../../../assets/pic/SLAM/H.jpg" alt="H" style="" /></p>
 <p>令<span class="arithmatex">\(\pmb B = \pmb H_{11},\pmb E = \pmb H_{12},\pmb E^T = \pmb H_{21},\pmb C = \pmb H_{22}\)</span>,则牛顿迭代法的<span class="arithmatex">\(\pmb H \Delta \pmb x = \pmb g\)</span>变为</p>
 <div class="arithmatex">\[
 \begin{bmatrix}
@@ -5914,11 +5914,11 @@ H(e) = \begin{cases}
 <div class="arithmatex">\[
 (\pmb \Lambda_c - \pmb \Lambda_b^T \pmb \Lambda_a^{-1} \pmb \Lambda_b ) \Delta \pmb x_b = \pmb g_b -\pmb  \Lambda_b^T\pmb \Lambda_a^{-1} \pmb g_a
 \]</div>
-<p><img src="pic\删除关键帧.png" alt="删除关键帧"  /></p>
+<p><img src="../../../assets/pic/SLAM/删除关键帧.png" alt="删除关键帧" style="" /></p>
 <h2 id="位姿图">位姿图<a class="headerlink" href="#位姿图" title="Permanent link">&para;</a></h2>
 <h3 id="位姿图的意义">位姿图的意义<a class="headerlink" href="#位姿图的意义" title="Permanent link">&para;</a></h3>
 <p>我们可以构建一个<strong>只有轨迹的图优化</strong>，而位姿节点之间的边，可以由两个关键帧之间通过特征匹配之后得到的运动估计来给定初始值。不同的是，一旦初始估计完成，我们就不再优化那些路标点的位置，而只关心所有相机位姿之间的联系。通过这种方式，我们省去了大量的特征点优化的计算，只保留了关键帧的轨迹，从而构建了所谓的位姿图<span class="arithmatex">\(\rm Pose \ Graph\)</span>。</p>
-<p><img alt="位姿图" src="pic\位姿图.png" /></p>
+<p><img src="../../../assets/pic/SLAM/位姿图.png" alt="位姿图" style="" /></p>
 <h3 id="位姿图的优化">位姿图的优化<a class="headerlink" href="#位姿图的优化" title="Permanent link">&para;</a></h3>
 <p>位姿图优化中的节点表示相机位姿，用<span class="arithmatex">\(\pmb T_1,\cdots,\pmb T_n\)</span>来表示；边是两个位姿节点之间相对运动的估计，该估计可以来自特征点法或直接法，也可来自<span class="arithmatex">\(\rm GPS\)</span>或<span class="arithmatex">\(\rm IMU\)</span>积分。</p>
 <p>假设我们估计了<span class="arithmatex">\(\pmb T_i\)</span>和<span class="arithmatex">\(\pmb T_j\)</span>之间的一个运动<span class="arithmatex">\(\Delta \pmb T_{ij}\)</span>。</p>

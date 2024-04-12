@@ -474,7 +474,7 @@
   
     <li class="md-nav__item">
       <a href="../../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密见图
+        CO-DENSE集群无人机稠密建图
       </a>
     </li>
   
@@ -5999,7 +5999,7 @@
 <li>传送控制命令和状态信息。CPU要启动某一外设时，通过接口中的命令寄存器向外设发出启动命令；外设准备就绪时，则将“准备好”状态信息送回接口中的状态寄存器，并反馈给CPU。外设向CPU提出中断请求时，CPU也应有相应的响应信号反馈给外设。</li>
 </ul>
 <h3 id="io接口的基本接口">I/O接口的基本接口<a class="headerlink" href="#io接口的基本接口" title="Permanent link">&para;</a></h3>
-<p><img src=".\img\7.3.jpg" alt="7.3" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/7.3.jpg" alt="7.3" style="" /></p>
 <h3 id="io接口的类型">I/O接口的类型<a class="headerlink" href="#io接口的类型" title="Permanent link">&para;</a></h3>
 <ul>
 <li>按数据传送方式可分为<strong>并行接口</strong>和<strong>串行接口</strong>，接口要完成数据格式的转换</li>
@@ -6031,7 +6031,7 @@
 <li>判断传送是否结束若无结束则转第<code>3</code>步，直到计数器为<code>0</code></li>
 </ol>
 <p>在这种控制方式下，CPU一旦启动IO，就必须停止线性程序的运行，并在现行中插入一段程序。程序查询方式的主要特点是CPU有踏步等待现象，CPU与IO串行工作。</p>
-<p><img src=".\img\7.4.jpg" alt="7.4" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/7.4.jpg" alt="7.4" style="" /></p>
 <h3 id="程序中断方式">程序中断方式<a class="headerlink" href="#程序中断方式" title="Permanent link">&para;</a></h3>
 <h4 id="异常和中断">异常和中断<a class="headerlink" href="#异常和中断" title="Permanent link">&para;</a></h4>
 <ol>
@@ -6065,7 +6065,7 @@
 <li>实时处理需要借助中断系统来实现快速响应</li>
 <li>实现应用程序和操作系统的切换，称为“软中断”</li>
 </ul>
-<p><img src=".\img\7.5.jpg" alt="7.5" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/7.5.jpg" alt="7.5" style="" /></p>
 <h4 id="程序中断方式工作流程">程序中断方式工作流程<a class="headerlink" href="#程序中断方式工作流程" title="Permanent link">&para;</a></h4>
 <ol>
 <li>中断请求</li>
@@ -6120,7 +6120,7 @@
 <ol>
 <li>中断处理过程</li>
 </ol>
-<p><img src=".\img\7.6.jpg" alt="7.6" style="zoom: 20%;" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/7.6.jpg" alt="7.6" style="" /></p>
 <h4 id="多重中断和中断屏蔽技术">多重中断和中断屏蔽技术<a class="headerlink" href="#多重中断和中断屏蔽技术" title="Permanent link">&para;</a></h4>
 <p>中断屏蔽技术主要用于多重中断。CPU要具备多重中断的功能，必须满足下列条件</p>
 <ul>
@@ -6153,7 +6153,7 @@
 <li>规定数据在主存和外设间的传送方向，发出读写控制信号，执行数据传送操作</li>
 <li>向CPU报告DMA操作的结束</li>
 </ul>
-<p><img src=".\img\7.10.jpg" alt="7.10" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/7.10.jpg" alt="7.10" style="" /></p>
 <p><strong>DMA控制器的组成</strong></p>
 <ul>
 <li>主存地址计数器：存放要交换数据的主存地址</li>
@@ -6171,7 +6171,7 @@
 <li>DMA和CPU交替访存：用于CPU的工作周期比主存存取周期长的情况</li>
 </ul>
 <h4 id="dma的传送过程">DMA的传送过程<a class="headerlink" href="#dma的传送过程" title="Permanent link">&para;</a></h4>
-<p><img src=".\img\7.11.jpg" alt="7.11" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/7.11.jpg" alt="7.11" style="" /></p>
 <h4 id="dma方式和中断方式的区别">DMA方式和中断方式的区别<a class="headerlink" href="#dma方式和中断方式的区别" title="Permanent link">&para;</a></h4>
 <ul>
 <li>中断方式是程序的切换，需要保护和恢复现场；而DMA方式除了预处理和后处理，其他时候不占用CPU的任何资源</li>

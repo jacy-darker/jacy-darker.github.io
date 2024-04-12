@@ -474,7 +474,7 @@
   
     <li class="md-nav__item">
       <a href="../../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密见图
+        CO-DENSE集群无人机稠密建图
       </a>
     </li>
   
@@ -5580,8 +5580,8 @@
 
 <h1 id="进一步讨论单视图几何">进一步讨论单视图几何<a class="headerlink" href="#进一步讨论单视图几何" title="Permanent link">&para;</a></h1>
 <h2 id="射影摄像机对直线平面二次曲线的投影">射影摄像机对直线、平面、二次曲线的投影<a class="headerlink" href="#射影摄像机对直线平面二次曲线的投影" title="Permanent link">&para;</a></h2>
-<p><img alt="8.1" src="pic/多视图几何/8.1.jpg" /></p>
-<p><img alt="8.2" src="pic/多视图几何/8.2.jpg" /></p>
+<p><img src="../../../assets/pic/多视图几何/8.1.jpg" alt="8.1" style="" /></p>
+<p><img src="../../../assets/pic/多视图几何/8.2.jpg" alt="8.2" style="" /></p>
 <ul>
 <li>平面投影：在射影摄像机下，一张场景平面与一张图像平面之间最一般的变换是平面射影变换：<span class="arithmatex">\(x = H_{3 \times 3} X_\pi\)</span></li>
 <li>直线的正向投影：<span class="arithmatex">\(3\)</span>维空间的一条直线投影到图像平面上的一条直线</li>
@@ -5589,10 +5589,10 @@
 <li>二次曲线的反向投影：在摄像机<span class="arithmatex">\(P\)</span>的作用下，二次曲线<span class="arithmatex">\(C\)</span>反向投影成锥面：<span class="arithmatex">\(Q_{co} = P^T C P\)</span></li>
 </ul>
 <h2 id="光滑曲面的图像">光滑曲面的图像<a class="headerlink" href="#光滑曲面的图像" title="Permanent link">&para;</a></h2>
-<p><img alt="8.3" src="pic/多视图几何/8.3.jpg" /></p>
+<p><img src="../../../assets/pic/多视图几何/8.3.jpg" alt="8.3" style="" /></p>
 <p>轮廓生成元<span class="arithmatex">\(\Gamma\)</span>是影像射线与曲面<span class="arithmatex">\(S\)</span>的所有切点<span class="arithmatex">\(X\)</span>构成的集合。对应的图像视在轮廓线/外形线/轮廓<span class="arithmatex">\(\gamma\)</span>是<span class="arithmatex">\(X\)</span>的图像点<span class="arithmatex">\(x\)</span>构成的集合，即<span class="arithmatex">\(\gamma\)</span>是<span class="arithmatex">\(\Gamma\)</span>的映射</p>
 <h2 id="射影摄像机对二次曲面的作用">射影摄像机对二次曲面的作用<a class="headerlink" href="#射影摄像机对二次曲面的作用" title="Permanent link">&para;</a></h2>
-<p><img alt="8.4" src="pic/多视图几何/8.4.jpg" /></p>
+<p><img src="../../../assets/pic/多视图几何/8.4.jpg" alt="8.4" style="" /></p>
 <p>假设二次曲面是一个球面，那么摄像机中心<span class="arithmatex">\(C\)</span>与二次曲面之间的射线锥面是一个正圆锥面，即轮廓生成元是一个圆，该圆所在平面垂直于摄像机中心和球心的连线。球面的图像有该圆锥面域图像平面相交得到，是一个经典的圆锥截线，所以一个求得外形线是一条二次曲线。</p>
 <p>对上述几何实体进行<span class="arithmatex">\(3\)</span>维射影变换就可扩展到一般情况。在射影变换下，球面变成二次曲面，外形线变成一条二次曲，轮廓生成元也是一个二次曲面。</p>
 <ul>

@@ -474,7 +474,7 @@
   
     <li class="md-nav__item">
       <a href="../../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密见图
+        CO-DENSE集群无人机稠密建图
       </a>
     </li>
   
@@ -6005,7 +6005,7 @@ e_i = y_i - \exp(ax_i^2+bx_i+c)
 </code></pre></div></td></tr></table></div>
 <h3 id="使用g2o进行曲线拟合">使用g2o进行曲线拟合<a class="headerlink" href="#使用g2o进行曲线拟合" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(\rm g2o\)</span>是一个基于图优化的库。为了了解某个优化变量<span class="arithmatex">\(x_j\)</span>存在于多少个误差项中，引入了<strong>图优化</strong>。图优化中图的顶点表示<strong>优化变量</strong>，边表示<strong>误差项</strong>。</p>
-<p><img src="pic\图优化.png" alt="图优化" style="" /></p>
+<p><img src="../../../assets/pic/SLAM/图优化.png" alt="图优化" style="" /></p>
 <p>将图像拟合问题抽象为图优化，只需要记住<strong>结点为优化变量，边为误差项</strong>即可。一般需要以下步骤</p>
 <ol>
 <li>定义顶点和边的类型</li>
@@ -6023,7 +6023,7 @@ e_i = y_i - \exp(ax_i^2+bx_i+c)
 <li>存盘和读盘函数： <code>read</code>,<code>write</code>。 由于我们并不想进行读/写操作，所以留空。</li>
 </ul>
 <p><a href="https://gitee.com/jacyn/g2o/tree/master/g2o/core"><span class="arithmatex">\(\rm g^2o\)</span>源代码地址</a></p>
-<p><img alt="g2o" src="pic\g2o.png" /></p>
+<p><img src="../../../assets/pic/SLAM/g2o.png" alt="g2o" style="" /></p>
 <blockquote>
 <p><a href="program\NonlinearOptimization\g2oCurveFitting.cpp">g2o进行曲线拟合</a>[TODO]</p>
 </blockquote>

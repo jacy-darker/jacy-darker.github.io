@@ -474,7 +474,7 @@
   
     <li class="md-nav__item">
       <a href="../../../%E9%A1%B9%E7%9B%AE/CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密见图
+        CO-DENSE集群无人机稠密建图
       </a>
     </li>
   
@@ -6203,7 +6203,7 @@
 <h3 id="指令周期的数据流">指令周期的数据流<a class="headerlink" href="#指令周期的数据流" title="Permanent link">&para;</a></h3>
 <h4 id="取值周期">取值周期<a class="headerlink" href="#取值周期" title="Permanent link">&para;</a></h4>
 <p><code>PC</code>中存放的是地址，根据此地址从内存单元中取出的是指令，并存放在指令寄存器<code>IR</code>中</p>
-<p><img src=".\img\5.4.jpg" alt="5.4" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.4.jpg" alt="5.4" style="" /></p>
 <ul>
 <li><code>PC</code>①<code>MAR</code>②地址总线③主存</li>
 <li><code>CU</code>发出控制信号④控制总线⑤主存</li>
@@ -6211,7 +6211,7 @@
 <li><code>CU</code>发出读命令⑨<code>PC</code>内容加<code>1</code></li>
 </ul>
 <h4 id="间址周期">间址周期<a class="headerlink" href="#间址周期" title="Permanent link">&para;</a></h4>
-<p><img src=".\img\5.5.jpg" alt="5.5" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.5.jpg" alt="5.5" style="" /></p>
 <ul>
 <li><code>Ad(IR)</code>①<code>MDR</code>②地址总线③主存</li>
 <li><code>CU</code>发出读命令④控制总线⑤主存</li>
@@ -6219,7 +6219,7 @@
 </ul>
 <h4 id="执行周期略">执行周期(略)<a class="headerlink" href="#执行周期略" title="Permanent link">&para;</a></h4>
 <h4 id="中断周期">中断周期<a class="headerlink" href="#中断周期" title="Permanent link">&para;</a></h4>
-<p><img src=".\img\5.6.jpg" alt="5.6" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.6.jpg" alt="5.6" style="" /></p>
 <p>假设程序断点存入堆栈中，并用SP指示栈顶指针，而且进栈操作是先修改栈顶指针，后存入数据</p>
 <ul>
 <li><code>CU</code>控制将<code>SP</code>减<code>1</code>，<code>SP</code>①<code>MAR</code>②地址总线③主存</li>
@@ -6251,7 +6251,7 @@
 <li><code>CPU</code>内部三总线方式：将所有寄存器的输入端和输出端都连接到多条公共通路上，同时在多个总线上传送不同数据，效率高</li>
 <li>专用数据通路方式：根据指令执行过程中的数据和地址的流动方向安排连接线路，避免使用共享的总线，性能较高，但硬件量较大。</li>
 </ul>
-<p><img src=".\img\5.7.jpg" alt="5.7" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.7.jpg" alt="5.7" style="" /></p>
 <ol>
 <li>寄存器之间的数据传送</li>
 </ol>
@@ -6294,7 +6294,7 @@
 </ul>
 <h2 id="控制器的功能和工作原理">控制器的功能和工作原理<a class="headerlink" href="#控制器的功能和工作原理" title="Permanent link">&para;</a></h2>
 <h3 id="控制器的功能和结构">控制器的功能和结构<a class="headerlink" href="#控制器的功能和结构" title="Permanent link">&para;</a></h3>
-<p><img src=".\img\5.8.jpg" alt="5.8" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.8.jpg" alt="5.8" style="" /></p>
 <ul>
 <li>运算器部件通过数据总线与内存储器、输入输出设备传送数据</li>
 <li>输入设备和输出设备通过接口电路与总线相连</li>
@@ -6311,7 +6311,7 @@
 <h3 id="硬布线控制器">硬布线控制器<a class="headerlink" href="#硬布线控制器" title="Permanent link">&para;</a></h3>
 <p>硬布线控制器的基本原理是根据指令的要求、当前的时序及外部和内部的状态，按时间的顺序发送一系列微操作控制信号。它由复杂的组合逻辑门电路和一些触发器构成，因此又称组合逻辑控制器</p>
 <h4 id="硬布线控制单元图">硬布线控制单元图<a class="headerlink" href="#硬布线控制单元图" title="Permanent link">&para;</a></h4>
-<p><img src=".\img\5.9.jpg" alt="5.8" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.9.jpg" alt="5.9" style="" /></p>
 <p><code>CU</code>的输入信号的来源</p>
 <ul>
 <li>经指令译码器译码产生的指令信息</li>
@@ -6469,7 +6469,7 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 </ul>
 <h4 id="微程序控制器组成和工作过程">微程序控制器组成和工作过程<a class="headerlink" href="#微程序控制器组成和工作过程" title="Permanent link">&para;</a></h4>
 <h5 id="微程序控制器的基本组成">微程序控制器的基本组成<a class="headerlink" href="#微程序控制器的基本组成" title="Permanent link">&para;</a></h5>
-<p><img src=".\img\5.11.jpg" alt="5.11" style="" /></p>
+<p><img src="../../../assets/pic/计算机组成原理/5.11.jpg" alt="5.11" style="" /></p>
 <ul>
 <li>控制存储器：微程序控制器的核心部件，用于存放各指令对应的微程序，<code>ROM</code>组成</li>
 <li>微指令寄存器：用于存放从<code>CM</code>中取出的微指令，它的位数同微指令字长相等</li>
