@@ -975,14 +975,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#代码实现_1" class="md-nav__link">
-    代码实现
-  </a>
-  
-    <nav class="md-nav" aria-label="代码实现">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#点云地图" class="md-nav__link">
     点云地图
   </a>
@@ -1000,11 +992,6 @@
   <a href="#八叉树地图" class="md-nav__link">
     八叉树地图
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -5406,14 +5393,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#代码实现_1" class="md-nav__link">
-    代码实现
-  </a>
-  
-    <nav class="md-nav" aria-label="代码实现">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#点云地图" class="md-nav__link">
     点云地图
   </a>
@@ -5431,11 +5410,6 @@
   <a href="#八叉树地图" class="md-nav__link">
     八叉树地图
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -5486,23 +5460,32 @@
 <ul>
 <li>重建</li>
 </ul>
-<p>有时，我们希望利用$ \rm SLAM$获得周围环境的重建效果。这种地图主要用于向人展示，所以希望它看上去比较舒服、美观。或者，我们也可以把该地图用于通信，使其他人能够远程观看我们重建得到的三维物体或场景——例如三维的视频通话或者网上购物等。这种地图亦是稠密的，并且还对它的外观有一些要求。我们可能不满足于稠密点云重建，更希望能够构建带效理的平面，就像电子游戏中的三维场景那样。</p>
+<p>有时，我们希望利用$ \rm SLAM$获得周围环境的重建效果。这种地图主要用于向人展示，所以希望它看上去比较舒服、美观。或者，我们也可以把该地图用于通信，使其他人能够远程观看我们重建得到的三维物体或场景——例如三维的视频通话或者网上购物等。这种地图亦是稠密的，并且还对它的外观有一些要求。我们可能不满足于稠密点云重建，更希望能够构建带纹理的平面，就像电子游戏中的三维场景那样。</p>
 <ul>
 <li>交互</li>
 </ul>
 <p>交互主要指人与地图之间的互动。 例如在增强现实中，我们会在房间里放置求报的物体，并与这些虚拟物体之间有一些互动——例如我们会点击墙面上放着的虚拟网页浏览器来观看视频，或者向墙面投掷物体，希望它们有(虚拟的)物理碰撞。另外，机器人应用中也会有与人、与地图之间的交互。例如，机器人可能会收到命令“取桌子上的报纸”。那么，除了有环境地图，机器人还需要知道哪一块地图是“桌子”，什么叫作“之什么叫作“报纸”。这就需要机器人对地图有更高层面的认知——也称为语义地图。</p>
 <h2 id="单目稠密重建">单目稠密重建<a class="headerlink" href="#单目稠密重建" title="Permanent link">&para;</a></h2>
 <h3 id="立体视觉">立体视觉<a class="headerlink" href="#立体视觉" title="Permanent link">&para;</a></h3>
-<p>在稠密重建中，需要知道每一个像素点，解决方案有</p>
+<p>在稠密重建中，需要知道每一个像素点的深度，解决方案有</p>
 <ol>
 <li>实用单目相机，估计相机运动，并且三角化计算像素的位置</li>
 <li>使用双目相机，利用左右目的视差计算像素的距离</li>
 <li>使用<span class="arithmatex">\(\rm RGB-D\)</span>相机直接获得像素距离</li>
 </ol>
 <p>前两种方式称为<strong>立体视觉<span class="arithmatex">\(\rm Stereo \ Vision\)</span></strong>,其中移动单目相机又被称为<strong>移动视角的立体视觉<span class="arithmatex">\(\rm Moving \ View \ Stereo,MVS\)</span></strong>。</p>
-<p>假定有一段视频序列，我们通过一些方式获得了每一帧对应的轨迹。现在以第一幅图像为参考帧，计算参考帧中每个图像的深度。在稠密深度图估计中，不同之处在于，我们无法把每个像素都当做特征点计算描绘子。因此，稠密深度估计问题中，匹配就成为很重要一环。为了确定第一幅图中的某像素在其他图里的位置，需要用到<strong>极线搜索</strong>和<strong>块匹配</strong>技术。确定了位置后，利用三角测量法确定它的深度。不同的是，这里需要使用很多次三角测量法让深度估计收敛，这就是<strong>深度滤波技术</strong>。</p>
+<p>假定有一段视频序列，我们通过一些方式获得了每一帧对应的轨迹。现在以第一幅图像为参考帧，计算参考帧中每个像素的深度。在稠密深度图估计中，不同之处在于，我们无法把每个像素都当做特征点计算描绘子。因此，稠密深度估计问题中，匹配就成为很重要一环。为了确定第一幅图中的某像素在其他图里的位置，需要用到<strong>极线搜索</strong>和<strong>块匹配</strong>技术。确定了位置后，利用三角测量法确定它的深度。不同的是，这里需要使用很多次三角测量法让深度估计收敛，这就是<strong>深度滤波技术</strong>。</p>
 <h3 id="极线搜索与块匹配">极线搜索与块匹配<a class="headerlink" href="#极线搜索与块匹配" title="Permanent link">&para;</a></h3>
-<p>回顾之前对极约束中的几何关系。空间点<span class="arithmatex">\(P\)</span>在第一幅图像中的投影点为<span class="arithmatex">\(p_1\)</span>,它可能的深度位置为一条射线，该射线投影到另一幅中的直线为<strong>极线</strong>。空间点<span class="arithmatex">\(P\)</span>在这幅图中的投影位置就在这条极线上。由于没有描述子，所以只能在极线上搜索与<span class="arithmatex">\(p_1\)</span>类似的点，这就是<strong>极线搜索技术</strong>。但为了消除单个像素对亮度的干扰，进行比较时选取<span class="arithmatex">\(p_1\)</span>周围一个<span class="arithmatex">\(w \times w\)</span>的小块，然后再极线上取同样的小块进行比较，这就是<strong>块匹配</strong>。</p>
+<p>回顾之前对极约束中的几何关系。空间点<span class="arithmatex">\(P\)</span>在第一幅图像中的投影点为<span class="arithmatex">\(p_1\)</span>,它可能的深度位置为一条射线，该射线投影到另一幅中的直线为<strong>极线</strong>。空间点<span class="arithmatex">\(P\)</span>在这幅图中的投影位置就在这条极线上。由于没有描述子，所以只能在极线上搜索与<span class="arithmatex">\(p_1\)</span>类似的点，这就是<strong>极线搜索技术</strong>。为了消除单个像素对亮度的干扰，进行比较时选取<span class="arithmatex">\(p_1\)</span>周围一个<span class="arithmatex">\(w \times w\)</span>的小块，然后再极线上取同样的小块进行比较，这就是<strong>块匹配</strong>。</p>
+<p>其中，计算极线有两种方法</p>
+<ul>
+<li>
+<p>根据基本矩阵<span class="arithmatex">\(Fx_2 = I_2\)</span></p>
+</li>
+<li>
+<p>根据点<span class="arithmatex">\(\pmb x_1\)</span>的最小和最大深度计算对应的空间点的坐标，然后投影到第二幅图像中的连线即为极线，后面使用这种方法</p>
+</li>
+</ul>
 <p>块匹配的评价指标有多种。把<span class="arithmatex">\(p_1\)</span>周围的小块记为<span class="arithmatex">\(\pmb A \in \mathbb R^{w \times w}\)</span>，把极线上的<span class="arithmatex">\(n\)</span>个小块记为<span class="arithmatex">\(\pmb B_i,i=1,\cdots,n\)</span>。评价两个小块之间的差异有几下几种方法</p>
 <ul>
 <li>
@@ -5518,7 +5501,7 @@
 <div class="arithmatex">\[
   S(\pmb A,\pmb B)_{\rm NCC} = \frac{\sum_{i,j}\pmb A(i,j) \pmb B(i,j)}{\sqrt{\sum_{i,j}\pmb A(i,j)^2 \sum_{i,j}\pmb B(i,j)^2}}
 \]</div>
-<p>选取一种评价指标沿极线计算后，将得到关于极线位置的相似度分布。一般会得到一个非凸函数：这个分布存在许多峰值，但真实的对应点只有一个。这这种情况下，我们倾向于使用概率分布描述深度值，而非用某个单一的数值描述深度。于是，我们的问题就转到了在不断对图像进行极线搜索时，我们估计的深度分布将发生怎样的变化，这就是所谓的<strong>深度滤波器</strong>。</p>
+<p>实际工程中有时候会对上面的指标加上去均值的操作。选取一种评价指标沿极线计算后，将得到关于极线位置的相似度分布。一般会得到一个非凸函数：这个分布存在许多峰值，但真实的对应点只有一个。这种情况下，我们倾向于使用概率分布描述深度值，而非用某个单一的数值描述深度。于是，我们的问题就转到了在不断对图像进行极线搜索时，我们估计的深度分布将发生怎样的变化，这就是所谓的<strong>深度滤波器</strong>。</p>
 <h3 id="高斯分布的深度滤波器">高斯分布的深度滤波器<a class="headerlink" href="#高斯分布的深度滤波器" title="Permanent link">&para;</a></h3>
 <p>设某个像素点的深度<span class="arithmatex">\(d\)</span>服从</p>
 <div class="arithmatex">\[
@@ -5535,17 +5518,344 @@ P(d_{\rm obs}) =N(\mu_{\rm obs},\sigma_{\rm obs}^2)
 &amp;\sigma_{\rm fuse}^2 = \frac{\sigma^2\sigma_{\rm obs}^2}{\sigma^2+\sigma_{\rm obs}^2}
 \end{aligned}
 \]</div>
-<p>综上，给出<strong>估计稠密深度的完整过程</strong></p>
+<p><img src="../../../assets/pic/SLAM/极限搜索.jpg" alt="极限搜索" style="" /></p>
+<p>考虑某次极限搜索，我们找到了<span class="arithmatex">\(\pmb p_1\)</span>对应的<span class="arithmatex">\(\pmb p_2\)</span>点，从而观测到了<span class="arithmatex">\(\pmb p_1\)</span>的深度值，认为<span class="arithmatex">\(\pmb p_1\)</span>对应的三维点为<span class="arithmatex">\(\pmb P\)</span>。从而，记<span class="arithmatex">\(\pmb O_1 \pmb P\)</span>为<span class="arithmatex">\(\pmb p\)</span>，<span class="arithmatex">\(\pmb O_1 \pmb O_2\)</span>为相机的平移<span class="arithmatex">\(\pmb t\)</span>，<span class="arithmatex">\(\pmb O_2 \pmb P\)</span>记为<span class="arithmatex">\(\pmb a\)</span>。并且，把这个三角形的下面两个角计作<span class="arithmatex">\(\alpha,\beta\)</span>。现在，考虑极线<span class="arithmatex">\(l_2\)</span>上存在一个像素大小的误差，使得<span class="arithmatex">\(\beta\)</span>变成了<span class="arithmatex">\(\beta^\prime\)</span>，而<span class="arithmatex">\(\pmb p_2\)</span>变成了<span class="arithmatex">\(\pmb p_2^\prime\)</span>，并记上面的角为<span class="arithmatex">\(\gamma\)</span>。现在计算这个像素的误差会导致<span class="arithmatex">\(\pmb p^\prime\)</span>与<span class="arithmatex">\(\pmb p\)</span>产生多大的差距。</p>
+<p>考虑几何关系，有
+$$
+\begin{aligned}
+\pmb a &amp;= \pmb p-\pmb t \
+\alpha &amp;= \arccos &lt;\pmb p,\pmb t&gt; \
+\beta &amp;= \arccos&lt;\pmb a,-\pmb t&gt;
+\end{aligned}
+$$</p>
+<p>对<span class="arithmatex">\(\pmb p_2\)</span>扰动一个像素，将使<span class="arithmatex">\(\beta  <span class="arithmatex">\(产生一个变换量，成为\)</span>\beta^\prime\)</span>。根据几何关系，有
+$$
+\begin{aligned}
+\beta^\prime &amp;= \arccos &lt;\pmb O_2\pmb p_2^\prime,-\pmb t&gt; \
+\gamma &amp;= \pi-\alpha-\beta^\prime
+\end{aligned}
+$$
+根据正弦定理，<span class="arithmatex">\(\pmb p^\prime\)</span>的大小为
+$$
+\parallel \pmb p^\prime \parallel  = \parallel \pmb t \parallel  \frac{\sin \beta^\prime} {\sin \gamma}
+$$
+如果认为极线搜索的块匹配仅有一个像素的误差，则可以设
+$$
+\sigma_\mathrm{obs} = \parallel \pmb p \parallel - \parallel \pmb p^\prime \parallel
+$$
+综上，给出<strong>估计稠密深度的完整过程</strong></p>
 <ol>
 <li>假设所有像素的深度满足某个初始的高斯分布</li>
 <li>当新数据产生时，通过极线搜索和块匹配确定投影点位置</li>
 <li>根据几何关系计算三角化后的深度及不确定性</li>
 <li>将当前观测融合进上一次的估计中。若收敛则停止计算，否则返回第<code>2</code>步</li>
 </ol>
+<p>注意这里的深度是<span class="arithmatex">\(\pmb O_1\pmb P\)</span>的长度，而不是常见的像素深度，因此三角化中对应的点的坐标不是在归一化相机平面<span class="arithmatex">\(\pmb x_1 = (x,y,1)^T\)</span>，而是<span class="arithmatex">\(\parallel \pmb x_1 \parallel =1\)</span></p>
 <h3 id="代码实现">代码实现<a class="headerlink" href="#代码实现" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p><a href="program\mapping\dense_mono\dense_mapping.cpp">单目稠密重建</a></p>
-</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">//比较两个块的NCC评分，使用零均值-归一化互相关</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">NCC</span><span class="p">(</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">curr</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pt_ref</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pt_curr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ref_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">curr_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">values</span><span class="p">;</span><span class="c1">//记录每个对应像素点的灰度值</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">ncc_window_size</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">ncc_window_size</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">ncc_window_size</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">ncc_window_size</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">value_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">double</span><span class="p">(</span><span class="n">ref</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pt_ref</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pt_ref</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">255.0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ref_mean</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">value_ref</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">value_cur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getBilinearInterpolatedValue</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span><span class="w"> </span><span class="n">pt_curr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">));</span>
+<span class="w">            </span><span class="n">curr_mean</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">value_cur</span><span class="p">;</span>
+<span class="w">            </span><span class="n">values</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">value_ref</span><span class="p">,</span><span class="w"> </span><span class="n">value_cur</span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ref_mean</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">ncc_area</span><span class="p">;</span>
+<span class="w">    </span><span class="n">curr_mean</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">ncc_area</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">numerator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">denominator1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">denominator2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="o">:</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">ref_mean</span><span class="p">;</span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">curr_mean</span><span class="p">;</span>
+<span class="w">        </span><span class="n">numerator</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="w">        </span><span class="n">denominator1</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="w">        </span><span class="n">denominator2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numerator</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">denominator1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">denominator2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1e-10</span><span class="p">);</span><span class="w"> </span><span class="c1">//防止分母为0</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//计算极线并进行搜索，寻找NCC最大匹配块</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">epipolarSearch</span><span class="p">(</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">curr</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">SE3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">T_C_R</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pt_ref</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth_mu</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth_cov</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pt_curr</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">epipolar_direction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">px2cam</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">);</span>
+<span class="w">    </span><span class="n">x1</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span><span class="c1">//深度为到光心的距离，而不是到相机平面的坐标</span>
+<span class="w">    </span><span class="c1">//计算P可能出现的最大和最小深度下的投影x2_max,x2_min</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depth_mu</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">depth_cov</span><span class="p">,</span><span class="w"> </span><span class="n">d_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depth_mu</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">depth_cov</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d_min</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span><span class="w"> </span><span class="n">d_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">P_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d_min</span><span class="p">,</span><span class="w"> </span><span class="n">P_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d_max</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">x2_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam2px</span><span class="p">(</span><span class="n">T_C_R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">P_min</span><span class="p">),</span><span class="w"> </span><span class="n">x2_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam2px</span><span class="p">(</span><span class="n">T_C_R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">P_max</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">epipolar_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x2_max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x2_min</span><span class="p">;</span><span class="w">    </span><span class="c1">// 极线（线段形式）</span>
+<span class="w">    </span><span class="n">epipolar_direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">epipolar_line</span><span class="p">;</span><span class="w">        </span><span class="c1">// 极线方向</span>
+<span class="w">    </span><span class="n">epipolar_direction</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">half_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">epipolar_line</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span><span class="w">    </span><span class="c1">// 极线线段的半长度</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">half_length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="n">half_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">   </span><span class="c1">// 我们不希望搜索太多东西</span>
+
+<span class="w">    </span><span class="c1">//计算P可能出现的均值的投影，搜索从此处开始</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">P_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">depth_mu</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">x2_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam2px</span><span class="p">(</span><span class="n">T_C_R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">P_mean</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 在极线上搜索，以深度均值点为中心，左右各取半长度</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">best_ncc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">best_x2_curr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">half_length</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">half_length</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.7</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// l+=sqrt(2)/2</span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">x2_curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x2_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">epipolar_direction</span><span class="p">;</span><span class="w">  </span><span class="c1">// 待匹配点</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">inside</span><span class="p">(</span><span class="n">x2_curr</span><span class="p">))</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// 计算待匹配点与参考帧的 NCC</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">ncc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NCC</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="n">curr</span><span class="p">,</span><span class="w"> </span><span class="n">pt_ref</span><span class="p">,</span><span class="w"> </span><span class="n">x2_curr</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ncc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">best_ncc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">best_ncc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ncc</span><span class="p">;</span>
+<span class="w">            </span><span class="n">best_x2_curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x2_curr</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">best_ncc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.85f</span><span class="p">)</span><span class="w">      </span><span class="c1">// 只相信 NCC 很高的匹配</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pt_curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">best_x2_curr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//根据匹配的点进行三角化测量，并更新均值和不确定性</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">updateDepthFilter</span><span class="p">(</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pt_ref</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pt_curr</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">SE3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">T_C_R</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">epipolar_direction</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth_cov2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 用三角化计算深度</span>
+<span class="w">    </span><span class="n">SE3d</span><span class="w"> </span><span class="n">T_R_C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T_C_R</span><span class="p">.</span><span class="n">inverse</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">px2cam</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">);</span>
+<span class="w">    </span><span class="n">x1</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">px2cam</span><span class="p">(</span><span class="n">pt_curr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">x2</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T_R_C</span><span class="p">.</span><span class="n">translation</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T_R_C</span><span class="p">.</span><span class="n">so3</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x1</span><span class="p">),</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f2</span><span class="p">));</span>
+<span class="w">    </span><span class="n">Matrix2d</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x1</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">f2</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">inverse</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">xm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x1</span><span class="p">;</span><span class="w">           </span><span class="c1">// ref 侧的结果</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">xn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f2</span><span class="p">;</span><span class="w">          </span><span class="c1">// cur 结果</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">p_esti</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xm</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xn</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w">      </span><span class="c1">// P的位置，取两者的平均</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">depth_estimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_esti</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span><span class="w">   </span><span class="c1">// 深度值</span>
+
+<span class="w">    </span><span class="c1">// 计算不确定性（以一个像素为误差）</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">depth_estimation</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">t_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acos</span><span class="p">(</span><span class="n">x1</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">t_norm</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">a_norm</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t_norm</span><span class="p">));</span>
+<span class="w">    </span><span class="n">Vector3d</span><span class="w"> </span><span class="n">f_curr_prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">px2cam</span><span class="p">(</span><span class="n">pt_curr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">epipolar_direction</span><span class="p">);</span>
+<span class="w">    </span><span class="n">f_curr_prime</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">beta_prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acos</span><span class="p">(</span><span class="n">f_curr_prime</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">t_norm</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">gamma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta_prime</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">p_prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_norm</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">beta_prime</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d_cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_prime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">depth_estimation</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d_cov2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d_cov</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d_cov</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 高斯融合</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depth</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))[</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))];</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depth_cov2</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))[</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))];</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">mu_fuse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">d_cov2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">depth_estimation</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">sigma2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d_cov2</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sigma_fuse2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sigma2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d_cov2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">sigma2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d_cov2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">depth</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))[</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu_fuse</span><span class="p">;</span>
+<span class="w">    </span><span class="n">depth_cov2</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))[</span><span class="kt">int</span><span class="p">(</span><span class="n">pt_ref</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma_fuse2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 对整个深度图进行更新</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">curr</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SE3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">T_C_R</span><span class="p">,</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth</span><span class="p">,</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth_cov2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boarder</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">boarder</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boarder</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">boarder</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 遍历每个像素</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">depth_cov2</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">min_cov</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">depth_cov2</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">max_cov</span><span class="p">)</span><span class="w"> </span><span class="c1">// 深度已收敛或发散</span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// 在极线上搜索 (x,y) 的匹配</span>
+<span class="w">            </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">pt_curr</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">epipolar_direction</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">epipolarSearch</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">ref</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">curr</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">T_C_R</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">Vector2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">depth</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="n">x</span><span class="p">],</span>
+<span class="w">                    </span><span class="n">sqrt</span><span class="p">(</span><span class="n">depth_cov2</span><span class="p">.</span><span class="n">ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="n">x</span><span class="p">]),</span>
+<span class="w">                    </span><span class="n">pt_curr</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">epipolar_direction</span>
+<span class="w">            </span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="c1">// 匹配失败</span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// 匹配成功，更新深度图</span>
+<span class="w">            </span><span class="n">updateDepthFilter</span><span class="p">(</span><span class="n">Vector2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">pt_curr</span><span class="p">,</span><span class="w"> </span><span class="n">T_C_R</span><span class="p">,</span><span class="w"> </span><span class="n">epipolar_direction</span><span class="p">,</span><span class="w"> </span><span class="n">depth</span><span class="p">,</span><span class="w"> </span><span class="n">depth_cov2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="分析">分析<a class="headerlink" href="#分析" title="Permanent link">&para;</a></h3>
 <ul>
 <li>进行块匹配时，有明显梯度的小块将具有更好的区分度，反之不然</li>
@@ -5556,22 +5866,15 @@ P(d_{\rm obs}) =N(\mu_{\rm obs},\sigma_{\rm obs}^2)
 </ul>
 <h2 id="rgb-d稠密建图">RGB-D稠密建图<a class="headerlink" href="#rgb-d稠密建图" title="Permanent link">&para;</a></h2>
 <p>利用<span class="arithmatex">\(\rm RGB-D\)</span>进行稠密建图是相对容易的。不过，根据地图形式不同，也存在着若干种不同的主流建图方式。最直观、最简单的方法就是根据估算的相机位姿，将<span class="arithmatex">\(\rm RGB-D\)</span>数据转化为点云，然后进行拼接，最后得到一个由离散的点组成的点云地图<span class="arithmatex">\(\rm Point \ Cloud \ Map\)</span>。在此基础上，如果我们对外观有进步的要求，希望估计物体的表面，则可以使用三角网格<span class="arithmatex">\(\rm Mesh\)</span>、面片<span class="arithmatex">\(\rm Surfel\)</span>进行建图。另外，如果希望知道地图的障碍物信息并在地图上导航，也可通过体素<span class="arithmatex">\(\rm Voxel\)</span>建立占据网格地图<span class="arithmatex">\(\rm Occupancy \ Map\)</span>。</p>
-<h3 id="代码实现_1">代码实现<a class="headerlink" href="#代码实现_1" title="Permanent link">&para;</a></h3>
-<h4 id="点云地图">点云地图<a class="headerlink" href="#点云地图" title="Permanent link">&para;</a></h4>
+<h3 id="点云地图">点云地图<a class="headerlink" href="#点云地图" title="Permanent link">&para;</a></h3>
 <p>点云就是由一组离散的点表示的地图。最基本的点包含<span class="arithmatex">\(x,y,z\)</span>三维坐标，也可以带有<span class="arithmatex">\(r,g,b\)</span>的彩色信息。<span class="arithmatex">\(\rm RGB-D\)</span>相机提供了彩色图和深度图，因此很容易根据相机内参来计算<span class="arithmatex">\(\rm RGB-D\)</span>点云。在实际建图中，还会对点云加一些滤波处理，以便获得更好的视觉效果。在下面的代码中，使用了外点去除滤波器和体素网格的降采样滤波器。</p>
 <ul>
 <li>利用统计滤波器去除孤立点。该滤波器统计每个点与距离它最近的<span class="arithmatex">\(N\)</span>个点的距离值的分布，去除距离均值过大的点。这样，就保留了那些“黏在一起”的点，去掉了孤立的噪声点。</li>
 <li>利用体素网格滤波器进行降采样。由于多个视角存在视野重叠，在重叠区域会存在大量的位置十分相近的点。这会占用许多内存空间。体素滤波保证了在某一个大小的立方体内仅有一个点，相对于对三维空间进行了降采样，节约了很多空间。</li>
 </ul>
-<blockquote>
-<p><a href="program\mapping\dense_RGBD\pointcloud_mapping.cpp">点云地图</a></p>
-</blockquote>
-<h4 id="从点云重建网格">从点云重建网格<a class="headerlink" href="#从点云重建网格" title="Permanent link">&para;</a></h4>
+<h3 id="从点云重建网格">从点云重建网格<a class="headerlink" href="#从点云重建网格" title="Permanent link">&para;</a></h3>
 <p>在上述的点云文件的基础上建立网格。大致思路是先计算点云的法线，再从法线计算网络。</p>
-<blockquote>
-<p><a href="program\mapping\dense_RGBD\surfel_mapping.cpp">从点云重建网格</a></p>
-</blockquote>
-<h4 id="八叉树地图">八叉树地图<a class="headerlink" href="#八叉树地图" title="Permanent link">&para;</a></h4>
+<h3 id="八叉树地图">八叉树地图<a class="headerlink" href="#八叉树地图" title="Permanent link">&para;</a></h3>
 <p>把三维空间建模为许多个小方块是一种常见的做法。如果把一个小方块的每个面平均切成两片，那么这个小方块就会变成同样大小的八个小方块。这个步骤不断重复，直到最后的方块大小达到建模的最高精度。在这个过程中，把“将一个小方块分成同样大小的八个”这件事，看成“从一个结点展开成八个子节点”，那么，整个从最大空间细分到最小空间的过程，就是一棵八叉树。</p>
 <p>在八叉树中，在结点中存储它是否被占据的信息。当某个方块的所有子节点都被占据或都不被占据时，就<strong>没必要展开这个节点</strong>。我们会用<strong>概率</strong>形式表达某节点是否被占据的事情，动态的建模地图中的障碍物信息。</p>
 <p>设<span class="arithmatex">\(y \in \mathbb R\)</span>为概率对数值，<span class="arithmatex">\(x\)</span>为<span class="arithmatex">\(0-1\)</span>的概率，他们之间的变化由<span class="arithmatex">\(\rm logit\)</span>变换描述</p>
@@ -5591,9 +5894,6 @@ L(n \mid z_{1:t+1}) = L(n \mid z_{1:t-1} ) + L(n\mid z_t)
 P(n\mid z_{1:T}) = \bigg[1+\frac{1-P(n\mid z_T)}{P(n\mid z_T)} \frac{1-P(n\mid z_{1:T-1})}{P(n\mid z_{1:T-1})}\frac{P(n)}{1-P(n)}\bigg]^{-1}
 \]</div>
 <p>有了对数概率，就可以根据<span class="arithmatex">\(\rm RGB-D\)</span>数据更新整个八叉树地图了。假设在<span class="arithmatex">\(\rm RGB-D\)</span>图像中观测到某个像素带有深度<span class="arithmatex">\(d\)</span>，就说明：在<strong>深度值对应的空间点上观察到了一个占据数据，并且，从相机关心出发到这个点的线段上应该是没有物体的</strong>。利用这个信息，可以很好的对八叉树地图进行更新，并且能处理运动的结构。</p>
-<blockquote>
-<p><a href="program\mapping\dense_RGBD\octomap_mapping.cpp">八叉树地图</a></p>
-</blockquote>
 <h2 id="tsdf地图和fusion系列">TSDF地图和Fusion系列<a class="headerlink" href="#tsdf地图和fusion系列" title="Permanent link">&para;</a></h2>
 <p><code>TODO</code></p>
 
@@ -5689,7 +5989,7 @@ P(n\mid z_{1:T}) = \bigg[1+\frac{1-P(n\mid z_T)}{P(n\mid z_T)} \frac{1-P(n\mid z
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-04-12
+    最近更新：, 2024-04-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>
