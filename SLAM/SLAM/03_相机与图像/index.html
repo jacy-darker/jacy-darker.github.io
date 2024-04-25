@@ -5385,17 +5385,17 @@ f_x&amp;0&amp;c_x\\
 0&amp;0&amp;1
 \end{bmatrix}
 \begin{bmatrix}X\\Y\\Z\end{bmatrix}
- \triangleq \pmb K \pmb P       \tag{camera\_f to image\_f}
+ \triangleq \pmb K \pmb P       
 \]</div>
 <p>我们把中间的量组成的矩阵称为<strong>相机的内参数<span class="arithmatex">\(\rm Camera \ Intrinsics\)</span>矩阵<span class="arithmatex">\(\pmb K\)</span></strong>。</p>
 <p>上式中<span class="arithmatex">\(\pmb P\)</span>是<span class="arithmatex">\(\pmb P\)</span>在相机坐标系下的坐标，它的世界坐标系<span class="arithmatex">\(P_W\)</span>是根据相机的当前位姿变化到相机坐标系下的结果。相机的位姿由它的旋转矩阵<span class="arithmatex">\(\pmb R\)</span>和平移向量<span class="arithmatex">\(\pmb t\)</span>来描述，则</p>
 <div class="arithmatex">\[
-Z \pmb P_{uv} = Z \begin{bmatrix}u\\v\\1\end{bmatrix} = \pmb K(\pmb R \pmb P_W +\pmb t) = \pmb K \pmb T \pmb P_W    \tag{Word\_f to imgae\_f}
+Z \pmb P_{uv} = Z \begin{bmatrix}u\\v\\1\end{bmatrix} = \pmb K(\pmb R \pmb P_W +\pmb t) = \pmb K \pmb T \pmb P_W
 \]</div>
 <p>相机的位姿<span class="arithmatex">\(\pmb R,\pmb t\)</span>又称为<strong>相机的外参数</strong><span class="arithmatex">\(\rm Camera \ Extrinsics\)</span>。</p>
 <p>相机的成像模型的另一种描述。我们可以把一个世界坐标点先转换到相机坐标系，再除掉它的最后一维的数值（即该点距离相机成像平面的深度），这相当于把最后一维进行<strong>归一化处理</strong>，得到点<span class="arithmatex">\(P\)</span>在相机<strong>归一化平面</strong>（<span class="arithmatex">\(Z=1\)</span>）上的投影</p>
 <div class="arithmatex">\[
-(\pmb R \pmb P_W +\pmb t) = [X,Y,Z]^T \rightarrow [X/Z,Y/Z,1]^T \tag{W\_f to c\_f to z=1\_f}
+(\pmb R \pmb P_W +\pmb t) = [X,Y,Z]^T \rightarrow [X/Z,Y/Z,1]^T
 \]</div>
 <h3 id="畸变模型">畸变模型<a class="headerlink" href="#畸变模型" title="Permanent link">&para;</a></h3>
 <p>为了获得更好的成像效果，我们在相机的前方加了透镜。透镜的加入会对成像过程中光线的传播产生新的影响：</p>
@@ -5580,7 +5580,7 @@ z = \frac {fb}{u_L-u_R} \triangleq \frac {fb}d
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-04-14
+    最近更新：, 2024-04-25
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

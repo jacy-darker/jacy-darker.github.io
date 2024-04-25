@@ -5441,8 +5441,8 @@
 <h1 id="回环检测">回环检测<a class="headerlink" href="#回环检测" title="Permanent link">&para;</a></h1>
 <h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h2>
 <h4 id="回环检测的意义">回环检测的意义<a class="headerlink" href="#回环检测的意义" title="Permanent link">&para;</a></h4>
-<p>如果像视觉里程计仅考虑相邻时间上的关键帧，那么，之前产生的误差将不可避免地累积到下一个时刻，使得整个$ \mathrm {SLAM}<span class="arithmatex">\(出现**累积误差**，长期估计的结果将不可靠，无法构建**全局一致**的轨迹和地图。回环检测模块能够给出除了相邻帧的一些时隔更加久远的约束：例如\)</span>\pmb x_1,\pmb x_{100}$之间的位姿变换。其中约束是指<strong>相机经过同一个地方，采集到了相似的数据</strong>。回环检测的关键就是如何有效地检测出相机经过同一个地方这件事。</p>
-<p>回环检测对于$ \rm SLAM$系统的意义重大。一方面，它关系到估计的轨迹和地图在长时间下的正确性。另一方面，由于回环检测提供了当前数据与所有历史数据的关联，我们还可以利用回环检测进行<strong>重定位</strong>。</p>
+<p>如果像视觉里程计仅考虑相邻时间上的关键帧，那么，之前产生的误差将不可避免地累积到下一个时刻，使得整个 <span class="arithmatex">\(\mathrm{SLAM}\)</span> 出现<strong>累积误差</strong>，长期估计的结果将不可靠，无法构建<strong>全局一致</strong>的轨迹和地图。回环检测模块能够给出除了相邻帧的一些时隔更加久远的约束：例如 <span class="arithmatex">\(\pmb x_1,\pmb x_{100}\)</span> 之间的位姿变换。其中约束是指<strong>相机经过同一个地方，采集到了相似的数据</strong>。回环检测的关键就是如何有效地检测出相机经过同一个地方这件事。</p>
+<p>回环检测对于<span class="arithmatex">\(\mathrm{SLAM}\)</span>系统的意义重大。一方面，它关系到估计的轨迹和地图在长时间下的正确性。另一方面，由于回环检测提供了当前数据与所有历史数据的关联，我们还可以利用回环检测进行<strong>重定位</strong>。</p>
 <h4 id="回环检测的方法">回环检测的方法<a class="headerlink" href="#回环检测的方法" title="Permanent link">&para;</a></h4>
 <p>为了避免盲目进行对所有关键帧进行回环检测，要有“哪处可能出现回环”的预计。</p>
 <ul>
@@ -5481,7 +5481,7 @@
 &amp;\rm Recall = TP(TP+FN)
 \end{aligned}
 \]</div>
-<p>准确率描述的是算法提取的所有回环中确实是真实回环的概率。召回率是指在所有真实回环中被正确检测出来的概率。在$ \rm SLAM$的回环检测中，我们通常倾向于把参数设置更加严格，保证准确率较高。</p>
+<p>准确率描述的是算法提取的所有回环中确实是真实回环的概率。召回率是指在所有真实回环中被正确检测出来的概率。在<span class="arithmatex">\(\rm SLAM\)</span>的回环检测中，我们通常倾向于把参数设置更加严格，保证准确率较高。</p>
 <h2 id="词袋模型">词袋模型<a class="headerlink" href="#词袋模型" title="Permanent link">&para;</a></h2>
 <p>词袋<span class="arithmatex">\(\rm Bag-of-Words,BoW\)</span>，目前是用"图像上有哪几种特征"来描述一副图像。例如，我们说某张图片中有一个人、一辆车；而另一张中有两个人、一只狗。根据这样的描述，就可以度量这两幅图片的相似性。具体有下面的步骤</p>
 <ol>
@@ -5765,7 +5765,7 @@ s(\pmb v_A - \pmb v_B) =  2 \sum_{i=1}^N \mid \pmb v_{Ai}\mid + \mid \pmb v_{Bi}
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-04-14
+    最近更新：, 2024-04-25
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

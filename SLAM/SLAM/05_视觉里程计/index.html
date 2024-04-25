@@ -6422,7 +6422,7 @@ e_7&amp;e_8&amp;e_9
 <div class="arithmatex">\[
 [u_2u_1,u_2v_1,u_2,v_2u_1,v_2v_1,v_2,v_1,v_1,1] \cdot \pmb e = 0
 \]</div>
-<p>同样对于其他点也是相通的表示，变成线性方程组</p>
+<p>同样对于其他点也是相同的表示，可以看到刚好是<span class="arithmatex">\(\pmb x_2^T,\pmb x_1^T\)</span>两个向量的<code>Kronecker</code>积，变成线性方程组</p>
 <div class="arithmatex">\[
 \begin{bmatrix}
 u^1_2u^1_1&amp;u^1_2v^1_1&amp;u^1_2&amp;v^1_2u^1_1&amp;v^1_2v^1_1&amp;v^1_2&amp;v^1_1&amp;v^1_1&amp;1\\
@@ -6860,7 +6860,7 @@ y^\prime \pmb p^{\prime 3T} - \pmb p^{\prime 2T}
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>由于三角化在平移较小时误差较大，因此要提高三角化的精度，一种方法是提高特征点的提取精度，也就是提高分辨率，但这个会到图像变大，计算成本变大。另一种方式是使平移量增大，但是这会导致图像的外观发生明显的变化，使得特征点提取与匹配变得困难。所以，增大平移，可能导致匹配失败；而平移太小，三角化精度不够——这就是三角化的矛盾。我们把这个问题称为<strong>视差</strong>。</p>
+<p>由于三角化在平移较小时误差较大，因此要提高三角化的精度，一种方法是提高特征点的提取精度，也就是提高分辨率，但这个会导致图像变大，计算成本变大。另一种方式是使平移量增大，但是这会导致图像的外观发生明显的变化，使得特征点提取与匹配变得困难。所以，增大平移，可能导致匹配失败；而平移太小，三角化精度不够——这就是三角化的矛盾。我们把这个问题称为<strong>视差</strong>。</p>
 <p><img src="../../../assets/pic/SLAM/三角测量的矛盾.jpg" alt="三角测量的矛盾" style="" /></p>
 <p>同时，由于深度信息需要等待特征点被追踪几帧后才能产生足够的视角，所以这又称为<strong>延迟三角化</strong>。</p>
 <h2 id="3d-2dpnp">3D-2D:PnP<a class="headerlink" href="#3d-2dpnp" title="Permanent link">&para;</a></h2>
@@ -7017,10 +7017,10 @@ s_i \begin{bmatrix}u_i\\v_i\\1\end{bmatrix} = \pmb K \pmb T
 <div class="arithmatex">\[
 s_i \pmb u_i = \pmb K \pmb T \pmb P_i
 \]</div>
-<p>这个式子隐含了一次从齐次坐标到非齐次坐标的转换。现在，由于相机位姿及观测点的噪声，该等式存在一个误差。因此，我们把误差求和，构建二小二乘问题，然后寻找最好的相机位姿，使它最小化
-$$
-\pmb T^<em>,\pmb P_i^</em> = \arg \min_{\pmb T,\pmb P_i} \frac 12 \sum_{i=1}^n \parallel \pmb u_i-\frac 1{s_i} \pmb K \pmb T \pmb P_i \parallel_2^2
-$$</p>
+<p>这个式子隐含了一次从齐次坐标到非齐次坐标的转换。现在，由于相机位姿及观测点的噪声，该等式存在一个误差。因此，我们把误差求和，构建二小二乘问题，然后寻找最好的相机位姿，使它最小化</p>
+<div class="arithmatex">\[
+\pmb T^*,\pmb P_i^* = \arg \min_{\pmb T,\pmb P_i} \frac 12 \sum_{i=1}^n \parallel \pmb u_i-\frac 1{s_i} \pmb K \pmb T \pmb P_i \parallel_2^2
+\]</div>
 <p>该问题的误差项，是将<span class="arithmatex">\(\rm 3D\)</span>点的投影与观测位置作差，所以称为<strong>重投影误差</strong>。通过特征匹配知道了<span class="arithmatex">\(p_1\)</span>和<span class="arithmatex">\(p_2\)</span>是同一个空间点<span class="arithmatex">\(P\)</span>的投影，但是不知道相机位姿。在初始值中，<span class="arithmatex">\(P\)</span>的投影<span class="arithmatex">\(\hat p_2\)</span>与实际的<span class="arithmatex">\(p_2\)</span>之间有一定的距离。于是调整相机的位姿，使得这个距离变小。不够，由于这个调整需要考虑很多点，所以最后的效果是整体误差的减小。</p>
 <p><img src="../../../assets/pic/SLAM/重投影误差.jpg" alt="重投影误差" style="" /></p>
 <p>使用最小二乘法求解时，需要知道每个误差项关于优化变量的导数，也就是<strong>线性化</strong></p>
@@ -7262,9 +7262,11 @@ $$</p>
 \]</div>
 <p>对其进行一阶泰勒展开后，得到</p>
 <div class="arithmatex">\[
+\begin{gather}
 \pmb I(x+dx,y+dy,t+dt) \approx \pmb I(x,y,t) +\frac{\partial \pmb I}{\partial x}dx+\frac{\partial \pmb I}{\partial y}dy+\frac{\partial \pmb I}{\partial t}dt\\
 \frac{\partial \pmb I}{\partial x}dx+\frac{\partial \pmb I}{\partial y}dy+\frac{\partial \pmb I}{\partial t}dt = 0\\
 \frac{\partial \pmb I}{\partial x}\frac{dx}{dt}+\frac{\partial \pmb I}{\partial y}\frac{dy}{dt}=-\frac{\partial \pmb I}{\partial t}
+\end{gather}
 \]</div>
 <p><span class="arithmatex">\(dx/dt\)</span>为像素在<span class="arithmatex">\(x\)</span>轴上的运动速度，而<span class="arithmatex">\(dy/dt\)</span>为<span class="arithmatex">\(y\)</span>轴上的速度，记为<span class="arithmatex">\(u,v\)</span>。<span class="arithmatex">\(\partial \pmb I/\partial x\)</span>为图像在该点处<span class="arithmatex">\(x\)</span>方向的梯度，<span class="arithmatex">\(\partial \pmb I/\partial y\)</span>为图像在该点处<span class="arithmatex">\(y\)</span>方向的梯度，记为<span class="arithmatex">\(\pmb I_x,\pmb I_y\)</span>。把图像灰度对时间的变换量记为<span class="arithmatex">\(\pmb I_t\)</span>，则有</p>
 <div class="arithmatex">\[
@@ -7848,7 +7850,7 @@ e = \pmb I_1(\pmb p_1) - \pmb I_2(\pmb p_2)
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-04-14
+    最近更新：, 2024-04-25
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

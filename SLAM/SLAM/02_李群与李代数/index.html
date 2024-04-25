@@ -5511,7 +5511,7 @@
   
 
 <h1 id="李群与李代数">李群与李代数<a class="headerlink" href="#李群与李代数" title="Permanent link">&para;</a></h1>
-<p>由于$ \rm SLAM$中的状态估计问题是一个优化问题，因此涉及到用于描述相机位姿的变量的求导。因此引入李群与李代数。</p>
+<p>由于<span class="arithmatex">\(\mathrm{SLAM}\)</span>中的状态估计问题是一个优化问题，因此涉及到用于描述相机位姿的变量的求导。因此引入李群与李代数。</p>
 <h2 id="群">群<a class="headerlink" href="#群" title="Permanent link">&para;</a></h2>
 <p>群是一种集合加上一种运算的代数结构。我们把集合记作<span class="arithmatex">\(A\)</span>，运算记作<span class="arithmatex">\(\cdot\)</span>，那么群可以记作<span class="arithmatex">\(G=(A,\cdot)\)</span>。群必须满足下列性质</p>
 <ul>
@@ -5623,10 +5623,12 @@
 &amp; = \sum_{n=0}^\infty \frac1{n!}(\pmb \phi^\wedge)^n \\
 \end{aligned}
 \]</div>
-<p>其中，<span class="arithmatex">\(\pmb \phi <span class="arithmatex">\(是一个三维向量，根据它的反对称矩阵的指数代表了一个旋转矩阵，我们可以把它看作一个旋转向量，其旋转轴为\)</span>\pmb n\)</span>,旋转角度为<span class="arithmatex">\(\theta\)</span>,则<span class="arithmatex">\(\pmb \phi = \theta \pmb n,\pmb \phi^\wedge = \theta \pmb n^\wedge\)</span>。分析<span class="arithmatex">\(\pmb n^\wedge\)</span>高阶形式，可得</p>
+<p>其中，<span class="arithmatex">\(\pmb \phi\)</span>是一个三维向量，根据它的反对称矩阵的指数代表了一个旋转矩阵，我们可以把它看作一个旋转向量，其旋转轴为<span class="arithmatex">\(\pmb n\)</span>,旋转角度为<span class="arithmatex">\(\theta\)</span>,则<span class="arithmatex">\(\pmb \phi = \theta \pmb n,\pmb \phi^\wedge = \theta \pmb n^\wedge\)</span>。分析<span class="arithmatex">\(\pmb n^\wedge\)</span>高阶形式，可得</p>
 <div class="arithmatex">\[
+\begin{gather}
 \pmb n^\wedge \pmb n^\wedge = \pmb n \pmb n^T -\pmb I\\
 \pmb n^\wedge \pmb n^\wedge \pmb n^\wedge = \pmb n^\wedge(\pmb n \pmb n^T -\pmb I ) =  -\pmb n^T
+\end{gather}
 \]</div>
 <p>由此，对上述泰勒公式进行展开，有</p>
 <div class="arithmatex">\[
@@ -5932,7 +5934,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-04-14
+    最近更新：, 2024-04-25
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>
