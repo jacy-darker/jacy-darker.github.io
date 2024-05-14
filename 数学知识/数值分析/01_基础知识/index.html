@@ -5463,28 +5463,25 @@
   \mid e^* \mid = \mid x^* - x \mid \leq \frac12 \times 10^{m-n}
 \]</div>
 <p>的最大正整数，则有效数字与相对误差的关系</p>
-<ul>
-<li>若<span class="arithmatex">\(x^*\)</span>具有<span class="arithmatex">\(n\)</span>位有效数字，则(有省略，不要用)</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 若$x^*$具有$n$位有效数字，则(有省略，不要用)
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \mid e_r^* \mid \leq \frac1{2a_1} \times 10^{1-n}
 \]</div>
-<ul>
-<li>若</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 若
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \mid e^*_r \mid \leq \frac1{2(a_1+1)} \times 10^{1-n}
 \]</div>
 <p>则<span class="arithmatex">\(x^*\)</span>至少具有<span class="arithmatex">\(n\)</span>位有效数字</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 近似数的绝对误差限是末尾数位的一半
+</code></pre></div></td></tr></table></div>
 <ul>
 <li>
-<p>近似数的绝对误差限是末尾数位的一半</p>
-</li>
-<li>
 <p>数值运算的误差估计</p>
-</li>
-<li>
-<p>一元函数误差估计</p>
+<ul>
+<li>一元函数误差估计</li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -5493,25 +5490,23 @@
     &amp;e_r(y^*) \approx \cfrac{x^*f^\prime(x^*)}{f(x^*)}e_r(x^*)
     \end{aligned}
 \]</div>
-<ul>
-<li>多元函数误差估计</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 多元函数误差估计
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \begin{aligned}
     &amp;e(y^*) \approx \sum_{i=1}^n f^\prime_i(x_1^*,\cdots,x_n^*) e(x_i^*)\\
     &amp;e_r(y^*) \approx \sum_{i=1}^n \cfrac{x_i^*}{y^*} f^\prime_i(x_1^*,\cdots,x_n^*) e_r(x_i^*)
     \end{aligned}
 \]</div>
-<ul>
-<li>算术运算的误差估计
-$$
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 算术运算的误差估计
+</code></pre></div></td></tr></table></div>
+<div class="arithmatex">\[
     \begin{aligned}
-    &amp;\varepsilon(x_1^<em> \pm x_2^</em>) \approx   \varepsilon(x_1<sup>*)+\varepsilon(x_2</sup><em>)\
-    &amp;\varepsilon(x_1^</em> x_2^<em>) \approx \mid x_2^</em> \mid\varepsilon(x_1^<em>) + \mid x_1\mid \varepsilon(x_2^</em>) \
-    &amp;\varepsilon\Big(\cfrac{x_1^<em>}{ x_2^</em>}\Big) \approx \frac{\mid x_2^<em> \mid\varepsilon(x_1^</em>) + \mid x_1\mid \varepsilon(x_2^<em>) }{\mid x_2^</em> \mid ^2}
+    &amp;\varepsilon(x_1^* \pm x_2^*) \approx   \varepsilon(x_1^*)+\varepsilon(x_2^*)\\
+    &amp;\varepsilon(x_1^* x_2^*) \approx \mid x_2^* \mid\varepsilon(x_1^*) + \mid x_1\mid \varepsilon(x_2^*) \\
+    &amp;\varepsilon\Big(\cfrac{x_1^*}{ x_2^*}\Big) \approx \frac{\mid x_2^* \mid\varepsilon(x_1^*) + \mid x_1\mid \varepsilon(x_2^*) }{\mid x_2^* \mid ^2}
     \end{aligned}
-$$</li>
-</ul>
+\]</div>
 <div class="arithmatex">\[
     \begin{aligned}
     &amp;\varepsilon_r(x_1^* \pm x_2^*)  \leq \max\{\varepsilon_r(x_1^*),\varepsilon_r(x_2^*)\}\\
@@ -5530,10 +5525,10 @@ $$</li>
 </li>
 </ul>
 <p>条件数较大，则表示自变量的微小扰动将引起函数值较大的变化</p>
-<ul>
-<li>绝对意义下计算函数值<span class="arithmatex">\(f(x)\)</span>的条件数：<span class="arithmatex">\(Cond_a(f) = \mid f^\prime (x) \mid\)</span></li>
-<li>相对意义下计算函数值<span class="arithmatex">\(f(x)\)</span>的条件数：<span class="arithmatex">\(Cond_r(f) = \mid x \cfrac{f^\prime(x)}{f(x)} \mid\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 绝对意义下计算函数值$f(x)$的条件数：$Cond_a(f) = \mid f^\prime (x) \mid$
+- 相对意义下计算函数值$f(x)$的条件数：$Cond_r(f) = \mid x \cfrac{f^\prime(x)}{f(x)} \mid$
+</code></pre></div></td></tr></table></div>
 <h3 id="算法的数值稳定性">算法的数值稳定性<a class="headerlink" href="#算法的数值稳定性" title="Permanent link">&para;</a></h3>
 <p>一个算法，如果初始数据微小的误差仅使最终结果产生微小的误差，或在运算过程中舍入误差在一定条件下能够得到控制，则称该算法数值问题，否则不稳定</p>
 <h3 id="数值运算中若干原则">数值运算中若干原则<a class="headerlink" href="#数值运算中若干原则" title="Permanent link">&para;</a></h3>
@@ -5636,7 +5631,7 @@ $$</li>
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

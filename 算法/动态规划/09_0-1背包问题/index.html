@@ -5530,7 +5530,7 @@ m[j] = max(m[j],m[j-w_i]+v_i)
 <ul>
 <li>有依赖背包：物品有主和附之分。只能选择主或者主+附进行购买。每种策略只能选一种，所以可以当做分组背包处理</li>
 <li>泛化物品的背包：这种背包，没有固定的费用和价值，它的价值是随着分配给它的费用而定。在背包容量为 <img alt="V" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /> 的背包问题中，当分配给它的费用为<span class="arithmatex">\(v_i\)</span>时，能得到的价值就是<span class="arithmatex">\(f(v_i)\)</span>。这时，将固定的价值换成函数的引用即可。</li>
-<li>其他</li>
+<li>其他<ul>
 <li>最优解的策略：使用数组记录状态转移时候的选择</li>
 <li>背包问题的方案数：<ul>
 <li><code>dp[i][j]</code>：表示只考虑前<code>i</code>个物品时背包体积正好是<code>j</code> 时的最大价值</li>
@@ -5538,6 +5538,8 @@ m[j] = max(m[j],m[j-w_i]+v_i)
 </ul>
 </li>
 <li>背包问题的第<code>k</code>最优解：保留前<code>k</code>个最优解</li>
+</ul>
+</li>
 </ul>
 
 
@@ -5632,7 +5634,7 @@ m[j] = max(m[j],m[j-w_i]+v_i)
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

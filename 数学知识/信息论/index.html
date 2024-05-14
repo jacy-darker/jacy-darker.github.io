@@ -5942,37 +5942,33 @@ $$
   d_{max} = \max_{x\in \mathcal X,\hat x \in \hat{\mathcal X}} d(x,\hat x) \leq \infty
 $$
   在大多数情况下，再生字母表<span class="arithmatex">\(\hat{\mathcal X}\)</span>和信源字母表<span class="arithmatex">\(\mathcal X\)</span>是相同的</li>
-<li>常用的失真函数的例子<ul>
-<li>汉明失真
+<li>常用的失真函数的例子
+          - 汉明失真
 $$
-  d(x,\hat x)= 
-  \begin{cases}
-  0 &amp;x = \hat x\
-  1 &amp; x \neq \hat x
-  \end{cases}
-$$</li>
-<li>平方误差失真
+      d(x,\hat x)= 
+      \begin{cases}
+      0 &amp;x = \hat x\
+      1 &amp; x \neq \hat x
+      \end{cases}
 $$
-  d(x,\hat x) = (x-\hat x)^2
-$$</li>
-<li>语音编码中的<span class="arithmatex">\(Itakura-Saito\)</span>距离</li>
-</ul>
-</li>
+          - 平方误差失真
+$$
+      d(x,\hat x) = (x-\hat x)^2
+$$
+          - 语音编码中的<span class="arithmatex">\(Itakura-Saito\)</span>距离</li>
 <li><span class="arithmatex">\(x^n\)</span>与<span class="arithmatex">\(\hat x^n\)</span>序列间的失真定义为
 $$
   d(x^n,\hat x^n) = \frac 1n \sum_{i=1}^n d(x_i,\hat x_i)
 $$</li>
-<li>一个<span class="arithmatex">\((2^{nR},n)\)</span>率失真码<code>rate distortion code</code>包括<ul>
-<li>一个编码函数<span class="arithmatex">\(f_n:\mathcal X^n \rightarrow \{1,2,\cdots,2^{nR}\}\)</span></li>
-<li>一个译码(再生)函数<span class="arithmatex">\(g_n:\{1,2,\cdots,2^{nR}\} \rightarrow \mathcal X^n\)</span></li>
-<li>关于这个<span class="arithmatex">\((2^{nR},n)\)</span>码的失真定义为<span class="arithmatex">\(D=Ed(X^n,g_n(f_n(X^n)))\)</span>,其中所取的期望是针对<span class="arithmatex">\(X\)</span>的概率分布而言的
+<li>一个<span class="arithmatex">\((2^{nR},n)\)</span>率失真码<code>rate distortion code</code>包括
+          - 一个编码函数<span class="arithmatex">\(f_n:\mathcal X^n \rightarrow \{1,2,\cdots,2^{nR}\}\)</span>
+          - 一个译码(再生)函数<span class="arithmatex">\(g_n:\{1,2,\cdots,2^{nR}\} \rightarrow \mathcal X^n\)</span>
+          - 关于这个<span class="arithmatex">\((2^{nR},n)\)</span>码的失真定义为<span class="arithmatex">\(D=Ed(X^n,g_n(f_n(X^n)))\)</span>,其中所取的期望是针对<span class="arithmatex">\(X\)</span>的概率分布而言的
 $$
-  D = \sum_{x^n} p(x<sup>n)d(x</sup>n,g_n(f_n(X^n)))
-$$</li>
-<li>将<span class="arithmatex">\(n\)</span>元组<span class="arithmatex">\(g_n(1),g_n(2),\cdots,g_n(2^{nR})\)</span>记为<span class="arithmatex">\(\hat X^n(1),\hat X^n(2),\cdots,\hat X^n(2^{nR})\)</span>，它构成一个码簿</li>
-<li><span class="arithmatex">\(f^{-1}(1),f^{-1}(2),\cdots,f^{-1}(2^{nR})\)</span>为相应的分配区域</li>
-</ul>
-</li>
+      D = \sum_{x^n} p(x<sup>n)d(x</sup>n,g_n(f_n(X^n)))
+$$
+          - 将<span class="arithmatex">\(n\)</span>元组<span class="arithmatex">\(g_n(1),g_n(2),\cdots,g_n(2^{nR})\)</span>记为<span class="arithmatex">\(\hat X^n(1),\hat X^n(2),\cdots,\hat X^n(2^{nR})\)</span>，它构成一个码簿
+          - <span class="arithmatex">\(f^{-1}(1),f^{-1}(2),\cdots,f^{-1}(2^{nR})\)</span>为相应的分配区域</li>
 <li>称率失真对<span class="arithmatex">\((R,D)\)</span>是可达的，若存在一个<span class="arithmatex">\((2^{nR},n)\)</span>率失真码序列<span class="arithmatex">\((f_n,g_n)\)</span>,满足<span class="arithmatex">\(\lim_{n\rightarrow \infty}Ed(X^n,g_n(f_n(X^n))) \leq D\)</span></li>
 <li>全体可达率失真对<span class="arithmatex">\((R,D)\)</span>所构成的集合闭包称为信源的率失真区域。</li>
 <li>对于给定的失真<span class="arithmatex">\(D\)</span>，满足<span class="arithmatex">\((R,D)\)</span>包含于信源的率失真区域中的所有码率<span class="arithmatex">\(R\)</span>的下确界称为率失真函数<span class="arithmatex">\(R(D)\)</span></li>
@@ -6078,7 +6074,7 @@ $$
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

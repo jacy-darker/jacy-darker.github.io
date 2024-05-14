@@ -5995,38 +5995,32 @@
 <ul>
 <li>
 <p>硬盘设备的组成</p>
-</li>
-<li>
-<p>存储区域</p>
 <ul>
+<li>存储区域<ul>
 <li>磁头数<code>Heads</code>：即记录面数，表示硬盘共有多少个磁头，磁头用于读取/写入盘片上记录面的信息，一个记录面对应一个磁头</li>
 <li>柱面数<code>Cylinders</code>：表示硬盘每面盘片上有多少磁道。在一个盘组中，不同记录面的相同编号的磁道构成一个圆柱面</li>
 <li>扇区数<code>Sectors</code>：表示每条磁道上有多少个扇区</li>
 </ul>
 </li>
-<li>
-<p>硬盘存储器的组成：由磁盘驱动器、磁盘控制器和盘片组成</p>
-<ul>
+<li>硬盘存储器的组成：由磁盘驱动器、磁盘控制器和盘片组成<ul>
 <li>硬盘驱动器：核心部件是磁头组件和盘片组件，温彻斯特盘是一种可移动磁头固定盘片的硬盘存储器</li>
 <li>磁盘控制器：硬盘存储器和主机的接口，主流的标准有<code>IDE</code>、<code>SCS</code>I、<code>SATTA</code>等</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>
 <p>磁记录原理</p>
-</li>
-<li>
-<p>原理：磁头和磁性记录介质相对运动时，通过电磁转换完成读写操作</p>
-</li>
+<ul>
+<li>原理：磁头和磁性记录介质相对运动时，通过电磁转换完成读写操作</li>
 <li>编码方法：按照某种方案，把一连串二进制信息交换成存储介质磁层中一个磁化翻转状态的序列</li>
-<li>
-<p>磁记录方式：通常采用调频制<code>FM</code>和改进型调频制<code>MFM</code>的记录方式</p>
+<li>磁记录方式：通常采用调频制<code>FM</code>和改进型调频制<code>MFM</code>的记录方式</li>
+</ul>
 </li>
 <li>
 <p>磁盘的性能指标</p>
-</li>
-<li>
-<p>磁盘的容量</p>
 <ul>
+<li>磁盘的容量<ul>
 <li>非格式化容量：磁记录表面可利用的磁化单元总数</li>
 <li>格式化容量：按照某种特定的记录格式，可存储的信息总量</li>
 </ul>
@@ -6038,8 +6032,8 @@
 </ul>
 </li>
 <li>平均存取时间：寻道时间+旋转延迟时间+传输时间</li>
-<li>
-<p>数据传输率：<span class="arithmatex">\(D_r=rN\)</span>，磁盘转数为<span class="arithmatex">\(r\)</span>转/秒，每条磁道容量为<code>N</code>字节</p>
+<li>数据传输率：<span class="arithmatex">\(D_r=rN\)</span>，磁盘转数为<span class="arithmatex">\(r\)</span>转/秒，每条磁道容量为<code>N</code>字节</li>
+</ul>
 </li>
 <li>
 <p>磁盘地址</p>
@@ -6102,12 +6096,16 @@
 <p>I/O端口是指接口电路可被<code>CPU</code>直接访问的寄存器，主要由数据端口、状态端口和控制端口，若干端口加上相应的控制逻辑电路组成<strong>接口</strong>。通常CPU能对数据端口执行读写操作，但对状态端口只能执行读操作，对控制端口只能执行写操作。</p>
 <p>对<code>IO</code>端口的编址方式可分为存储器<strong>统一编址</strong>和<strong>独立编址</strong>两种</p>
 <ul>
-<li>统一编址，又称<strong>存储器映射方式</strong>，用统一的访存指令就可以访问<code>IO</code>端口</li>
+<li>统一编址，又称<strong>存储器映射方式</strong>，用统一的访存指令就可以访问<code>IO</code>端口<ul>
 <li>优点：不需要专门的输入输出指令，可使<code>CPU</code>访问<code>IO</code>的操作更灵活、更方便，还可使端口有较大的编址空间</li>
 <li>缺点：端口占用存储器地址，使内存容量变小，而且利用存储器编址的<code>IO</code>设备进行数据输入输出操作，执行速度较慢</li>
-<li>独立编址，又称<strong>IO映射方式</strong>，<code>IO</code>端口逇地址空间与主存地址空间是两个独立的地址空间，因而无法从地址码的形式上区分，需要设置专门的<code>IO</code>指令来访问<code>IO</code>端口</li>
+</ul>
+</li>
+<li>独立编址，又称<strong>IO映射方式</strong>，<code>IO</code>端口逇地址空间与主存地址空间是两个独立的地址空间，因而无法从地址码的形式上区分，需要设置专门的<code>IO</code>指令来访问<code>IO</code>端口<ul>
 <li>优点：输入输出指令与存储器指令有明显区别，程序编制清晰，便于理解</li>
 <li>缺点：输入输出指令较少，一般只能对端口进行传送操作，尤其需要<code>CPU</code>提供存储器读写、<code>IO</code>设备读写两组控制信号，增加了控制的复杂性</li>
+</ul>
+</li>
 </ul>
 <h2 id="io方式">IO方式<a class="headerlink" href="#io方式" title="Permanent link">&para;</a></h2>
 <h3 id="程序查询方式">程序查询方式<a class="headerlink" href="#程序查询方式" title="Permanent link">&para;</a></h3>
@@ -6130,21 +6128,22 @@
 <li>异常：CPU内部引起的异常，分为硬故障中断和程序性异常</li>
 </ol>
 <p>根据发生异常的报告方式和返回方式不同，内部异常可分为</p>
-<ul>
-<li>故障<code>Fault</code>：指在引起故障等指令启动后、执行结束前被检测到的异常事件</li>
-<li>自陷<code>Trap</code>：自陷也称陷阱或陷入，它是预先安排的一种异常事件。</li>
-<li>
-<p>终止<code>Abort</code>：在执行指令的过程中发生了使计算机无法继续执行的硬件故障</p>
-</li>
-<li>
-<p>外部中断</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - 故障`Fault`：指在引起故障等指令启动后、执行结束前被检测到的异常事件
+ - 自陷`Trap`：自陷也称陷阱或陷入，它是预先安排的一种异常事件。
+ - 终止`Abort`：在执行指令的过程中发生了使计算机无法继续执行的硬件故障
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>外部中断</li>
+</ol>
 <p>外中断是指来自CPU外部、与CPU执行指令无关的事件引起的中断，包括IO设备发出的IO中断，外部信号中断以及各种定时器引起的时钟中断等。</p>
 <ol>
-<li>外中断和内部异常的不同点</li>
+<li>外中断和内部异常的不同点<ul>
 <li>缺页和溢出等异常事件是由特定指令在执行过程中产生的，而中断不和任何指令相关联，也不阻止任何指令的完成</li>
 <li>异常的检测是由CPU自身完成的，不必通过外部的某个信号通知CPU。对于中断，CPU必须通过总线获取中断源的标识信息，才能获知哪个设备发生了何种中断</li>
+</ul>
+</li>
 </ol>
 <h4 id="中断的基本概念">中断的基本概念<a class="headerlink" href="#中断的基本概念" title="Permanent link">&para;</a></h4>
 <p>程序中断是指在计算机执行现行程序的构成中，出现某些急需处理的异常情况或特殊请求，CPU暂时中止现行程序，转而去对这些异常情况或特殊请求进行处理，处理完毕后又自动返回到现行程序的断点处，继续执行原程序</p>
@@ -6163,33 +6162,32 @@
 <li>中断请求</li>
 </ol>
 <p>中断源是请求CPU中断的设备或事件。中断系统需对每个中断源设置中断请求标记触发器<code>INTR</code>。这些触发器可组成中断请求标记寄存器，该寄存器可集中在CPU中，也可分散在各个中断源中。</p>
-<ul>
-<li>内中断皆为不可屏蔽中断。</li>
-<li>通过INTR信号线发出的外中断是可屏蔽中断，在关中断的情况下不会被响应。</li>
-<li>
-<p>通过NMI信号发出的是不可屏蔽中断，即使在观众的情况下也会被响应。</p>
-</li>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - 内中断皆为不可屏蔽中断。
+ - 通过INTR信号线发出的外中断是可屏蔽中断，在关中断的情况下不会被响应。
+ - 通过NMI信号发出的是不可屏蔽中断，即使在观众的情况下也会被响应。
+</code></pre></div></td></tr></table></div>
+<ol>
 <li>
 <p>中断判优</p>
-</li>
-<li>
-<p>硬件故障中断&gt;软件中断</p>
-</li>
+<ul>
+<li>硬件故障中断&gt;软件中断</li>
 <li>不可屏蔽中断&gt;可屏蔽中断</li>
 <li><code>DMA</code>请求&gt;<code>IO</code>设备传送的中断请求</li>
 <li>高速设备&gt;低俗设备</li>
-<li>
-<p>实时设备&gt;普通设备</p>
+<li>实时设备&gt;普通设备</li>
+</ul>
 </li>
 <li>
 <p>CPU响应中断的条件</p>
-</li>
-<li>
-<p>中断源有中断请求</p>
-</li>
+<ul>
+<li>中断源有中断请求</li>
 <li>CPU允许中断及开中断</li>
 <li>一条指令执行完毕，且没有更紧迫的任务</li>
 </ul>
+</li>
+</ol>
 <p>CPU响应中断的时间是每条指令执行阶段的结束时刻</p>
 <ol>
 <li>中断响应</li>
@@ -6197,16 +6195,15 @@
 <p>CPU响应中断后，经过某些操作，转去执行中断服务程序。这些操作是由硬件直接实现的，称为<strong>中断隐指令</strong>。</p>
 <p>中断隐指令不是指令系统中的一条真正的指令，它没有操作码，所以中断隐指令是一种不允许也不可能为用户使用的特殊指令。</p>
 <p>完成的操作如下：</p>
-<ul>
-<li>关中断：CPU响应中断后，首先要保护程序的断点和现场信息，在保护端点和现场的过程中，CPU不能响应更高级中断源的中断请求</li>
-<li>保护断点：为保证在中断服务程序执行完毕后能正确的返回到原来的程序，必须将原来程序的断点保存起来</li>
-<li>
-<p>引出中断服务程序：实质是取出中断服务程序的入口地址并传给程序计数器</p>
-</li>
-<li>
-<p>中断向量</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - 关中断：CPU响应中断后，首先要保护程序的断点和现场信息，在保护端点和现场的过程中，CPU不能响应更高级中断源的中断请求
+ - 保护断点：为保证在中断服务程序执行完毕后能正确的返回到原来的程序，必须将原来程序的断点保存起来
+ - 引出中断服务程序：实质是取出中断服务程序的入口地址并传给程序计数器
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>中断向量</li>
+</ol>
 <p>中断向量是中断服务程序的入口地址</p>
 <p>中断向量地址是指中断服务程序的入口地址的地址</p>
 <ol>
@@ -6366,7 +6363,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

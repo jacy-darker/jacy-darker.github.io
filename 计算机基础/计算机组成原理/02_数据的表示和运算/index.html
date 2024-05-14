@@ -6042,10 +6042,12 @@
 </li>
 <li>
 <p>十进制数转换为二进制数：基数乘除法</p>
-</li>
+<ul>
 <li>除基取余法（整数部分的转换）：整数部分除基取余，最先取得的余数为数的最低位，最后取得的余数为数的最高位，商为0时结束</li>
 <li>乘基取整法（小数部分对的转换）：小数部分乘基取整，最先取得的整数为数的最高位，最后取得的整数为数的最低位，乘积为<code>1.0</code>时结束</li>
 <li>不是每一个十进制小数都可以准确的用二进制表示，如<code>0.3</code>，但每一个二进制小数都可以用十进制小数表示</li>
+</ul>
+</li>
 </ul>
 <h3 id="真值和机器数">真值和机器数<a class="headerlink" href="#真值和机器数" title="Permanent link">&para;</a></h3>
 <ul>
@@ -6152,25 +6154,31 @@
 </li>
 <li>
 <p>负数的符号扩展</p>
-</li>
+<ul>
 <li>原码：同正数</li>
 <li>补码：整数添1，小数添0</li>
 <li>反码：添1</li>
 </ul>
+</li>
+</ul>
 <h4 id="溢出概念和判别方法">溢出概念和判别方法<a class="headerlink" href="#溢出概念和判别方法" title="Permanent link">&para;</a></h4>
 <ul>
-<li>概念</li>
+<li>
+<p>概念</p>
+<ul>
 <li>溢出：指运算结果超过了数的表示范围</li>
 <li>上溢：大于机器所能表示的最大正数</li>
-<li>
-<p>下溢：小于机器所能表示的最小负数</p>
+<li>下溢：小于机器所能表示的最小负数</li>
+</ul>
 </li>
 <li>
 <p>溢出判断方法</p>
-</li>
+<ul>
 <li>采用一位符号位</li>
 <li>采用双符号位</li>
 <li>采用一位符号诶根据数据位的进位情况判断溢出</li>
+</ul>
+</li>
 </ul>
 <h4 id="定点数的乘法运算">定点数的乘法运算<a class="headerlink" href="#定点数的乘法运算" title="Permanent link">&para;</a></h4>
 <ul>
@@ -6301,16 +6309,22 @@
 </li>
 <li>
 <p>先用被除数减去除数（<span class="arithmatex">\(|X|-|Y|=|X|+(-|Y|)=|X|+[-|Y|]_{补}\)</span>），</p>
-<ul>
-<li>当余数为正时</li>
-<li>商上1</li>
-<li>余数和商左移一位</li>
-<li>再减去除数；</li>
-<li>当余数为负时</li>
-<li>商上0</li>
-<li>余数和商左移一位</li>
-<li>再加上除数</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>   - 当余数为正时
+     - 商上1
+     - 余数和商左移一位
+     - 再减去除数；
+   - 当余数为负时
+     - 商上0
+     - 余数和商左移一位
+     - 再加上除数
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
 <p>当n+1步余数为负时，需加上<span class="arithmatex">\(|Y|\)</span>得到n+1步正确的余数（余数与被除数同号）</p>
@@ -6536,29 +6550,25 @@
 </li>
 <li>
 <p>舍入-对阶和右规时</p>
-</li>
-<li>
-<p>0舍1入法：在尾数右移时，被移去的最高数值位为0，则舍去；被移去的最高数值位矢1，则在尾数的末位加1</p>
-</li>
-<li>
-<p>恒置1法：尾数右移时，无论丢掉的最高数值位是1还是0，都使右移后的尾数末位恒置1</p>
+<ul>
+<li>0舍1入法：在尾数右移时，被移去的最高数值位为0，则舍去；被移去的最高数值位矢1，则在尾数的末位加1</li>
+<li>恒置1法：尾数右移时，无论丢掉的最高数值位是1还是0，都使右移后的尾数末位恒置1</li>
+</ul>
 </li>
 <li>
 <p>溢出判断</p>
-</li>
-<li>
-<p>阶码的符号位出现“01”时，上溢，进入中断处理</p>
-</li>
-<li>
-<p>阶码的符号位出现“10”时，下溢，按机器零处理</p>
+<ul>
+<li>阶码的符号位出现“01”时，上溢，进入中断处理</li>
+<li>阶码的符号位出现“10”时，下溢，按机器零处理</li>
+</ul>
 </li>
 <li>
 <p>C语言中的浮点数类型及类型转换</p>
-</li>
-<li>
-<p><code>char-&gt;int-&gt;long-&gt;double</code></p>
-</li>
+<ul>
+<li><code>char-&gt;int-&gt;long-&gt;double</code></li>
 <li><code>float-&gt;double</code></li>
+</ul>
+</li>
 </ol>
 <h2 id="算术逻辑单元">算术逻辑单元<a class="headerlink" href="#算术逻辑单元" title="Permanent link">&para;</a></h2>
 <h3 id="串行加法器和并行加法器">串行加法器和并行加法器<a class="headerlink" href="#串行加法器和并行加法器" title="Permanent link">&para;</a></h3>
@@ -6685,7 +6695,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

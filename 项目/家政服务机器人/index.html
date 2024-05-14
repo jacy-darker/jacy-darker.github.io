@@ -5552,26 +5552,30 @@
 <p>晓萌的视觉方面采用kinect3获取深度图像，通过pcl获取位置信息，使用<code>opencv</code>处理图像，用深度神经网络进行分割和分类，准确识别和定位特定目标；语音方面采用科大讯飞的语音识别器与合成器；在建图与导航中，采用<code>ros</code>的<code>move_base</code>框架来统领全局，以分层代价地图costmap作为核心，灵活协调全局与局部路径规划，同时多层的结构能够很方便地融合多种传感器数据，并根据具体的需求定制合适的<code>layer</code>；机械臂的抓取则是采用<code>ROS</code>中的<code>Moveit!</code>运动学解算库进行操作。  最后，使用<code>smach_ros</code>根据不同的任务情景编写状态机完成机器人的逻辑处理。</p>
 <h2 id="主要负责">主要负责<a class="headerlink" href="#主要负责" title="Permanent link">&para;</a></h2>
 <ul>
-<li>组长</li>
+<li>
+<p>组长</p>
+<ul>
 <li>负责日常会议和管理。</li>
 <li>负责规划机器人的各个方向的技术升级和改进。</li>
-<li>
-<p>根据比赛时间安排进度。</p>
+<li>根据比赛时间安排进度。</li>
+</ul>
 </li>
 <li>
 <p>状态机</p>
-</li>
+<ul>
 <li>使用smach_ros根据比赛场景编写状态机流程</li>
 <li>负责与图像、语音、底盘、导航对接，包装其功能为状态机的一个子状态</li>
-<li>
-<p>负责最终的机器人行为逻辑调试</p>
+<li>负责最终的机器人行为逻辑调试</li>
+</ul>
 </li>
 <li>
 <p>机械臂</p>
-</li>
+<ul>
 <li>编写逆运动学解算算法，确保抓取任务的完成</li>
 <li>调试机械臂的稳定性、跟电子组沟通机械臂的需求</li>
 <li>负责与机械组的人沟通，根据机械组导出的URDF机器人模型搭载仿真环境和机器人模型</li>
+</ul>
+</li>
 </ul>
 <h2 id="general-purpose-service-robot">General Purpose Service Robot<a class="headerlink" href="#general-purpose-service-robot" title="Permanent link">&para;</a></h2>
 <p><strong>这是一个比赛的规则示例</strong>
@@ -5599,17 +5603,19 @@
 </li>
 <li>
 <p>朴素的运算符:可选地，命令可以由朴素的运算符发出，即每个听众的儿子，没有机 器人技术背景。裁判发出命令交给朴素的操作员，然后由操作员将其发布给机器人 (允许重新命名)。如果机器人始终无法理解幼稚的操作员(例如3次或多次)，团 队可以默认为自定义运算符。</p>
-</li>
-<li>
-<p>备注:不允许裁判指导天真的操作员如何操作机器人。试图指导或偏向操作员的团队 将被取消比赛资格。</p>
+<ul>
+<li>备注:不允许裁判指导天真的操作员如何操作机器人。试图指导或偏向操作员的团队 将被取消比赛资格。</li>
+</ul>
 </li>
 <li>
 <p>数据记录:仅当使用Naive Operators时，团队才能获得额外的评分,通过提供发出的 命令的记录和成绩单来获得奖励。</p>
 </li>
-<li>Deus ex Machina:按照给定的命令降低分数如下: </li>
+<li>Deus ex Machina:按照给定的命令降低分数如下: <ul>
 <li>自定义运算符:提供自定义运算符会使得分降低50分。 </li>
 <li>进一步的帮助:帮助机器人完成任务会得分50–200分减少，基于裁判标准。</li>
 <li>绕过命令:机器人会指导人类助手如何plish整个任务对该命令没有任何意义。</li>
+</ul>
+</li>
 <li>指导点:在测试开始时，以及完成第一和第二次之后命令，机器人将移动到指令点。</li>
 <li>离开竞技场:如果机器人自主操作，则可以获得150分的额外得分成功执行所有三个给定命令后离开竞技场。</li>
 </ol>
@@ -5787,7 +5793,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

@@ -6025,31 +6025,29 @@
 <ol>
 <li>
 <p>牺牲一个单元来区分队空和队满，入队时少用一个队列单元，约定以“队头指针在队尾指针的下一位置作为队满的标志”</p>
-</li>
-<li>
-<p>队满条件：<code>(Q.rear+1)%MaxSize==Q.front</code></p>
-</li>
+<ul>
+<li>队满条件：<code>(Q.rear+1)%MaxSize==Q.front</code></li>
 <li>队空条件：<code>Q.front=Q.rear</code></li>
-<li>
-<p>队列中元素的个数：<code>(Q.rear-Q.front+MaxSize)%MaxSize</code></p>
+<li>队列中元素的个数：<code>(Q.rear-Q.front+MaxSize)%MaxSize</code></li>
+</ul>
 </li>
 <li>
 <p>类型中增设表示元素个数的数据成员。</p>
-</li>
-<li>
-<p>队空条件：<code>Q.size==0</code></p>
-</li>
-<li>
-<p>队满条件：<code>Q.size==MaxSize</code></p>
+<ul>
+<li>队空条件：<code>Q.size==0</code></li>
+<li>队满条件：<code>Q.size==MaxSize</code></li>
+</ul>
 </li>
 <li>
 <p>类型中增设<code>tag</code>数据成员，以区分是队满还是队空。</p>
-</li>
+<ul>
 <li>
 <p><code>tag=0</code>时，若因删除导致<code>Q.front==Q.rear</code>,则为队空</p>
 </li>
 <li>
 <p><code>tag=1</code>时，若因插入导致<code>Q.front==Q.rear</code>,则为队满</p>
+</li>
+</ul>
 </li>
 </ol>
 <h3 id="队列的链式存储结构">队列的链式存储结构<a class="headerlink" href="#队列的链式存储结构" title="Permanent link">&para;</a></h3>
@@ -6097,10 +6095,12 @@
 <ul>
 <li>从左向右开始扫描中缀表达式</li>
 <li>遇到数字时，加入后缀表达式</li>
-<li>遇到运算符时</li>
+<li>遇到运算符时<ul>
 <li>若为<code>(</code>,入栈</li>
 <li>若为<code>)</code>，则依次把栈中的运算符加入后缀表达式，直到出现<code>(</code>,从栈中删除<code>(</code></li>
 <li>若为除括号外的其他运算符，当其优先级高于除<code>(</code>外的栈顶运算符时，直接入栈。否则从栈顶开始，依次弹出比当前处理的运算符优先级高和优先级相等的运算符，直到一个比它优先级低的或遇到一个左括号为止。</li>
+</ul>
+</li>
 </ul>
 <h4 id="栈在递归中的应用">栈在递归中的应用<a class="headerlink" href="#栈在递归中的应用" title="Permanent link">&para;</a></h4>
 <p>可以将递归算法转换为非递归算法。通常需要借助栈来实现这种转换</p>
@@ -6219,7 +6219,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

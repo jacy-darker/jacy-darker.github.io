@@ -5907,10 +5907,12 @@ P=[M \mid \pmb p_4]
 \]</div>
 <h3 id="摄像机构造">摄像机构造<a class="headerlink" href="#摄像机构造" title="Permanent link">&para;</a></h3>
 <ul>
-<li>摄像机中心：摄像机中心<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(P\)</span>的一维右零空间，即<span class="arithmatex">\(PC=0\)</span></li>
-<li>有限摄像机（<span class="arithmatex">\(M\)</span>非奇异）：<span class="arithmatex">\(C = (-M^{-1 }\pmb p_4,1)^T\)</span></li>
 <li>
-<p>无穷远摄像机（<span class="arithmatex">\(M\)</span>奇异）:<span class="arithmatex">\(C = (\pmb d,0)^T\)</span>，其中<span class="arithmatex">\(d\)</span>是<span class="arithmatex">\(M\)</span>的<span class="arithmatex">\(3\)</span>维零向量<span class="arithmatex">\(M\pmb d=\pmb 0\)</span></p>
+<p>摄像机中心：摄像机中心<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(P\)</span>的一维右零空间，即<span class="arithmatex">\(PC=0\)</span></p>
+<ul>
+<li>有限摄像机（<span class="arithmatex">\(M\)</span>非奇异）：<span class="arithmatex">\(C = (-M^{-1 }\pmb p_4,1)^T\)</span></li>
+<li>无穷远摄像机（<span class="arithmatex">\(M\)</span>奇异）:<span class="arithmatex">\(C = (\pmb d,0)^T\)</span>，其中<span class="arithmatex">\(d\)</span>是<span class="arithmatex">\(M\)</span>的<span class="arithmatex">\(3\)</span>维零向量<span class="arithmatex">\(M\pmb d=\pmb 0\)</span></li>
+</ul>
 </li>
 <li>
 <p>列点：对于<span class="arithmatex">\(i=1,2,\cdots,3\)</span>，列向量<span class="arithmatex">\(p_i\)</span>分别对应于<span class="arithmatex">\(X,Y,Z\)</span>轴在图像上的消影点。列<span class="arithmatex">\(p_4\)</span>是坐标原点的图像</p>
@@ -5937,7 +5939,7 @@ P=[M \mid \pmb p_4]
 <div class="arithmatex">\[
 X(\mu) = \mu 
 \begin{bmatrix}  M^{-1}x \\ 0 \end{bmatrix}+ 
-\begin{bmatrix}  -M^{-1}p_4 \\ 1 \end{bmatrix} = 
+\begin{bmatrix}    -M^{-1}p_4 \\ 1 \end{bmatrix} = 
 \begin{bmatrix}  M^{-1}(\mu x - p_4) \\ 1 \end{bmatrix}
 \]</div>
 <h3 id="点的深度">点的深度<a class="headerlink" href="#点的深度" title="Permanent link">&para;</a></h3>
@@ -6303,7 +6305,7 @@ t_1\\ t_2
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

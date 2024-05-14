@@ -5660,11 +5660,13 @@
 <ul>
 <li>定义：算法是针对特定问题求解步骤的一种描述，它是指令的有限序列，其中的每条指令表示一个或多个操作。</li>
 <li>特性：输入、输出、确定性、有穷性、可行性</li>
-<li>评价标准</li>
+<li>评价标准<ul>
 <li>正确性：正确结果</li>
 <li>可读性</li>
 <li>健壮性：输入数据非法时，能够适当的作出反应或相应处理，不会产生莫名其妙的输出结果</li>
 <li>高效性：时间和空间</li>
+</ul>
+</li>
 </ul>
 <h3 id="算法效率的度量">算法效率的度量<a class="headerlink" href="#算法效率的度量" title="Permanent link">&para;</a></h3>
 <ul>
@@ -5693,9 +5695,9 @@ T(n)=O(f(n)),S(n)=O(g(n))
 </li>
 <li>
 <p>递归算法两类复杂度分析</p>
+<hr />
 </li>
 </ul>
-<hr />
 <div class="arithmatex">\[
   T(n)=
           \begin{cases}
@@ -5706,7 +5708,8 @@ T(n)=O(f(n)),S(n)=O(g(n))
 <div class="arithmatex">\[
   T(n)=a^{n-1}T(1)+\sum_{i=2}^n a^{n-i}f(i)
 \]</div>
-<hr />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>------
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
   T(n)=
           \begin{cases}
@@ -5810,7 +5813,7 @@ T(n)=O(f(n)),S(n)=O(g(n))
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

@@ -5476,11 +5476,13 @@
 </ul>
 <h2 id="要素_1">要素<a class="headerlink" href="#要素_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>节点的成员变量</li>
+<li>
+<p>节点的成员变量</p>
+<ul>
 <li>子结点</li>
 <li>标志位记录是否是叶子结点</li>
-<li>
-<p>针对问题对应的<code>value</code>（类似于map的value）</p>
+<li>针对问题对应的<code>value</code>（类似于map的value）</li>
+</ul>
 </li>
 <li>
 <p>插入一个新的字符串</p>
@@ -5699,12 +5701,16 @@ smalls = [&quot;is&quot;,&quot;ppi&quot;,&quot;hi&quot;,&quot;sis&quot;,&quot;i&
 <p>线段树是一种二叉搜索树，线段树的每个结点都存储了一个区间，也可以理解成一个线段，而搜索，就是在这些线段上进行搜索操作得到你想要的答案。线段树可以用来对某一段区间的值进行统一更新，求某一段区间的值，比如和、最值等。每次更新或查询操作的时间复杂度都是<span class="arithmatex">\(O(log \ n)\)</span>，这也意味着渗透着二分的思想。</p>
 <h2 id="分类">分类<a class="headerlink" href="#分类" title="Permanent link">&para;</a></h2>
 <ul>
-<li>节点值分类：节点代表某一段区间，节点值代表区间的一种属性</li>
+<li>节点值分类：节点代表某一段区间，节点值代表区间的一种属性<ul>
 <li>区间和</li>
 <li>区间最值</li>
-<li>区间更新</li>
+</ul>
+</li>
+<li>区间更新<ul>
 <li>加减</li>
 <li>覆盖</li>
+</ul>
+</li>
 </ul>
 <h2 id="要素_2">要素<a class="headerlink" href="#要素_2" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6175,7 +6181,7 @@ cur + 2*sum[j+1,i-1] + (i-j)
 <ul>
 <li>
 <p>维护成员</p>
-</li>
+<ul>
 <li>
 <p><code>diff</code>：原始数据的差分数组，只在构建树状数组的时候使用</p>
 </li>
@@ -6184,6 +6190,8 @@ cur + 2*sum[j+1,i-1] + (i-j)
 </li>
 <li>
 <p><code>helpTree</code>：差分数组<code>i*diff[i]</code>的树状数组</p>
+</li>
+</ul>
 </li>
 <li>
 <p>数学原理</p>
@@ -6207,14 +6215,12 @@ cur + 2*sum[j+1,i-1] + (i-j)
 \]</div>
 <p>至此，区间求和转换成了求两个差分数组的前缀和问题。对于一般数组，求前缀和只需要累加即可，但这样的时间复杂度是<span class="arithmatex">\(O(n)\)</span>。实际上，树状数组采用了不同的区间划分方式，虽然仍然分为<code>n</code>个节点，但每个节点代表的子区间的长度不一定是<code>1</code>，这样累加的时候就可以更加高效。</p>
 <p>为了下面我们将两个差分数组使用树状数组来对他们进行表达。<strong>可以得出，对树状数组进行单点修改和区间求和的时间复杂度是<span class="arithmatex">\(O(log n)\)</span>。而由于他们代表的数据是差分，所以</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 原数组的区间修改`O(n)`$\Longrightarrow$差分数组的单点修改`O(1)`$\Longrightarrow$树状数组的单点修改`O(log n)`
+- 原数组的区间求和`O(n)`$\Longrightarrow$差分数组的区间求和`O(n)`$\Longrightarrow$树状数组的区间求和`O(log n)`
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>原数组的区间修改<code>O(n)</code><span class="arithmatex">\(\Longrightarrow\)</span>差分数组的单点修改<code>O(1)</code><span class="arithmatex">\(\Longrightarrow\)</span>树状数组的单点修改<code>O(log n)</code></li>
-<li>
-<p>原数组的区间求和<code>O(n)</code><span class="arithmatex">\(\Longrightarrow\)</span>差分数组的区间求和<code>O(n)</code><span class="arithmatex">\(\Longrightarrow\)</span>树状数组的区间求和<code>O(log n)</code></p>
-</li>
-<li>
-<p>树状数组的构建</p>
-</li>
+<li>树状数组的构建</li>
 </ul>
 <p>首先介绍一下子区间划分，对于一个长度为<code>n</code>的子区间，维护了<code>n</code>个以<span class="arithmatex">\(i\in[0,n-1]\)</span>为右边界的子区间所代表的区间和，每个子区间的左边界使用<code>i-lowbit(i)</code>计算，结果是将右边界以二进制表示后，将最低位的<code>1</code>换成<code>0</code>得到。</p>
 <p><img alt="img" src="img/树状数组.png" /></p>
@@ -6717,7 +6723,7 @@ $$
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

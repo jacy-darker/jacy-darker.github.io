@@ -6106,11 +6106,13 @@
 <h2 id="查找的概念">查找的概念<a class="headerlink" href="#查找的概念" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>查找</strong>：在数据集合中寻找满足某种条件的数据元素的过程称为查找。查找的结果分为<strong>成功</strong>和<strong>失败</strong></li>
-<li><strong>查找表</strong>：用于查找的数据集合称为查找表。对查找表进行的操作一般有四种</li>
+<li><strong>查找表</strong>：用于查找的数据集合称为查找表。对查找表进行的操作一般有四种<ul>
 <li>查询</li>
 <li>查询关键字的其他信息</li>
 <li>插入</li>
 <li>删除</li>
+</ul>
+</li>
 <li>静态查找表：不涉及插入和删除的查找表</li>
 <li>关键字：数据元素中唯一标识该元素的某个数据项的值</li>
 <li>平均查找长度：<span class="arithmatex">\(ASL=\sum_{i=1}^nP_iC_i\)</span>,<span class="arithmatex">\(P_i\)</span>是概率，<span class="arithmatex">\(C_i\)</span>是比较次数</li>
@@ -6153,16 +6155,14 @@
 </li>
 <li>
 <p>生成的<strong>判定树</strong></p>
-</li>
-<li>
-<p>是平衡二叉树</p>
-</li>
+<ul>
+<li>是平衡二叉树</li>
 <li>有n个圆形结点代表原数据或成功结点，n+1个方框结点代表不成功结点</li>
 <li>每个圆形结点都不是叶子结点，一定有方框子结点</li>
 <li>倒数第二层圆结点个数=<span class="arithmatex">\(n-前面层所有结点数\)</span></li>
 <li>倒数第二层方形结点个数=<span class="arithmatex">\(2^{h-1}-倒数第二层圆结点\)</span>，最后一层方结点个数=<span class="arithmatex">\(n+1-倒数第二层方形结点个数\)</span></li>
-<li>
-<p>如果判定树是向上取整，则所有结点的左子树结点总数永远不小于右子树结点整数，向下取整同理</p>
+<li>如果判定树是向上取整，则所有结点的左子树结点总数永远不小于右子树结点整数，向下取整同理</li>
+</ul>
 </li>
 <li>
 <p>基本思想</p>
@@ -6208,10 +6208,12 @@
 <p>将查找表分成若干块。块内的元素可以是无序的。但块之间按照每个块的最大关键字进行排序</p>
 <p>建立一个索引表，索引表中的每个元素含有各块的最大关键字和各块的第一个元素的地址，索引表按关键字有序排列</p>
 <ul>
-<li>分块查找的过程</li>
-<li>在索引表中确定待查记录所在的块，可以顺序查找或折半查找索引表</li>
 <li>
-<p>在块内顺序查找</p>
+<p>分块查找的过程</p>
+<ul>
+<li>在索引表中确定待查记录所在的块，可以顺序查找或折半查找索引表</li>
+<li>在块内顺序查找</li>
+</ul>
 </li>
 <li>
 <p>索引查找的平均查找长度<span class="arithmatex">\(L_I\)</span>,块内查找的平均查找长度<span class="arithmatex">\(L_S\)</span></p>
@@ -6315,12 +6317,14 @@
 <h4 id="b树的插入">B树的插入<a class="headerlink" href="#b树的插入" title="Permanent link">&para;</a></h4>
 <ol>
 <li>定位：利用B树的查找算法，找出插入该关键字的最低层中的某个非叶结点</li>
-<li>插入：在B树中，每个内部结点的关键字个数都在区间<span class="arithmatex">\([t-1,2t-1]\)</span>内。插入后的结点关键字个数小于<code>2t-1</code>，可以直接插入。如果插入后关键字个数大于<code>2t-1</code>,必须进行分裂</li>
+<li>插入：在B树中，每个内部结点的关键字个数都在区间<span class="arithmatex">\([t-1,2t-1]\)</span>内。插入后的结点关键字个数小于<code>2t-1</code>，可以直接插入。如果插入后关键字个数大于<code>2t-1</code>,必须进行分裂<ul>
 <li>分裂方法是<ul>
 <li>将一个满的节点y按其中间关键子<span class="arithmatex">\(y.key_t\)</span>分裂为两个各含<code>t-1</code>个关键字的节点</li>
 <li>左部分包含的关键字放在原结点中，右部分包含的关键字放到新结点中</li>
 <li>中间位置的节点<span class="arithmatex">\(y.key_t\)</span>插入原节点的父节点</li>
 <li>若此时导致父节点也超过了上限，则对父节点继续分裂</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -6331,7 +6335,7 @@
 </li>
 <li>
 <p>当被删关键字<code>k</code><strong>在终端结点</strong>中时</p>
-</li>
+<ul>
 <li>
 <p><strong>直接删除关键字</strong>：若被删除关键字所在结点的关键字个数为<span class="arithmatex">\(t\)</span>,表明删除该关键字后仍满足B树的定义，则直接删除该关键字</p>
 </li>
@@ -6340,6 +6344,8 @@
 </li>
 <li>
 <p><strong>兄弟不够借</strong>：若被删除关键字所在结点的关键字个数<span class="arithmatex">\(=t-1\)</span>,且与此节点相邻的右（左）兄弟节点的关键字个数均为<span class="arithmatex">\(t-1\)</span>,则将关键字删除后与左（或右）兄弟结点及双亲结点中的关键字进行合并。</p>
+</li>
+</ul>
 <p>在合并过程中，双亲结点中的关键字个数会减1。若其双亲结点是根结点且关键字个数减少至0，则直接将根结点删除，合并后的新结点成为根；若其双亲结点不是根结点，且关键字减少超过下限，在继续合并操作。</p>
 </li>
 </ul>
@@ -7015,7 +7021,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

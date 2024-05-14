@@ -5565,12 +5565,16 @@
 <p>线段树是一种二叉搜索树，线段树的每个结点都存储了一个区间，也可以理解成一个线段，而搜索，就是在这些线段上进行搜索操作得到你想要的答案。线段树可以用来对某一段区间的值进行统一更新，求某一段区间的值，比如和、最值等。每次更新或查询操作的时间复杂度都是<span class="arithmatex">\(O(log \ n)\)</span>，这也意味着渗透着二分的思想。</p>
 <h2 id="分类">分类<a class="headerlink" href="#分类" title="Permanent link">&para;</a></h2>
 <ul>
-<li>节点值分类：节点代表某一段区间，节点值代表区间的一种属性</li>
+<li>节点值分类：节点代表某一段区间，节点值代表区间的一种属性<ul>
 <li>区间和</li>
 <li>区间最值</li>
-<li>区间更新</li>
+</ul>
+</li>
+<li>区间更新<ul>
 <li>加减</li>
 <li>覆盖</li>
+</ul>
+</li>
 </ul>
 <h2 id="要素">要素<a class="headerlink" href="#要素" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6126,7 +6130,7 @@ cur + 2*sum[j+1,i-1] + (i-j)
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

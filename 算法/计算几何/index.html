@@ -5487,10 +5487,12 @@
 <ul>
 <li>使用直线上的两点<span class="arithmatex">\(A,B\)</span>表示</li>
 <li>点<span class="arithmatex">\(P\)</span>在直线上：<span class="arithmatex">\(PA \times PB = 0\)</span></li>
-<li>两直线的关系：</li>
+<li>两直线的关系：<ul>
 <li>重合：其中一条直线的两个点都在另一条直线上</li>
 <li>平行：两直线叉乘为0</li>
 <li>相交：根据几何方法画图求解，设直线为<span class="arithmatex">\(AB,CD\)</span>，交点为<span class="arithmatex">\(P\)</span>，若已知<span class="arithmatex">\(AP\)</span>的长度，根据<span class="arithmatex">\(A+(\vec {AB})*(AP/AB)\)</span>就可以计算出交点<span class="arithmatex">\(P\)</span>的坐标，<span class="arithmatex">\(AP\)</span>的求解方式如下</li>
+</ul>
+</li>
 </ul>
 <div class="arithmatex">\[
 \frac{AP}{AB} = \frac{AP}{AP+PB} = \frac{\triangle ADC}{\triangle ADC + \triangle BDC}
@@ -5634,12 +5636,14 @@
 <li>在点<span class="arithmatex">\(P\)</span>向右发出一条射线</li>
 <li>如果<span class="arithmatex">\(P\)</span>在其中一条线段内，直接得到在多边形内的结论</li>
 <li>根据射线与边的交点个数，奇内偶外</li>
-<li>判断点<span class="arithmatex">\(P\)</span>射出的射线与<span class="arithmatex">\(AB\)</span>是否有交点，过点<span class="arithmatex">\(A,B\)</span>作射线的垂线，得到<span class="arithmatex">\(AC,BD\)</span>，</li>
+<li>判断点<span class="arithmatex">\(P\)</span>射出的射线与<span class="arithmatex">\(AB\)</span>是否有交点，过点<span class="arithmatex">\(A,B\)</span>作射线的垂线，得到<span class="arithmatex">\(AC,BD\)</span>，<ul>
 <li><span class="arithmatex">\(PA \times PB&lt;0\)</span>，可得点<span class="arithmatex">\(A\)</span>在点<span class="arithmatex">\(B\)</span>上，只需要满足<span class="arithmatex">\(C\)</span>在<span class="arithmatex">\(A\)</span>下且<span class="arithmatex">\(D\)</span>在<span class="arithmatex">\(B\)</span>上</li>
 <li><span class="arithmatex">\(PA \times PB&gt;0\)</span>，可得点<span class="arithmatex">\(B\)</span>在点<span class="arithmatex">\(A\)</span>上，只需要满足<span class="arithmatex">\(C\)</span>在<span class="arithmatex">\(A\)</span>上且<span class="arithmatex">\(D\)</span>在<span class="arithmatex">\(B\)</span>下</li>
 <li>同时考虑到射线刚好经过某一点，推导可得统一记录<span class="arithmatex">\(A,B\)</span>中上面的点对应的点满足关系或重合即可（取下面的点也可，只需要考虑一种情况，刚好可以使得这种特殊请款被计算偶数次），具体满足以下条件：<ul>
 <li>如<span class="arithmatex">\(A\)</span>在<span class="arithmatex">\(B\)</span>上，则<span class="arithmatex">\(C\)</span>在<span class="arithmatex">\(A\)</span>下或者高度相同</li>
 <li>如<span class="arithmatex">\(B\)</span>在<span class="arithmatex">\(A\)</span>上，则<span class="arithmatex">\(D\)</span>在<span class="arithmatex">\(B\)</span>下或者高度相同</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -5826,7 +5830,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

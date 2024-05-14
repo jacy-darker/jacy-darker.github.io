@@ -5737,11 +5737,11 @@ f(x) = (Ax+b) / (c^Tx+d) ,\text{dom} \ f = \{x \mid c^Tx+d &gt;0\}
 <h3 id="最小元与极小元">最小元与极小元<a class="headerlink" href="#最小元与极小元" title="Permanent link">&para;</a></h3>
 <p>在广义不等式下，并不是所有元素都是可比的。
 - 最小元
-    - <span class="arithmatex">\(\forall y\in S,x\preceq_K y\)</span>
-    - <span class="arithmatex">\(S \subseteq x+K\)</span>
+          - <span class="arithmatex">\(\forall y\in S,x\preceq_K y\)</span>
+          - <span class="arithmatex">\(S \subseteq x+K\)</span>
 - 极小元
-    - <span class="arithmatex">\(y\in S,y\preceq_K x \Rightarrow y=x\)</span>
-    - <span class="arithmatex">\((x-K) \cap S = {x}\)</span></p>
+          - <span class="arithmatex">\(y\in S,y\preceq_K x \Rightarrow y=x\)</span>
+          - <span class="arithmatex">\((x-K) \cap S = {x}\)</span></p>
 <h2 id="对偶锥与广义不等式">对偶锥与广义不等式<a class="headerlink" href="#对偶锥与广义不等式" title="Permanent link">&para;</a></h2>
 <h3 id="对偶锥">对偶锥<a class="headerlink" href="#对偶锥" title="Permanent link">&para;</a></h3>
 <p>令<span class="arithmatex">\(K\)</span>为一个锥，集合</p>
@@ -5832,13 +5832,15 @@ f(\theta x+(1-\theta)y) \leq \theta f(x) + (1-\theta)f(y)
 <div class="arithmatex">\[
   f^{\prime\prime}(x) = h^{\prime\prime}(g(x))g^\prime(x)^2 + h^\prime(g(x))g^{\prime\prime(x)}
 \]</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- $\text{h is convex and } \widetilde h \text{ is not decrease, g is convex} $
+- $\text{h is convex and } \widetilde h \text{ is not increase, g is convex} $
+- $\text{h is convex and } \widetilde h \text{ is not increase, g is convex} $
+- $\text{h is convex and } \widetilde h \text{ is not increase, g is convex} $
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>$\text{h is convex and } \widetilde h \text{ is not decrease, g is convex} $</li>
-<li>$\text{h is convex and } \widetilde h \text{ is not increase, g is convex} $</li>
-<li>$\text{h is convex and } \widetilde h \text{ is not increase, g is convex} $</li>
-<li>
-<p>$\text{h is convex and } \widetilde h \text{ is not increase, g is convex} $</p>
-</li>
 <li>
 <p>最小化：<span class="arithmatex">\(g(x) = inf_{y \in \mathcal C}f(x,y),\exists x,g(x)&gt; -\infty\)</span></p>
 </li>
@@ -5945,7 +5947,7 @@ f^*(y) = \sup_{x \in dom f}(y^Tx-f(x))
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

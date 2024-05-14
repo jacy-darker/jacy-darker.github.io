@@ -5512,7 +5512,7 @@
 <ul>
 <li>
 <p>向量的长度具有以下性质：</p>
-</li>
+<ul>
 <li>
 <p>非负性：<span class="arithmatex">\(\pmb x \neq 0 \Rightarrow\parallel\pmb x \parallel_2&gt;0,\pmb x = 0 \Rightarrow \parallel \pmb x \parallel _2=0\)</span></p>
 </li>
@@ -5521,6 +5521,8 @@
 </li>
 <li>
 <p>三角不等式：<span class="arithmatex">\(\parallel \pmb x + \pmb y \parallel _2 \leq  \parallel \pmb x \parallel _2 +  \parallel \pmb y \parallel _2\)</span></p>
+</li>
+</ul>
 </li>
 <li>
 <p>当<span class="arithmatex">\(\parallel  \pmb x  \parallel _2=1\)</span>时，称<span class="arithmatex">\(\pmb x\)</span>为<strong>单位向量</strong>，当<span class="arithmatex">\(\pmb x\neq0\)</span>时，<span class="arithmatex">\(\frac{\pmb x}{ \parallel \pmb x \parallel _2}\)</span>是单位向量，称之为将向量<span class="arithmatex">\(\pmb x\)</span><strong>单位化</strong>或<strong>规范化</strong>，当<span class="arithmatex">\((\pmb x,\pmb y)=0\)</span>时，称向量<span class="arithmatex">\(\pmb x\)</span>与<span class="arithmatex">\(\pmb y\)</span><strong>正交</strong></p>
@@ -5531,11 +5533,13 @@
 </li>
 <li>
 <p><strong>酉矩阵</strong>：<span class="arithmatex">\(\pmb A^H \pmb A = \pmb I \iff \pmb A^{-1} = \pmb A^H\)</span></p>
-</li>
+<ul>
 <li><span class="arithmatex">\(\pmb A\)</span>是酉矩阵<span class="arithmatex">\(\Rightarrow \pmb A^{-1}\)</span>也是酉矩阵</li>
 <li><span class="arithmatex">\(\pmb A,\pmb B\)</span>是酉矩阵<span class="arithmatex">\(\Rightarrow \pmb {AB}\)</span>也是酉矩阵</li>
 <li><span class="arithmatex">\(\pmb A\)</span>是酉矩阵<span class="arithmatex">\(\Rightarrow \mid \det \pmb A\mid  = 1\)</span></li>
 <li><span class="arithmatex">\(\pmb A\)</span>是酉矩阵<span class="arithmatex">\(\iff\)</span>它的<span class="arithmatex">\(n\)</span>个列向量是两两正交的单位向量</li>
+</ul>
+</li>
 </ul>
 <h2 id="酉相似下的标准形">酉相似下的标准形<a class="headerlink" href="#酉相似下的标准形" title="Permanent link">&para;</a></h2>
 <p>设<span class="arithmatex">\(\pmb A \in \pmb C^{n \times n}\)</span>，则<span class="arithmatex">\(\pmb A\)</span>可<strong>酉相似</strong>于上三角矩阵<span class="arithmatex">\(\pmb T\)</span>，即存在<span class="arithmatex">\(n\)</span>阶酉矩阵<span class="arithmatex">\(\pmb U\)</span>，使得</p>
@@ -5550,12 +5554,10 @@
 <li>实对称矩阵的特征值均为实数，实反对称矩阵的特征值为零或纯虚数</li>
 <li>设<span class="arithmatex">\(\pmb A\)</span>是正规矩阵，<span class="arithmatex">\(\lambda\)</span>是<span class="arithmatex">\(\pmb A\)</span>的特征值，<span class="arithmatex">\(\pmb x\)</span>是对应<span class="arithmatex">\(\lambda\)</span>的特征向量，则<span class="arithmatex">\(\overline \lambda\)</span>是<span class="arithmatex">\(\pmb A^H\)</span>的特征值，对应<span class="arithmatex">\(\overline{\lambda}\)</span>的特征向量仍为<span class="arithmatex">\(\pmb x\)</span></li>
 <li>设<span class="arithmatex">\(\pmb A\)</span>是正规矩阵，<span class="arithmatex">\(\lambda,\mu\)</span>是<span class="arithmatex">\(\pmb A\)</span>的特征值，<span class="arithmatex">\(\pmb x,\pmb y\)</span>是对应的特征向量，如果<span class="arithmatex">\(\lambda \neq \mu\)</span>，则<span class="arithmatex">\(\pmb x\)</span>与<span class="arithmatex">\(\pmb y\)</span>正交。</li>
-<li><span class="arithmatex">\(n\)</span>阶正规矩阵<span class="arithmatex">\(\pmb A\)</span>酉相似于对角矩阵的具体步骤<ul>
-<li>求出<span class="arithmatex">\(\pmb A\)</span>的全部特征值，设<span class="arithmatex">\(\lambda_1,\lambda_2,\cdots,\lambda_s\)</span>是<span class="arithmatex">\(\pmb A\)</span>的互不相同的特征值，其重数分别为<span class="arithmatex">\(r_1,r_2,\cdots,r_s,r_1+r_2+\cdots+r_s=n\)</span></li>
-<li>对于特征值<span class="arithmatex">\(\lambda_i\)</span>，求出对应的<span class="arithmatex">\(r_i\)</span>个线性无关的特征向量<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span></li>
-<li>用<span class="arithmatex">\(\rm Schmidt\)</span>正交化方法将<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span>正交化，再单位化得<span class="arithmatex">\(\pmb u_{i1},\pmb u_{i2},\cdots,\pmb u_{i{r_i}}\)</span>,则酉矩阵</li>
-</ul>
-</li>
+<li><span class="arithmatex">\(n\)</span>阶正规矩阵<span class="arithmatex">\(\pmb A\)</span>酉相似于对角矩阵的具体步骤
+          -  求出<span class="arithmatex">\(\pmb A\)</span>的全部特征值，设<span class="arithmatex">\(\lambda_1,\lambda_2,\cdots,\lambda_s\)</span>是<span class="arithmatex">\(\pmb A\)</span>的互不相同的特征值，其重数分别为<span class="arithmatex">\(r_1,r_2,\cdots,r_s,r_1+r_2+\cdots+r_s=n\)</span>
+          -  对于特征值<span class="arithmatex">\(\lambda_i\)</span>，求出对应的<span class="arithmatex">\(r_i\)</span>个线性无关的特征向量<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span>
+          -  用<span class="arithmatex">\(\rm Schmidt\)</span>正交化方法将<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span>正交化，再单位化得<span class="arithmatex">\(\pmb u_{i1},\pmb u_{i2},\cdots,\pmb u_{i{r_i}}\)</span>,则酉矩阵</li>
 </ul>
 <div class="arithmatex">\[
        \pmb U = (\pmb u_{11},\cdots,\pmb u_{1r_{1}},\pmb u_{21},\cdots,\pmb u_{2r_{2}},\cdots,\pmb u_{s1},\cdots,\pmb u_{sr_{s}})
@@ -5572,21 +5574,19 @@
 \]</div>
 <p>则称<span class="arithmatex">\(\pmb A\)</span>是<span class="arithmatex">\(\rm Hermite\)</span>正定矩阵（半正定矩阵）
 设<span class="arithmatex">\(\pmb A\)</span>是<span class="arithmatex">\(\rm Hermite\)</span>矩阵，则下列条件等价</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- $\pmb A$是$\rm Hermite$正定矩阵(半正定矩阵)
+- $\pmb A$的特征值全为正实数（非负实数）
+- 存在可逆矩阵（矩阵）$\pmb P \in \pmb C^{n\times n}_n$,使得$\pmb A = \pmb P^H \pmb P$
+- $n$个顺序主子式全为正$\Delta_k = det A_k \geq 0$（对半正定矩阵不成立）
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(\pmb A\)</span>是<span class="arithmatex">\(\rm Hermite\)</span>正定矩阵(半正定矩阵)</li>
-<li><span class="arithmatex">\(\pmb A\)</span>的特征值全为正实数（非负实数）</li>
-<li>存在可逆矩阵（矩阵）<span class="arithmatex">\(\pmb P \in \pmb C^{n\times n}_n\)</span>,使得<span class="arithmatex">\(\pmb A = \pmb P^H \pmb P\)</span></li>
-<li>
-<p><span class="arithmatex">\(n\)</span>个顺序主子式全为正<span class="arithmatex">\(\Delta_k = det A_k \geq 0\)</span>（对半正定矩阵不成立）</p>
-</li>
-<li>
-<p>设<span class="arithmatex">\(\pmb A \in \pmb C^{n \times n}\)</span></p>
-<ul>
-<li><span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的特征值全为非负实数</li>
-<li><span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的非零特征值相同</li>
-<li><span class="arithmatex">\(rank(\pmb A^H \pmb A) = rank(\pmb A \pmb A^H) = rank(\pmb A)\)</span></li>
-</ul>
-</li>
+<li>设<span class="arithmatex">\(\pmb A \in \pmb C^{n \times n}\)</span>
+          - <span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的特征值全为非负实数
+          - <span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的非零特征值相同
+          - <span class="arithmatex">\(rank(\pmb A^H \pmb A) = rank(\pmb A \pmb A^H) = rank(\pmb A)\)</span></li>
 </ul>
 <h1 id="范数理论">范数理论<a class="headerlink" href="#范数理论" title="Permanent link">&para;</a></h1>
 <h2 id="向量范数">向量范数<a class="headerlink" href="#向量范数" title="Permanent link">&para;</a></h2>
@@ -5730,11 +5730,11 @@
 </li>
 <li>
 <p>设<span class="arithmatex">\(\pmb A \in \pmb C_n^{n \times n},\delta \pmb A \in \pmb C^{n \times n}\)</span>。若对<span class="arithmatex">\(\pmb C^{n \times n}\)</span>上的某一矩阵范数<span class="arithmatex">\(\parallel \cdot \parallel\)</span>有<span class="arithmatex">\(\parallel \pmb A^{-1} \delta\pmb A\parallel \leq 1\)</span>，则</p>
-</li>
+<ul>
 <li><span class="arithmatex">\(\pmb A + \delta A\)</span>可逆</li>
 <li><span class="arithmatex">\(\parallel (\pmb A + \delta \pmb A)^{-1}\parallel \leq \cfrac{\parallel \pmb A^{-1} \parallel}{1- \parallel \pmb A^{-1} \delta \pmb A \parallel}\)</span></li>
-<li>
-<p><span class="arithmatex">\(\cfrac{\parallel \pmb A^{-1} - (\pmb A + \delta \pmb A)^{-1}\parallel}{\parallel \pmb A^{-1} \parallel} \leq \cfrac{\parallel \pmb A^{-1} \delta \pmb A \parallel}{1- \parallel \pmb A^{-1} \delta \pmb A \parallel}\)</span></p>
+<li><span class="arithmatex">\(\cfrac{\parallel \pmb A^{-1} - (\pmb A + \delta \pmb A)^{-1}\parallel}{\parallel \pmb A^{-1} \parallel} \leq \cfrac{\parallel \pmb A^{-1} \delta \pmb A \parallel}{1- \parallel \pmb A^{-1} \delta \pmb A \parallel}\)</span></li>
+</ul>
 </li>
 <li>
 <p>设<span class="arithmatex">\(\pmb A \in \pmb C^{n\times n}_n,\delta \pmb A \in \pmb C^{n \times n}\)</span>，若对<span class="arithmatex">\(\pmb C^{n \times n}\)</span>上的某一矩阵范数<span class="arithmatex">\(\parallel \cdot \parallel\)</span>有<span class="arithmatex">\(\parallel \pmb A^{-1} \parallel \parallel \delta \pmb A \parallel &lt;1\)</span>，则</p>
@@ -5808,7 +5808,7 @@
 </li>
 <li>
 <p>有<span class="arithmatex">\(\sum_{k=0}^{+\infty}\pmb A^{(k)},\sum_{k=0}^{+\infty}\pmb B^{(k)}\)</span></p>
-</li>
+<ul>
 <li>
 <p><span class="arithmatex">\(\sum_{k=0}^{+\infty}(\pmb A^{(k)} + \pmb B^{(k)}) = \pmb A + \pmb B\)</span></p>
 </li>
@@ -5822,12 +5822,13 @@
 <p>若矩阵级数<span class="arithmatex">\(\sum_{k=0}^{+\infty} \pmb A^{(k)}\)</span>收敛（或绝对收敛），则矩阵级数<span class="arithmatex">\(\sum_{k=0}^{+\infty} \pmb P \pmb A^{(k)} \pmb Q\)</span>也收敛（或绝对收敛），并且有</p>
 </li>
 </ul>
+</li>
+</ul>
 <div class="arithmatex">\[
     \sum_{k=0}^{+\infty} \pmb P \pmb A^{(k)} \pmb Q = \pmb P  \bigg(\sum_{k=0}^{+\infty} \pmb A^{(k)} \bigg) \pmb Q
 \]</div>
-<ul>
-<li>若<span class="arithmatex">\(\sum_{k=0}^{+\infty} \pmb A^{(k)},\sum_{k=0}^{+\infty} \pmb B^{(k)}\)</span>均绝对收敛，则它们按项相乘所得的矩阵级数</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 若$\sum_{k=0}^{+\infty} \pmb A^{(k)},\sum_{k=0}^{+\infty} \pmb B^{(k)}$均绝对收敛，则它们按项相乘所得的矩阵级数
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \pmb A^{(0)} \pmb B^{(0)} + (\pmb A^{(0)} \pmb B^{(1)} + \pmb A^{(1)} \pmb B^{(0)}  ) + \cdots + (\pmb A^{(0)} \pmb B^{(k)}  + \pmb A^{(1)} \pmb B^{(k-1)}  + \cdots + \pmb A^{(k)} \pmb B^{(0)} ) + \cdots
 \]</div>
@@ -5898,12 +5899,14 @@ f(\pmb A) = \sum_{k=0}^{+\infty} a_k \pmb A^k
 <ul>
 <li>
 <p>待定系数法</p>
-</li>
+<ul>
 <li>
 <p>求矩阵<span class="arithmatex">\(\pmb A\)</span>的特征多项式（最高项为<span class="arithmatex">\(n\)</span>）（<strong>如果得到最小多项式则更简单</strong>）</p>
 </li>
 <li>
 <p>设<span class="arithmatex">\(r(\lambda) = b_{n-1}\lambda^{n-1}+ \cdots + b_{1}\lambda + b_0\)</span>，根据</p>
+</li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -5914,9 +5917,8 @@ f(\pmb A) = \sum_{k=0}^{+\infty} a_k \pmb A^k
     r^{(l)}(\lambda_i) = f^{(l)}(\lambda t)\mid_{\lambda = \lambda_i}
 \]</div>
 <p>列方程组求解<span class="arithmatex">\(b_0,b_1,\cdots,b_{n-1}\)</span></p>
-<ul>
-<li>计算<span class="arithmatex">\(f(\pmb At) = r(A) = b_{n-1}\pmb A^{n-1}+ \cdots + b_{1}\pmb A + b_0 \pmb I\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 计算$f(\pmb At) = r(A) = b_{n-1}\pmb A^{n-1}+ \cdots + b_{1}\pmb A + b_0 \pmb I$
+</code></pre></div></td></tr></table></div>
 <h3 id="性质">性质<a class="headerlink" href="#性质" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(\sin(\pmb A) = -\sin \pmb A,\cos (-\pmb A) = \cos \pmb A\)</span></li>
@@ -6468,12 +6470,16 @@ A^+ =G^+F^+=G^H(GG^H)^{-1} (F^HF)^{-1}F^H
 </li>
 <li>
 <p><span class="arithmatex">\(x = A^+b+(I-A^+A)y\)</span></p>
-</li>
+<ul>
 <li>相容方程组<span class="arithmatex">\(Ax=b\)</span>的通解</li>
 <li>矛盾方程组<span class="arithmatex">\(Ax=b\)</span>的全部最小二乘解</li>
-<li><span class="arithmatex">\(x_0=A^+b\)</span></li>
+</ul>
+</li>
+<li><span class="arithmatex">\(x_0=A^+b\)</span><ul>
 <li>相容方程组<span class="arithmatex">\(Ax=b\)</span>的极小范数解</li>
 <li>矛盾方程组<span class="arithmatex">\(Ax=b\)</span>的极小范数最小二乘解</li>
+</ul>
+</li>
 </ul>
 <h1 id="矩阵的特殊乘积">矩阵的特殊乘积<a class="headerlink" href="#矩阵的特殊乘积" title="Permanent link">&para;</a></h1>
 <h2 id="直积的定义和性质">直积的定义和性质<a class="headerlink" href="#直积的定义和性质" title="Permanent link">&para;</a></h2>
@@ -6514,9 +6520,11 @@ a_{m1}B &amp; a_{m2}B &amp;\cdots &amp;a_{mn}B \\
 <ul>
 <li><span class="arithmatex">\(\overrightarrow{kA+lB} =k \vec A +l \vec B\)</span></li>
 <li><span class="arithmatex">\(\cfrac{\overrightarrow{dA(t)}}{dt} =\cfrac{d\overrightarrow{A(t)}}{dt}\)</span></li>
-<li><span class="arithmatex">\(\overrightarrow{AXB} = (A\otimes B^T) \vec X\)</span></li>
+<li><span class="arithmatex">\(\overrightarrow{AXB} = (A\otimes B^T) \vec X\)</span><ul>
 <li><span class="arithmatex">\(\overrightarrow{AX} = (A\otimes I_p) \vec X\)</span></li>
 <li><span class="arithmatex">\(\overrightarrow{XB} = (I_n \otimes B^T) \vec X\)</span></li>
+</ul>
+</li>
 </ul>
 <h3 id="求解矩阵方程_1">求解矩阵方程<a class="headerlink" href="#求解矩阵方程_1" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
@@ -6664,16 +6672,16 @@ W = \{k_1\alpha_1+k_2\alpha_2 + \cdots+k_m\alpha_m \mid k_1,k_2,\cdots,k_m \in K
 \]</div>
 <p>如果表示方法是唯一的，则称<span class="arithmatex">\(W_1+W_2\)</span>是直和，记为<span class="arithmatex">\(W_1 \dot+ W_2\)</span>。</p>
 <p>下列条件等价</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- $W_1+W_2$是直和
+- 零元素的分解式是唯一的$\theta = \alpha_1+\alpha_2 \Longrightarrow \alpha_1  = \alpha_2 = \theta$
+- $W_1 \cap W_2  = \{\theta\}$
+- $\dim (W_1+W_2) = \dim W_1 + \dim W_2$
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(W_1+W_2\)</span>是直和</li>
-<li>零元素的分解式是唯一的<span class="arithmatex">\(\theta = \alpha_1+\alpha_2 \Longrightarrow \alpha_1  = \alpha_2 = \theta\)</span></li>
-<li><span class="arithmatex">\(W_1 \cap W_2  = \{\theta\}\)</span></li>
-<li>
-<p><span class="arithmatex">\(\dim (W_1+W_2) = \dim W_1 + \dim W_2\)</span></p>
-</li>
-<li>
-<p>两个子空间的直和的基等于两个子空间的基的组合</p>
-</li>
+<li>两个子空间的直和的基等于两个子空间的基的组合</li>
 <li>设<span class="arithmatex">\(W_1\)</span>是线性空间<span class="arithmatex">\(V^n\)</span>的一个子空间，则必存在<span class="arithmatex">\(V^n\)</span>的子空间<span class="arithmatex">\(W_2\)</span>，使<span class="arithmatex">\(V^n = W_1 \dot + W_2\)</span></li>
 </ul>
 <h2 id="线性变换">线性变换<a class="headerlink" href="#线性变换" title="Permanent link">&para;</a></h2>
@@ -6707,26 +6715,27 @@ T(k\alpha) = kT(\alpha)
 <ul>
 <li>
 <p>设<span class="arithmatex">\(V\)</span>是数域<span class="arithmatex">\(K\)</span>上的线性空间，<span class="arithmatex">\(T\)</span>是<span class="arithmatex">\(V\)</span>的线性变换</p>
-</li>
-<li>
-<p><span class="arithmatex">\(V\)</span>中元素在<span class="arithmatex">\(T\)</span>下像的集合称为<span class="arithmatex">\(T\)</span>的值域，记为<span class="arithmatex">\(R(T)\)</span></p>
+<ul>
+<li><span class="arithmatex">\(V\)</span>中元素在<span class="arithmatex">\(T\)</span>下像的集合称为<span class="arithmatex">\(T\)</span>的值域，记为<span class="arithmatex">\(R(T)\)</span></li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
     R(T) = \{T(\alpha) \mid \alpha \in V\}
 \]</div>
-<ul>
-<li><span class="arithmatex">\(V\)</span>中所有被<span class="arithmatex">\(T\)</span>变为零元的原像组成的集合称为<span class="arithmatex">\(T\)</span>的核，记为<span class="arithmatex">\(N(T)\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- $V$中所有被$T$变为零元的原像组成的集合称为$T$的核，记为$N(T)$
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     N(T) = \{\alpha \mid T(\alpha) = \theta,\alpha\in V\}
 \]</div>
 <ul>
 <li><span class="arithmatex">\(T\)</span>的值域与核都是<span class="arithmatex">\(V\)</span>的子空间</li>
 <li><span class="arithmatex">\(R(T)\)</span>的维数为<span class="arithmatex">\(T\)</span>的秩，记为<span class="arithmatex">\(\text{rank } T\)</span>；<span class="arithmatex">\(N(T)\)</span>的维数为<span class="arithmatex">\(T\)</span>的零度，记为<span class="arithmatex">\(\text{null } T\)</span></li>
-<li>设<span class="arithmatex">\(V\)</span>是数域<span class="arithmatex">\(K\)</span>上的<span class="arithmatex">\(n\)</span>维线性空间，<span class="arithmatex">\(\alpha_1,\alpha_2,\cdots,\alpha_n\)</span>是<span class="arithmatex">\(V\)</span>的一个基，<span class="arithmatex">\(T\)</span>是<span class="arithmatex">\(V\)</span>的线性变换，</li>
+<li>设<span class="arithmatex">\(V\)</span>是数域<span class="arithmatex">\(K\)</span>上的<span class="arithmatex">\(n\)</span>维线性空间，<span class="arithmatex">\(\alpha_1,\alpha_2,\cdots,\alpha_n\)</span>是<span class="arithmatex">\(V\)</span>的一个基，<span class="arithmatex">\(T\)</span>是<span class="arithmatex">\(V\)</span>的线性变换，<ul>
 <li><span class="arithmatex">\(R(T) = span\{T(\alpha_1),T(\alpha_2),\cdots,T(\alpha_n)\}\)</span></li>
 <li><span class="arithmatex">\(\text{rank }T + \text{null }T = n\)</span></li>
+</ul>
+</li>
 </ul>
 <h2 id="线性变换的矩阵表示">线性变换的矩阵表示<a class="headerlink" href="#线性变换的矩阵表示" title="Permanent link">&para;</a></h2>
 <h3 id="线性变换的矩阵">线性变换的矩阵<a class="headerlink" href="#线性变换的矩阵" title="Permanent link">&para;</a></h3>
@@ -6877,7 +6886,7 @@ A_1 &amp;&amp;&amp;\\
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

@@ -5777,25 +5777,21 @@
 <li><strong>共享</strong><code>Sharing</code></li>
 </ul>
 <p>资源共享即共享，是指系统中的资源可供内存中多个并发执行的进程共同使用。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 互斥共享方式：一段时间内只允许一个进程访问该资源，这种资源称为**临界资源**或**独占资源**。
+- 同时访问方式：允许在一段时间内由多个进程“同时”访问。这里的“同时”是宏观上的，微观上可能仍然是**分时共享。**
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>互斥共享方式：一段时间内只允许一个进程访问该资源，这种资源称为<strong>临界资源</strong>或<strong>独占资源</strong>。</li>
-<li>
-<p>同时访问方式：允许在一段时间内由多个进程“同时”访问。这里的“同时”是宏观上的，微观上可能仍然是<strong>分时共享。</strong></p>
-</li>
-<li>
-<p><strong>虚拟</strong><code>Virtual</code></p>
-</li>
+<li><strong>虚拟</strong><code>Virtual</code></li>
 </ul>
 <p>虚拟是指把一个物理上的实体变为若干逻辑上的对应物。用于实现虚拟的技术，称为<strong>虚拟技术</strong>。</p>
 <p>虚拟技术可分为<strong>时分复用技术</strong>和<strong>空分复用技术</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- **虚拟处理器**：通过多道程序设计技术，采用让多道程序并发执行的方法，来分时使用一个处理器。
+- **虚拟存储器**：采用虚拟存储器技术将一台机器的物理存储器变为虚拟存储器，以便从逻辑上扩充存储器的容量。
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><strong>虚拟处理器</strong>：通过多道程序设计技术，采用让多道程序并发执行的方法，来分时使用一个处理器。</li>
-<li>
-<p><strong>虚拟存储器</strong>：采用虚拟存储器技术将一台机器的物理存储器变为虚拟存储器，以便从逻辑上扩充存储器的容量。</p>
-</li>
-<li>
-<p><strong>异步</strong><code>Asynchronism</code></p>
-</li>
+<li><strong>异步</strong><code>Asynchronism</code></li>
 </ul>
 <p>多道程序环境允许多个程序并发执行，但由于资源有限，进程的执行并不是一贯到底的，而是走走停停的，它以不可预知1的速度向前推进，这就是程序的异步性。</p>
 <p>并发和共享是操作系统两个最基本的特征，两者之间互为存在的条件</p>
@@ -6037,7 +6033,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

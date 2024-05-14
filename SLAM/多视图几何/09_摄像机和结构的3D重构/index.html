@@ -5456,10 +5456,8 @@ R &amp; t \\
 <ol>
 <li>
 <p>计算一个摄影重构<span class="arithmatex">\((P,P^\prime,\{X_i\})\)</span></p>
-</li>
-<li>
-<p>计算基本矩阵：由两幅图像之间的点对应<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span></p>
-</li>
+<ul>
+<li>计算基本矩阵：由两幅图像之间的点对应<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span></li>
 <li>摄像机恢复：由基本矩阵计算摄像机矩阵<span class="arithmatex">\(P,P^\prime\)</span></li>
 <li>三角测量：对每组点对应<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span>计算投影到这两个图像点的空间点<span class="arithmatex">\(X_i\)</span></li>
 <li>
@@ -5471,6 +5469,8 @@ R &amp; t \\
 <li>利用分层方法<ul>
 <li>仿射重构：计算无穷远平面<span class="arithmatex">\(\pi_\infty\)</span>【TODO 补充计算方法，10.4】，然后用单应<span class="arithmatex">\(H\)</span>把射影重构提升到仿射重构<span class="arithmatex">\(H=\begin{bmatrix} I \mid 0 \\    \pi_\infty^T     \end{bmatrix}\)</span></li>
 <li>度量重构：计算绝对二次曲线的像<span class="arithmatex">\(\omega\)</span>【TODO 补充计算方法】，然后用单应<span class="arithmatex">\(H\)</span>把仿射重构提升到度量重构，其中<span class="arithmatex">\(AA^T=(M^T\omega M)^{-1}\)</span>做<span class="arithmatex">\(Cholesky\)</span>分解得到，<span class="arithmatex">\(M\)</span>是仿射重构中摄像机矩阵左上角<span class="arithmatex">\(3 \times 3\)</span>矩阵</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -5574,7 +5574,7 @@ A^{-1} &amp; \\
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

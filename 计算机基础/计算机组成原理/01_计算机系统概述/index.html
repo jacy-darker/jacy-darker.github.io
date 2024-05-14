@@ -5653,7 +5653,9 @@
 <ul>
 <li>输入设备：输入设备的主要功能是将程序和数据以机器所能识别和接受的信息形式输入计算机</li>
 <li>输出设备：输出设备的主要任务是将计算机处理的结果以人们所能接受的形式或其他系统所要求的信息形式输出</li>
-<li>存储器：是计算机的存储部件，用来存放程序和数据</li>
+<li>
+<p>存储器：是计算机的存储部件，用来存放程序和数据</p>
+<ul>
 <li>主存储器：CPU能够直接访问的存储器<ul>
 <li>存储体：存放二进制信息</li>
 <li>地址寄存器<code>MAR()</code>:存放访存地址，经过地址译码后找到所选的存储单元</li>
@@ -5662,19 +5664,23 @@
 <li>主存储器由许多<strong>存储单元</strong>组成，每个存储单元包含若干<strong>存储元件</strong>，每个存储元件存储一位二进制代码。存储单元可存储一串二进制代码，称其为<strong>存储字</strong>，存储字的字长为<strong>存储字长</strong></li>
 </ul>
 </li>
-<li>
-<p>辅助存储器：辅助存储器中的信息必须调入主存后，才能被CPU访问</p>
+<li>辅助存储器：辅助存储器中的信息必须调入主存后，才能被CPU访问</li>
+</ul>
 </li>
 <li>
 <p>运算器：运算器是计算机的执行部件，用于进行算术运算逻辑运算。算术运算是按算术运算规则进行的运算。</p>
-</li>
+<ul>
 <li>算术逻辑单元<code>(Arithmetic and Logical Unit,ALU)</code>：运算器的核心</li>
 <li>若干寄存器：累加器<code>ACC</code>、乘商寄存器<code>MQ</code>、操作数寄存器<code>X</code>，变址寄存器<code>IX</code>、基址寄存器<code>BR</code></li>
 <li>程序状态寄存器<code>PSW</code>：也称标志寄存器，用于存放ALU运算得到的一些标志信息或处理机的状态信息</li>
-<li>控制器：是计算机的指挥中心</li>
+</ul>
+</li>
+<li>控制器：是计算机的指挥中心<ul>
 <li>程序计数器<code>PC</code>:用来存放当前欲执行指令的地址，可以自动加1形成下一条指令的地址，与主存<code>MAR</code>之间有一条直捷通路</li>
 <li>指令寄存器<code>IR</code>:用来存放当前的指令，其内容来自主存的<code>MDR</code></li>
 <li>控制单元<code>CU</code>：指令中的操作码<code>OP(IR)</code>送至CU，用以分析指令并发出各种微操作命令序列</li>
+</ul>
+</li>
 </ul>
 <h3 id="计算机软件的分类">计算机软件的分类<a class="headerlink" href="#计算机软件的分类" title="Permanent link">&para;</a></h3>
 <h4 id="系统软件和应用软件">系统软件和应用软件<a class="headerlink" href="#系统软件和应用软件" title="Permanent link">&para;</a></h4>
@@ -5754,7 +5760,7 @@
 </li>
 <li>
 <p>运算速度</p>
-</li>
+<ul>
 <li>
 <p>吞吐量和响应时间</p>
 <ul>
@@ -5784,6 +5790,8 @@
 <li><code>MFLOPS(Mega Floating-point Operations Pre second)</code>：每秒执行多少百万次浮点运算</li>
 <li><code>GFLOPS(Giga Floating-point Operations Pre second)</code>：每秒执行多少十亿次浮点运算</li>
 <li><code>TFLOPS(Tera Floating-point Operations Pre second)</code>：每秒执行多少万亿次浮点运算</li>
+</ul>
+</li>
 </ul>
 <p>在描述存储量的时间，通常用2的幂次表示；在描述性能、速率等时，通常用10的幂次表示</p>
 </li>
@@ -5888,7 +5896,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

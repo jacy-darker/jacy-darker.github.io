@@ -6,8 +6,8 @@
 /* normalize.css v4.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
 }
 body {
   margin: 0;
@@ -145,7 +145,7 @@ button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; /* 2 */
+    -webkit-appearance: button; /* 2 */
 }
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -182,15 +182,15 @@ textarea {
   height: auto;
 }
 [type="search"] {
-  -webkit-appearance: textfield;
+    -webkit-appearance: textfield;
 }
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 html {
   line-height: 1.3;
-  -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 ol,
 ul {
@@ -214,11 +214,11 @@ a {
 }
 em:lang(zh),
 em:lang(ja) {
-  -moz-text-emphasis: filled circle;
-  -webkit-text-emphasis: filled circle;
+    -moz-text-emphasis: filled circle;
+    -webkit-text-emphasis: filled circle;
   text-emphasis: filled circle;
-  -moz-text-emphasis-position: under;
-  -webkit-text-emphasis-position: under;
+    -moz-text-emphasis-position: under;
+    -webkit-text-emphasis-position: under;
   text-emphasis-position: under;
   font-style: inherit;
   border-bottom: 2px dotted;
@@ -227,11 +227,11 @@ em:lang(ja) {
   padding-bottom: -webkit-calc(0px);
 }
 em:lang(ja) {
-  -moz-text-emphasis: filled sesame;
-  -webkit-text-emphasis: filled sesame;
+    -moz-text-emphasis: filled sesame;
+    -webkit-text-emphasis: filled sesame;
   text-emphasis: filled sesame;
-  -moz-text-emphasis-position: over;
-  -webkit-text-emphasis-position: over;
+    -moz-text-emphasis-position: over;
+    -webkit-text-emphasis-position: over;
   text-emphasis-position: over;
 }
 dfn:lang(zh),
@@ -306,18 +306,18 @@ ruby rtc rt {
 ruby.zhuyin,
 ruby.mps {
   display: ruby;
-  -webkit-ruby-position: inter-character;
+    -webkit-ruby-position: inter-character;
   ruby-position: inter-character;
 }
 ruby.zhuyin > rt,
 ruby.mps > rt {
-  -moz-transform: scale(.8);
-  -ms-transform: scale(.8);
-  -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
+    -ms-transform: scale(.8);
+    -webkit-transform: scale(.8);
   transform: scale(.8);
-  -moz-transform-origin: left center;
-  -ms-transform-origin: left center;
-  -webkit-transform-origin: left center;
+    -moz-transform-origin: left center;
+    -ms-transform-origin: left center;
+    -webkit-transform-origin: left center;
   transform-origin: left center;
   font-size: .5em;
 }
@@ -356,17 +356,17 @@ ruby.mps > rt:empty {
 }
 .no-textemphasis em:lang(zh) h-char:after,
 .no-textemphasis em:lang(ja) h-char:after {
-  -moz-text-emphasis: none;
-  -webkit-text-emphasis: none;
+    -moz-text-emphasis: none;
+    -webkit-text-emphasis: none;
   text-emphasis: none;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
   text-decoration: none;
   text-indent: 0;
-  -moz-transform: scale(.5);
-  -ms-transform: scale(.5);
-  -webkit-transform: scale(.5);
+    -moz-transform: scale(.5);
+    -ms-transform: scale(.5);
+    -webkit-transform: scale(.5);
   transform: scale(.5);
   position: absolute;
   left: 50%;
@@ -385,8 +385,8 @@ em:lang(zh) h-char.punct,
 em:lang(ja) h-char.punct,
 em:lang(zh) h-char.biaodian,
 em:lang(ja) h-char.biaodian {
-  -moz-text-emphasis: none;
-  -webkit-text-emphasis: none;
+    -moz-text-emphasis: none;
+    -webkit-text-emphasis: none;
   text-emphasis: none;
 }
 .no-textemphasis em:lang(zh) h-char.punct:after,
@@ -421,7 +421,7 @@ h-ruby.zhuyin h-diao {
 ruby.zhuyin h-diao h-char,
 ruby.mps h-diao h-char,
 h-ruby.zhuyin h-diao h-char {
-  -webkit-writing-mode: horizontal-tb;
+    -webkit-writing-mode: horizontal-tb;
   writing-mode: horizontal-tb;
 }
 ruby.zhuyin [diao="˙"] h-diao,
@@ -509,8 +509,8 @@ h-ruby[rightangle][doubleline] h-ru[annotation] {
   vertical-align: .5em;
 }
 [zhuyin] h-zhuyin {
-  -moz-text-emphasis: none;
-  -webkit-text-emphasis: none;
+    -moz-text-emphasis: none;
+    -webkit-text-emphasis: none;
   text-emphasis: none;
   font-style: normal;
   font-weight: normal;
@@ -524,13 +524,13 @@ h-ruby[rightangle][doubleline] h-ru[annotation] {
   vertical-align: text-top;
 }
 [zhuyin] h-zhuyin > * {
-  -moz-transform: scale(.4);
-  -ms-transform: scale(.4);
-  -webkit-transform: scale(.4);
+    -moz-transform: scale(.4);
+    -ms-transform: scale(.4);
+    -webkit-transform: scale(.4);
   transform: scale(.4);
-  -moz-transform-origin: left top;
-  -ms-transform-origin: left top;
-  -webkit-transform-origin: left top;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -webkit-transform-origin: left top;
   transform-origin: left top;
   display: inline-block;
 }
@@ -593,13 +593,13 @@ h-ruby[rightangle][doubleline] h-ru[annotation] {
 }
 [zhuyin] [diao="˪"] h-diao,
 [zhuyin] [diao="˫"] h-diao {
-  -moz-transform: scale(.6);
-  -ms-transform: scale(.6);
-  -webkit-transform: scale(.6);
+    -moz-transform: scale(.6);
+    -ms-transform: scale(.6);
+    -webkit-transform: scale(.6);
   transform: scale(.6);
-  -moz-transform-origin: left top;
-  -ms-transform-origin: left top;
-  -webkit-transform-origin: left top;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -webkit-transform-origin: left top;
   transform-origin: left top;
 }
 [zhuyin] [diao^="ㆴ"] h-diao,
@@ -1361,9 +1361,9 @@ ruby.romanization rt,
 h-ruby.romanization rt,
 ruby [annotation] rt,
 h-ruby [annotation] rt {
-  -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga";
-  -webkit-font-feature-settings: "liga";
+    -moz-font-feature-settings: "liga";
+    -ms-font-feature-settings: "liga";
+    -webkit-font-feature-settings: "liga";
   font-feature-settings: "liga";
 }
 html,
@@ -1380,9 +1380,9 @@ samp,
 pre,
 article blockquote i,
 article blockquote var {
-  -moz-font-feature-settings: "liga=1, locl=0";
-  -ms-font-feature-settings: "liga", "locl" 0;
-  -webkit-font-feature-settings: "liga", "locl" 0;
+    -moz-font-feature-settings: "liga=1, locl=0";
+    -ms-font-feature-settings: "liga", "locl" 0;
+    -webkit-font-feature-settings: "liga", "locl" 0;
   font-feature-settings: "liga", "locl" 0;
 }
 .no-unicoderange h-char.bd-cop:lang(zh-Hant),
@@ -1523,9 +1523,9 @@ article {
   line-height: 1.7;
 }
 article {
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
   hyphens: auto;
 }
 p.poem-like,
@@ -1638,8 +1638,8 @@ h-char.bd-hangable:lang(ja):before {
 h-char.bd-hangable:lang(zh-Hans) > h-inner,
 h-char.bd-hangable:lang(zh-CN) > h-inner,
 h-char.bd-hangable:lang(ja) > h-inner {
-  -moz-text-emphasis: none;
-  -webkit-text-emphasis: none;
+    -moz-text-emphasis: none;
+    -webkit-text-emphasis: none;
   text-emphasis: none;
   font-style: normal;
   font-weight: normal;

@@ -5596,23 +5596,25 @@ W=
 </li>
 </ol>
 <p>设在单连通区域<span class="arithmatex">\(D\)</span>内<span class="arithmatex">\(P,Q\)</span>具有一阶连续偏导数，则下述描述等价</p>
-<ul>
-<li><span class="arithmatex">\(\int_{\Gamma AB}Pdx+Qdy\)</span>与路径无关</li>
-<li><span class="arithmatex">\(Pdx+Qdy\)</span>为某二元函数<span class="arithmatex">\(u(x,y)\)</span>的全微分</li>
-<li><span class="arithmatex">\(Pdx+Qdy=0\)</span>为全微分方程</li>
-<li><span class="arithmatex">\(P\pmb i+Q\pmb j\)</span>为某二元函数<span class="arithmatex">\(u(x,y)\)</span>的梯度</li>
-<li>沿<span class="arithmatex">\(D\)</span>内任意分段光滑闭曲线<span class="arithmatex">\(L\)</span>都有<span class="arithmatex">\(\oint_{\Gamma}Pdx+Qdy=0\)</span></li>
-<li><span class="arithmatex">\(\cfrac{\partial Q}{\partial x}=\cfrac{\partial P}{\partial y}\)</span>在<span class="arithmatex">\(D\)</span>内处处成立</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code> - $\int_{\Gamma AB}Pdx+Qdy$与路径无关
+ - $Pdx+Qdy$为某二元函数$u(x,y)$的全微分
+ - $Pdx+Qdy=0$为全微分方程
+ - $P\pmb i+Q\pmb j$为某二元函数$u(x,y)$的梯度
+ - 沿$D$内任意分段光滑闭曲线$L$都有$\oint_{\Gamma}Pdx+Qdy=0$
+ - $\cfrac{\partial Q}{\partial x}=\cfrac{\partial P}{\partial y}$在$D$内处处成立
+</code></pre></div></td></tr></table></div>
 <p>此外，求<span class="arithmatex">\(u(x,y)\)</span>的方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code> - $u(x,y)=\int_{(x_0,y_0)}^{(x,y)}Pdx+Qdy+u(x_0,y_0)=\int_{x_0}^xPdx+\int_{y_0}^yRdy+u(x_0,y_0)$,路径使用折线法
+ - 凑微分观察法
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(u(x,y)=\int_{(x_0,y_0)}^{(x,y)}Pdx+Qdy+u(x_0,y_0)=\int_{x_0}^xPdx+\int_{y_0}^yRdy+u(x_0,y_0)\)</span>,路径使用折线法</li>
-<li>
-<p>凑微分观察法</p>
-</li>
-<li>
-<p>两类曲线积分的关系</p>
-</li>
+<li>两类曲线积分的关系</li>
 </ul>
 <div class="arithmatex">\[
 \int_{L}Pdx+Qdy=\int_{L}(P\\cos \alpha+Q\\sin \alpha)ds
@@ -5826,7 +5828,7 @@ $$</p>
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

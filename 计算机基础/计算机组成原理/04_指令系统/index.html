@@ -5612,25 +5612,37 @@
 </tbody>
 </table>
 <ul>
-<li>指令的长度与机器字长没有固定的关系</li>
+<li>指令的长度与机器字长没有固定的关系<ul>
 <li>单字长指令（指令长度等于机器字长的指令）、半字长指令、双字长指令</li>
 <li>定长指令子结构：所有指令的长度是相同的</li>
 <li>变长指令字结构：各种指令的长度随指令功能而定</li>
 </ul>
+</li>
+</ul>
 <h4 id="指令格式分类">指令格式分类<a class="headerlink" href="#指令格式分类" title="Permanent link">&para;</a></h4>
 <ul>
-<li>零地址指令<code>[OP]</code></li>
+<li>零地址指令<code>[OP]</code><ul>
 <li>不需要操作数的指令，如空操作指令、停机指令、关中断指令等</li>
 <li>零地址的运算类指令仅用在堆栈计算机中。通常参与运算的两个操作数隐含地从栈顶和次栈顶弹出，送到运算器进行运算，运算结果再隐含地压入堆栈</li>
-<li>一地址指令<code>[OP|A_1]</code></li>
+</ul>
+</li>
+<li>一地址指令<code>[OP|A_1]</code><ul>
 <li>只有目的操作数的单操作数指令，按<code>A_1</code>地址读取操作数，进行<code>OP</code>操作后，结果存放回原地址：<span class="arithmatex">\(OP(A_1) \rightarrow A_1\)</span></li>
 <li>隐含约定目的地址的双操作数指令，按指令地址<code>A_1</code>可读取源操作数，指令可隐含约定另一个操作数由<code>ACC</code>累加器提供，运算结果也将存放在<code>ACC</code>中：<span class="arithmatex">\((ACC)OP(A_1) \rightarrow ACC\)</span></li>
-<li>二地址指令<code>[OP|A_1|A_2]</code></li>
+</ul>
+</li>
+<li>二地址指令<code>[OP|A_1|A_2]</code><ul>
 <li><span class="arithmatex">\((A_1)OP(A_2) \rightarrow A_1\)</span></li>
-<li>三地址指令<code>[OP|A_1|A_2|A_3]</code></li>
+</ul>
+</li>
+<li>三地址指令<code>[OP|A_1|A_2|A_3]</code><ul>
 <li><span class="arithmatex">\((A_1)OP(A_2) \rightarrow A_3\)</span></li>
-<li>四地址指令<code>[OP|A_1|A_2|A_3|A_4]</code></li>
+</ul>
+</li>
+<li>四地址指令<code>[OP|A_1|A_2|A_3|A_4]</code><ul>
 <li><span class="arithmatex">\((A_1)OP(A_2) \rightarrow A_3,A_4=下一条将要执行指令的地址\)</span></li>
+</ul>
+</li>
 </ul>
 <h3 id="定长操作码指令格式">定长操作码指令格式<a class="headerlink" href="#定长操作码指令格式" title="Permanent link">&para;</a></h3>
 <p>定长操作码指令在指令的最高部分分配固定的若干位表示操作码</p>
@@ -5668,9 +5680,11 @@
 <h2 id="指令的寻址方式">指令的寻址方式<a class="headerlink" href="#指令的寻址方式" title="Permanent link">&para;</a></h2>
 <h3 id="指令寻址和数据寻址">指令寻址和数据寻址<a class="headerlink" href="#指令寻址和数据寻址" title="Permanent link">&para;</a></h3>
 <ul>
-<li>指令寻址：寻找下一条要执行的指令地址</li>
+<li>指令寻址：寻找下一条要执行的指令地址<ul>
 <li>顺序寻址：可通过程序计数器<code>PC</code>加<code>1</code>(1个指令字长)，自动形成下一条指令的地址</li>
 <li>跳跃寻址：通过转移类指令实现。所谓跳跃，是指下条指令的地址码不由程序计数器给出，而由本条指令给出下条指令地址的计算方式。是否跳跃可能受到状态寄存器和操作数的控制，而跳跃到的地址分为绝对地址和相对地址，跳跃的结果是当前指令修改<code>PC</code>值，所以下一条指令仍然通过程序计数器<code>PC</code>给出</li>
+</ul>
+</li>
 <li>数据寻址：寻找操作数的地址称为数据寻址<code>[操作码|寻址特征|形式特征A]</code></li>
 </ul>
 <h3 id="常见的数据寻址方式">常见的数据寻址方式<a class="headerlink" href="#常见的数据寻址方式" title="Permanent link">&para;</a></h3>
@@ -5744,10 +5758,10 @@
 <li>堆栈寻址</li>
 </ul>
 <p>堆栈是存储器中一块特定的、按后进先出原则管理的存储区，该存储区中读写单元的地址是用一个特定的寄存器给出的，该寄存器称为堆栈指针<code>SP</code>。通常情况下，在读写堆栈中的一个单元的前后都伴有自动完成对<code>SP</code>内容的增量或减量操作</p>
-<ul>
-<li>硬堆栈：寄存器堆栈</li>
-<li>软堆栈：从主存中划出一段区域来做堆栈是最合算且最常用的方法。</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 硬堆栈：寄存器堆栈
+- 软堆栈：从主存中划出一段区域来做堆栈是最合算且最常用的方法。
+</code></pre></div></td></tr></table></div>
 <h3 id="x86汇编指令入门">X86汇编指令入门<a class="headerlink" href="#x86汇编指令入门" title="Permanent link">&para;</a></h3>
 <h4 id="相关寄存器">相关寄存器<a class="headerlink" href="#相关寄存器" title="Permanent link">&para;</a></h4>
 <p>为了向后兼容，<code>EAX</code>，<code>EBX</code>，<code>ECX</code>，<code>EDX</code>的高两位字节和低两位字节可以独立使用，<code>E</code>为<code>Extended</code>，表示32位的寄存器。例如<code>EAX</code>的低两位字节称为<code>AX</code>，而<code>AX</code>的高低字节又可分别作为两个8位寄存器，分别称为<code>AH</code>和<code>AL</code>。</p>
@@ -5774,10 +5788,12 @@ mov eax, [ebx-ecx]      ;错误，只能用加法
 mov [eax+esi+edi], ebx  ;错误，最多只能有两个寄存器参与运算
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>数据类型长度规定</li>
+<li>数据类型长度规定<ul>
 <li><code>DB(Data Byte)</code></li>
 <li><code>DW(Data Word,2Bytes)</code></li>
 <li><code>DD(Double Word,4Bytes)</code></li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -6359,7 +6375,7 @@ ret
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

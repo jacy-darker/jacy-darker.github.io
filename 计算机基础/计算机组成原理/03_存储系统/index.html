@@ -6551,10 +6551,12 @@
 <ul>
 <li>存储容量=存储字数X字长</li>
 <li>单位成本：每位价格=总成本/总容量</li>
-<li>存储速度：数据传输率=数据的宽度/存储周期</li>
+<li>存储速度：数据传输率=数据的宽度/存储周期<ul>
 <li>存取时间<span class="arithmatex">\(T_a\)</span>：存取时间是指从启动一次存储器操作到完成该操作所经历的时间，分为读出时间和写入时间</li>
 <li>存取周期<span class="arithmatex">\(T_m\)</span>：存取周期又称读写周期或访问周期。它是指存储器进行一次完整的读写操作所需的全部时间，即连续两次独立访问存储器操作之间所需的最小时间间隔。一般大于存取时间</li>
 <li>主存带宽<span class="arithmatex">\(B_m\)</span>：主存带宽又称数据传输率，表示每秒从主存进出信息的最大数量。</li>
+</ul>
+</li>
 </ul>
 <h2 id="存储器的层次化结构">存储器的层次化结构<a class="headerlink" href="#存储器的层次化结构" title="Permanent link">&para;</a></h2>
 <h3 id="多层次存储系统">多层次存储系统<a class="headerlink" href="#多层次存储系统" title="Permanent link">&para;</a></h3>
@@ -6632,21 +6634,25 @@
 </ul>
 <h4 id="存储器的读写周期">存储器的读写周期<a class="headerlink" href="#存储器的读写周期" title="Permanent link">&para;</a></h4>
 <ul>
-<li>RAM的读周期</li>
+<li>RAM的读周期<ul>
 <li>读出时间<span class="arithmatex">\(t_A\)</span>：从给出有效地址开始，到读出所选中单元的内容并在外部数据总线上稳定的出现所需时间</li>
 <li><span class="arithmatex">\(\overline{CS}\)</span>地址片选信号：必须保持到数据稳定输出</li>
 <li><span class="arithmatex">\(t_{CO}\)</span>：片选的保持时间</li>
 <li><span class="arithmatex">\(\overline{WE}\)</span>：在读周期中为高电平</li>
 <li>读周期时间<span class="arithmatex">\(t_{RC}\)</span>：表示存储芯片进行两次连续读操作所必须间隔的时间，它总是大于等于读出时间</li>
 </ul>
+</li>
+</ul>
 <p><img src="../../../assets/pic/计算机组成原理/RAM芯片读周期时序图.jpg" alt="RAM芯片读周期时序图" style="" /></p>
 <ul>
-<li>RAM的写周期</li>
+<li>RAM的写周期<ul>
 <li>片选信号<span class="arithmatex">\(\overline{CS}\)</span>和写命令信号<span class="arithmatex">\(\overline{WE}\)</span>必须都为低电平</li>
 <li>为使数据总线上的信息能够可靠的写入存储器，要求<span class="arithmatex">\(\overline{CS}\)</span>与<span class="arithmatex">\(\overline{WE}\)</span>信号相"与"的宽度至少为<span class="arithmatex">\(t_W\)</span></li>
 <li>为了保证地址变化期间不会发生错误写入而破坏存储器的信息，<span class="arithmatex">\(\overline{WE}\)</span>在地质变化期间必须是高电平</li>
 <li>为了保证那个有效数据的可靠写入，地址有效的时间至少应为<span class="arithmatex">\(t_{WC}=t_{AW}+t_{W}+t_{WR}\)</span></li>
 <li>为了保证在<span class="arithmatex">\(\overline{WE}\)</span>和<span class="arithmatex">\(\overline{CS}\)</span>变无效前能把数据可靠的写入，要求写入的数据必须在<span class="arithmatex">\(t_{DW}\)</span>以前在数据总线上已经稳定</li>
+</ul>
+</li>
 </ul>
 <p><img src="../../../assets/pic/计算机组成原理/RAM芯片写周期时序图.jpg" alt="RAM芯片写周期时序图" style="" /></p>
 <h4 id="sramvsdram">SRAM<span class="arithmatex">\(VS\)</span>DRAM<a class="headerlink" href="#sramvsdram" title="Permanent link">&para;</a></h4>
@@ -6727,9 +6733,11 @@
 <li>编制单位是指具有相同地址的那些存储元件构成的一个单位，可以按字节编址，也可以按字编址</li>
 <li>地址线的位数决定了主存地址空间得到最大可寻址范围，有时主存的实际存储容量所需的地址线小于CPU寻址所用地址线</li>
 <li>数据线数和地址线数共同反映存储体容量的大小</li>
-<li>指令执行过程中需要访问主存时，<code>CPU</code>首先把被访问单元的地址送到<code>MAR</code>中，然后通过地址线将主存地址送到主存中的地址寄存器，以便地址译码器进行译码选中相应单元，同时<code>CPU</code>将读写信号通过控制线送到主存的读写控制电路。</li>
+<li>指令执行过程中需要访问主存时，<code>CPU</code>首先把被访问单元的地址送到<code>MAR</code>中，然后通过地址线将主存地址送到主存中的地址寄存器，以便地址译码器进行译码选中相应单元，同时<code>CPU</code>将读写信号通过控制线送到主存的读写控制电路。<ul>
 <li>如果是写操作，那么<code>CPU</code>同时将要写的信息送到<code>MDR</code>中，在读写控制电路的控制下，经数据线将信号写入选中的单元</li>
 <li>如果是读操作，那么主存读出选中单元的内容送到数据线，然后送到<code>MDR</code>中</li>
+</ul>
+</li>
 </ul>
 <h2 id="主存储器与cpu的连接">主存储器与CPU的连接<a class="headerlink" href="#主存储器与cpu的连接" title="Permanent link">&para;</a></h2>
 <h3 id="连接原理">连接原理<a class="headerlink" href="#连接原理" title="Permanent link">&para;</a></h3>
@@ -6781,17 +6789,25 @@
 </table>
 <h3 id="存储器与cpu的连接">存储器与CPU的连接<a class="headerlink" href="#存储器与cpu的连接" title="Permanent link">&para;</a></h3>
 <ul>
-<li>合理选择存储芯片</li>
+<li>合理选择存储芯片<ul>
 <li><code>ROM</code>存放系统程序、标准子程序和各类常数</li>
 <li><code>RAM</code>是为用户编程而设置的</li>
-<li>地址线的连接</li>
+</ul>
+</li>
+<li>地址线的连接<ul>
 <li>将<code>CPU</code>地址线的低位与存储芯片的地址线相连，以选择芯片中的某一单元，这部分的译码是由芯片的片内逻辑完成的</li>
 <li><code>CPU</code>的高位则在扩充存储芯片时使用，用来选择存储芯片，这部分译码由外接译码器逻辑完成</li>
-<li>数据线的连接</li>
+</ul>
+</li>
+<li>数据线的连接<ul>
 <li>相等时可以直接相连；不相等时需要对存储芯片扩位</li>
+</ul>
+</li>
 <li>读写命令线的连接</li>
-<li>片选线的连接</li>
+<li>片选线的连接<ul>
 <li>片选有效信号与<code>CPU</code>的访存控制信号<span class="arithmatex">\(\overline{MREQ}\)</span>有关</li>
+</ul>
+</li>
 </ul>
 <h2 id="双端口ram和多模块存储器">双端口RAM和多模块存储器<a class="headerlink" href="#双端口ram和多模块存储器" title="Permanent link">&para;</a></h2>
 <h3 id="双端口ram">双端口RAM<a class="headerlink" href="#双端口ram" title="Permanent link">&para;</a></h3>
@@ -6872,11 +6888,13 @@
 j =i\mod2^c
 \]</div>
 <ul>
-<li>访问过程</li>
+<li>访问过程<ul>
 <li>首先根据访存地址中间的<code>c</code>位，找到对应的<code>Cache</code>行</li>
 <li>将对应<code>Cache</code>行中的标记和主存地址的高<code>t</code>位比较</li>
 <li>若相等且有效位为<code>1</code>，则访问<code>Cache</code>“命中”</li>
 <li>若不相等或有效位为<code>0</code>，此时CPU从主存中读出该地址所在的一块信息送到对应的<code>Cache</code>行中，将有效位置<code>1</code>，并将标记设置为地址中的高<code>t</code>位，同时将该地址中的内容送<code>CPU</code></li>
+</ul>
+</li>
 <li>主存地址</li>
 </ul>
 <table>
@@ -6932,12 +6950,14 @@ j =i\mod2^c
 j = i \mod Q
 \]</div>
 <ul>
-<li>访问过程</li>
+<li>
+<p>访问过程</p>
+<ul>
 <li>首先根据访存地址中间的组号找到对应的<code>Cache</code>组</li>
 <li>将对应<code>Cache</code>组中每个行的标记与主存地址的高位标记进行比较</li>
 <li>若有一个相等且有效位为<code>1</code>，则访问<code>Cache</code>命中，此时根据主存地址中的，在对应<code>Cache</code>行中存取信息</li>
-<li>
-<p>若都不相等或虽然相等但有效位为<code>0</code>，则不命中，此时<code>CPU</code>从主存中独处该地址所在的一块信息送到对应<code>Cache</code>组的任何一个空闲行中，将有效位置<code>1</code>，并设置标记，同时将该地址中的内容送到<code>CPU</code></p>
+<li>若都不相等或虽然相等但有效位为<code>0</code>，则不命中，此时<code>CPU</code>从主存中独处该地址所在的一块信息送到对应<code>Cache</code>组的任何一个空闲行中，将有效位置<code>1</code>，并设置标记，同时将该地址中的内容送到<code>CPU</code></li>
+</ul>
 </li>
 <li>
 <p>主存地址</p>
@@ -6969,11 +6989,13 @@ j = i \mod Q
 <ul>
 <li>随机算法<code>RAND</code>：随机的确定替换的Cache块。实现简单，但未依据程序访问的局部性原理，因此可能命中率较低</li>
 <li>先进先出算法<code>FIFO</code>：选择最早调入的行进行替换。容易实现，但也未依据程序访问的局部性原理，因为最早进入的主存块也可能是目前经常要用的</li>
-<li>近期最少使用算法<code>LRU</code>：依据程序访问的局部性原理，选择近期内长久未访问过的<code>Cache</code>行作为替换的行，平均命中率要比<code>FIFO</code>高，是堆栈类算法。每个<code>Cache</code>行设置一个计数器，用来记录主存块的使用情况</li>
+<li>
+<p>近期最少使用算法<code>LRU</code>：依据程序访问的局部性原理，选择近期内长久未访问过的<code>Cache</code>行作为替换的行，平均命中率要比<code>FIFO</code>高，是堆栈类算法。每个<code>Cache</code>行设置一个计数器，用来记录主存块的使用情况</p>
+<ul>
 <li>命中时，所命中的行的计数器清零，比其低的计数器加<code>1</code>，其余不变</li>
 <li>未命中且还有空闲行时，新装入的块的计数器置<code>0</code>，其余全加<code>1</code></li>
-<li>
-<p>未命中且无空闲行时，计数值最大的信息块被淘汰，新装行的块的计数器置<code>0</code>，其余全加<code>1</code></p>
+<li>未命中且无空闲行时，计数值最大的信息块被淘汰，新装行的块的计数器置<code>0</code>，其余全加<code>1</code></li>
+</ul>
 </li>
 <li>
 <p>最不经常使用算法<code>LFU</code>：将一段时间被访问此数最少的存储行换出。每行也设置一个计数器，新行建立后从<code>0</code>开始计数，每访问一次，被访问的行计数器加<code>1</code>，需要替换时比较各特定行的计数值，将计数值最小的行换出</p>
@@ -6982,14 +7004,18 @@ j = i \mod Q
 <h3 id="cache写策略">Cache写策略<a class="headerlink" href="#cache写策略" title="Permanent link">&para;</a></h3>
 <h4 id="对于cache写命中write-hit">对于Cache写命中<code>write hit</code><a class="headerlink" href="#对于cache写命中write-hit" title="Permanent link">&para;</a></h4>
 <ul>
-<li>全写法(写直通法，<code>write-through</code>)</li>
+<li>全写法(写直通法，<code>write-through</code>)<ul>
 <li>当<code>CPU</code>对<code>Cache</code>写命中时，必须把数据同时写入<code>Cache</code>和主存。当某一块需要替换时，直接覆盖即可。</li>
 <li>优点是实现简单，能随时保持主存数据的正确性；缺点是增加了访存次数，降低了<code>Cache</code>的效率</li>
 <li>写缓冲：为减少全写法直接写入主存的时间损耗，在<code>Cache</code>和主存之间加一个写缓冲<code>write buffer</code>。<code>CPU</code>同时写数据到<code>Cache</code>和写缓冲中，写缓冲再控制将内容写入主存。</li>
-<li>写回法<code>write-back</code></li>
+</ul>
+</li>
+<li>写回法<code>write-back</code><ul>
 <li>当<code>CPU</code>对<code>Cache</code>写命中时，只修改<code>Cache</code>的内容，而不立即写入主存，只有当此块被换出时才写回主存。</li>
 <li>减少了访存次数，但存在不一致的隐患</li>
 <li>每个<code>Cache</code>行必须设置一个标志位(脏位)，以反映此块是否被<code>CPU</code>修改过</li>
+</ul>
+</li>
 </ul>
 <h4 id="cache写不命中">Cache写不命中<a class="headerlink" href="#cache写不命中" title="Permanent link">&para;</a></h4>
 <ul>
@@ -6999,11 +7025,13 @@ j = i \mod Q
 <h3 id="cache容量">Cache容量<a class="headerlink" href="#cache容量" title="Permanent link">&para;</a></h3>
 <ul>
 <li>存储容量</li>
-<li>标记阵列容量：行数X每行位数</li>
+<li>标记阵列容量：行数X每行位数<ul>
 <li>有效位（一定存在，不包含字块内地址）</li>
 <li>标记位（一定存在）</li>
 <li>一致性维护位：写回法需要</li>
 <li>替换算法控制位</li>
+</ul>
+</li>
 </ul>
 <h2 id="虚拟存储器">虚拟存储器<a class="headerlink" href="#虚拟存储器" title="Permanent link">&para;</a></h2>
 <h3 id="虚拟存储器的概念">虚拟存储器的概念<a class="headerlink" href="#虚拟存储器的概念" title="Permanent link">&para;</a></h3>
@@ -7226,7 +7254,7 @@ j = i \mod Q
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

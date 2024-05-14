@@ -5662,9 +5662,9 @@
 </li>
 <li>
 <p>递归算法两类复杂度分析</p>
+<hr />
 </li>
 </ul>
-<hr />
 <div class="arithmatex">\[
   T(n)=
           \begin{cases}
@@ -5792,21 +5792,22 @@
 <li>栈操作</li>
 </ul>
 <p><span class="arithmatex">\(\Phi(D_i)\)</span>定义为栈中的对象量，<span class="arithmatex">\(\Phi(D_i)\geq 0\)</span>，则</p>
-<ul>
-<li><code>PUSH</code>的摊还代价：<span class="arithmatex">\(\hat{c_i}=c_i+\Phi(D_i) - \Phi(D_{i-1}) = 1+1=2\)</span></li>
-<li><code>POP</code>的摊还代价：<code>0</code>（根据公式计算得出）</li>
-<li><code>MULTIPOP</code>的摊还代价：<code>0</code>（根据公式计算得出）</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- `PUSH`的摊还代价：$\hat{c_i}=c_i+\Phi(D_i) - \Phi(D_{i-1}) = 1+1=2$
+- `POP`的摊还代价：`0`（根据公式计算得出）
+- `MULTIPOP`的摊还代价：`0`（根据公式计算得出）
+</code></pre></div></td></tr></table></div>
 <p>结果与核算法一致</p>
 <ul>
 <li>二进制计数器递增</li>
 </ul>
 <p>势定义为<span class="arithmatex">\(b_i:i\)</span>次操作后计数器中<code>1</code>的个数</p>
 <p>计算<code>INCREMENT</code>操作的摊还代价。假设第<span class="arithmatex">\(i\)</span>个操作将<span class="arithmatex">\(t_i\)</span>个位复位，<span class="arithmatex">\(c_i=t_i+1\)</span>。</p>
-<ul>
-<li>如果<span class="arithmatex">\(b_i=0\)</span>，所有位都复位了，则<span class="arithmatex">\(b_{i-1}=t_i=k\)</span>。</li>
-<li>如果<span class="arithmatex">\(b_i&gt;0\)</span>，则<span class="arithmatex">\(b_i=b_{i-1}-t_i+1\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 如果$b_i=0$，所有位都复位了，则$b_{i-1}=t_i=k$。
+- 如果$b_i&gt;0$，则$b_i=b_{i-1}-t_i+1$
+</code></pre></div></td></tr></table></div>
 <p><strong>势差</strong>为</p>
 <div class="arithmatex">\[
   \Phi(D_i) - \Phi(D_{i-1}) \leq (b_{i-1}-t_i+1)-b_{i-1} =1-t_i
@@ -5959,10 +5960,12 @@
 <p>设<span class="arithmatex">\(P(x_1,x_2,...,x_i)\)</span>是关于向量<span class="arithmatex">\(&lt;x_1,x_2,...,x_i&gt;\)</span>的某个性质，那么<span class="arithmatex">\(P(x_1,x_2,...,x_{i+1})\)</span>真蕴含<span class="arithmatex">\(P(x_1,x_2,...,x_i)\)</span>为真，即<span class="arithmatex">\(P(x_1,x_2,...,x_{i+1})-&gt;P(x_1,x_2,...,x_i)(0&lt;i&lt;n)[n为向量维数]\)</span></p>
 <h3 id="设计要素">设计要素<a class="headerlink" href="#设计要素" title="Permanent link">&para;</a></h3>
 <ul>
-<li>针对问题定义解空间</li>
+<li>针对问题定义解空间<ul>
 <li>问题解向量</li>
 <li>解向量分量取值集合</li>
 <li>构造解空间树</li>
+</ul>
+</li>
 <li>判断问题是否满足多米诺性质</li>
 <li>搜索解空间树，确定剪枝函数</li>
 <li>确定存储搜索路径的数据结构</li>
@@ -6060,11 +6063,13 @@
 </ul>
 <h3 id="相关概念_1">相关概念<a class="headerlink" href="#相关概念_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>常见的两种分支搜索法：</li>
+<li>常见的两种分支搜索法：<ul>
 <li>队列式搜索法(FIFO):按照队列先进先出原则选取下一个结点为扩展结点</li>
 <li>优先队列式搜索法：按照优先队列中规定的优先级选取优先级最高的节点成为当前扩展节点<ul>
 <li>最大堆（最大优先队列）：最大效益优先</li>
 <li>最小堆（最下优先队列）：最小耗费优先</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>节点v上界( UB(v) ):从v出发得到的所有叶子节点的效益值均不大于UB(v),则UB(v)为节点v的上界。如果所有叶子节点的最大效益值等于UB(v)，则UB(v)为节点v的上确界</li>
@@ -6112,10 +6117,12 @@
 </code></pre></div></td></tr></table></div>
 <h3 id="设计要素_1">设计要素<a class="headerlink" href="#设计要素_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>针对问题定义解空间</li>
+<li>针对问题定义解空间<ul>
 <li>问题解向量</li>
 <li>解向量分量取值集合</li>
 <li>构造解空间树</li>
+</ul>
+</li>
 <li>判断问题是否满足多米诺性质</li>
 <li>确定减值函数与界函数</li>
 </ul>
@@ -6157,7 +6164,7 @@
 </li>
 <li>
 <p>运行参数</p>
-</li>
+<ul>
 <li>
 <p><span class="arithmatex">\(M\)</span>:种群规模</p>
 </li>
@@ -6166,6 +6173,8 @@
 </li>
 <li><span class="arithmatex">\(P_m\)</span>:变异概率</li>
 <li><span class="arithmatex">\(T\)</span>:终止进化代数（停止规则）</li>
+</ul>
+</li>
 </ul>
 <h3 id="特点_1">特点<a class="headerlink" href="#特点_1" title="Permanent link">&para;</a></h3>
 <ul>
@@ -6189,9 +6198,11 @@
 <h4 id="判断一个链表中是否有环">判断一个链表中是否有环<a class="headerlink" href="#判断一个链表中是否有环" title="Permanent link">&para;</a></h4>
 <ul>
 <li>思路：判断一个链表中是否有环，可以设置两个指针<code>fast</code>、<code>slow</code>。<code>fast</code>指针每次移动两个格，<code>slow</code>指针每次移动一个格。<strong>若该链表不含有环，则fast指针最终会指向null；若含有环，则快指针会与慢指针在环中相遇。</strong></li>
-<li>正确性分析：</li>
+<li>正确性分析：<ul>
 <li>如果链表中有环的话，在遍历的过程中两个指针都会进入环中</li>
 <li>进入环中后，由于两个指针速度不一致，所以快慢指针终会相遇</li>
+</ul>
+</li>
 </ul>
 <h4 id="找到有环链表环路开始的位置">找到有环链表环路开始的位置<a class="headerlink" href="#找到有环链表环路开始的位置" title="Permanent link">&para;</a></h4>
 <ul>
@@ -6203,11 +6214,12 @@
 </li>
 </ul>
 <p><img src="../../../assets/pic/算法/1.PNG" alt="1" style="" /></p>
-<ul>
-<li>假设快慢指针在环中所示位置相遇</li>
-<li>快指针的路径长度：<span class="arithmatex">\(a+nb+(n-1)c\)</span>,慢指针的路径长度：<span class="arithmatex">\(a+b\)</span></li>
-<li>快指针速度为慢指针的两倍，<span class="arithmatex">\(a+nb+(n-1)c=2a+2b\Rightarrow a=(n-2)b+(n-1)c \Rightarrow a=c\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- 假设快慢指针在环中所示位置相遇
+- 快指针的路径长度：$a+nb+(n-1)c$,慢指针的路径长度：$a+b$
+- 快指针速度为慢指针的两倍，$a+nb+(n-1)c=2a+2b\Rightarrow a=(n-2)b+(n-1)c \Rightarrow a=c$
+</code></pre></div></td></tr></table></div>
 <h3 id="判断一个链表是否是回文链表">判断一个链表是否是回文链表<a class="headerlink" href="#判断一个链表是否是回文链表" title="Permanent link">&para;</a></h3>
 <ul>
 <li>思路：使用快慢指针遍历，当快指针到底的时候，慢指针刚好到达链表的中间，在此时将链表后部分反转，然后就可以很方便的判断</li>
@@ -6251,23 +6263,29 @@
 </code></pre></div></td></tr></table></div>
 <h3 id="应用场景">应用场景<a class="headerlink" href="#应用场景" title="Permanent link">&para;</a></h3>
 <ul>
-<li>判断数据奇偶性</li>
-<li>奇数<code>n &amp; 1 == 1</code></li>
 <li>
-<p>偶数<code>n &amp; 1 == 0</code></p>
+<p>判断数据奇偶性</p>
+<ul>
+<li>奇数<code>n &amp; 1 == 1</code></li>
+<li>偶数<code>n &amp; 1 == 0</code></li>
+</ul>
 </li>
 <li>
 <p>交换数字</p>
-</li>
+<ul>
 <li><code>A = A ^ B</code></li>
 <li><code>B = A^ B</code></li>
 <li><code>A = A ^ B</code></li>
+</ul>
+</li>
 <li>数组中无重复数字</li>
 <li>相反数</li>
-<li>乘除取模</li>
+<li>乘除取模<ul>
 <li>除：<code>n/(2^i)</code>等价于<code>n&gt;&gt;i</code></li>
 <li>乘：<code>n*(2^i)</code>等价于<code>n&lt;&lt;i</code>，其中<code>^</code>代表幂</li>
 <li>取模：<code>a % (2^n)</code>等价于<code>a&amp;(2^n-1)</code></li>
+</ul>
+</li>
 </ul>
 <h3 id="应用案例">应用案例<a class="headerlink" href="#应用案例" title="Permanent link">&para;</a></h3>
 <ul>
@@ -6382,7 +6400,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

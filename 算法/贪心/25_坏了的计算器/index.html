@@ -5421,9 +5421,11 @@
 <ul>
 <li>逆向思维，将乘2递减操作变为除2递加操作，利用除2时必须是偶数的特性</li>
 <li>target变回startValue的过程中，必定是一系列的<code>+1</code>操作与<code>/2</code>操作，因此考虑是否对于一些序列有简化的确定性。</li>
-<li>target在某一步中</li>
+<li>target在某一步中<ul>
 <li>如果target是偶数，它可以<code>+1*2k,/2</code>操作，但可以证明不会比<code>/2,+1*k</code>更快（同样的结果）</li>
 <li>如果是奇数，可以<code>+1*(2k+1),/2</code>操作，但可以证明不会比<code>+1,/2,+1*k</code>更快（同样的结果）</li>
+</ul>
+</li>
 <li>因此，如果target是偶数，直接除2，否则+1。</li>
 </ul>
 <h2 id="代码">代码<a class="headerlink" href="#代码" title="Permanent link">&para;</a></h2>
@@ -5540,7 +5542,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

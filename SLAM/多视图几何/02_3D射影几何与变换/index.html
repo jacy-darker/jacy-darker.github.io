@@ -5658,24 +5658,22 @@ W = \begin{bmatrix}
 \pmb A^T \\ \pmb B^T
 \end{bmatrix}
 \]</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- $W^T$的生成子空间是在直线$\lambda \pmb A + \mu \pmb B$上的点束
+- $W$的$2$维右零空间生成子空间是以直线为轴的平面束
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(W^T\)</span>的生成子空间是在直线<span class="arithmatex">\(\lambda \pmb A + \mu \pmb B\)</span>上的点束</li>
-<li>
-<p><span class="arithmatex">\(W\)</span>的<span class="arithmatex">\(2\)</span>维右零空间生成子空间是以直线为轴的平面束</p>
-</li>
-<li>
-<p><span class="arithmatex">\(\pmb P,\pmb Q\)</span>是空间中的两个平面</p>
-</li>
+<li><span class="arithmatex">\(\pmb P,\pmb Q\)</span>是空间中的两个平面</li>
 </ul>
 <div class="arithmatex">\[
 W^* = \begin{bmatrix} 
 P^T \\ Q^T
 \end{bmatrix}
 \]</div>
-<ul>
-<li><span class="arithmatex">\(W^{*T}\)</span>的生成子空间是以该直线为轴的平面束<span class="arithmatex">\(\lambda^\prime \pmb P+ \mu^\prime \pmb Q\)</span></li>
-<li><span class="arithmatex">\(W^*\)</span>的2维零空间的生成子空间是该直线上的点束</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- $W^{*T}$的生成子空间是以该直线为轴的平面束$\lambda^\prime \pmb P+ \mu^\prime \pmb Q$
+- $W^*$的2维零空间的生成子空间是该直线上的点束
+</code></pre></div></td></tr></table></div>
 <h4 id="iiplucker矩阵">II.Plucker矩阵<a class="headerlink" href="#iiplucker矩阵" title="Permanent link">&para;</a></h4>
 <p>直线由<span class="arithmatex">\(4 \times 4\)</span>反对称齐次矩阵表示。</p>
 <ul>
@@ -5796,9 +5794,11 @@ det [A,B,\hat A,\hat B] = l_{12}\hat l_{34}+\hat l_{12}l_{34} +l_{13} \hat l_{42
 <ul>
 <li>两个平面平行的充要条件是它们的交线在<span class="arithmatex">\(\pi_\infty\)</span>上</li>
 <li>如果一条直线与另一条之间或一个平面相交在<span class="arithmatex">\(\pi_\infty\)</span>上，则它们相平行</li>
-<li>在射影变换<span class="arithmatex">\(H\)</span>下，无穷远平面<span class="arithmatex">\(\pi_\infty\)</span>是不动平面的充要条件是：<span class="arithmatex">\(H\)</span>是一个仿射变换</li>
+<li>在射影变换<span class="arithmatex">\(H\)</span>下，无穷远平面<span class="arithmatex">\(\pi_\infty\)</span>是不动平面的充要条件是：<span class="arithmatex">\(H\)</span>是一个仿射变换<ul>
 <li>在仿射变换下平面<span class="arithmatex">\(\pi_\infty\)</span>作为一个集合是不动的，但不是点点不动</li>
 <li>在某个具体的仿射变换下，可能存在除去<span class="arithmatex">\(\pi_\infty\)</span>外的某些平面保持不动的情况</li>
+</ul>
+</li>
 </ul>
 <h2 id="绝对二次曲线">绝对二次曲线<a class="headerlink" href="#绝对二次曲线" title="Permanent link">&para;</a></h2>
 <p>绝对二次曲线<span class="arithmatex">\(\Omega_\infty\)</span>是在<span class="arithmatex">\(\pi_\infty\)</span>上的一条二次曲线，它的坐标满足</p>
@@ -5931,7 +5931,7 @@ Q_\infty^* = \begin{bmatrix} I &amp;0 \\ 0^T &amp;0\end{bmatrix}
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

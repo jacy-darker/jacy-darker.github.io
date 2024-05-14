@@ -5471,7 +5471,9 @@
 <ul>
 <li>输入设备：输入设备的主要功能是将程序和数据以机器所能识别和接受的信息形式输入计算机</li>
 <li>输出设备：输出设备的主要任务是将计算机处理的结果以人们所能接受的形式或其他系统所要求的信息形式输出</li>
-<li>存储器：是计算机的存储部件，用来存放程序和数据</li>
+<li>
+<p>存储器：是计算机的存储部件，用来存放程序和数据</p>
+<ul>
 <li>主存储器：CPU能够直接访问的存储器<ul>
 <li>存储体：存放二进制信息</li>
 <li>地址寄存器<code>MAR()</code>:存放访存地址，经过地址译码后找到所选的存储单元</li>
@@ -5480,19 +5482,23 @@
 <li>主存储器由许多<strong>存储单元</strong>组成，每个存储单元包含若干<strong>存储元件</strong>，每个存储元件存储一位二进制代码。存储单元可存储一串二进制代码，称其为<strong>存储字</strong>，存储字的字长为<strong>存储字长</strong></li>
 </ul>
 </li>
-<li>
-<p>辅助存储器：辅助存储器中的信息必须调入主存后，才能被CPU访问</p>
+<li>辅助存储器：辅助存储器中的信息必须调入主存后，才能被CPU访问</li>
+</ul>
 </li>
 <li>
 <p>运算器：运算器是计算机的执行部件，用于进行算术运算逻辑运算。算术运算是按算术运算规则进行的运算。</p>
-</li>
+<ul>
 <li>算术逻辑单元<code>(Arithmetic and Logical Unit,ALU)</code>：运算器的核心</li>
 <li>若干寄存器：累加器<code>ACC</code>、乘商寄存器<code>MQ</code>、操作数寄存器<code>X</code>，变址寄存器<code>IX</code>、基址寄存器<code>BR</code></li>
 <li>程序状态寄存器<code>PSW</code>：也称标志寄存器，用于存放ALU运算得到的一些标志信息或处理机的状态信息</li>
-<li>控制器：是计算机的指挥中心</li>
+</ul>
+</li>
+<li>控制器：是计算机的指挥中心<ul>
 <li>程序计数器<code>PC</code>:用来存放当前欲执行指令的地址，可以自动加1形成下一条指令的地址，与主存<code>MAR</code>之间有一条直捷通路</li>
 <li>指令寄存器<code>IR</code>:用来存放当前的指令，其内容来自主存的<code>MDR</code></li>
 <li>控制单元<code>CU</code>：指令中的操作码<code>OP(IR)</code>送至CU，用以分析指令并发出各种微操作命令序列</li>
+</ul>
+</li>
 </ul>
 <h3 id="计算机软件的分类">计算机软件的分类<a class="headerlink" href="#计算机软件的分类" title="Permanent link">&para;</a></h3>
 <h4 id="系统软件和应用软件">系统软件和应用软件<a class="headerlink" href="#系统软件和应用软件" title="Permanent link">&para;</a></h4>
@@ -5572,7 +5578,7 @@
 </li>
 <li>
 <p>运算速度</p>
-</li>
+<ul>
 <li>
 <p>吞吐量和响应时间</p>
 <ul>
@@ -5602,6 +5608,8 @@
 <li><code>MFLOPS(Mega Floating-point Operations Pre second)</code>：每秒执行多少百万次浮点运算</li>
 <li><code>GFLOPS(Giga Floating-point Operations Pre second)</code>：每秒执行多少十亿次浮点运算</li>
 <li><code>TFLOPS(Tera Floating-point Operations Pre second)</code>：每秒执行多少万亿次浮点运算</li>
+</ul>
+</li>
 </ul>
 <p>在描述存储量的时间，通常用2的幂次表示；在描述性能、速率等时，通常用10的幂次表示</p>
 </li>
@@ -5635,10 +5643,12 @@
 </li>
 <li>
 <p>十进制数转换为二进制数：基数乘除法</p>
-</li>
+<ul>
 <li>除基取余法（整数部分的转换）：整数部分除基取余，最先取得的余数为数的最低位，最后取得的余数为数的最高位，商为0时结束</li>
 <li>乘基取整法（小数部分对的转换）：小数部分乘基取整，最先取得的整数为数的最高位，最后取得的整数为数的最低位，乘积为<code>1.0</code>时结束</li>
 <li>不是每一个十进制小数都可以准确的用二进制表示，如<code>0.3</code>，但每一个二进制小数都可以用十进制小数表示</li>
+</ul>
+</li>
 </ul>
 <h3 id="真值和机器数">真值和机器数<a class="headerlink" href="#真值和机器数" title="Permanent link">&para;</a></h3>
 <ul>
@@ -5745,25 +5755,31 @@
 </li>
 <li>
 <p>负数的符号扩展</p>
-</li>
+<ul>
 <li>原码：同正数</li>
 <li>补码：整数添1，小数添0</li>
 <li>反码：添1</li>
 </ul>
+</li>
+</ul>
 <h4 id="溢出概念和判别方法">溢出概念和判别方法<a class="headerlink" href="#溢出概念和判别方法" title="Permanent link">&para;</a></h4>
 <ul>
-<li>概念</li>
+<li>
+<p>概念</p>
+<ul>
 <li>溢出：指运算结果超过了数的表示范围</li>
 <li>上溢：大于机器所能表示的最大正数</li>
-<li>
-<p>下溢：小于机器所能表示的最小负数</p>
+<li>下溢：小于机器所能表示的最小负数</li>
+</ul>
 </li>
 <li>
 <p>溢出判断方法</p>
-</li>
+<ul>
 <li>采用一位符号位</li>
 <li>采用双符号位</li>
 <li>采用一位符号诶根据数据位的进位情况判断溢出</li>
+</ul>
+</li>
 </ul>
 <h4 id="定点数的乘法运算">定点数的乘法运算<a class="headerlink" href="#定点数的乘法运算" title="Permanent link">&para;</a></h4>
 <ul>
@@ -5894,16 +5910,22 @@
 </li>
 <li>
 <p>先用被除数减去除数（<span class="arithmatex">\(|X|-|Y|=|X|+(-|Y|)=|X|+[-|Y|]_{补}\)</span>），</p>
-<ul>
-<li>当余数为正时</li>
-<li>商上1</li>
-<li>余数和商左移一位</li>
-<li>再减去除数；</li>
-<li>当余数为负时</li>
-<li>商上0</li>
-<li>余数和商左移一位</li>
-<li>再加上除数</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>   - 当余数为正时
+     - 商上1
+     - 余数和商左移一位
+     - 再减去除数；
+   - 当余数为负时
+     - 商上0
+     - 余数和商左移一位
+     - 再加上除数
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
 <p>当n+1步余数为负时，需加上<span class="arithmatex">\(|Y|\)</span>得到n+1步正确的余数（余数与被除数同号）</p>
@@ -6129,29 +6151,25 @@
 </li>
 <li>
 <p>舍入-对阶和右规时</p>
-</li>
-<li>
-<p>0舍1入法：在尾数右移时，被移去的最高数值位为0，则舍去；被移去的最高数值位矢1，则在尾数的末位加1</p>
-</li>
-<li>
-<p>恒置1法：尾数右移时，无论丢掉的最高数值位是1还是0，都使右移后的尾数末位恒置1</p>
+<ul>
+<li>0舍1入法：在尾数右移时，被移去的最高数值位为0，则舍去；被移去的最高数值位矢1，则在尾数的末位加1</li>
+<li>恒置1法：尾数右移时，无论丢掉的最高数值位是1还是0，都使右移后的尾数末位恒置1</li>
+</ul>
 </li>
 <li>
 <p>溢出判断</p>
-</li>
-<li>
-<p>阶码的符号位出现“01”时，上溢，进入中断处理</p>
-</li>
-<li>
-<p>阶码的符号位出现“10”时，下溢，按机器零处理</p>
+<ul>
+<li>阶码的符号位出现“01”时，上溢，进入中断处理</li>
+<li>阶码的符号位出现“10”时，下溢，按机器零处理</li>
+</ul>
 </li>
 <li>
 <p>C语言中的浮点数类型及类型转换</p>
-</li>
-<li>
-<p><code>char-&gt;int-&gt;long-&gt;double</code></p>
-</li>
+<ul>
+<li><code>char-&gt;int-&gt;long-&gt;double</code></li>
 <li><code>float-&gt;double</code></li>
+</ul>
+</li>
 </ol>
 <h2 id="算术逻辑单元">算术逻辑单元<a class="headerlink" href="#算术逻辑单元" title="Permanent link">&para;</a></h2>
 <h3 id="串行加法器和并行加法器">串行加法器和并行加法器<a class="headerlink" href="#串行加法器和并行加法器" title="Permanent link">&para;</a></h3>
@@ -6218,10 +6236,12 @@
 <ul>
 <li>存储容量=存储字数X字长</li>
 <li>单位成本：每位价格=总成本/总容量</li>
-<li>存储速度：数据传输率=数据的宽度/存储周期</li>
+<li>存储速度：数据传输率=数据的宽度/存储周期<ul>
 <li>存取时间<span class="arithmatex">\(T_a\)</span>：存取时间是指从启动一次存储器操作到完成该操作所经历的时间，分为读出时间和写入时间</li>
 <li>存取周期<span class="arithmatex">\(T_m\)</span>：存取周期又称读写周期或访问周期。它是指存储器进行一次完整的读写操作所需的全部时间，即连续两次独立访问存储器操作之间所需的最小时间间隔。一般大于存取时间</li>
 <li>主存带宽<span class="arithmatex">\(B_m\)</span>：主存带宽又称数据传输率，表示每秒从主存进出信息的最大数量。</li>
+</ul>
+</li>
 </ul>
 <h2 id="存储器的层次化结构">存储器的层次化结构<a class="headerlink" href="#存储器的层次化结构" title="Permanent link">&para;</a></h2>
 <h3 id="多层次存储系统">多层次存储系统<a class="headerlink" href="#多层次存储系统" title="Permanent link">&para;</a></h3>
@@ -6299,21 +6319,25 @@
 </ul>
 <h4 id="存储器的读写周期">存储器的读写周期<a class="headerlink" href="#存储器的读写周期" title="Permanent link">&para;</a></h4>
 <ul>
-<li>RAM的读周期</li>
+<li>RAM的读周期<ul>
 <li>读出时间<span class="arithmatex">\(t_A\)</span>：从给出有效地址开始，到读出所选中单元的内容并在外部数据总线上稳定的出现所需时间</li>
 <li><span class="arithmatex">\(\overline{CS}\)</span>地址片选信号：必须保持到数据稳定输出</li>
 <li><span class="arithmatex">\(t_{CO}\)</span>：片选的保持时间</li>
 <li><span class="arithmatex">\(\overline{WE}\)</span>：在读周期中为高电平</li>
 <li>读周期时间<span class="arithmatex">\(t_{RC}\)</span>：表示存储芯片进行两次连续读操作所必须间隔的时间，它总是大于等于读出时间</li>
 </ul>
+</li>
+</ul>
 <p><img src=".\img\RAM芯片读周期时序图.jpg" alt="RAM芯片读周期时序图" style="" /></p>
 <ul>
-<li>RAM的写周期</li>
+<li>RAM的写周期<ul>
 <li>片选信号<span class="arithmatex">\(\overline{CS}\)</span>和写命令信号<span class="arithmatex">\(\overline{WE}\)</span>必须都为低电平</li>
 <li>为使数据总线上的信息能够可靠的写入存储器，要求<span class="arithmatex">\(\overline{CS}\)</span>与<span class="arithmatex">\(\overline{WE}\)</span>信号相"与"的宽度至少为<span class="arithmatex">\(t_W\)</span></li>
 <li>为了保证地址变化期间不会发生错误写入而破坏存储器的信息，<span class="arithmatex">\(\overline{WE}\)</span>在地质变化期间必须是高电平</li>
 <li>为了保证那个有效数据的可靠写入，地址有效的时间至少应为<span class="arithmatex">\(t_{WC}=t_{AW}+t_{W}+t_{WR}\)</span></li>
 <li>为了保证在<span class="arithmatex">\(\overline{WE}\)</span>和<span class="arithmatex">\(\overline{CS}\)</span>变无效前能把数据可靠的写入，要求写入的数据必须在<span class="arithmatex">\(t_{DW}\)</span>以前在数据总线上已经稳定</li>
+</ul>
+</li>
 </ul>
 <p><img src=".\img\RAM芯片写周期时序图.jpg" alt="RAM芯片写周期时序图" style="" /></p>
 <h4 id="sramvsdram">SRAM<span class="arithmatex">\(VS\)</span>DRAM<a class="headerlink" href="#sramvsdram" title="Permanent link">&para;</a></h4>
@@ -6394,9 +6418,11 @@
 <li>编制单位是指具有相同地址的那些存储元件构成的一个单位，可以按字节编址，也可以按字编址</li>
 <li>地址线的位数决定了主存地址空间得到最大可寻址范围，有时主存的实际存储容量所需的地址线小于CPU寻址所用地址线</li>
 <li>数据线数和地址线数共同反映存储体容量的大小</li>
-<li>指令执行过程中需要访问主存时，<code>CPU</code>首先把被访问单元的地址送到<code>MAR</code>中，然后通过地址线将主存地址送到主存中的地址寄存器，以便地址译码器进行译码选中相应单元，同时<code>CPU</code>将读写信号通过控制线送到主存的读写控制电路。</li>
+<li>指令执行过程中需要访问主存时，<code>CPU</code>首先把被访问单元的地址送到<code>MAR</code>中，然后通过地址线将主存地址送到主存中的地址寄存器，以便地址译码器进行译码选中相应单元，同时<code>CPU</code>将读写信号通过控制线送到主存的读写控制电路。<ul>
 <li>如果是写操作，那么<code>CPU</code>同时将要写的信息送到<code>MDR</code>中，在读写控制电路的控制下，经数据线将信号写入选中的单元</li>
 <li>如果是读操作，那么主存读出选中单元的内容送到数据线，然后送到<code>MDR</code>中</li>
+</ul>
+</li>
 </ul>
 <h2 id="主存储器与cpu的连接">主存储器与CPU的连接<a class="headerlink" href="#主存储器与cpu的连接" title="Permanent link">&para;</a></h2>
 <h3 id="连接原理">连接原理<a class="headerlink" href="#连接原理" title="Permanent link">&para;</a></h3>
@@ -6448,17 +6474,25 @@
 </table>
 <h3 id="存储器与cpu的连接">存储器与CPU的连接<a class="headerlink" href="#存储器与cpu的连接" title="Permanent link">&para;</a></h3>
 <ul>
-<li>合理选择存储芯片</li>
+<li>合理选择存储芯片<ul>
 <li><code>ROM</code>存放系统程序、标准子程序和各类常数</li>
 <li><code>RAM</code>是为用户编程而设置的</li>
-<li>地址线的连接</li>
+</ul>
+</li>
+<li>地址线的连接<ul>
 <li>将<code>CPU</code>地址线的低位与存储芯片的地址线相连，以选择芯片中的某一单元，这部分的译码是由芯片的片内逻辑完成的</li>
 <li><code>CPU</code>的高位则在扩充存储芯片时使用，用来选择存储芯片，这部分译码由外接译码器逻辑完成</li>
-<li>数据线的连接</li>
+</ul>
+</li>
+<li>数据线的连接<ul>
 <li>相等时可以直接相连；不相等时需要对存储芯片扩位</li>
+</ul>
+</li>
 <li>读写命令线的连接</li>
-<li>片选线的连接</li>
+<li>片选线的连接<ul>
 <li>片选有效信号与<code>CPU</code>的访存控制信号<span class="arithmatex">\(\overline{MREQ}\)</span>有关</li>
+</ul>
+</li>
 </ul>
 <h2 id="双端口ram和多模块存储器">双端口RAM和多模块存储器<a class="headerlink" href="#双端口ram和多模块存储器" title="Permanent link">&para;</a></h2>
 <h3 id="双端口ram">双端口RAM<a class="headerlink" href="#双端口ram" title="Permanent link">&para;</a></h3>
@@ -6539,11 +6573,13 @@
 j =i\mod2^c
 \]</div>
 <ul>
-<li>访问过程</li>
+<li>访问过程<ul>
 <li>首先根据访存地址中间的<code>c</code>位，找到对应的<code>Cache</code>行</li>
 <li>将对应<code>Cache</code>行中的标记和主存地址的高<code>t</code>位比较</li>
 <li>若相等且有效位为<code>1</code>，则访问<code>Cache</code>“命中”</li>
 <li>若不相等或有效位为<code>0</code>，此时CPU从主存中读出该地址所在的一块信息送到对应的<code>Cache</code>行中，将有效位置<code>1</code>，并将标记设置为地址中的高<code>t</code>位，同时将该地址中的内容送<code>CPU</code></li>
+</ul>
+</li>
 <li>主存地址</li>
 </ul>
 <table>
@@ -6599,12 +6635,14 @@ j =i\mod2^c
 j = i \mod Q
 \]</div>
 <ul>
-<li>访问过程</li>
+<li>
+<p>访问过程</p>
+<ul>
 <li>首先根据访存地址中间的组号找到对应的<code>Cache</code>组</li>
 <li>将对应<code>Cache</code>组中每个行的标记与主存地址的高位标记进行比较</li>
 <li>若有一个相等且有效位为<code>1</code>，则访问<code>Cache</code>命中，此时根据主存地址中的，在对应<code>Cache</code>行中存取信息</li>
-<li>
-<p>若都不相等或虽然相等但有效位为<code>0</code>，则不命中，此时<code>CPU</code>从主存中独处该地址所在的一块信息送到对应<code>Cache</code>组的任何一个空闲行中，将有效位置<code>1</code>，并设置标记，同时将该地址中的内容送到<code>CPU</code></p>
+<li>若都不相等或虽然相等但有效位为<code>0</code>，则不命中，此时<code>CPU</code>从主存中独处该地址所在的一块信息送到对应<code>Cache</code>组的任何一个空闲行中，将有效位置<code>1</code>，并设置标记，同时将该地址中的内容送到<code>CPU</code></li>
+</ul>
 </li>
 <li>
 <p>主存地址</p>
@@ -6636,11 +6674,13 @@ j = i \mod Q
 <ul>
 <li>随机算法<code>RAND</code>：随机的确定替换的Cache块。实现简单，但未依据程序访问的局部性原理，因此可能命中率较低</li>
 <li>先进先出算法<code>FIFO</code>：选择最早调入的行进行替换。容易实现，但也未依据程序访问的局部性原理，因为最早进入的主存块也可能是目前经常要用的</li>
-<li>近期最少使用算法<code>LRU</code>：依据程序访问的局部性原理，选择近期内长久未访问过的<code>Cache</code>行作为替换的行，平均命中率要比<code>FIFO</code>高，是堆栈类算法。每个<code>Cache</code>行设置一个计数器，用来记录主存块的使用情况</li>
+<li>
+<p>近期最少使用算法<code>LRU</code>：依据程序访问的局部性原理，选择近期内长久未访问过的<code>Cache</code>行作为替换的行，平均命中率要比<code>FIFO</code>高，是堆栈类算法。每个<code>Cache</code>行设置一个计数器，用来记录主存块的使用情况</p>
+<ul>
 <li>命中时，所命中的行的计数器清零，比其低的计数器加<code>1</code>，其余不变</li>
 <li>未命中且还有空闲行时，新装入的块的计数器置<code>0</code>，其余全加<code>1</code></li>
-<li>
-<p>未命中且无空闲行时，计数值最大的信息块被淘汰，新装行的块的计数器置<code>0</code>，其余全加<code>1</code></p>
+<li>未命中且无空闲行时，计数值最大的信息块被淘汰，新装行的块的计数器置<code>0</code>，其余全加<code>1</code></li>
+</ul>
 </li>
 <li>
 <p>最不经常使用算法<code>LFU</code>：将一段时间被访问此数最少的存储行换出。每行也设置一个计数器，新行建立后从<code>0</code>开始计数，每访问一次，被访问的行计数器加<code>1</code>，需要替换时比较各特定行的计数值，将计数值最小的行换出</p>
@@ -6649,14 +6689,18 @@ j = i \mod Q
 <h3 id="cache写策略">Cache写策略<a class="headerlink" href="#cache写策略" title="Permanent link">&para;</a></h3>
 <h4 id="对于cache写命中write-hit">对于Cache写命中<code>write hit</code><a class="headerlink" href="#对于cache写命中write-hit" title="Permanent link">&para;</a></h4>
 <ul>
-<li>全写法(写直通法，<code>write-through</code>)</li>
+<li>全写法(写直通法，<code>write-through</code>)<ul>
 <li>当<code>CPU</code>对<code>Cache</code>写命中时，必须把数据同时写入<code>Cache</code>和主存。当某一块需要替换时，直接覆盖即可。</li>
 <li>优点是实现简单，能随时保持主存数据的正确性；缺点是增加了访存次数，降低了<code>Cache</code>的效率</li>
 <li>写缓冲：为减少全写法直接写入主存的时间损耗，在<code>Cache</code>和主存之间加一个写缓冲<code>write buffer</code>。<code>CPU</code>同时写数据到<code>Cache</code>和写缓冲中，写缓冲再控制将内容写入主存。</li>
-<li>写回法<code>write-back</code></li>
+</ul>
+</li>
+<li>写回法<code>write-back</code><ul>
 <li>当<code>CPU</code>对<code>Cache</code>写命中时，只修改<code>Cache</code>的内容，而不立即写入主存，只有当此块被换出时才写回主存。</li>
 <li>减少了访存次数，但存在不一致的隐患</li>
 <li>每个<code>Cache</code>行必须设置一个标志位(脏位)，以反映此块是否被<code>CPU</code>修改过</li>
+</ul>
+</li>
 </ul>
 <h4 id="cache写不命中">Cache写不命中<a class="headerlink" href="#cache写不命中" title="Permanent link">&para;</a></h4>
 <ul>
@@ -6666,11 +6710,13 @@ j = i \mod Q
 <h3 id="cache容量">Cache容量<a class="headerlink" href="#cache容量" title="Permanent link">&para;</a></h3>
 <ul>
 <li>存储容量</li>
-<li>标记阵列容量：行数X每行位数</li>
+<li>标记阵列容量：行数X每行位数<ul>
 <li>有效位（一定存在，不包含字块内地址）</li>
 <li>标记位（一定存在）</li>
 <li>一致性维护位：写回法需要</li>
 <li>替换算法控制位</li>
+</ul>
+</li>
 </ul>
 <h2 id="虚拟存储器">虚拟存储器<a class="headerlink" href="#虚拟存储器" title="Permanent link">&para;</a></h2>
 <h3 id="虚拟存储器的概念">虚拟存储器的概念<a class="headerlink" href="#虚拟存储器的概念" title="Permanent link">&para;</a></h3>
@@ -6826,25 +6872,37 @@ j = i \mod Q
 </tbody>
 </table>
 <ul>
-<li>指令的长度与机器字长没有固定的关系</li>
+<li>指令的长度与机器字长没有固定的关系<ul>
 <li>单字长指令（指令长度等于机器字长的指令）、半字长指令、双字长指令</li>
 <li>定长指令子结构：所有指令的长度是相同的</li>
 <li>变长指令字结构：各种指令的长度随指令功能而定</li>
 </ul>
+</li>
+</ul>
 <h4 id="指令格式分类">指令格式分类<a class="headerlink" href="#指令格式分类" title="Permanent link">&para;</a></h4>
 <ul>
-<li>零地址指令<code>[OP]</code></li>
+<li>零地址指令<code>[OP]</code><ul>
 <li>不需要操作数的指令，如空操作指令、停机指令、关中断指令等</li>
 <li>零地址的运算类指令仅用在堆栈计算机中。通常参与运算的两个操作数隐含地从栈顶和次栈顶弹出，送到运算器进行运算，运算结果再隐含地压入堆栈</li>
-<li>一地址指令<code>[OP|A_1]</code></li>
+</ul>
+</li>
+<li>一地址指令<code>[OP|A_1]</code><ul>
 <li>只有目的操作数的单操作数指令，按<code>A_1</code>地址读取操作数，进行<code>OP</code>操作后，结果存放回原地址：<span class="arithmatex">\(OP(A_1) \rightarrow A_1\)</span></li>
 <li>隐含约定目的地址的双操作数指令，按指令地址<code>A_1</code>可读取源操作数，指令可隐含约定另一个操作数由<code>ACC</code>累加器提供，运算结果也将存放在<code>ACC</code>中：<span class="arithmatex">\((ACC)OP(A_1) \rightarrow ACC\)</span></li>
-<li>二地址指令<code>[OP|A_1|A_2]</code></li>
+</ul>
+</li>
+<li>二地址指令<code>[OP|A_1|A_2]</code><ul>
 <li><span class="arithmatex">\((A_1)OP(A_2) \rightarrow A_1\)</span></li>
-<li>三地址指令<code>[OP|A_1|A_2|A_3]</code></li>
+</ul>
+</li>
+<li>三地址指令<code>[OP|A_1|A_2|A_3]</code><ul>
 <li><span class="arithmatex">\((A_1)OP(A_2) \rightarrow A_3\)</span></li>
-<li>四地址指令<code>[OP|A_1|A_2|A_3|A_4]</code></li>
+</ul>
+</li>
+<li>四地址指令<code>[OP|A_1|A_2|A_3|A_4]</code><ul>
 <li><span class="arithmatex">\((A_1)OP(A_2) \rightarrow A_3,A_4=下一条将要执行指令的地址\)</span></li>
+</ul>
+</li>
 </ul>
 <h3 id="定长操作码指令格式">定长操作码指令格式<a class="headerlink" href="#定长操作码指令格式" title="Permanent link">&para;</a></h3>
 <p>定长操作码指令在指令的最高部分分配固定的若干位表示操作码</p>
@@ -6882,9 +6940,11 @@ j = i \mod Q
 <h2 id="指令的寻址方式">指令的寻址方式<a class="headerlink" href="#指令的寻址方式" title="Permanent link">&para;</a></h2>
 <h3 id="指令寻址和数据寻址">指令寻址和数据寻址<a class="headerlink" href="#指令寻址和数据寻址" title="Permanent link">&para;</a></h3>
 <ul>
-<li>指令寻址：寻找下一条要执行的指令地址</li>
+<li>指令寻址：寻找下一条要执行的指令地址<ul>
 <li>顺序寻址：可通过程序计数器<code>PC</code>加<code>1</code>(1个指令字长)，自动形成下一条指令的地址</li>
 <li>跳跃寻址：通过转移类指令实现。所谓跳跃，是指下条指令的地址码不由程序计数器给出，而由本条指令给出下条指令地址的计算方式。是否跳跃可能受到状态寄存器和操作数的控制，而跳跃到的地址分为绝对地址和相对地址，跳跃的结果是当前指令修改<code>PC</code>值，所以下一条指令仍然通过程序计数器<code>PC</code>给出</li>
+</ul>
+</li>
 <li>数据寻址：寻找操作数的地址称为数据寻址<code>[操作码|寻址特征|形式特征A]</code></li>
 </ul>
 <h3 id="常见的数据寻址方式">常见的数据寻址方式<a class="headerlink" href="#常见的数据寻址方式" title="Permanent link">&para;</a></h3>
@@ -6958,10 +7018,10 @@ j = i \mod Q
 <li>堆栈寻址</li>
 </ul>
 <p>堆栈是存储器中一块特定的、按后进先出原则管理的存储区，该存储区中读写单元的地址是用一个特定的寄存器给出的，该寄存器称为堆栈指针<code>SP</code>。通常情况下，在读写堆栈中的一个单元的前后都伴有自动完成对<code>SP</code>内容的增量或减量操作</p>
-<ul>
-<li>硬堆栈：寄存器堆栈</li>
-<li>软堆栈：从主存中划出一段区域来做堆栈是最合算且最常用的方法。</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 硬堆栈：寄存器堆栈
+- 软堆栈：从主存中划出一段区域来做堆栈是最合算且最常用的方法。
+</code></pre></div></td></tr></table></div>
 <h3 id="x86汇编指令入门">X86汇编指令入门<a class="headerlink" href="#x86汇编指令入门" title="Permanent link">&para;</a></h3>
 <h4 id="相关寄存器">相关寄存器<a class="headerlink" href="#相关寄存器" title="Permanent link">&para;</a></h4>
 <p>为了向后兼容，<code>EAX</code>，<code>EBX</code>，<code>ECX</code>，<code>EDX</code>的高两位字节和低两位字节可以独立使用，<code>E</code>为<code>Extended</code>，表示32位的寄存器。例如<code>EAX</code>的低两位字节称为<code>AX</code>，而<code>AX</code>的高低字节又可分别作为两个8位寄存器，分别称为<code>AH</code>和<code>AL</code>。</p>
@@ -6988,10 +7048,12 @@ mov eax, [ebx-ecx]      ;错误，只能用加法
 mov [eax+esi+edi], ebx  ;错误，最多只能有两个寄存器参与运算
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>数据类型长度规定</li>
+<li>数据类型长度规定<ul>
 <li><code>DB(Data Byte)</code></li>
 <li><code>DW(Data Word,2Bytes)</code></li>
 <li><code>DD(Double Word,4Bytes)</code></li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -7490,12 +7552,14 @@ ret
 </li>
 <li>
 <p>CPU的具体功能</p>
-</li>
+<ul>
 <li>指令控制：完成取指令、分析指令和执行指令的操作，即程序的顺序控制</li>
 <li>操作控制：一条指令的功能往往由若干操作信息的组合来实现。CPU管理并产生由内存取出的每条指令的操作信号，把各种操作信号送往相应的部件，从而控制这些部件按指令的要求进行动作</li>
 <li>时间控制：对各种操作加以时间上的控制。时间控制要为每条指令按时间顺序提供应有的控制信号</li>
 <li>数据加工：对数据进行算术和逻辑运算</li>
 <li>中断处理：对计算机运行过程中出现的异常情况和特殊请求进行处理</li>
+</ul>
+</li>
 </ul>
 <h3 id="cpu的基本结构">CPU的基本结构<a class="headerlink" href="#cpu的基本结构" title="Permanent link">&para;</a></h3>
 <h4 id="运算器">运算器<a class="headerlink" href="#运算器" title="Permanent link">&para;</a></h4>
@@ -7660,42 +7724,42 @@ ret
 <li>寄存器之间的数据传送</li>
 </ol>
 <p>寄存器之间的数据传送可通过<code>CPU</code>内部总线完成。现以<code>PC</code>寄存器为例，把<code>PC</code>内容送到<code>MAR</code>。</p>
-<ul>
-<li>
-<p><code>PC-&gt;Bus</code>,  <code>PCout</code>有效，<code>PC</code>内容送总线</p>
-</li>
-<li>
-<p><code>Bus-&gt;MAR</code>,<code>MARin</code>有效，总线内容送<code>MAR</code></p>
-</li>
-<li>
-<p>主存与<code>CPU</code>之间的数据传送</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - `PC-&gt;Bus`,  `PCout`有效，`PC`内容送总线
+
+ - `Bus-&gt;MAR`,`MARin`有效，总线内容送`MAR`
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>主存与<code>CPU</code>之间的数据传送</li>
+</ol>
 <p>主存与<code>CPU</code>之间的数据传送也要借助<code>CPU</code>内部总线完成。现以<code>CPU</code>从主存读取指令为例</p>
-<ul>
-<li>
-<p><code>PC-&gt;Bus-&gt;MAR</code>,<code>PCout</code>和<code>MARin</code>有效，现行指令地址<code>-&gt;MAR</code></p>
-</li>
-<li>
-<p><code>1-&gt;R</code>,CU发读指令</p>
-</li>
-<li><code>MEM(MAR)-&gt;MDR</code>,<code>MDRin</code>有效</li>
-<li>
-<p><code>MDR-&gt;Bus-&gt;IR</code>,<code>MDRout</code>和<code>IRin</code>有效，现行指令<code>-&gt;IR</code></p>
-</li>
-<li>
-<p>执行算术或逻辑运算</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code> - `PC-&gt;Bus-&gt;MAR`,`PCout`和`MARin`有效，现行指令地址`-&gt;MAR`
+
+ - `1-&gt;R`,CU发读指令
+ - `MEM(MAR)-&gt;MDR`,`MDRin`有效
+ - `MDR-&gt;Bus-&gt;IR`,`MDRout`和`IRin`有效，现行指令`-&gt;IR`
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>执行算术或逻辑运算</li>
+</ol>
 <p>执行算术或逻辑操作时，由于<code>ALU</code>本身是没有内部存储功能的组合电路，因此如要执行加法运算，相加的两个数必须在<code>ALU</code>的两个输入端同时有效。暂存器<code>Y</code>即用于该目的。先将一个操作数经<code>CPU</code>内部总线送入暂存器<code>Y</code>保存，<code>Y</code>的内容在<code>ALU</code>的左输入端始终有效，再将另一个操作数经总线直接送到<code>ALU</code>的右输入端。这样两个操作数都送入了<code>ALU</code>，运算结果暂存在暂存器<code>Z</code>中</p>
-<ul>
-<li><code>AD(IR)-&gt;Bus-&gt;MAR</code>，<code>MDRout</code>和<code>MARin</code>有效</li>
-<li><code>1-&gt;R</code>，<code>CU</code>发读指令</li>
-<li><code>MEM-&gt;数据线-&gt;MDR</code>，操作数从<code>存储器-&gt;数据线-&gt;MDR</code></li>
-<li><code>MDR-&gt;Bus-&gt;Y</code>，<code>MDRout</code>和<code>Yin</code>有效，<code>操作数-&gt;Y</code></li>
-<li><code>(ACC)+(Y)-&gt;Z</code>,<code>ACCout</code>和<code>ALUin</code>有效，<code>CU</code>向<code>ALU</code>发加命令，<code>结果-&gt;Z</code></li>
-<li><code>z-&gt;ACC</code>，<code>Zout</code>和<code>ACCin</code>有效，<code>结果-&gt;ACC</code></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code> - `AD(IR)-&gt;Bus-&gt;MAR`，`MDRout`和`MARin`有效
+ - `1-&gt;R`，`CU`发读指令
+ - `MEM-&gt;数据线-&gt;MDR`，操作数从`存储器-&gt;数据线-&gt;MDR`
+ - `MDR-&gt;Bus-&gt;Y`，`MDRout`和`Yin`有效，`操作数-&gt;Y`
+ - `(ACC)+(Y)-&gt;Z`,`ACCout`和`ALUin`有效，`CU`向`ALU`发加命令，`结果-&gt;Z`
+ - `z-&gt;ACC`，`Zout`和`ACCin`有效，`结果-&gt;ACC`
+</code></pre></div></td></tr></table></div>
 <h2 id="控制器的功能和工作原理">控制器的功能和工作原理<a class="headerlink" href="#控制器的功能和工作原理" title="Permanent link">&para;</a></h2>
 <h3 id="控制器的功能和结构">控制器的功能和结构<a class="headerlink" href="#控制器的功能和结构" title="Permanent link">&para;</a></h3>
 <p><img src=".\img\5.8.jpg" alt="5.8" style="" /></p>
@@ -7820,20 +7884,16 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <ul>
 <li>
 <p>微命令与微操作：</p>
-</li>
-<li>
-<p>一条机器指令可以分解成一个微操作序列。</p>
-</li>
+<ul>
+<li>一条机器指令可以分解成一个微操作序列。</li>
 <li>将控制部件向执行部件发出的各种控制命令称为微命令，它是构成控制序列的最小单位。</li>
-<li>
-<p>微命令和微操作是一一对应的。微命令是微操作的控制信号，微操作是微命令的执行过程。微命令有相容性和互斥性之分。</p>
+<li>微命令和微操作是一一对应的。微命令是微操作的控制信号，微操作是微命令的执行过程。微命令有相容性和互斥性之分。</li>
+</ul>
 </li>
 <li>
 <p>微指令与微周期：</p>
-</li>
-<li>
-<p><strong>微指令</strong>是若干微命令的集合</p>
-</li>
+<ul>
+<li><strong>微指令</strong>是若干微命令的集合</li>
 <li>
 <p>存放微指令的控制存储器的单元地址称为<strong>微地址</strong></p>
 </li>
@@ -7844,32 +7904,32 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <li>顺序控制字段：微地址码字段，用于控制产生下一条要执行的微指令地址</li>
 </ul>
 </li>
-<li>
-<p>微周期指从控制存储器中读取一条微指令并执行相应的微操作所需要的时间</p>
+<li>微周期指从控制存储器中读取一条微指令并执行相应的微操作所需要的时间</li>
+</ul>
 </li>
 <li>
 <p>主存储器与控制存储器</p>
-</li>
-<li>
-<p>主存储器用于存放程序和数据，在CPU外部，用RAM实现</p>
-</li>
-<li>
-<p>控制存储器(CM)用于存放微程序，在CPU内部，用ROM实现</p>
+<ul>
+<li>主存储器用于存放程序和数据，在CPU外部，用RAM实现</li>
+<li>控制存储器(CM)用于存放微程序，在CPU内部，用ROM实现</li>
+</ul>
 </li>
 <li>
 <p>程序与微程序：</p>
-</li>
+<ul>
 <li>程序是指令的有序集合，用于完成特定的功能</li>
-<li>
-<p>微程序是微指令饿的有序集合，一条指令的功能由一段微程序来实现</p>
+<li>微程序是微指令饿的有序集合，一条指令的功能由一段微程序来实现</li>
+</ul>
 </li>
 <li>
 <p>四个寄存器</p>
-</li>
+<ul>
 <li>地址寄存器<code>MAR</code>：用于存放主存的读写地址</li>
 <li>位地址寄存器<code>CMAR</code>：用于存放控制存储器的读写微指令的地址</li>
 <li>指令寄存器<code>IR</code>：用于存放从主存中读出的指令</li>
 <li>微指令寄存器<code>CMDR</code>：用于存放从控制存储器中读出的微指令</li>
+</ul>
+</li>
 </ul>
 <h4 id="微程序控制器组成和工作过程">微程序控制器组成和工作过程<a class="headerlink" href="#微程序控制器组成和工作过程" title="Permanent link">&para;</a></h4>
 <h5 id="微程序控制器的基本组成">微程序控制器的基本组成<a class="headerlink" href="#微程序控制器的基本组成" title="Permanent link">&para;</a></h5>
@@ -7896,23 +7956,23 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <h4 id="微指令的编码方式">微指令的编码方式<a class="headerlink" href="#微指令的编码方式" title="Permanent link">&para;</a></h4>
 <p>又称微指令的控制方式，是指如何对微指令的控制字段进行编码，以形成控制信号。编码的目标是在保证速度的情况下，尽量缩短微指令字长</p>
 <ul>
-<li>直接编码方式</li>
-<li>定义：微指令的微命令字段中每位都代表一个微命令。每个1微命令1对应并控制数据通路中的一个微操作。无须进行译码。</li>
 <li>
-<p>特点：执行速度快，操作并行信号，微指令字长过大，<code>n</code>个微命令要求微指令的操作码字段有<code>n</code>位。</p>
+<p>直接编码方式</p>
+<ul>
+<li>定义：微指令的微命令字段中每位都代表一个微命令。每个1微命令1对应并控制数据通路中的一个微操作。无须进行译码。</li>
+<li>特点：执行速度快，操作并行信号，微指令字长过大，<code>n</code>个微命令要求微指令的操作码字段有<code>n</code>位。</li>
+</ul>
 </li>
 <li>
 <p>字段直接编码方式</p>
-</li>
-<li>
-<p>定义：将微指令的微命令字段分为若干小字段，把互斥性微命令组合在同一字段中，把相容性微命令组合在不同字段中，每个字段独立编码，每种编码代表一个微命令且各字段编码含义单独定义，与其他字段无关。</p>
-</li>
-<li>
-<p>原则</p>
 <ul>
+<li>定义：将微指令的微命令字段分为若干小字段，把互斥性微命令组合在同一字段中，把相容性微命令组合在不同字段中，每个字段独立编码，每种编码代表一个微命令且各字段编码含义单独定义，与其他字段无关。</li>
+<li>原则<ul>
 <li>互斥性微命令分在同一段内，相容性微命令分在不同段中</li>
 <li>每个小段中包含的信息位不能太多，否则将增加译码线路的复杂性和译码时间</li>
 <li>一般每小段还要留出一个状态，表示本字段不发出任何微命令</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -7928,12 +7988,14 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 </li>
 <li>
 <p>更多方式</p>
-</li>
+<ul>
 <li>增量计数器法</li>
 <li>根据个最终标志决定微指令分支转移的地址</li>
 <li>通过网络测试形成</li>
 <li>由硬件直接产生微程序入口地址</li>
 <li>电源加电后，第一条微指令的地址可由专门的硬件电路产生，也可由外部直接向<code>CMAR</code>输入微指令的地址，这个地址即为取值周期微程序的入口地址</li>
+</ul>
+</li>
 </ul>
 <h4 id="微指令的格式">微指令的格式<a class="headerlink" href="#微指令的格式" title="Permanent link">&para;</a></h4>
 <ul>
@@ -7982,11 +8044,13 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 </li>
 <li>
 <p>水平型微指令<span class="arithmatex">\(VS\)</span>垂直型微指令</p>
-</li>
+<ul>
 <li>水平型微指令并行操作能力强、效率高、灵活性强；垂直型微指令则较差</li>
 <li>水平型微指令执行一条指令的时间段；垂直型微指令执行的时间长</li>
 <li>由水平型微指令解释指令的微程序，具有微指令字较长但微程序短的特点；垂直型微指令则与之相反</li>
 <li>水平型微指令用户难以掌握；垂直型微指令与指令比较相似，相对容易掌握</li>
+</ul>
+</li>
 </ul>
 <h4 id="微程序控制单元的设计步骤">微程序控制单元的设计步骤<a class="headerlink" href="#微程序控制单元的设计步骤" title="Permanent link">&para;</a></h4>
 <ul>
@@ -8250,22 +8314,30 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <li>系统总线</li>
 </ul>
 <p>计算机系统内各功能部件之间相互连接的总线</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>- 数据总线
+
+用来传输各功能部件之间的数据信息，是双向传输总线，位数与机器字长、存储字长有关
+
+- 地址总线
+
+用来指出数据总线上源数据或目的数据所在主存单元或IO端口的地址，它是单向传输总线，地址总线的位数与主存地址的大小有关
+
+- 控制总线
+
+输出的是控制信息，包括CPU送出的控制命令和主存返回CPU的反馈信号
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>
-<p>数据总线</p>
-<p>用来传输各功能部件之间的数据信息，是双向传输总线，位数与机器字长、存储字长有关</p>
-</li>
-<li>
-<p>地址总线</p>
-<p>用来指出数据总线上源数据或目的数据所在主存单元或IO端口的地址，它是单向传输总线，地址总线的位数与主存地址的大小有关</p>
-</li>
-<li>
-<p>控制总线</p>
-<p>输出的是控制信息，包括CPU送出的控制命令和主存返回CPU的反馈信号</p>
-</li>
-<li>
-<p>通信总线</p>
-</li>
+<li>通信总线</li>
 </ul>
 <p>在计算机系统之间或计算机系统与其他系统之间传送信息的总线</p>
 <h4 id="其他分类">其他分类<a class="headerlink" href="#其他分类" title="Permanent link">&para;</a></h4>
@@ -8571,38 +8643,32 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <ul>
 <li>
 <p>硬盘设备的组成</p>
-</li>
-<li>
-<p>存储区域</p>
 <ul>
+<li>存储区域<ul>
 <li>磁头数<code>Heads</code>：即记录面数，表示硬盘共有多少个磁头，磁头用于读取/写入盘片上记录面的信息，一个记录面对应一个磁头</li>
 <li>柱面数<code>Cylinders</code>：表示硬盘每面盘片上有多少磁道。在一个盘组中，不同记录面的相同编号的磁道构成一个圆柱面</li>
 <li>扇区数<code>Sectors</code>：表示每条磁道上有多少个扇区</li>
 </ul>
 </li>
-<li>
-<p>硬盘存储器的组成：由磁盘驱动器、磁盘控制器和盘片组成</p>
-<ul>
+<li>硬盘存储器的组成：由磁盘驱动器、磁盘控制器和盘片组成<ul>
 <li>硬盘驱动器：核心部件是磁头组件和盘片组件，温彻斯特盘是一种可移动磁头固定盘片的硬盘存储器</li>
 <li>磁盘控制器：硬盘存储器和主机的接口，主流的标准有<code>IDE</code>、<code>SCS</code>I、<code>SATTA</code>等</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>
 <p>磁记录原理</p>
-</li>
-<li>
-<p>原理：磁头和磁性记录介质相对运动时，通过电磁转换完成读写操作</p>
-</li>
+<ul>
+<li>原理：磁头和磁性记录介质相对运动时，通过电磁转换完成读写操作</li>
 <li>编码方法：按照某种方案，把一连串二进制信息交换成存储介质磁层中一个磁化翻转状态的序列</li>
-<li>
-<p>磁记录方式：通常采用调频制<code>FM</code>和改进型调频制<code>MFM</code>的记录方式</p>
+<li>磁记录方式：通常采用调频制<code>FM</code>和改进型调频制<code>MFM</code>的记录方式</li>
+</ul>
 </li>
 <li>
 <p>磁盘的性能指标</p>
-</li>
-<li>
-<p>磁盘的容量</p>
 <ul>
+<li>磁盘的容量<ul>
 <li>非格式化容量：磁记录表面可利用的磁化单元总数</li>
 <li>格式化容量：按照某种特定的记录格式，可存储的信息总量</li>
 </ul>
@@ -8614,8 +8680,8 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 </ul>
 </li>
 <li>平均存取时间：寻道时间+旋转延迟时间+传输时间</li>
-<li>
-<p>数据传输率：<span class="arithmatex">\(D_r=rN\)</span>，磁盘转数为<span class="arithmatex">\(r\)</span>转/秒，每条磁道容量为<code>N</code>字节</p>
+<li>数据传输率：<span class="arithmatex">\(D_r=rN\)</span>，磁盘转数为<span class="arithmatex">\(r\)</span>转/秒，每条磁道容量为<code>N</code>字节</li>
+</ul>
 </li>
 <li>
 <p>磁盘地址</p>
@@ -8678,12 +8744,16 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <p>I/O端口是指接口电路可被<code>CPU</code>直接访问的寄存器，主要由数据端口、状态端口和控制端口，若干端口加上相应的控制逻辑电路组成<strong>接口</strong>。通常CPU能对数据端口执行读写操作，但对状态端口只能执行读操作，对控制端口只能执行写操作。</p>
 <p>对<code>IO</code>端口的编址方式可分为存储器<strong>统一编址</strong>和<strong>独立编址</strong>两种</p>
 <ul>
-<li>统一编址，又称<strong>存储器映射方式</strong>，用统一的访存指令就可以访问<code>IO</code>端口</li>
+<li>统一编址，又称<strong>存储器映射方式</strong>，用统一的访存指令就可以访问<code>IO</code>端口<ul>
 <li>优点：不需要专门的输入输出指令，可使<code>CPU</code>访问<code>IO</code>的操作更灵活、更方便，还可使端口有较大的编址空间</li>
 <li>缺点：端口占用存储器地址，使内存容量变小，而且利用存储器编址的<code>IO</code>设备进行数据输入输出操作，执行速度较慢</li>
-<li>独立编址，又称<strong>IO映射方式</strong>，<code>IO</code>端口逇地址空间与主存地址空间是两个独立的地址空间，因而无法从地址码的形式上区分，需要设置专门的<code>IO</code>指令来访问<code>IO</code>端口</li>
+</ul>
+</li>
+<li>独立编址，又称<strong>IO映射方式</strong>，<code>IO</code>端口逇地址空间与主存地址空间是两个独立的地址空间，因而无法从地址码的形式上区分，需要设置专门的<code>IO</code>指令来访问<code>IO</code>端口<ul>
 <li>优点：输入输出指令与存储器指令有明显区别，程序编制清晰，便于理解</li>
 <li>缺点：输入输出指令较少，一般只能对端口进行传送操作，尤其需要<code>CPU</code>提供存储器读写、<code>IO</code>设备读写两组控制信号，增加了控制的复杂性</li>
+</ul>
+</li>
 </ul>
 <h2 id="io方式">IO方式<a class="headerlink" href="#io方式" title="Permanent link">&para;</a></h2>
 <h3 id="程序查询方式">程序查询方式<a class="headerlink" href="#程序查询方式" title="Permanent link">&para;</a></h3>
@@ -8706,21 +8776,22 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <li>异常：CPU内部引起的异常，分为硬故障中断和程序性异常</li>
 </ol>
 <p>根据发生异常的报告方式和返回方式不同，内部异常可分为</p>
-<ul>
-<li>故障<code>Fault</code>：指在引起故障等指令启动后、执行结束前被检测到的异常事件</li>
-<li>自陷<code>Trap</code>：自陷也称陷阱或陷入，它是预先安排的一种异常事件。</li>
-<li>
-<p>终止<code>Abort</code>：在执行指令的过程中发生了使计算机无法继续执行的硬件故障</p>
-</li>
-<li>
-<p>外部中断</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - 故障`Fault`：指在引起故障等指令启动后、执行结束前被检测到的异常事件
+ - 自陷`Trap`：自陷也称陷阱或陷入，它是预先安排的一种异常事件。
+ - 终止`Abort`：在执行指令的过程中发生了使计算机无法继续执行的硬件故障
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>外部中断</li>
+</ol>
 <p>外中断是指来自CPU外部、与CPU执行指令无关的事件引起的中断，包括IO设备发出的IO中断，外部信号中断以及各种定时器引起的时钟中断等。</p>
 <ol>
-<li>外中断和内部异常的不同点</li>
+<li>外中断和内部异常的不同点<ul>
 <li>缺页和溢出等异常事件是由特定指令在执行过程中产生的，而中断不和任何指令相关联，也不阻止任何指令的完成</li>
 <li>异常的检测是由CPU自身完成的，不必通过外部的某个信号通知CPU。对于中断，CPU必须通过总线获取中断源的标识信息，才能获知哪个设备发生了何种中断</li>
+</ul>
+</li>
 </ol>
 <h4 id="中断的基本概念">中断的基本概念<a class="headerlink" href="#中断的基本概念" title="Permanent link">&para;</a></h4>
 <p>程序中断是指在计算机执行现行程序的构成中，出现某些急需处理的异常情况或特殊请求，CPU暂时中止现行程序，转而去对这些异常情况或特殊请求进行处理，处理完毕后又自动返回到现行程序的断点处，继续执行原程序</p>
@@ -8739,33 +8810,32 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <li>中断请求</li>
 </ol>
 <p>中断源是请求CPU中断的设备或事件。中断系统需对每个中断源设置中断请求标记触发器<code>INTR</code>。这些触发器可组成中断请求标记寄存器，该寄存器可集中在CPU中，也可分散在各个中断源中。</p>
-<ul>
-<li>内中断皆为不可屏蔽中断。</li>
-<li>通过INTR信号线发出的外中断是可屏蔽中断，在关中断的情况下不会被响应。</li>
-<li>
-<p>通过NMI信号发出的是不可屏蔽中断，即使在观众的情况下也会被响应。</p>
-</li>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - 内中断皆为不可屏蔽中断。
+ - 通过INTR信号线发出的外中断是可屏蔽中断，在关中断的情况下不会被响应。
+ - 通过NMI信号发出的是不可屏蔽中断，即使在观众的情况下也会被响应。
+</code></pre></div></td></tr></table></div>
+<ol>
 <li>
 <p>中断判优</p>
-</li>
-<li>
-<p>硬件故障中断&gt;软件中断</p>
-</li>
+<ul>
+<li>硬件故障中断&gt;软件中断</li>
 <li>不可屏蔽中断&gt;可屏蔽中断</li>
 <li><code>DMA</code>请求&gt;<code>IO</code>设备传送的中断请求</li>
 <li>高速设备&gt;低俗设备</li>
-<li>
-<p>实时设备&gt;普通设备</p>
+<li>实时设备&gt;普通设备</li>
+</ul>
 </li>
 <li>
 <p>CPU响应中断的条件</p>
-</li>
-<li>
-<p>中断源有中断请求</p>
-</li>
+<ul>
+<li>中断源有中断请求</li>
 <li>CPU允许中断及开中断</li>
 <li>一条指令执行完毕，且没有更紧迫的任务</li>
 </ul>
+</li>
+</ol>
 <p>CPU响应中断的时间是每条指令执行阶段的结束时刻</p>
 <ol>
 <li>中断响应</li>
@@ -8773,16 +8843,15 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 <p>CPU响应中断后，经过某些操作，转去执行中断服务程序。这些操作是由硬件直接实现的，称为<strong>中断隐指令</strong>。</p>
 <p>中断隐指令不是指令系统中的一条真正的指令，它没有操作码，所以中断隐指令是一种不允许也不可能为用户使用的特殊指令。</p>
 <p>完成的操作如下：</p>
-<ul>
-<li>关中断：CPU响应中断后，首先要保护程序的断点和现场信息，在保护端点和现场的过程中，CPU不能响应更高级中断源的中断请求</li>
-<li>保护断点：为保证在中断服务程序执行完毕后能正确的返回到原来的程序，必须将原来程序的断点保存起来</li>
-<li>
-<p>引出中断服务程序：实质是取出中断服务程序的入口地址并传给程序计数器</p>
-</li>
-<li>
-<p>中断向量</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> - 关中断：CPU响应中断后，首先要保护程序的断点和现场信息，在保护端点和现场的过程中，CPU不能响应更高级中断源的中断请求
+ - 保护断点：为保证在中断服务程序执行完毕后能正确的返回到原来的程序，必须将原来程序的断点保存起来
+ - 引出中断服务程序：实质是取出中断服务程序的入口地址并传给程序计数器
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>中断向量</li>
+</ol>
 <p>中断向量是中断服务程序的入口地址</p>
 <p>中断向量地址是指中断服务程序的入口地址的地址</p>
 <ol>
@@ -8906,7 +8975,7 @@ BAN X       ;条件转移(负则转)     A_0·Ad(IR)+A_0&#39;·(PC)-&gt;PC
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

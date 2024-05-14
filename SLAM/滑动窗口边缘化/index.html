@@ -5388,10 +5388,12 @@ $$</p>
 </tbody>
 </table>
 <ul>
-<li>逆协方差矩阵（信息矩阵）中非对角元素<span class="arithmatex">\(K_{ij}\)</span>能够表示的是，如果我们以这两个变量之外的所有其他变量为条件，节点<span class="arithmatex">\(i,j\)</span>是如何相关的：</li>
+<li>逆协方差矩阵（信息矩阵）中非对角元素<span class="arithmatex">\(K_{ij}\)</span>能够表示的是，如果我们以这两个变量之外的所有其他变量为条件，节点<span class="arithmatex">\(i,j\)</span>是如何相关的：<ul>
 <li><span class="arithmatex">\(K_{ij}&lt;0\)</span>，二者以其他因素为条件正相关。</li>
 <li><span class="arithmatex">\(K_{ij}&gt;0\)</span>，二者以其他因素为条件负相关。</li>
 <li><span class="arithmatex">\(K_{ij}=0\)</span>，二者以其他因素为条件独立，彼此间接相关。</li>
+</ul>
+</li>
 <li>逆协方差矩阵对于表示变量之间条件分布的信息十分方便。在条件分布中，我们也经常以剩余元素为条件进行讨论。</li>
 <li>假设变量<span class="arithmatex">\(y_2\)</span>由<span class="arithmatex">\(y_1,y_3\)</span>共同决定，比如<span class="arithmatex">\(y_2 = w_1y_1+w_3y_3+v_2\)</span>。那么，在它们的协方差矩阵中，<span class="arithmatex">\(K_{13}=0\)</span>，表示<span class="arithmatex">\(y_1,y_3\)</span>是相互独立的；但是在它们的协方差矩阵的逆，即信息矩阵中，<span class="arithmatex">\(K_{13}\neq 0\)</span>，表示以剩余变量<span class="arithmatex">\(y_2\)</span>为条件时，即<span class="arithmatex">\(y_2\)</span>已知的情况下，<span class="arithmatex">\(y_1,y_3\)</span>是相关的。</li>
 <li>省略一个变量时，协方差矩阵不会改变，逆协方差矩阵会改变。这其实也表明了为什么在表示高斯过程的时候，使用协方差这个参数进行表示而不是使用信息矩阵进行表示。</li>
@@ -5832,7 +5834,7 @@ $$
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

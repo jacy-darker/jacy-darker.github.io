@@ -5411,9 +5411,11 @@
 </li>
 <li>
 <p>如果当前节点的左子节点不为空，在当前节点的左子树中找到最右节点作为前驱节点：</p>
-</li>
+<ul>
 <li>如果前驱节点的右子节点为空，将前驱节点的右子节点设置为当前节点。然后将当前节点加入答案，并将前驱节点的右子节点更新为当前节点。当前节点更新为当前节点的左子节点。</li>
 <li>如果前驱节点的右子节点为当前节点，将它的右子节点重新设为空。当前节点更新为当前节点的右子节点。</li>
+</ul>
+</li>
 <li>重复步骤 2 和步骤 3，直到遍历结束。</li>
 </ol>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -5467,9 +5469,11 @@
 <h2 id="中序遍历">中序遍历<a class="headerlink" href="#中序遍历" title="Permanent link">&para;</a></h2>
 <ol>
 <li>如果<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>无左孩子，先将<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>的值加入答案数组，再访问<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>的右孩子，即<span class="arithmatex">\(<span class="arithmatex">\(x=x.right\)</span>\)</span>。</li>
-<li>如果<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>有左孩子，则找到<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>左子树上最右的节点，我们记为<span class="arithmatex">\(<span class="arithmatex">\(prev\)</span>\)</span>。根据<span class="arithmatex">\(<span class="arithmatex">\(prev\)</span>\)</span>的右孩子是否为空，进行如下操作。</li>
+<li>如果<span class="arithmatex">(<span class="arithmatex">\(x\)</span>\)</span>有左孩子，则找到<span class="arithmatex">(<span class="arithmatex">\(x\)</span>\)</span>左子树上最右的节点，我们记为<span class="arithmatex">(<span class="arithmatex">\(prev\)</span>\)</span>。根据<span class="arithmatex">(<span class="arithmatex">\(prev\)</span>\)</span>的右孩子是否为空，进行如下操作。<ul>
 <li>如果<span class="arithmatex">\(<span class="arithmatex">\(prev\)</span>\)</span>的右孩子为空，则将其右孩子指向<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>，然后访问<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>的左孩子，即<span class="arithmatex">\(<span class="arithmatex">\(x=x.left\)</span>\)</span>。</li>
 <li>如果<span class="arithmatex">\(<span class="arithmatex">\(prev\)</span>\)</span>的右孩子不为空，则此时其右孩子指向<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>，说明我们已经遍历完<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>的左子树，我们将<span class="arithmatex">\(<span class="arithmatex">\(prev\)</span>\)</span>的右孩子置空，将<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>的值加入答案数组，然后访问<span class="arithmatex">\(<span class="arithmatex">\(x\)</span>\)</span>的右孩子，即<span class="arithmatex">\(<span class="arithmatex">\(x=x.right\)</span>\)</span>。</li>
+</ul>
+</li>
 <li>重复上述操作，直至访问完整棵树。</li>
 </ol>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -5524,9 +5528,11 @@
 <ol>
 <li>新建临时节点，令该节点为<code>root</code>；</li>
 <li>如果当前节点的左子节点为空，则遍历当前节点的右子节点；</li>
-<li>如果当前节点的左子节点不为空，在当前节点的左子树中找到最右子节点作为前驱节点；</li>
+<li>如果当前节点的左子节点不为空，在当前节点的左子树中找到最右子节点作为前驱节点；<ul>
 <li>如果前驱节点的右子节点为空，将前驱节点的右子节点设置为当前节点，当前节点更新为当前节点的左子节点。</li>
 <li>如果前驱节点的右子节点为当前节点，将它的右子节点重新设为空。倒序输出从当前节点的左子节点到该前驱节点这条路径上的所有节点。当前节点更新为当前节点的右子节点。</li>
+</ul>
+</li>
 <li>重复步骤 2 和步骤 3，直到遍历结束。</li>
 </ol>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -5599,10 +5605,12 @@
 <p><code>p1</code>是当前节点，<code>p2</code>是当前节点在中序遍历的前缀节点，也就是<code>p1</code>左子树的最右节点。</p>
 <ul>
 <li>当一个节点没有左子树，代表它的左子树不需要访问，此时根据三种遍历特征是否访问当前节点，然后即可访问右子树</li>
-<li>当一个节点有左子树，那么先找出它的前驱节点<code>p2</code></li>
+<li>当一个节点有左子树，那么先找出它的前驱节点<code>p2</code><ul>
 <li>如果<code>p2-&gt;righ==nullptr</code>，说明找到了未访问的前缀，那么使用它的空闲的右指针记录一下<code>p2-&gt;right=p1</code>。然后继续访问<code>p1</code>的左子树</li>
 <li>如果<code>p2-&gt;right==p1</code>。说明当前节点的左子树已经被遍历了。为了恢复树的初始结构，断开链接<code>p2-&gt;right=nullptr</code>，然后访问<code>p1</code>的右子树即可</li>
 <li>根据这两个判断条件，上述找一个节点的前缀时，只需要<code>while (p2-&gt;right != nullptr &amp;&amp; p2-&gt;right != p1) p2 = p2-&gt;right</code>即可</li>
+</ul>
+</li>
 <li>访问的时机（对应代码中的标号）</li>
 <li>当前节点没有左子树：（左子树已经被访问过/左子树没有被访问过）</li>
 <li>当前节点的左子树没有被访问过</li>
@@ -5612,10 +5620,12 @@
 </li>
 <li>
 <p>三种遍历访问分析</p>
-</li>
+<ul>
 <li>先序遍历：访问当前节点必须保证它的左子树没有访问过。所以在<code>1,2</code>处</li>
 <li>中序遍历：访问当前节点必须保证它的左子树已经被访问过。所以在<code>1,3</code>处</li>
 <li>后序遍历：访问当前节点必须保证它的左右子树均被访问过。所以<code>1,2</code>不满足条件。<code>3,4</code>满足条件</li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -5772,7 +5782,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

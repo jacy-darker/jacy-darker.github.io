@@ -5439,11 +5439,12 @@
 <li>公理化定义</li>
 </ul>
 <p>设随机试验的样本空间为<span class="arithmatex">\(\Omega\)</span>,如果对每一个事件<span class="arithmatex">\(A\)</span>都有一个确定的实数<span class="arithmatex">\(P(A)\)</span>,且事件函数<span class="arithmatex">\(P(\cdot)\)</span>满足：</p>
-<ul>
-<li>非负性:<span class="arithmatex">\(P(A) \geq0\)</span></li>
-<li>规范性:<span class="arithmatex">\(P(\Omega) = 1\)</span></li>
-<li>可列可加性:对于任意可列个互不相容的事件<span class="arithmatex">\(P(\cup_{i=1}^nA_i)=\sum_{i=1}^{\infty}P(A_i)\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- 非负性:$P(A) \geq0$
+- 规范性:$P(\Omega) = 1$
+- 可列可加性:对于任意可列个互不相容的事件$P(\cup_{i=1}^nA_i)=\sum_{i=1}^{\infty}P(A_i)$
+</code></pre></div></td></tr></table></div>
 <p>则称<span class="arithmatex">\(P(\cdot)\)</span>为概率，<span class="arithmatex">\(P(A)\)</span>为事件<span class="arithmatex">\(A\)</span>的概率</p>
 <h3 id="事件的独立性和独立重复实验">事件的独立性和独立重复实验<a class="headerlink" href="#事件的独立性和独立重复实验" title="Permanent link">&para;</a></h3>
 <h4 id="事件的独立性">事件的独立性<a class="headerlink" href="#事件的独立性" title="Permanent link">&para;</a></h4>
@@ -6121,17 +6122,16 @@ X\sim N(\mu,\sigma^2) \Longrightarrow
 <ol>
 <li>
 <p>最大似然估计法</p>
-</li>
-<li>
-<p>写出样本的似然函数</p>
+<ul>
+<li>写出样本的似然函数</li>
+</ul>
 </li>
 </ol>
 <div class="arithmatex">\[
      L(\theta)=L(x_1,x_2,...,x_n;\theta_1,\theta_2,...,\theta_k)=\prod_{i=1}^np(x_i;\theta_1,\theta_2,...,\theta_k)或\prod_{i=1}^nf(x_i;\theta_1,\theta_2,...,\theta_k)
 \]</div>
-<ul>
-<li>求<span class="arithmatex">\(L(\theta)\)</span>的最大值，通过上下界或者求偏导得到最大似然估计</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code> - 求$L(\theta)$的最大值，通过上下界或者求偏导得到最大似然估计
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
      \frac{\partial L(\theta)}{\partial\theta_i}=0 或者\frac{\partial \ln L(\theta)}{\partial\theta_i}=0
 \]</div>
@@ -6329,7 +6329,7 @@ X\sim N(\mu,\sigma^2) \Longrightarrow
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

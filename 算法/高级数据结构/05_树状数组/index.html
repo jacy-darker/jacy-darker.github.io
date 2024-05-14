@@ -5636,7 +5636,7 @@
 <ul>
 <li>
 <p>维护成员</p>
-</li>
+<ul>
 <li>
 <p><code>diff</code>：原始数据的差分数组，只在构建树状数组的时候使用</p>
 </li>
@@ -5645,6 +5645,8 @@
 </li>
 <li>
 <p><code>helpTree</code>：差分数组<code>i*diff[i]</code>的树状数组</p>
+</li>
+</ul>
 </li>
 <li>
 <p>数学原理</p>
@@ -5668,14 +5670,12 @@
 \]</div>
 <p>至此，区间求和转换成了求两个差分数组的前缀和问题。对于一般数组，求前缀和只需要累加即可，但这样的时间复杂度是<span class="arithmatex">\(O(n)\)</span>。实际上，树状数组采用了不同的区间划分方式，虽然仍然分为<code>n</code>个节点，但每个节点代表的子区间的长度不一定是<code>1</code>，这样累加的时候就可以更加高效。</p>
 <p>为了下面我们将两个差分数组使用树状数组来对他们进行表达。<strong>可以得出，对树状数组进行单点修改和区间求和的时间复杂度是<span class="arithmatex">\(O(log n)\)</span>。而由于他们代表的数据是差分，所以</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 原数组的区间修改`O(n)`$\Longrightarrow$差分数组的单点修改`O(1)`$\Longrightarrow$树状数组的单点修改`O(log n)`
+- 原数组的区间求和`O(n)`$\Longrightarrow$差分数组的区间求和`O(n)`$\Longrightarrow$树状数组的区间求和`O(log n)`
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>原数组的区间修改<code>O(n)</code><span class="arithmatex">\(\Longrightarrow\)</span>差分数组的单点修改<code>O(1)</code><span class="arithmatex">\(\Longrightarrow\)</span>树状数组的单点修改<code>O(log n)</code></li>
-<li>
-<p>原数组的区间求和<code>O(n)</code><span class="arithmatex">\(\Longrightarrow\)</span>差分数组的区间求和<code>O(n)</code><span class="arithmatex">\(\Longrightarrow\)</span>树状数组的区间求和<code>O(log n)</code></p>
-</li>
-<li>
-<p>树状数组的构建</p>
-</li>
+<li>树状数组的构建</li>
 </ul>
 <p>首先介绍一下子区间划分，对于一个长度为<code>n</code>的子区间，维护了<code>n</code>个以<span class="arithmatex">\(i\in[0,n-1]\)</span>为右边界的子区间所代表的区间和，每个子区间的左边界使用<code>i-lowbit(i)</code>计算，结果是将右边界以二进制表示后，将最低位的<code>1</code>换成<code>0</code>得到。</p>
 <p><img src="../../../assets/pic/算法/树状数组.png" alt="树状数组" style="" /></p>
@@ -6213,7 +6213,7 @@ $$
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

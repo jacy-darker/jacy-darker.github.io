@@ -5532,11 +5532,13 @@
 <ul>
 <li>定义：算法是针对特定问题求解步骤的一种描述，它是指令的有限序列，其中的每条指令表示一个或多个操作。</li>
 <li>特性：输入、输出、确定性、有穷性、可行性</li>
-<li>评价标准</li>
+<li>评价标准<ul>
 <li>正确性：正确结果</li>
 <li>可读性</li>
 <li>健壮性：输入数据非法时，能够适当的作出反应或相应处理，不会产生莫名其妙的输出结果</li>
 <li>高效性：时间和空间</li>
+</ul>
+</li>
 </ul>
 <h3 id="算法效率的度量">算法效率的度量<a class="headerlink" href="#算法效率的度量" title="Permanent link">&para;</a></h3>
 <ul>
@@ -5565,9 +5567,9 @@ T(n)=O(f(n)),S(n)=O(g(n))
 </li>
 <li>
 <p>递归算法两类复杂度分析</p>
+<hr />
 </li>
 </ul>
-<hr />
 <div class="arithmatex">\[
   T(n)=
           \begin{cases}
@@ -5578,7 +5580,8 @@ T(n)=O(f(n)),S(n)=O(g(n))
 <div class="arithmatex">\[
   T(n)=a^{n-1}T(1)+\sum_{i=2}^n a^{n-i}f(i)
 \]</div>
-<hr />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>------
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
   T(n)=
           \begin{cases}
@@ -5739,9 +5742,11 @@ typedef struct{
 <ul>
 <li>通常用头指针来标示一个单链表。</li>
 <li>有头结点或者没头结点之分</li>
-<li>头结点的作用</li>
+<li>头结点的作用<ul>
 <li>便于首元结点的处理，对链表的第一个数据元素的操作与其他数据元素相同，无需特殊处理</li>
 <li>便于空表与非空表的统一处理：头指针永远不为空</li>
+</ul>
+</li>
 </ul>
 <h3 id="单链表的实现">单链表的实现<a class="headerlink" href="#单链表的实现" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -5955,31 +5960,29 @@ typedef struct{
 <ol>
 <li>
 <p>牺牲一个单元来区分队空和队满，入队时少用一个队列单元，约定以“队头指针在队尾指针的下一位置作为队满的标志”</p>
-</li>
-<li>
-<p>队满条件：<code>(Q.rear+1)%MaxSize==Q.front</code></p>
-</li>
+<ul>
+<li>队满条件：<code>(Q.rear+1)%MaxSize==Q.front</code></li>
 <li>队空条件：<code>Q.front=Q.rear</code></li>
-<li>
-<p>队列中元素的个数：<code>(Q.rear-Q.front+MaxSize)%MaxSize</code></p>
+<li>队列中元素的个数：<code>(Q.rear-Q.front+MaxSize)%MaxSize</code></li>
+</ul>
 </li>
 <li>
 <p>类型中增设表示元素个数的数据成员。</p>
-</li>
-<li>
-<p>队空条件：<code>Q.size==0</code></p>
-</li>
-<li>
-<p>队满条件：<code>Q.size==MaxSize</code></p>
+<ul>
+<li>队空条件：<code>Q.size==0</code></li>
+<li>队满条件：<code>Q.size==MaxSize</code></li>
+</ul>
 </li>
 <li>
 <p>类型中增设<code>tag</code>数据成员，以区分是队满还是队空。</p>
-</li>
+<ul>
 <li>
 <p><code>tag=0</code>时，若因删除导致<code>Q.front==Q.rear</code>,则为队空</p>
 </li>
 <li>
 <p><code>tag=1</code>时，若因插入导致<code>Q.front==Q.rear</code>,则为队满</p>
+</li>
+</ul>
 </li>
 </ol>
 <h3 id="队列的链式存储结构">队列的链式存储结构<a class="headerlink" href="#队列的链式存储结构" title="Permanent link">&para;</a></h3>
@@ -6027,10 +6030,12 @@ typedef struct{
 <ul>
 <li>从左向右开始扫描中缀表达式</li>
 <li>遇到数字时，加入后缀表达式</li>
-<li>遇到运算符时</li>
+<li>遇到运算符时<ul>
 <li>若为<code>(</code>,入栈</li>
 <li>若为<code>)</code>，则依次把栈中的运算符加入后缀表达式，直到出现<code>(</code>,从栈中删除<code>(</code></li>
 <li>若为除括号外的其他运算符，当其优先级高于除<code>(</code>外的栈顶运算符时，直接入栈。否则从栈顶开始，依次弹出比当前处理的运算符优先级高和优先级相等的运算符，直到一个比它优先级低的或遇到一个左括号为止。</li>
+</ul>
+</li>
 </ul>
 <h4 id="栈在递归中的应用">栈在递归中的应用<a class="headerlink" href="#栈在递归中的应用" title="Permanent link">&para;</a></h4>
 <p>可以将递归算法转换为非递归算法。通常需要借助栈来实现这种转换</p>
@@ -6253,7 +6258,7 @@ typedef struct{
 <h4 id="几个特殊的二叉树">几个特殊的二叉树<a class="headerlink" href="#几个特殊的二叉树" title="Permanent link">&para;</a></h4>
 <ul>
 <li>满二叉树：一棵高度为h，且含有<span class="arithmatex">\(2^h-1\)</span>个结点的二叉树称为满二叉树，除叶子结点外每个结点度数为2</li>
-<li>完全二叉树：每个结点都与同等高度的满二叉树有同样的编号</li>
+<li>完全二叉树：每个结点都与同等高度的满二叉树有同样的编号<ul>
 <li>若<span class="arithmatex">\(i\leq \lfloor n/2 \rfloor\)</span>,则结点<code>i</code>为分支结点，否则为叶子结点</li>
 <li>当<span class="arithmatex">\(2i\leq n\)</span>时，结点<code>i</code>的左孩子编号为<span class="arithmatex">\(2i\)</span>,否则无左孩子</li>
 <li>当<span class="arithmatex">\(2i+1\leq n\)</span>时，结点<code>i</code>的右孩子编号为<span class="arithmatex">\(2i+1\)</span>,否则无右孩子</li>
@@ -6261,6 +6266,8 @@ typedef struct{
 <li>叶子结点只可能在层次最大的两层上出现，对于最大层次中的叶子结点，都依次排列在该层最左边的位置上</li>
 <li>若有度为1的节点，则只可能有一个，且只有左孩子没有右孩子</li>
 <li>若<code>n</code>为奇数，则每个分支结点都有左孩子和右孩子；若<code>n</code>为偶数，则编号最大的分支结点只有左孩子，没有右孩子</li>
+</ul>
+</li>
 <li>二叉排序树：左子树上所有节点的关键字小于根节点的关键字；右子树上的所有节点的关键字均大于根节点的关键字</li>
 <li>平衡二叉树：树上任一节点的左子树和右子树的深度之差不超过1</li>
 </ul>
@@ -6506,24 +6513,28 @@ rchild=
 <ul>
 <li>
 <p>树转换为二叉树</p>
-</li>
+<ul>
 <li>
 <p>规则：<strong>左孩子右兄弟</strong>。每个结点左指针指向它的第一个孩子，右指针指向它在树中的相邻右兄弟</p>
 </li>
 <li>
 <p>画法：1.在兄弟结点之间加一连线；2.对每个结点，只保留它与第一个孩子的连线，而与其他孩子的连线全部抹掉；3.以树为轴心，顺时针旋转45°</p>
 </li>
-<li>
-<p>特点：根无右子树</p>
+<li>特点：根无右子树</li>
+</ul>
 </li>
 <li>
 <p>森林转换二叉树</p>
-</li>
+<ul>
 <li>规则：先将森林中的每棵树转换为二叉树；把第二棵树的根作为第一课树根的右兄弟，以此类推</li>
 <li>画法：1.森林中的每棵树转换为相应的二叉树2.每棵树的根也可视为兄弟关系，在每棵树的根之间加一根连线；3.以第一棵树的根为轴心顺时针旋转45°</li>
 <li>特点：森林中每棵树的根节点从第二个开始依次连接到前一棵树的根的右孩子，因此最后一棵树的根节点的右指针为空。另外，每个非终端节点，其所有孩子结点在转换后，最后一个孩子的右指针也为空。</li>
-<li>二叉树转换为森林</li>
+</ul>
+</li>
+<li>二叉树转换为森林<ul>
 <li>若二叉树非空，则二叉树的根及其左子树为第一棵树的二叉树形式，故将根的右链断开。二叉树根的右子树又可视为由除第一棵树外的森林转换后的二叉树。</li>
+</ul>
+</li>
 </ul>
 <h3 id="树和森林的遍历">树和森林的遍历<a class="headerlink" href="#树和森林的遍历" title="Permanent link">&para;</a></h3>
 <h4 id="树的遍历">树的遍历<a class="headerlink" href="#树的遍历" title="Permanent link">&para;</a></h4>
@@ -6533,44 +6544,54 @@ rchild=
 </ul>
 <h4 id="森林的遍历">森林的遍历<a class="headerlink" href="#森林的遍历" title="Permanent link">&para;</a></h4>
 <ul>
-<li>先序遍历森林</li>
+<li>先序遍历森林<ul>
 <li>访问森林中第一棵树的根节点</li>
 <li>先序遍历第一棵树的根节点的子树森林</li>
 <li>先序遍历除去第一棵树后剩余的树构成的森林</li>
-<li>中序遍历森林（又称后根遍历）</li>
+</ul>
+</li>
+<li>中序遍历森林（又称后根遍历）<ul>
 <li>中序遍历森林中第一课树的根节点的子树森林</li>
 <li>访问第一课树的根结点</li>
 <li>中序遍历除去第一棵树后剩余的树构成的森林</li>
 </ul>
+</li>
+</ul>
 <h2 id="树与二叉树的应用">树与二叉树的应用<a class="headerlink" href="#树与二叉树的应用" title="Permanent link">&para;</a></h2>
 <h3 id="二叉排序树bst">二叉排序树BST<a class="headerlink" href="#二叉排序树bst" title="Permanent link">&para;</a></h3>
 <ul>
-<li>二叉排序树的定义</li>
 <li>
-<p>左子树上所有节点的关键字小于根节点的关键字；右子树上的所有节点的关键字均大于根节点的关键字</p>
+<p>二叉排序树的定义</p>
+<ul>
+<li>左子树上所有节点的关键字小于根节点的关键字；右子树上的所有节点的关键字均大于根节点的关键字</li>
+</ul>
 </li>
 <li>
 <p>二叉排序树的查找、插入、构造</p>
 </li>
 <li>
 <p>二叉排序树的剔除</p>
-</li>
+<ul>
 <li>若被删除结点<code>z</code>是叶子结点，则直接删除</li>
 <li>若结点<code>z</code>只有一棵左子树或右子树，则让<code>z</code>的子树成为<code>z</code>父节点的子树，替代<code>z</code>的位置</li>
-<li>
-<p>若结点<code>z</code>有左、右两棵子树，则令<code>z</code>的直接后继替代<code>z</code>，然后从二叉排序树中删去这个直接后继，这样就转换成了上面的两种情况</p>
+<li>若结点<code>z</code>有左、右两棵子树，则令<code>z</code>的直接后继替代<code>z</code>，然后从二叉排序树中删去这个直接后继，这样就转换成了上面的两种情况</li>
+</ul>
 </li>
 <li>
 <p>二叉排序树的查找效率分析</p>
-</li>
+<ul>
 <li><span class="arithmatex">\(O(log_2n)（平衡二叉树）\)</span>~<span class="arithmatex">\(O(n)\)</span></li>
 <li><span class="arithmatex">\(ASL_a\)</span>:平均查找长度</li>
 </ul>
+</li>
+</ul>
 <h3 id="平衡二叉树">平衡二叉树<a class="headerlink" href="#平衡二叉树" title="Permanent link">&para;</a></h3>
 <ul>
-<li>定义</li>
 <li>
-<p>任意结点的左右子树高度差的绝对值不超过1的二叉排序树</p>
+<p>定义</p>
+<ul>
+<li>任意结点的左右子树高度差的绝对值不超过1的二叉排序树</li>
+</ul>
 </li>
 <li>
 <p>二叉排序树的插入</p>
@@ -6598,8 +6619,10 @@ rchild=
 </tbody>
 </table>
 <ul>
-<li>平衡二叉树的查找</li>
+<li>平衡二叉树的查找<ul>
 <li>含有<span class="arithmatex">\(n\)</span>个结点的平衡二叉树的最大深度为<span class="arithmatex">\(O(log_2n)\)</span>,平均查找长度为<span class="arithmatex">\(O(log_2n)\)</span></li>
+</ul>
+</li>
 <li>平衡二叉树结点数的递推关系<span class="arithmatex">\(n_h=1+n_{h-1}+n_{h-2},n_0=0,n_1=1,n_2=2\)</span>,<span class="arithmatex">\(n_h\)</span>为构造此高度的平衡二叉树所需的最少结点数</li>
 </ul>
 <h3 id="哈夫曼树和哈夫曼编码">哈夫曼树和哈夫曼编码<a class="headerlink" href="#哈夫曼树和哈夫曼编码" title="Permanent link">&para;</a></h3>
@@ -6979,15 +7002,15 @@ rchild=
 <ul>
 <li>
 <p>基本思想</p>
-</li>
+<ul>
 <li>
 <p>初始时从图中任取一顶点加入树T,此时树中只含有一个顶点</p>
 </li>
 <li>
 <p>之后选择一个与当前T中<strong>顶点集合</strong>距离最近的顶点，且加入后不能出现环，并将该顶点和相应的边加入T，每次操作后T中的顶点数和边数都增1。</p>
 </li>
-<li>
-<p>重复直到加满</p>
+<li>重复直到加满</li>
+</ul>
 </li>
 <li>
 <p>时间复杂度：<span class="arithmatex">\(O(|V|^2 )\)</span></p>
@@ -6995,10 +7018,12 @@ rchild=
 </ul>
 <h4 id="kruskal算法">Kruskal算法<a class="headerlink" href="#kruskal算法" title="Permanent link">&para;</a></h4>
 <ul>
-<li>基本思想</li>
+<li>基本思想<ul>
 <li>初始时为只有n个顶点而无边的非连通图T，每个顶点自成一个连通分量</li>
 <li>按照边的权值由小到大，加入到非连通图T中，不能形成环</li>
 <li>重复直到加满</li>
+</ul>
+</li>
 <li>时间复杂度：<span class="arithmatex">\(O(|E|log|E|)\)</span></li>
 </ul>
 <h3 id="最短路径">最短路径<a class="headerlink" href="#最短路径" title="Permanent link">&para;</a></h3>
@@ -7070,12 +7095,13 @@ rchild=
 <h4 id="dijkstra算法求单源最短路径">Dijkstra算法求单源最短路径<a class="headerlink" href="#dijkstra算法求单源最短路径" title="Permanent link">&para;</a></h4>
 <p>解决的是带权重的有向图上单源最短路径问题，要求所有边的权重都是非负值
 - 辅助数组</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- 集合`S`：记录以求得的最短路径的顶点
+- `dist[]`：记录从源点$v_0$到其他各顶点当前的最短路径长度
+- `path[]`：`path[i]`表示从源点到顶点$i$之间的最短路径的前驱结点。可用于回溯找最短路径
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>集合<code>S</code>：记录以求得的最短路径的顶点</li>
-<li><code>dist[]</code>：记录从源点<span class="arithmatex">\(v_0\)</span>到其他各顶点当前的最短路径长度</li>
-<li>
-<p><code>path[]</code>：<code>path[i]</code>表示从源点到顶点<span class="arithmatex">\(i\)</span>之间的最短路径的前驱结点。可用于回溯找最短路径</p>
-</li>
 <li>
 <p>算法步骤</p>
 </li>
@@ -7120,12 +7146,14 @@ rchild=
 <ul>
 <li>
 <p>算法描述</p>
-</li>
+<ul>
 <li>
 <p>定义一个n阶方阵<span class="arithmatex">\(A^{(-1)}，A^{(0)}，...,A^{(n-1)}\)</span>,其中<span class="arithmatex">\(A^{(-1)}[i][j]=arcs[i][j]\)</span>,</p>
 </li>
 <li>
 <p>根据递推公式重复<code>n</code>次，计算出<span class="arithmatex">\(A^{(0)}，...,A^{(n-1)}\)</span></p>
+</li>
+</ul>
 <p><span class="arithmatex">\(A^{(k)}[i][j]=Min\{A^{(k-1)}[i][j],A^{(k-1)}[i][k]+A^{(k-1)}[k][j]\},k=0,1,..,n-1\)</span></p>
 <p>其中，<span class="arithmatex">\(A^{(0)}[i][j]\)</span>是从顶点<span class="arithmatex">\(v_i\)</span>到<span class="arithmatex">\(v_j\)</span>、中间路径是<span class="arithmatex">\(v_0\)</span>的最短路径的长度，<span class="arithmatex">\(A^{(k)}[i][j]\)</span>是从顶点<span class="arithmatex">\(v_i\)</span>到<span class="arithmatex">\(v_j\)</span>、中间顶点的序号不大于k的最短路径的长度</p>
 </li>
@@ -7143,9 +7171,11 @@ rchild=
 </li>
 <li>
 <p>拓扑排序：在图论中，由一个有向无环图的顶点组成的序列，当且仅当满足下列条件时，称为该图的一个拓扑排序</p>
-</li>
+<ul>
 <li>每个顶点出现且只出现一次</li>
 <li>若顶点<code>A</code>在序列中排在顶点B的前面，则在图中不存在从顶点B到顶点A的路径</li>
+</ul>
+</li>
 <li>拓扑排序算法</li>
 <li>从<code>AOV</code>网中选择一个没有前驱的顶点并输出</li>
 <li>从网中删除该顶点和所有以它为起点的有向边</li>
@@ -7178,51 +7208,53 @@ rchild=
 </li>
 <li>
 <p><strong>事件<span class="arithmatex">\(v_k\)</span>的最早发生时间<span class="arithmatex">\(ve(k)\)</span></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>   - $ve(源点)=0$
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(ve(源点)=0\)</span></li>
-<li><span class="arithmatex">\(ve(k)=Max\{ve(j)+Weight(v_j,v_k\}\)</span></li>
+<li><span class="arithmatex">\(ve(k)=Max\{ve(j)+Weight(v_j,v_k\}\)</span><ul>
 <li>按拓扑排序，依次计算</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <p><strong>事件<span class="arithmatex">\(v_k\)</span>的最迟发生时间<span class="arithmatex">\(vl(k)\)</span></strong></p>
 </li>
 <li>
-<p><span class="arithmatex">\(vl(汇点)=ve(汇点)\)</span></p>
-<ul>
-<li><span class="arithmatex">\(vl(k)=Min\{vl(j)-Weight(v_k,v_j\}\)</span></li>
-<li>按逆拓扑排序依次计算</li>
-</ul>
+<p><span class="arithmatex">\(vl(汇点)=ve(汇点)\)</span>
+           - <span class="arithmatex">\(vl(k)=Min\{vl(j)-Weight(v_k,v_j\}\)</span>
+           - 按逆拓扑排序依次计算</p>
 </li>
 <li>
 <p><strong>活动<span class="arithmatex">\(a_i\)</span>的最早开始时间<span class="arithmatex">\(e(i)\)</span></strong></p>
-</li>
+<ul>
 <li>它是指该活动弧的起点所表示的事件最早发生时间。<ul>
 <li>若边<span class="arithmatex">\(&lt;v_k,v_j&gt;\)</span>表示活动<span class="arithmatex">\(a_i\)</span>,则有<span class="arithmatex">\(e(i)=ve(k)\)</span></li>
 </ul>
 </li>
-<li>
-<p><strong>活动<span class="arithmatex">\(a_i\)</span>的最迟开始时间<span class="arithmatex">\(l(i)\)</span></strong></p>
+</ul>
 </li>
 <li>
-<p>它是指该活动弧的终点所表示事件的最迟发生时间与该活动所需时间之差</p>
+<p><strong>活动<span class="arithmatex">\(a_i\)</span>的最迟开始时间<span class="arithmatex">\(l(i)\)</span></strong></p>
 <ul>
+<li>它是指该活动弧的终点所表示事件的最迟发生时间与该活动所需时间之差<ul>
 <li>若边<span class="arithmatex">\(&lt;v_k,v_j&gt;\)</span>表示活动<span class="arithmatex">\(a_i\)</span>,则有<span class="arithmatex">\(l(i)=vl(j)-Weight(v_k,v_j)\)</span></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <p>一个活动<span class="arithmatex">\(a_i\)</span>的最迟开始时间<span class="arithmatex">\(l(i)\)</span>和其最早开始时间<span class="arithmatex">\(e(i)\)</span>的差额<span class="arithmatex">\(d(i)=l(i)-e(i)\)</span></p>
-</li>
-<li>
-<p><span class="arithmatex">\(d(i)=0\)</span>++的活动<span class="arithmatex">\(a_i\)</span>是关键活动</p>
-</li>
+<ul>
+<li><span class="arithmatex">\(d(i)=0\)</span>++的活动<span class="arithmatex">\(a_i\)</span>是关键活动</li>
 </ul>
 <h3 id="强连通分量">强连通分量<a class="headerlink" href="#强连通分量" title="Permanent link">&para;</a></h3>
 <p>将一个有向图分解为若干个强连通分量。称为分量图<code>G^{SCC}=(V^{SCC},E^{SCC})</code>。
 - 分量图中的每个节点是一个强联通分量，里面的所有子节点都可以代表该连通分量
 - 分量图是一个有向无环图</p>
-<ul>
-<li>求分量图的分解算法，其中用到了图<span class="arithmatex">\(G\)</span>的转置<span class="arithmatex">\(G^T\)</span>
+</li>
+<li>
+<p>求分量图的分解算法，其中用到了图<span class="arithmatex">\(G\)</span>的转置<span class="arithmatex">\(G^T\)</span>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -7234,7 +7266,8 @@ rchild=
 <span class="w">    </span><span class="c1">//call DFS(G^T),but in the main loop of DFS,consider the vertices in order of decreasing u.f(按照上一次DFS中完成时间的逆序来搜索)</span>
 <span class="w">    </span><span class="c1">//output the vertices of each tree in the depth-first forest formed in line3 as a separate strongly connected component</span>
 <span class="p">}</span>
-</code></pre></div></td></tr></table></div></li>
+</code></pre></div></td></tr></table></div></p>
+</li>
 </ul>
 <h3 id="最大流">最大流<a class="headerlink" href="#最大流" title="Permanent link">&para;</a></h3>
 <p>将一个有向图看成一个流网络并使用它来回答关于物料流动方面的问题。设想一种物料从产生它的源节点经过一个系统，流向消耗该物料的汇点的一个过程。源节点以某种稳定的速率生成物料，汇点则以同样的速率消耗物料。</p>
@@ -7387,11 +7420,13 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 <h2 id="查找的概念">查找的概念<a class="headerlink" href="#查找的概念" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>查找</strong>：在数据集合中寻找满足某种条件的数据元素的过程称为查找。查找的结果分为<strong>成功</strong>和<strong>失败</strong></li>
-<li><strong>查找表</strong>：用于查找的数据集合称为查找表。对查找表进行的操作一般有四种</li>
+<li><strong>查找表</strong>：用于查找的数据集合称为查找表。对查找表进行的操作一般有四种<ul>
 <li>查询</li>
 <li>查询关键字的其他信息</li>
 <li>插入</li>
 <li>删除</li>
+</ul>
+</li>
 <li>静态查找表：不涉及插入和删除的查找表</li>
 <li>关键字：数据元素中唯一标识该元素的某个数据项的值</li>
 <li>平均查找长度：<span class="arithmatex">\(ASL=\sum_{i=1}^nP_iC_i\)</span>,<span class="arithmatex">\(P_i\)</span>是概率，<span class="arithmatex">\(C_i\)</span>是比较次数</li>
@@ -7434,16 +7469,14 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 </li>
 <li>
 <p>生成的<strong>判定树</strong></p>
-</li>
-<li>
-<p>是平衡二叉树</p>
-</li>
+<ul>
+<li>是平衡二叉树</li>
 <li>有n个圆形结点代表原数据或成功结点，n+1个方框结点代表不成功结点</li>
 <li>每个圆形结点都不是叶子结点，一定有方框子结点</li>
 <li>倒数第二层圆结点个数=<span class="arithmatex">\(n-前面层所有结点数\)</span></li>
 <li>倒数第二层方形结点个数=<span class="arithmatex">\(2^{h-1}-倒数第二层圆结点\)</span>，最后一层方结点个数=<span class="arithmatex">\(n+1-倒数第二层方形结点个数\)</span></li>
-<li>
-<p>如果判定树是向上取整，则所有结点的左子树结点总数永远不小于右子树结点整数，向下取整同理</p>
+<li>如果判定树是向上取整，则所有结点的左子树结点总数永远不小于右子树结点整数，向下取整同理</li>
+</ul>
 </li>
 <li>
 <p>基本思想</p>
@@ -7489,10 +7522,12 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 <p>将查找表分成若干块。块内的元素可以是无序的。但块之间按照每个块的最大关键字进行排序</p>
 <p>建立一个索引表，索引表中的每个元素含有各块的最大关键字和各块的第一个元素的地址，索引表按关键字有序排列</p>
 <ul>
-<li>分块查找的过程</li>
-<li>在索引表中确定待查记录所在的块，可以顺序查找或折半查找索引表</li>
 <li>
-<p>在块内顺序查找</p>
+<p>分块查找的过程</p>
+<ul>
+<li>在索引表中确定待查记录所在的块，可以顺序查找或折半查找索引表</li>
+<li>在块内顺序查找</li>
+</ul>
 </li>
 <li>
 <p>索引查找的平均查找长度<span class="arithmatex">\(L_I\)</span>,块内查找的平均查找长度<span class="arithmatex">\(L_S\)</span></p>
@@ -7596,12 +7631,14 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 <h4 id="b树的插入">B树的插入<a class="headerlink" href="#b树的插入" title="Permanent link">&para;</a></h4>
 <ol>
 <li>定位：利用B树的查找算法，找出插入该关键字的最低层中的某个非叶结点</li>
-<li>插入：在B树中，每个内部结点的关键字个数都在区间<span class="arithmatex">\([t-1,2t-1]\)</span>内。插入后的结点关键字个数小于<code>2t-1</code>，可以直接插入。如果插入后关键字个数大于<code>2t-1</code>,必须进行分裂</li>
+<li>插入：在B树中，每个内部结点的关键字个数都在区间<span class="arithmatex">\([t-1,2t-1]\)</span>内。插入后的结点关键字个数小于<code>2t-1</code>，可以直接插入。如果插入后关键字个数大于<code>2t-1</code>,必须进行分裂<ul>
 <li>分裂方法是<ul>
 <li>将一个满的节点y按其中间关键子<span class="arithmatex">\(y.key_t\)</span>分裂为两个各含<code>t-1</code>个关键字的节点</li>
 <li>左部分包含的关键字放在原结点中，右部分包含的关键字放到新结点中</li>
 <li>中间位置的节点<span class="arithmatex">\(y.key_t\)</span>插入原节点的父节点</li>
 <li>若此时导致父节点也超过了上限，则对父节点继续分裂</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -7612,7 +7649,7 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 </li>
 <li>
 <p>当被删关键字<code>k</code><strong>在终端结点</strong>中时</p>
-</li>
+<ul>
 <li>
 <p><strong>直接删除关键字</strong>：若被删除关键字所在结点的关键字个数为<span class="arithmatex">\(t\)</span>,表明删除该关键字后仍满足B树的定义，则直接删除该关键字</p>
 </li>
@@ -7621,6 +7658,8 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 </li>
 <li>
 <p><strong>兄弟不够借</strong>：若被删除关键字所在结点的关键字个数<span class="arithmatex">\(=t-1\)</span>,且与此节点相邻的右（左）兄弟节点的关键字个数均为<span class="arithmatex">\(t-1\)</span>,则将关键字删除后与左（或右）兄弟结点及双亲结点中的关键字进行合并。</p>
+</li>
+</ul>
 <p>在合并过程中，双亲结点中的关键字个数会减1。若其双亲结点是根结点且关键字个数减少至0，则直接将根结点删除，合并后的新结点成为根；若其双亲结点不是根结点，且关键字减少超过下限，在继续合并操作。</p>
 </li>
 </ul>
@@ -8408,10 +8447,12 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 </li>
 <li>
 <p>构造初始堆：</p>
-</li>
+<ul>
 <li><span class="arithmatex">\(n\)</span>个结点的完全二叉树，最后一个结点是第<span class="arithmatex">\(\lfloor n/2 \rfloor\)</span>个结点的孩子。对第<span class="arithmatex">\(\lfloor n/2 \rfloor\)</span>个结点为根的子树筛选（对于的大根堆，若根结点的关键字小于左右孩子中关键字较大者，则交换），使该子树成为堆。</li>
 <li>之后向前依次对各节点<span class="arithmatex">\(\lfloor n/2 \rfloor-1 \sim 1\)</span>为根的子树进行筛选，看该结点值是否大于其左右子节点的值，不大于的话进行交换</li>
 <li>交换后可能会破坏下一级的堆，使用上述办法继续构造下一级的堆，直到以根结点形成堆为止</li>
+</ul>
+</li>
 <li>输出堆顶元素，重新构建堆，重复这一过程</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -8475,11 +8516,13 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 <p>有<strong>最大优先队列</strong>和<strong>最小优先队列</strong>。最大优先队列的应用：在共享计算机系统的作业调度，用于记录将要执行的各个作业以及他们的优先级；最小优先队列的应用：用于基于事件驱动的模拟器。</p>
 </li>
 <li>在用堆来实现优先队列时，需要在堆中的每个元素里存储对应对象的<strong>句柄</strong><code>handle</code>。句柄的准确含义依赖于具体的应用程序。</li>
-<li>操作</li>
+<li>操作<ul>
 <li><code>Insert(S,x)</code>：把元素<code>x</code>插入集合S中</li>
 <li><code>Maxmum(S)</code>：返回<code>S</code>中具有最大键字的元素</li>
 <li><code>Extract-max(S)</code>：去掉并返回<code>S</code>中具有最大键字的元素</li>
 <li><code>Increase-key(S,x,k)</code>：将元素<code>x</code>的关键字增加到<code>k</code>，这里假设<code>k</code>的值不小于<code>x</code>的原关键字            </li>
+</ul>
+</li>
 </ul>
 <h2 id="归并排序和基数排序">归并排序和基数排序<a class="headerlink" href="#归并排序和基数排序" title="Permanent link">&para;</a></h2>
 <h3 id="归并排序">归并排序<a class="headerlink" href="#归并排序" title="Permanent link">&para;</a></h3>
@@ -8705,11 +8748,13 @@ f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v)-\sum_{u\in S}\sum_{v\in T}f(v,u)
 </li>
 <li>
 <p>败者树</p>
-</li>
+<ul>
 <li>k个叶结点分别存放k个归并段在归并过程中当前参加比较的记录</li>
 <li>内存结点用来记忆左右子树中的失败者，而让胜者往上继续比较，一直到根结点</li>
 <li>根结点记录胜者</li>
 <li>叶结点进行编号<span class="arithmatex">\(b0 \sim bk\)</span>,内存结点编号<span class="arithmatex">\(ls[0] \sim ls[k]\)</span>,<span class="arithmatex">\(ls[0]\)</span>为根结点</li>
+</ul>
+</li>
 </ul>
 <h3 id="置换-选择排序生成初始归并段">置换-选择排序（生成初始归并段）<a class="headerlink" href="#置换-选择排序生成初始归并段" title="Permanent link">&para;</a></h3>
 <p>初始待排文件<code>FI</code>,初始归并段输出文件为<code>FO</code>,内存工作区为<code>WA</code>,<code>FO</code>与<code>WA</code>的初始状态为空，<code>WA</code>可容纳<span class="arithmatex">\(w\)</span>个记录</p>
@@ -9132,7 +9177,7 @@ x \in L_1 当且仅当f(x) = L_2
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

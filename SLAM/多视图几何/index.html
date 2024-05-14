@@ -5698,9 +5698,11 @@ l_1&amp;l_2&amp;l_3
 <p>其中<span class="arithmatex">\(\pmb H_A\)</span>可取为任何仿射变换
 反推，已知仿射性质，可以确定无穷远点和直线</p>
 <ul>
-<li>恢复策略</li>
+<li>恢复策略<ul>
 <li>由平行线寻找无穷远直线</li>
 <li>由长度比计算消影点</li>
+</ul>
+</li>
 </ul>
 <h3 id="虚圆点及其对偶">虚圆点及其对偶<a class="headerlink" href="#虚圆点及其对偶" title="Permanent link">&para;</a></h3>
 <p>在任何相似变换下，<span class="arithmatex">\(\pmb I_\infty\)</span>上有两个不动点，它们是虚圆点<span class="arithmatex">\(\pmb I,\pmb J\)</span>，其标准坐标是</p>
@@ -5883,24 +5885,22 @@ W = \begin{bmatrix}
 \pmb A^T \\ \pmb B^T
 \end{bmatrix}
 \]</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- $W^T$的生成子空间是在直线$\lambda \pmb A + \mu \pmb B$上的点束
+- $W$的$2$维右零空间生成子空间是以直线为轴的平面束
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(W^T\)</span>的生成子空间是在直线<span class="arithmatex">\(\lambda \pmb A + \mu \pmb B\)</span>上的点束</li>
-<li>
-<p><span class="arithmatex">\(W\)</span>的<span class="arithmatex">\(2\)</span>维右零空间生成子空间是以直线为轴的平面束</p>
-</li>
-<li>
-<p><span class="arithmatex">\(\pmb P,\pmb Q\)</span>是空间中的两个平面</p>
-</li>
+<li><span class="arithmatex">\(\pmb P,\pmb Q\)</span>是空间中的两个平面</li>
 </ul>
 <div class="arithmatex">\[
 W^* = \begin{bmatrix} 
 P^T \\ Q^T
 \end{bmatrix}
 \]</div>
-<ul>
-<li><span class="arithmatex">\(W^{*T}\)</span>的生成子空间是以该直线为轴的平面束<span class="arithmatex">\(\lambda^\prime \pmb P+ \mu^\prime \pmb Q\)</span></li>
-<li><span class="arithmatex">\(W^*\)</span>的2维零空间的生成子空间是该直线上的点束</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- $W^{*T}$的生成子空间是以该直线为轴的平面束$\lambda^\prime \pmb P+ \mu^\prime \pmb Q$
+- $W^*$的2维零空间的生成子空间是该直线上的点束
+</code></pre></div></td></tr></table></div>
 <h4 id="iiplucker矩阵">II.Plucker矩阵<a class="headerlink" href="#iiplucker矩阵" title="Permanent link">&para;</a></h4>
 <p>直线由<span class="arithmatex">\(4 \times 4\)</span>反对称齐次矩阵表示。</p>
 <ul>
@@ -6021,9 +6021,11 @@ det [A,B,\hat A,\hat B] = l_{12}\hat l_{34}+\hat l_{12}l_{34} +l_{13} \hat l_{42
 <ul>
 <li>两个平面平行的充要条件是它们的交线在<span class="arithmatex">\(\pi_\infty\)</span>上</li>
 <li>如果一条直线与另一条之间或一个平面相交在<span class="arithmatex">\(\pi_\infty\)</span>上，则它们相平行</li>
-<li>在射影变换<span class="arithmatex">\(H\)</span>下，无穷远平面<span class="arithmatex">\(\pi_\infty\)</span>是不动平面的充要条件是：<span class="arithmatex">\(H\)</span>是一个仿射变换</li>
+<li>在射影变换<span class="arithmatex">\(H\)</span>下，无穷远平面<span class="arithmatex">\(\pi_\infty\)</span>是不动平面的充要条件是：<span class="arithmatex">\(H\)</span>是一个仿射变换<ul>
 <li>在仿射变换下平面<span class="arithmatex">\(\pi_\infty\)</span>作为一个集合是不动的，但不是点点不动</li>
 <li>在某个具体的仿射变换下，可能存在除去<span class="arithmatex">\(\pi_\infty\)</span>外的某些平面保持不动的情况</li>
+</ul>
+</li>
 </ul>
 <h2 id="绝对二次曲线">绝对二次曲线<a class="headerlink" href="#绝对二次曲线" title="Permanent link">&para;</a></h2>
 <p>绝对二次曲线<span class="arithmatex">\(\Omega_\infty\)</span>是在<span class="arithmatex">\(\pi_\infty\)</span>上的一条二次曲线，它的坐标满足</p>
@@ -6329,17 +6331,16 @@ N = \log(1-p) / \log(1-(1-\varepsilon)^s)
 </li>
 <li>
 <p>考虑一个估计问题，其中<span class="arithmatex">\(N\)</span>个测量由依赖于<span class="arithmatex">\(d\)</span>个本质参数集的函数模型化。假定每个测量变量有标准差<span class="arithmatex">\(\sigma^2\)</span>的独立高斯噪声</p>
-</li>
-<li>
-<p><span class="arithmatex">\(ML\)</span>估计算法的<span class="arithmatex">\(RMS\)</span>残差（测量值到估计值的距离）是</p>
+<ul>
+<li><span class="arithmatex">\(ML\)</span>估计算法的<span class="arithmatex">\(RMS\)</span>残差（测量值到估计值的距离）是</li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
 \varepsilon_{res} = E[\parallel \hat X -X \parallel^2/N]^{1/2} = \sigma(1-d/N)^{1/2}
 \]</div>
-<ul>
-<li>ML估计算法的<span class="arithmatex">\(RMS\)</span>估计误差（估计值到真值的距离）是</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- ML估计算法的$RMS$估计误差（估计值到真值的距离）是
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
 \varepsilon_{est} = E[\parallel \hat X - X \parallel ^2/N]^{1/2} = \sigma(d/N)^{1/2}
 \]</div>
@@ -6514,10 +6515,12 @@ P=[M \mid \pmb p_4]
 \]</div>
 <h3 id="摄像机构造">摄像机构造<a class="headerlink" href="#摄像机构造" title="Permanent link">&para;</a></h3>
 <ul>
-<li>摄像机中心：摄像机中心<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(P\)</span>的一维右零空间，即<span class="arithmatex">\(PC=0\)</span></li>
-<li>有限摄像机（<span class="arithmatex">\(M\)</span>非奇异）：<span class="arithmatex">\(C = (-M^{-1 }\pmb p_4,1)^T\)</span></li>
 <li>
-<p>无穷远摄像机（<span class="arithmatex">\(M\)</span>奇异）:<span class="arithmatex">\(C = (\pmb d,0)^T\)</span>，其中<span class="arithmatex">\(d\)</span>是<span class="arithmatex">\(M\)</span>的<span class="arithmatex">\(3\)</span>维零向量<span class="arithmatex">\(M\pmb d=\pmb 0\)</span></p>
+<p>摄像机中心：摄像机中心<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(P\)</span>的一维右零空间，即<span class="arithmatex">\(PC=0\)</span></p>
+<ul>
+<li>有限摄像机（<span class="arithmatex">\(M\)</span>非奇异）：<span class="arithmatex">\(C = (-M^{-1 }\pmb p_4,1)^T\)</span></li>
+<li>无穷远摄像机（<span class="arithmatex">\(M\)</span>奇异）:<span class="arithmatex">\(C = (\pmb d,0)^T\)</span>，其中<span class="arithmatex">\(d\)</span>是<span class="arithmatex">\(M\)</span>的<span class="arithmatex">\(3\)</span>维零向量<span class="arithmatex">\(M\pmb d=\pmb 0\)</span></li>
+</ul>
 </li>
 <li>
 <p>列点：对于<span class="arithmatex">\(i=1,2,\cdots,3\)</span>，列向量<span class="arithmatex">\(p_i\)</span>分别对应于<span class="arithmatex">\(X,Y,Z\)</span>轴在图像上的消影点。列<span class="arithmatex">\(p_4\)</span>是坐标原点的图像</p>
@@ -6544,7 +6547,7 @@ P=[M \mid \pmb p_4]
 <div class="arithmatex">\[
 X(\mu) = \mu 
 \begin{bmatrix}  M^{-1}x \\ 0 \end{bmatrix}+ 
-\begin{bmatrix}  -M^{-1}p_4 \\ 1 \end{bmatrix} = 
+\begin{bmatrix}    -M^{-1}p_4 \\ 1 \end{bmatrix} = 
 \begin{bmatrix}  M^{-1}(\mu x - p_4) \\ 1 \end{bmatrix}
 \]</div>
 <h3 id="点的深度">点的深度<a class="headerlink" href="#点的深度" title="Permanent link">&para;</a></h3>
@@ -7243,34 +7246,34 @@ x^{\prime T} \omega x = x^{\prime T} C \dot x
 <ul>
 <li><span class="arithmatex">\(F\)</span>是自由度为<span class="arithmatex">\(7\)</span>的秩<span class="arithmatex">\(2\)</span>齐次矩阵</li>
 <li>点对应：如果<span class="arithmatex">\(x,x^\prime\)</span>是对应的图像点，则<span class="arithmatex">\(x^{\prime T}Fx=0\)</span></li>
-<li>对极线</li>
-<li><span class="arithmatex">\(I^\prime = Fx\)</span>是对应于<span class="arithmatex">\(x\)</span>的对极线</li>
 <li>
-<p><span class="arithmatex">\(I=F^Tx^\prime\)</span>是对应<span class="arithmatex">\(x^\prime\)</span>的对极线</p>
+<p>对极线</p>
+<ul>
+<li><span class="arithmatex">\(I^\prime = Fx\)</span>是对应于<span class="arithmatex">\(x\)</span>的对极线</li>
+<li><span class="arithmatex">\(I=F^Tx^\prime\)</span>是对应<span class="arithmatex">\(x^\prime\)</span>的对极线</li>
+</ul>
 </li>
 <li>
 <p>对极点：</p>
-</li>
-<li>
-<p><span class="arithmatex">\(Fe=0\)</span></p>
-</li>
-<li>
-<p><span class="arithmatex">\(F^Te^\prime=0\)</span></p>
+<ul>
+<li><span class="arithmatex">\(Fe=0\)</span></li>
+<li><span class="arithmatex">\(F^Te^\prime=0\)</span></li>
+</ul>
 </li>
 <li>
 <p>由摄像机矩阵<span class="arithmatex">\(P\)</span>和<span class="arithmatex">\(P^\prime\)</span>计算</p>
-</li>
-<li>
-<p>一般摄像机</p>
+<ul>
+<li>一般摄像机</li>
+</ul>
 <p><span class="arithmatex">\(F=[e^\prime]_\times P^\prime P^+,e^\prime = P^\prime C,PC=0\)</span></p>
-</li>
-<li>
-<p>规范摄像机</p>
+<ul>
+<li>规范摄像机</li>
+</ul>
 <p><span class="arithmatex">\(P=[I \mid 0],P^\prime = [M \mid m]\)</span></p>
 <p><span class="arithmatex">\(F=[e^\prime]_\times M = M^{-T}[e]_\times,e^\prime = m,e=M^{-1}m\)</span></p>
-</li>
-<li>
-<p>非无穷远摄像机</p>
+<ul>
+<li>非无穷远摄像机</li>
+</ul>
 <p><span class="arithmatex">\(P=[I \mid 0],P^{\prime}= K^\prime [R \mid t]\)</span></p>
 <p><span class="arithmatex">\(F=K^{\prime-T}[t]_\times RK^{-1}=[K^\prime t]_\times K^\prime R K^{-1}=K^{\prime -T}RK^T[KR^Tt]_\times = K^{\prime -T}RK^T[e]_\times\)</span></p>
 </li>
@@ -7379,10 +7382,8 @@ R &amp; t \\
 <ol>
 <li>
 <p>计算一个摄影重构<span class="arithmatex">\((P,P^\prime,\{X_i\})\)</span></p>
-</li>
-<li>
-<p>计算基本矩阵：由两幅图像之间的点对应<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span></p>
-</li>
+<ul>
+<li>计算基本矩阵：由两幅图像之间的点对应<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span></li>
 <li>摄像机恢复：由基本矩阵计算摄像机矩阵<span class="arithmatex">\(P,P^\prime\)</span></li>
 <li>三角测量：对每组点对应<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span>计算投影到这两个图像点的空间点<span class="arithmatex">\(X_i\)</span></li>
 <li>
@@ -7394,6 +7395,8 @@ R &amp; t \\
 <li>利用分层方法<ul>
 <li>仿射重构：计算无穷远平面<span class="arithmatex">\(\pi_\infty\)</span>【TODO 补充计算方法，10.4】，然后用单应<span class="arithmatex">\(H\)</span>把射影重构提升到仿射重构<span class="arithmatex">\(H=\begin{bmatrix} I \mid 0 \\    \pi_\infty^T     \end{bmatrix}\)</span></li>
 <li>度量重构：计算绝对二次曲线的像<span class="arithmatex">\(\omega\)</span>【TODO 补充计算方法】，然后用单应<span class="arithmatex">\(H\)</span>把仿射重构提升到度量重构，其中<span class="arithmatex">\(AA^T=(M^T\omega M)^{-1}\)</span>做<span class="arithmatex">\(Cholesky\)</span>分解得到，<span class="arithmatex">\(M\)</span>是仿射重构中摄像机矩阵左上角<span class="arithmatex">\(3 \times 3\)</span>矩阵</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -7423,9 +7426,11 @@ A \pmb f = 0
 <h5 id="算法_4">算法<a class="headerlink" href="#算法_4" title="Permanent link">&para;</a></h5>
 <ol>
 <li>归一化：根据<span class="arithmatex">\(\hat x_i=Tx_i\)</span>和<span class="arithmatex">\(\hat x_i^\prime = T^\prime x_i^\prime <span class="arithmatex">\(变换图像坐标。其中\)</span>T,T^\prime\)</span>是由平移和缩放组成的归一化变换</li>
-<li>按如下方法寻求对应于匹配<span class="arithmatex">\(\hat x_i \leftrightarrow \hat x_i^\prime\)</span>的基本矩阵<span class="arithmatex">\(\hat F^\prime\)</span></li>
+<li>按如下方法寻求对应于匹配<span class="arithmatex">\(\hat x_i \leftrightarrow \hat x_i^\prime\)</span>的基本矩阵<span class="arithmatex">\(\hat F^\prime\)</span><ul>
 <li>线性解：由<span class="arithmatex">\(\hat A\)</span>的对应最小奇异值的奇异向量确定<span class="arithmatex">\(\hat F\)</span>，其中<span class="arithmatex">\(\hat A\)</span>由匹配<span class="arithmatex">\(\hat x_i \leftrightarrow \hat x_i^\prime\)</span>形成</li>
 <li>强迫约束：用SVD并以<span class="arithmatex">\(\hat F^\prime <span class="arithmatex">\(代替\)</span>\hat F\)</span>使得<span class="arithmatex">\(\det \hat F^\prime =0\)</span></li>
+</ul>
+</li>
 <li>解除归一化：令<span class="arithmatex">\(F=T^{\prime T}\hat F^{\prime }T\)</span></li>
 </ol>
 <h2 id="代数最小化算法">代数最小化算法<a class="headerlink" href="#代数最小化算法" title="Permanent link">&para;</a></h2>
@@ -7462,10 +7467,12 @@ E=\begin{bmatrix}
 <h5 id="算法_6">算法<a class="headerlink" href="#算法_6" title="Permanent link">&para;</a></h5>
 <ol>
 <li>用线性算法来计算<span class="arithmatex">\(\hat F\)</span>的一个秩为<span class="arithmatex">\(2\)</span>的初始估计</li>
-<li>计算辅助变量<span class="arithmatex">\(\{\hat x_i,\hat x_i^\prime\}\)</span>的初始估计如下：</li>
+<li>计算辅助变量<span class="arithmatex">\(\{\hat x_i,\hat x_i^\prime\}\)</span>的初始估计如下：<ul>
 <li>选择摄像机矩阵<span class="arithmatex">\(P=[I \mid 0],P^\prime=[[e^\prime]_\times \hat F \mid e^\prime]\)</span>，其中<span class="arithmatex">\(e^\prime\)</span>由<span class="arithmatex">\(\hat F\)</span>得到</li>
 <li>用三角测量法，由对应点<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span>和<span class="arithmatex">\(\hat F\)</span>确定<span class="arithmatex">\(\hat X_i\)</span>的一个估计</li>
 <li>与<span class="arithmatex">\(\hat F\)</span>相容的对应是<span class="arithmatex">\(\hat x_i=  P\hat X_i,\hat x_i^\prime =P^\prime \hat X_i\)</span></li>
+</ul>
+</li>
 <li>在<span class="arithmatex">\(\hat F\)</span>和<span class="arithmatex">\(\hat X_i\)</span>上，使用LM最小化上述代价函数，它有<span class="arithmatex">\(3n+12\)</span>个变量：<span class="arithmatex">\(3n\)</span>来自于<span class="arithmatex">\(n\)</span>个<span class="arithmatex">\(3D\)</span>点<span class="arithmatex">\(\hat X_i\)</span>，<span class="arithmatex">\(12\)</span>个来自于摄像机矩阵<span class="arithmatex">\(P^\prime = [M \mid t]\)</span>，同时<span class="arithmatex">\(\hat F = [t]_\times M\)</span>且<span class="arithmatex">\(\hat x_i = P\hat X_i,\hat x_i^\prime = P^\prime \hat X_i\)</span></li>
 </ol>
 <h3 id="秩2矩阵的参数化">秩2矩阵的参数化<a class="headerlink" href="#秩2矩阵的参数化" title="Permanent link">&para;</a></h3>
@@ -7513,13 +7520,13 @@ JJ^T = (Fx_i)_1^2+(Fx_i)_2^2 +(F^Tx_i^\prime )_1^2 +(F^Tx_i^\prime )_2^2
 </li>
 <li>
 <p><span class="arithmatex">\(\text{RANSCA}\)</span>鲁棒估计：重复<span class="arithmatex">\(N\)</span>次采样，其中<span class="arithmatex">\(N\)</span>是自适应确定的</p>
-</li>
-<li>
-<p>选择<span class="arithmatex">\(7\)</span>组对应构成的一个随机样本计算基本矩阵<span class="arithmatex">\(F，\)</span>得到一个或三个解</p>
-</li>
+<ul>
+<li>选择<span class="arithmatex">\(7\)</span>组对应构成的一个随机样本计算基本矩阵<span class="arithmatex">\(F，\)</span>得到一个或三个解</li>
 <li>对每组假设对应计算距离<span class="arithmatex">\(d_\perp\)</span></li>
 <li>计算与<span class="arithmatex">\(F\)</span>一致的内点数，即满足<span class="arithmatex">\(d_\perp&lt;t\)</span>像素的对应的数目</li>
 <li>如果<span class="arithmatex">\(F\)</span>有三个实解，计算每一个解的内点数并保留具有最多内点数的解</li>
+</ul>
+</li>
 </ol>
 <p>选择具有最多内点数的<span class="arithmatex">\(F\)</span>，在数目相等时，选择内点标准差最小的那个解</p>
 <ol>
@@ -7562,10 +7569,10 @@ JJ^T = (Fx_i)_1^2+(Fx_i)_2^2 +(F^Tx_i^\prime )_1^2 +(F^Tx_i^\prime )_2^2
 <li><span class="arithmatex">\(dim(N)=3\)</span>：两参数的解族</li>
 </ul>
 <p>发生于由一个单应相关联的<span class="arithmatex">\(n \geq 6\)</span>组完全精准的点对应<span class="arithmatex">\(x_i^\prime = Hx_i\)</span></p>
-<ul>
-<li>绕摄像机中心旋转（一种退化的运动）</li>
-<li>所有的世界点在一个平面上（一种退化的结构）</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 绕摄像机中心旋转（一种退化的运动）
+- 所有的世界点在一个平面上（一种退化的结构）
+</code></pre></div></td></tr></table></div>
 <h2 id="计算f的几何解释">计算F的几何解释<a class="headerlink" href="#计算f的几何解释" title="Permanent link">&para;</a></h2>
 <h2 id="对极线的包络">对极线的包络<a class="headerlink" href="#对极线的包络" title="Permanent link">&para;</a></h2>
 <p>如果要在第二幅图像中寻找再第一幅图中<span class="arithmatex">\(x\)</span>的匹配点，我们会在<span class="arithmatex">\(Fx\)</span>这条极线上搜索，但由于误差存在有可能不在这条直线上。下面确定对极线的包络，即<span class="arithmatex">\(x\)</span>的匹配点在<span class="arithmatex">\(Fx\)</span>的多远的范围内出现</p>
@@ -7949,27 +7956,29 @@ c &amp;d &amp; e
 ax^\prime +b y^\prime +cx+dy+e=0
 \]</div>
 <ul>
-<li>对极线</li>
-<li><span class="arithmatex">\(\pmb I^\prime = F_A\pmb x = (a,b,cx+dy+e)^T\)</span>是对应于<span class="arithmatex">\(\pmb x\)</span>的对极线</li>
 <li>
-<p><span class="arithmatex">\(\pmb I=F_A \pmb x^\prime = (c,d,ax+by+e)^T\)</span>是对应于<span class="arithmatex">\(\pmb x^\prime\)</span>的对极线</p>
+<p>对极线</p>
+<ul>
+<li><span class="arithmatex">\(\pmb I^\prime = F_A\pmb x = (a,b,cx+dy+e)^T\)</span>是对应于<span class="arithmatex">\(\pmb x\)</span>的对极线</li>
+<li><span class="arithmatex">\(\pmb I=F_A \pmb x^\prime = (c,d,ax+by+e)^T\)</span>是对应于<span class="arithmatex">\(\pmb x^\prime\)</span>的对极线</li>
+</ul>
 </li>
 <li>
 <p>对极点</p>
-</li>
+<ul>
 <li>由<span class="arithmatex">\(F_A\pmb e = 0\)</span>得<span class="arithmatex">\(\pmb e=(-d,c,0)^T\)</span></li>
-<li>
-<p>由<span class="arithmatex">\(F_A^T \pmb e^\prime =0\)</span>得<span class="arithmatex">\(\pmb e^\prime =(-b,a,0)^T\)</span></p>
+<li>由<span class="arithmatex">\(F_A^T \pmb e^\prime =0\)</span>得<span class="arithmatex">\(\pmb e^\prime =(-b,a,0)^T\)</span></li>
+</ul>
 </li>
 <li>
 <p>由摄像机矩阵<span class="arithmatex">\(P_A,P_A^\prime\)</span>计算</p>
-</li>
-<li>
-<p>一般摄像机</p>
+<ul>
+<li>一般摄像机</li>
+</ul>
 <p><span class="arithmatex">\(F_A=[e^\prime]_\times P_A^\prime P_A^+\)</span>，其中<span class="arithmatex">\(\pmb e^\prime\)</span>是$e<sup>\prime=P_A</sup>\prime C $所确定的对极点</p>
-</li>
-<li>
-<p>规范摄像机</p>
+<ul>
+<li>规范摄像机</li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -8144,7 +8153,7 @@ R= R_\rho R_\theta
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

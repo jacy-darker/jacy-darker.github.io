@@ -5492,16 +5492,17 @@ x_{k+1} = \varphi(x_k)
 <p>可产生序列<span class="arithmatex">\(\{x_k\}_{k=0}^\infty\)</span>，上述迭代式称为不动点迭代，<span class="arithmatex">\(\varphi(x)\)</span>称为迭代函数。
 - 全局收敛性
   对于方程<span class="arithmatex">\(x = \varphi(x)\)</span>，若<span class="arithmatex">\(\varphi^\prime(x)\)</span>在<span class="arithmatex">\([a,b]\)</span>上连续，且</p>
-<ul>
-<li>封闭性：<span class="arithmatex">\(x \in [a,b], \varphi(x) \in [a,b]\)</span></li>
-<li>压缩性：<span class="arithmatex">\(\exists L \in (0,1),x \in [a,b],\mid \varphi^\prime(x) \mid \leq L &lt; 1\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 封闭性：$x \in [a,b], \varphi(x) \in [a,b]$
+- 压缩性：$\exists L \in (0,1),x \in [a,b],\mid \varphi^\prime(x) \mid \leq L &lt; 1$
+</code></pre></div></td></tr></table></div>
 <p><span class="arithmatex">\(\Longrightarrow\)</span></p>
-<ul>
-<li><span class="arithmatex">\(\varphi(x)\)</span>在<span class="arithmatex">\([a,b]\)</span>上有唯一的不动点<span class="arithmatex">\(\alpha\)</span></li>
-<li><span class="arithmatex">\(\forall x_0 \in [a,b],x_{k+1} = \varphi(x_k)\)</span>收敛，且<span class="arithmatex">\(\lim_{k \rightarrow \infty} x_k =\alpha\)</span></li>
-<li>序列<span class="arithmatex">\(\{x_k\}_{k=0}^\infty\)</span>有误差估计式</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- $\varphi(x)$在$[a,b]$上有唯一的不动点$\alpha$
+- $\forall x_0 \in [a,b],x_{k+1} = \varphi(x_k)$收敛，且$\lim_{k \rightarrow \infty} x_k =\alpha$
+- 序列$\{x_k\}_{k=0}^\infty$有误差估计式
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \mid x_k - \alpha \mid \leq \cfrac{L}{1-L} \mid x_k - x_{k-1} \mid \tag{误差后验估计式}
 \]</div>
@@ -5517,18 +5518,18 @@ $$
 <p>局部收敛性
   设函数<span class="arithmatex">\(\varphi(x)\)</span>有不动点<span class="arithmatex">\(\alpha\)</span>，如果存在<span class="arithmatex">\(\alpha\)</span>的一个邻域<span class="arithmatex">\(N(\alpha) = [\alpha-\sigma,\alpha+\sigma],\sigma&gt;0\)</span>，使迭代格式<span class="arithmatex">\(x_{k+1} = \varphi(x_k)\)</span>对<span class="arithmatex">\(\forall x_0 \in N(\alpha)\)</span>均收敛，则称该迭代格式具有<strong>局部收敛性</strong>
   设函数<span class="arithmatex">\(\varphi(x)\)</span>有不动点<span class="arithmatex">\(\alpha\)</span>，<span class="arithmatex">\(\varphi^\prime(x)\)</span>在<span class="arithmatex">\(\alpha\)</span>连续，则</p>
-</li>
-<li>
-<p><span class="arithmatex">\(\mid \varphi^\prime(\alpha) \mid &lt;1 \Rightarrow\)</span>迭代格式收敛</p>
-</li>
+<ul>
+<li><span class="arithmatex">\(\mid \varphi^\prime(\alpha) \mid &lt;1 \Rightarrow\)</span>迭代格式收敛</li>
 <li><span class="arithmatex">\(\mid \varphi^\prime(\alpha) \mid &gt;1 \Rightarrow\)</span>迭代格式发散
   设序列<span class="arithmatex">\(\{x_k\}_{k=0}^\infty\)</span>收敛到<span class="arithmatex">\(\alpha\)</span>。令<span class="arithmatex">\(k\)</span>次的迭代误差<span class="arithmatex">\(e_k=x_k-\alpha,x_k \neq \alpha\)</span>。如果存在实数<span class="arithmatex">\(p\geq 1\)</span>及非零常数<span class="arithmatex">\(c&gt;0\)</span>，使得</li>
+</ul>
+</li>
 </ul>
 <div class="arithmatex">\[
   \lim_{k\rightarrow \infty}\frac{\mid e_{k+1} \mid }{\mid e_k \mid^p} = c
 \]</div>
 <p>则称序列<span class="arithmatex">\(\{x_k\}_{k=0}^\infty\)</span>为<span class="arithmatex">\(p\)</span>阶收敛
-  - 若<span class="arithmatex">\(\varphi(x)\)</span>在不动点<span class="arithmatex">\(\alpha\)</span>的领域内有<span class="arithmatex">\(p\)</span>阶连续导数，则当初值<span class="arithmatex">\(x_0\)</span>取得充分靠近<span class="arithmatex">\(\alpha\)</span>时，迭代格式<span class="arithmatex">\(x_{k+1} = \varphi(x_k)\)</span>为<span class="arithmatex">\(p\)</span>阶收敛的充要条件是</p>
+    - 若<span class="arithmatex">\(\varphi(x)\)</span>在不动点<span class="arithmatex">\(\alpha\)</span>的领域内有<span class="arithmatex">\(p\)</span>阶连续导数，则当初值<span class="arithmatex">\(x_0\)</span>取得充分靠近<span class="arithmatex">\(\alpha\)</span>时，迭代格式<span class="arithmatex">\(x_{k+1} = \varphi(x_k)\)</span>为<span class="arithmatex">\(p\)</span>阶收敛的充要条件是</p>
 <div class="arithmatex">\[
     \varphi(\alpha) = \alpha,\varphi^\prime(\alpha) = \varphi^{\prime \prime}(\alpha) = \cdots = \varphi^{(p-1)}(\alpha) = 0,\varphi^{(p)}(\alpha) \neq 0
 \]</div>
@@ -5555,9 +5556,9 @@ $$
 x_{k+1} = \psi(x_k) = \alpha \approx x_k - \frac{(x_{k+1}-x_k)^2}{x_{k+2}-2x_{k+1}+x_k} = x_k - \frac{[\varphi(x_k)-x_k]^2}{\varphi(\varphi(x_k))-2\varphi(x_k)+x_k}
 \]</div>
 <p>称其为<span class="arithmatex">\(\rm Steffensen\)</span>迭代格式
-  - <span class="arithmatex">\(\psi(\alpha) = \alpha \Rightarrow \varphi(\alpha) = \alpha\)</span>；反之<span class="arithmatex">\(\varphi(\alpha) = \alpha <span class="arithmatex">\(，且\)</span>\varphi^\prime( x )\)</span>在 <span class="arithmatex">\(\alpha\)</span>的邻域内连续，<span class="arithmatex">\(\varphi^\prime(\alpha) \neq 1\)</span>,则<span class="arithmatex">\(\psi(\alpha) = \alpha\)</span>
-  - 若<span class="arithmatex">\(\varphi(x)\)</span>在其不动点<span class="arithmatex">\(\alpha\)</span>的邻域内有二阶连续导数，且<span class="arithmatex">\(\varphi^\prime(\alpha)=A \neq 1,\neq 0\)</span>，则<span class="arithmatex">\(\rm Steffensen\)</span>迭代局部收敛
-  - 若<span class="arithmatex">\(\varphi^{\prime \prime}(\alpha) \neq 0\)</span>，则<span class="arithmatex">\(\rm Steffensen\)</span>迭代平方收敛；若<span class="arithmatex">\(\varphi^{\prime \prime}(\alpha) = 0\)</span>，则<span class="arithmatex">\(\rm Steffensen\)</span>迭代超平方收敛【可将线性收敛或不收敛的式子平方收敛】</p>
+    - <span class="arithmatex">\(\psi(\alpha) = \alpha \Rightarrow \varphi(\alpha) = \alpha\)</span>；反之<span class="arithmatex">\(\varphi(\alpha) = \alpha <span class="arithmatex">\(，且\)</span>\varphi^\prime( x )\)</span>在 <span class="arithmatex">\(\alpha\)</span>的邻域内连续，<span class="arithmatex">\(\varphi^\prime(\alpha) \neq 1\)</span>,则<span class="arithmatex">\(\psi(\alpha) = \alpha\)</span>
+    - 若<span class="arithmatex">\(\varphi(x)\)</span>在其不动点<span class="arithmatex">\(\alpha\)</span>的邻域内有二阶连续导数，且<span class="arithmatex">\(\varphi^\prime(\alpha)=A \neq 1,\neq 0\)</span>，则<span class="arithmatex">\(\rm Steffensen\)</span>迭代局部收敛
+    - 若<span class="arithmatex">\(\varphi^{\prime \prime}(\alpha) \neq 0\)</span>，则<span class="arithmatex">\(\rm Steffensen\)</span>迭代平方收敛；若<span class="arithmatex">\(\varphi^{\prime \prime}(\alpha) = 0\)</span>，则<span class="arithmatex">\(\rm Steffensen\)</span>迭代超平方收敛【可将线性收敛或不收敛的式子平方收敛】</p>
 <h2 id="newton迭代">Newton迭代<a class="headerlink" href="#newton迭代" title="Permanent link">&para;</a></h2>
 <p>为了构造二阶收敛速度的迭代格式，令<span class="arithmatex">\(\varphi(x) = x+ h(x)f(x)\)</span>，通过满足二阶收敛的条件求解设定函数。或者将原函数<span class="arithmatex">\(f(x)\)</span>进行泰勒展开，得到二阶收敛格式</p>
 <div class="arithmatex">\[
@@ -5575,13 +5576,13 @@ x_{k+1} = \psi(x_k) = \alpha \approx x_k - \frac{(x_{k+1}-x_k)^2}{x_{k+2}-2x_{k+
 <li>
 <p>全局收敛性判定<span class="arithmatex">\(\text{I}\)</span>
   给定<span class="arithmatex">\(f(x)=0\)</span>，如果<span class="arithmatex">\(f^{\prime \prime}(x) <span class="arithmatex">\(在\)</span>[a,b]\)</span>上连续，且</p>
-</li>
-<li>
-<p><span class="arithmatex">\(f(a)f(b) &lt; 0\)</span></p>
-</li>
+<ul>
+<li><span class="arithmatex">\(f(a)f(b) &lt; 0\)</span></li>
 <li><span class="arithmatex">\(\forall x\in [a,b], f^\prime(x) \neq 0,f^{\prime \prime}(x) \neq 0\)</span></li>
 <li>取<span class="arithmatex">\(x_0 \in [a,b],f(x_0) f^{\prime \prime}(x_0) &gt; 0\)</span>
   则<span class="arithmatex">\(f(x)=0\)</span>在<span class="arithmatex">\([a,b]\)</span>内有唯一的根<span class="arithmatex">\(\alpha\)</span>，且由初值<span class="arithmatex">\(x_0\)</span>按<span class="arithmatex">\(\rm Newton\)</span>迭代格式产生的序列收敛于<span class="arithmatex">\(\alpha\)</span>，并有</li>
+</ul>
+</li>
 </ul>
 <div class="arithmatex">\[
   \lim_{k \rightarrow \infty} \frac{x_{k+1} - \alpha}{(x_k-\alpha)^2} = \frac{f^{\prime \prime}(\alpha)}{2f^\prime(\alpha)}
@@ -5591,12 +5592,12 @@ x_{k+1} = \psi(x_k) = \alpha \approx x_k - \frac{(x_{k+1}-x_k)^2}{x_{k+2}-2x_{k+
 <li>
 <p>全局收敛性判定<span class="arithmatex">\(\text{II}\)</span>
   给定<span class="arithmatex">\(f(x)= 0\)</span>，如果<span class="arithmatex">\(f^{\prime \prime}(x)\)</span>在<span class="arithmatex">\([a,b]\)</span>上连续，且</p>
-</li>
-<li>
-<p><span class="arithmatex">\(f(a) f(b) &lt;0\)</span></p>
-</li>
+<ul>
+<li><span class="arithmatex">\(f(a) f(b) &lt;0\)</span></li>
 <li><span class="arithmatex">\(\forall x\in [a,b],f^\prime(x) \neq 0,f^{\prime \prime}(x) \neq 0\)</span></li>
 <li><span class="arithmatex">\(\mid\cfrac{f(a)}{f^\prime(a)} \mid \leq b-a\mid,\cfrac{f(b)}{f^\prime(b)} \mid \leq b-a\)</span></li>
+</ul>
+</li>
 </ul>
 <p>则<span class="arithmatex">\(\forall x_0 \in [a,b]\)</span>，由<span class="arithmatex">\(\text{Newton}\)</span>迭代格式产生的序列<span class="arithmatex">\(\{x_k\}_{k=0}^\infty\)</span>收敛于<span class="arithmatex">\(f(x)=0\)</span>的根<span class="arithmatex">\(\alpha\)</span></p>
 <h2 id="newton迭代的变形">Newton迭代的变形<a class="headerlink" href="#newton迭代的变形" title="Permanent link">&para;</a></h2>
@@ -5648,8 +5649,8 @@ x_{k+1}
     2. 当<span class="arithmatex">\(\mid f(x_{k+1}) \mid \geq \mid f(x_k) \mid <span class="arithmatex">\(成立，分情况执行
         a. 若\)</span>\mid f(x_{k+1}) \mid &lt; \varepsilon_f\)</span>，则取<span class="arithmatex">\(\alpha \approx x_{k+1}\)</span>，输出结果
         b. 若<span class="arithmatex">\(\mid f(x_{k+1} \mid \geq \varepsilon_f\)</span>，分情况执行
-        - 若<span class="arithmatex">\(\lambda_s&gt; \varepsilon_{\lambda_s}\)</span>，则以<span class="arithmatex">\(\cfrac{\lambda_s}{2}\)</span>代替<span class="arithmatex">\(\lambda_s\)</span>，转向<span class="arithmatex">\(3\)</span>
-        - 若<span class="arithmatex">\(\lambda_s \leq \varepsilon_{\lambda_s}\)</span>，则以<span class="arithmatex">\(x_{k+1}+\sigma\)</span>代替<span class="arithmatex">\(x_k\)</span>，<span class="arithmatex">\(k\)</span>增加<span class="arithmatex">\(1\)</span>，转向<span class="arithmatex">\(2\)</span>
+              - 若<span class="arithmatex">\(\lambda_s&gt; \varepsilon_{\lambda_s}\)</span>，则以<span class="arithmatex">\(\cfrac{\lambda_s}{2}\)</span>代替<span class="arithmatex">\(\lambda_s\)</span>，转向<span class="arithmatex">\(3\)</span>
+              - 若<span class="arithmatex">\(\lambda_s \leq \varepsilon_{\lambda_s}\)</span>，则以<span class="arithmatex">\(x_{k+1}+\sigma\)</span>代替<span class="arithmatex">\(x_k\)</span>，<span class="arithmatex">\(k\)</span>增加<span class="arithmatex">\(1\)</span>，转向<span class="arithmatex">\(2\)</span>
 6. 已迭代<span class="arithmatex">\(N\)</span>次，仍未达到要求，下山失败，此时需重新另选初值<span class="arithmatex">\(x_0\)</span>，再转向<span class="arithmatex">\(2\)</span>后开始新的计算</p>
 <h3 id="弦割法">弦割法<a class="headerlink" href="#弦割法" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
@@ -5752,7 +5753,7 @@ x_{k+1}
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

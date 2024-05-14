@@ -5696,7 +5696,7 @@
 </li>
 <li>
 <p>有<span class="arithmatex">\(\sum_{k=0}^{+\infty}\pmb A^{(k)},\sum_{k=0}^{+\infty}\pmb B^{(k)}\)</span></p>
-</li>
+<ul>
 <li>
 <p><span class="arithmatex">\(\sum_{k=0}^{+\infty}(\pmb A^{(k)} + \pmb B^{(k)}) = \pmb A + \pmb B\)</span></p>
 </li>
@@ -5710,12 +5710,13 @@
 <p>若矩阵级数<span class="arithmatex">\(\sum_{k=0}^{+\infty} \pmb A^{(k)}\)</span>收敛（或绝对收敛），则矩阵级数<span class="arithmatex">\(\sum_{k=0}^{+\infty} \pmb P \pmb A^{(k)} \pmb Q\)</span>也收敛（或绝对收敛），并且有</p>
 </li>
 </ul>
+</li>
+</ul>
 <div class="arithmatex">\[
     \sum_{k=0}^{+\infty} \pmb P \pmb A^{(k)} \pmb Q = \pmb P  \bigg(\sum_{k=0}^{+\infty} \pmb A^{(k)} \bigg) \pmb Q
 \]</div>
-<ul>
-<li>若<span class="arithmatex">\(\sum_{k=0}^{+\infty} \pmb A^{(k)},\sum_{k=0}^{+\infty} \pmb B^{(k)}\)</span>均绝对收敛，则它们按项相乘所得的矩阵级数</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 若$\sum_{k=0}^{+\infty} \pmb A^{(k)},\sum_{k=0}^{+\infty} \pmb B^{(k)}$均绝对收敛，则它们按项相乘所得的矩阵级数
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \pmb A^{(0)} \pmb B^{(0)} + (\pmb A^{(0)} \pmb B^{(1)} + \pmb A^{(1)} \pmb B^{(0)}  ) + \cdots + (\pmb A^{(0)} \pmb B^{(k)}  + \pmb A^{(1)} \pmb B^{(k-1)}  + \cdots + \pmb A^{(k)} \pmb B^{(0)} ) + \cdots
 \]</div>
@@ -5786,12 +5787,14 @@ f(\pmb A) = \sum_{k=0}^{+\infty} a_k \pmb A^k
 <ul>
 <li>
 <p>待定系数法</p>
-</li>
+<ul>
 <li>
 <p>求矩阵<span class="arithmatex">\(\pmb A\)</span>的特征多项式（最高项为<span class="arithmatex">\(n\)</span>）（<strong>如果得到最小多项式则更简单</strong>）</p>
 </li>
 <li>
 <p>设<span class="arithmatex">\(r(\lambda) = b_{n-1}\lambda^{n-1}+ \cdots + b_{1}\lambda + b_0\)</span>，根据</p>
+</li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -5802,9 +5805,8 @@ f(\pmb A) = \sum_{k=0}^{+\infty} a_k \pmb A^k
     r^{(l)}(\lambda_i) = f^{(l)}(\lambda t)\mid_{\lambda = \lambda_i}
 \]</div>
 <p>列方程组求解<span class="arithmatex">\(b_0,b_1,\cdots,b_{n-1}\)</span></p>
-<ul>
-<li>计算<span class="arithmatex">\(f(\pmb At) = r(A) = b_{n-1}\pmb A^{n-1}+ \cdots + b_{1}\pmb A + b_0 \pmb I\)</span></li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 计算$f(\pmb At) = r(A) = b_{n-1}\pmb A^{n-1}+ \cdots + b_{1}\pmb A + b_0 \pmb I$
+</code></pre></div></td></tr></table></div>
 <h3 id="性质">性质<a class="headerlink" href="#性质" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(\sin(\pmb A) = -\sin \pmb A,\cos (-\pmb A) = \cos \pmb A\)</span></li>
@@ -6049,7 +6051,7 @@ A^TAx = A^Tb \tag{法方程组}
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

@@ -5444,11 +5444,13 @@
 </ol>
 <h3 id="要素">要素<a class="headerlink" href="#要素" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>最优子结构</strong>：当问题的最优解包含其子问题的最优解时，称该问题具有最优子结构性质。</li>
+<li>
+<p><strong>最优子结构</strong>：当问题的最优解包含其子问题的最优解时，称该问题具有最优子结构性质。</p>
+<ul>
 <li>考察最优子结构时，先假设规模<code>k</code>的子问题已经达到了最优解</li>
 <li>接着在下一步做出一个选择，考虑如何达到<code>k+1</code>步的最优解，借此得到的策略就是状态转移方程</li>
-<li>
-<p>证明一个问题是否具有最优子结构，需要用到反证法。如果一个问题的的最优解不包含子问题的最优解，那么用子问题的最优解替换之前的非最优解，如果总问题仍然最优，则说明有最优子结构</p>
+<li>证明一个问题是否具有最优子结构，需要用到反证法。如果一个问题的的最优解不包含子问题的最优解，那么用子问题的最优解替换之前的非最优解，如果总问题仍然最优，则说明有最优子结构</li>
+</ul>
 </li>
 <li>
 <p><strong>子问题重叠</strong>：当用递归算法自顶向下求解此问题时，每次产生的子问题并不总是新问题，有些子问题被反复计算。</p>
@@ -5564,7 +5566,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

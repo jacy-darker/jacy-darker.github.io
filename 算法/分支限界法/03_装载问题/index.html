@@ -5393,7 +5393,7 @@
 <p>将第一艘轮船尽可能装满等价于选取全体集装箱的一个子集，使该子集中集装箱重量之和最接近第一艘轮船。由此可知，装载问题等价于特殊的0-1背包问题</p>
 <ul>
 <li>算法思想：问题的解空间为子集树，搜索空间为<span class="arithmatex">\(2^n\)</span>,n为物品的数量。需要记录树的层次，可以每处理完一层让-1入队，来识别层数</li>
-<li>算法设计：</li>
+<li>算法设计：<ul>
 <li>每个活结点要记录的信息<ul>
 <li>当前载重量</li>
 <li>父节点</li>
@@ -5402,6 +5402,8 @@
 </li>
 <li>统一记录<ul>
 <li>当前层数</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>令<span class="arithmatex">\(UB=cw+r\)</span>，如果<span class="arithmatex">\(UB \leq bestw\)</span>时可将节点剪去</li>
@@ -5482,7 +5484,7 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>改进：优先队列</li>
+<li>改进：优先队列<ul>
 <li>将活结点组织成一个优先队列，并按优先队列中规定的节点的优先级对节点扩展</li>
 <li>节点的优先级可以通过节点的上界来定</li>
 <li>数据结构<ul>
@@ -5490,6 +5492,8 @@
 <li>层(level信息),根节点<span class="arithmatex">\(level=1\)</span></li>
 <li>用r[]来记录各层的最大剩余重量</li>
 <li>节点的优先级用<span class="arithmatex">\(uWeight = UB(v) = cw+r[level]\)</span></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -5674,7 +5678,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

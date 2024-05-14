@@ -5367,11 +5367,13 @@
 </ul>
 <h2 id="相关概念">相关概念<a class="headerlink" href="#相关概念" title="Permanent link">&para;</a></h2>
 <ul>
-<li>常见的两种分支搜索法：</li>
+<li>常见的两种分支搜索法：<ul>
 <li>队列式搜索法(FIFO):按照队列先进先出原则选取下一个结点为扩展结点</li>
 <li>优先队列式搜索法：按照优先队列中规定的优先级选取优先级最高的节点成为当前扩展节点<ul>
 <li>最大堆（最大优先队列）：最大效益优先</li>
 <li>最小堆（最下优先队列）：最小耗费优先</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>节点v上界( UB(v) ):从v出发得到的所有叶子节点的效益值均不大于UB(v),则UB(v)为节点v的上界。如果所有叶子节点的最大效益值等于UB(v)，则UB(v)为节点v的上确界</li>
@@ -5419,10 +5421,12 @@
 </code></pre></div></td></tr></table></div>
 <h2 id="设计要素">设计要素<a class="headerlink" href="#设计要素" title="Permanent link">&para;</a></h2>
 <ul>
-<li>针对问题定义解空间</li>
+<li>针对问题定义解空间<ul>
 <li>问题解向量</li>
 <li>解向量分量取值集合</li>
 <li>构造解空间树</li>
+</ul>
+</li>
 <li>判断问题是否满足多米诺性质</li>
 <li>确定减值函数与界函数</li>
 </ul>
@@ -5443,7 +5447,7 @@
 <p>将第一艘轮船尽可能装满等价于选取全体集装箱的一个子集，使该子集中集装箱重量之和最接近第一艘轮船。由此可知，装载问题等价于特殊的0-1背包问题</p>
 <ul>
 <li>算法思想：问题的解空间为子集树，搜索空间为<span class="arithmatex">\(2^n\)</span>,n为物品的数量。需要记录树的层次，可以每处理完一层让-1入队，来识别层数</li>
-<li>算法设计：</li>
+<li>算法设计：<ul>
 <li>每个活结点要记录的信息<ul>
 <li>当前载重量</li>
 <li>父节点</li>
@@ -5452,6 +5456,8 @@
 </li>
 <li>统一记录<ul>
 <li>当前层数</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>令<span class="arithmatex">\(UB=cw+r\)</span>，如果<span class="arithmatex">\(UB \leq bestw\)</span>时可将节点剪去</li>
@@ -5532,7 +5538,7 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>改进：优先队列</li>
+<li>改进：优先队列<ul>
 <li>将活结点组织成一个优先队列，并按优先队列中规定的节点的优先级对节点扩展</li>
 <li>节点的优先级可以通过节点的上界来定</li>
 <li>数据结构<ul>
@@ -5540,6 +5546,8 @@
 <li>层(level信息),根节点<span class="arithmatex">\(level=1\)</span></li>
 <li>用r[]来记录各层的最大剩余重量</li>
 <li>节点的优先级用<span class="arithmatex">\(uWeight = UB(v) = cw+r[level]\)</span></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -5697,7 +5705,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

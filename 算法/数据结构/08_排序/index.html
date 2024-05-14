@@ -6021,10 +6021,12 @@
 </li>
 <li>
 <p>构造初始堆：</p>
-</li>
+<ul>
 <li><span class="arithmatex">\(n\)</span>个结点的完全二叉树，最后一个结点是第<span class="arithmatex">\(\lfloor n/2 \rfloor\)</span>个结点的孩子。对第<span class="arithmatex">\(\lfloor n/2 \rfloor\)</span>个结点为根的子树筛选（对于的大根堆，若根结点的关键字小于左右孩子中关键字较大者，则交换），使该子树成为堆。</li>
 <li>之后向前依次对各节点<span class="arithmatex">\(\lfloor n/2 \rfloor-1 \sim 1\)</span>为根的子树进行筛选，看该结点值是否大于其左右子节点的值，不大于的话进行交换</li>
 <li>交换后可能会破坏下一级的堆，使用上述办法继续构造下一级的堆，直到以根结点形成堆为止</li>
+</ul>
+</li>
 <li>输出堆顶元素，重新构建堆，重复这一过程</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -6088,11 +6090,13 @@
 <p>有<strong>最大优先队列</strong>和<strong>最小优先队列</strong>。最大优先队列的应用：在共享计算机系统的作业调度，用于记录将要执行的各个作业以及他们的优先级；最小优先队列的应用：用于基于事件驱动的模拟器。</p>
 </li>
 <li>在用堆来实现优先队列时，需要在堆中的每个元素里存储对应对象的<strong>句柄</strong><code>handle</code>。句柄的准确含义依赖于具体的应用程序。</li>
-<li>操作</li>
+<li>操作<ul>
 <li><code>Insert(S,x)</code>：把元素<code>x</code>插入集合S中</li>
 <li><code>Maxmum(S)</code>：返回<code>S</code>中具有最大键字的元素</li>
 <li><code>Extract-max(S)</code>：去掉并返回<code>S</code>中具有最大键字的元素</li>
 <li><code>Increase-key(S,x,k)</code>：将元素<code>x</code>的关键字增加到<code>k</code>，这里假设<code>k</code>的值不小于<code>x</code>的原关键字            </li>
+</ul>
+</li>
 </ul>
 <h2 id="归并排序和基数排序">归并排序和基数排序<a class="headerlink" href="#归并排序和基数排序" title="Permanent link">&para;</a></h2>
 <h3 id="归并排序">归并排序<a class="headerlink" href="#归并排序" title="Permanent link">&para;</a></h3>
@@ -6318,11 +6322,13 @@
 </li>
 <li>
 <p>败者树</p>
-</li>
+<ul>
 <li>k个叶结点分别存放k个归并段在归并过程中当前参加比较的记录</li>
 <li>内存结点用来记忆左右子树中的失败者，而让胜者往上继续比较，一直到根结点</li>
 <li>根结点记录胜者</li>
 <li>叶结点进行编号<span class="arithmatex">\(b0 \sim bk\)</span>,内存结点编号<span class="arithmatex">\(ls[0] \sim ls[k]\)</span>,<span class="arithmatex">\(ls[0]\)</span>为根结点</li>
+</ul>
+</li>
 </ul>
 <h3 id="置换-选择排序生成初始归并段">置换-选择排序（生成初始归并段）<a class="headerlink" href="#置换-选择排序生成初始归并段" title="Permanent link">&para;</a></h3>
 <p>初始待排文件<code>FI</code>,初始归并段输出文件为<code>FO</code>,内存工作区为<code>WA</code>,<code>FO</code>与<code>WA</code>的初始状态为空，<code>WA</code>可容纳<span class="arithmatex">\(w\)</span>个记录</p>
@@ -6434,7 +6440,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

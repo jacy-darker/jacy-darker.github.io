@@ -5400,9 +5400,11 @@
 <ul>
 <li>无向树的理解，根不一定有出度</li>
 <li>将图转换为树结构</li>
-<li>正反则难，计算最少损失数</li>
+<li>正反则难，计算最少损失数<ul>
 <li>如果一个放弃一个节点，则他的孙子都可以不放弃</li>
 <li>否则，需要放弃所有子结点的放弃数之和</li>
+</ul>
+</li>
 </ul>
 <h2 id="代码">代码<a class="headerlink" href="#代码" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -5548,7 +5550,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

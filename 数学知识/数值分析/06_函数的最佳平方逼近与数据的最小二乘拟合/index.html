@@ -5449,23 +5449,24 @@
 <ul>
 <li>
 <p>内积空间：设<span class="arithmatex">\(V\)</span>是线性空间，定义在<span class="arithmatex">\(V\)</span>上的"二元"实值函数<span class="arithmatex">\((\cdot,\cdot)\)</span>，如果满足</p>
-</li>
-<li>
-<p>正定性：<span class="arithmatex">\((f,f) \geq 0,\ \&amp; (f,f)=0 \iff f=0\)</span></p>
-</li>
+<ul>
+<li>正定性：<span class="arithmatex">\((f,f) \geq 0,\ \&amp; (f,f)=0 \iff f=0\)</span></li>
 <li>对称性：<span class="arithmatex">\((f,g) = (g,f)\)</span></li>
 <li>线性性：<span class="arithmatex">\((rf,g) = r(f,g),(f+g,h) = (f,h)+(g,h)\)</span></li>
+</ul>
+</li>
 </ul>
 <p>称<span class="arithmatex">\((\cdot,\cdot)\)</span>是线性空间<span class="arithmatex">\(V\)</span>上的内积，称线性空间<span class="arithmatex">\(V\)</span>为内积空间</p>
 <ul>
 <li>权函数</li>
 </ul>
 <p>如果函数<span class="arithmatex">\(\rho(x)\)</span>满足</p>
-<ul>
-<li><span class="arithmatex">\(\rho(x) \geq 0,x \in [a,b]\)</span></li>
-<li><span class="arithmatex">\(\int_a^b \rho(x) dx &gt; 0\)</span></li>
-<li><span class="arithmatex">\(\int_a^b x^k\rho(x) dx\)</span>存在</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- $\rho(x) \geq 0,x \in [a,b]$
+- $\int_a^b \rho(x) dx &gt; 0$
+- $\int_a^b x^k\rho(x) dx$存在
+</code></pre></div></td></tr></table></div>
 <p>则称<span class="arithmatex">\(\rho(x)\)</span>是<span class="arithmatex">\([a,b]\)</span>上的权函数，称<span class="arithmatex">\((f,g)_p=\int_a^b \rho(x)f(x)g(x)dx\)</span>为加权内积</p>
 <ul>
 <li><span class="arithmatex">\(\text{Gram}\)</span>矩阵</li>
@@ -5495,7 +5496,7 @@
 </li>
 <li>
 <p>正交多项式系的性质</p>
-</li>
+<ul>
 <li>
 <p>正交多项式系为线性无关系</p>
 </li>
@@ -5507,6 +5508,8 @@
 </li>
 <li>
 <p>正交多项式系相邻三项之间有关系</p>
+</li>
+</ul>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -5694,7 +5697,7 @@ G \pmb c^*= \begin{bmatrix}
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

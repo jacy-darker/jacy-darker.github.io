@@ -5612,7 +5612,7 @@
 <ul>
 <li>
 <p>向量的长度具有以下性质：</p>
-</li>
+<ul>
 <li>
 <p>非负性：<span class="arithmatex">\(\pmb x \neq 0 \Rightarrow\parallel\pmb x \parallel_2&gt;0,\pmb x = 0 \Rightarrow \parallel \pmb x \parallel _2=0\)</span></p>
 </li>
@@ -5621,6 +5621,8 @@
 </li>
 <li>
 <p>三角不等式：<span class="arithmatex">\(\parallel \pmb x + \pmb y \parallel _2 \leq  \parallel \pmb x \parallel _2 +  \parallel \pmb y \parallel _2\)</span></p>
+</li>
+</ul>
 </li>
 <li>
 <p>当<span class="arithmatex">\(\parallel  \pmb x  \parallel _2=1\)</span>时，称<span class="arithmatex">\(\pmb x\)</span>为<strong>单位向量</strong>，当<span class="arithmatex">\(\pmb x\neq0\)</span>时，<span class="arithmatex">\(\frac{\pmb x}{ \parallel \pmb x \parallel _2}\)</span>是单位向量，称之为将向量<span class="arithmatex">\(\pmb x\)</span><strong>单位化</strong>或<strong>规范化</strong>，当<span class="arithmatex">\((\pmb x,\pmb y)=0\)</span>时，称向量<span class="arithmatex">\(\pmb x\)</span>与<span class="arithmatex">\(\pmb y\)</span><strong>正交</strong></p>
@@ -5631,11 +5633,13 @@
 </li>
 <li>
 <p><strong>酉矩阵</strong>：<span class="arithmatex">\(\pmb A^H \pmb A = \pmb I \iff \pmb A^{-1} = \pmb A^H\)</span></p>
-</li>
+<ul>
 <li><span class="arithmatex">\(\pmb A\)</span>是酉矩阵<span class="arithmatex">\(\Rightarrow \pmb A^{-1}\)</span>也是酉矩阵</li>
 <li><span class="arithmatex">\(\pmb A,\pmb B\)</span>是酉矩阵<span class="arithmatex">\(\Rightarrow \pmb {AB}\)</span>也是酉矩阵</li>
 <li><span class="arithmatex">\(\pmb A\)</span>是酉矩阵<span class="arithmatex">\(\Rightarrow \mid \det \pmb A\mid  = 1\)</span></li>
 <li><span class="arithmatex">\(\pmb A\)</span>是酉矩阵<span class="arithmatex">\(\iff\)</span>它的<span class="arithmatex">\(n\)</span>个列向量是两两正交的单位向量</li>
+</ul>
+</li>
 </ul>
 <h2 id="酉相似下的标准形">酉相似下的标准形<a class="headerlink" href="#酉相似下的标准形" title="Permanent link">&para;</a></h2>
 <p>设<span class="arithmatex">\(\pmb A \in \pmb C^{n \times n}\)</span>，则<span class="arithmatex">\(\pmb A\)</span>可<strong>酉相似</strong>于上三角矩阵<span class="arithmatex">\(\pmb T\)</span>，即存在<span class="arithmatex">\(n\)</span>阶酉矩阵<span class="arithmatex">\(\pmb U\)</span>，使得</p>
@@ -5650,12 +5654,10 @@
 <li>实对称矩阵的特征值均为实数，实反对称矩阵的特征值为零或纯虚数</li>
 <li>设<span class="arithmatex">\(\pmb A\)</span>是正规矩阵，<span class="arithmatex">\(\lambda\)</span>是<span class="arithmatex">\(\pmb A\)</span>的特征值，<span class="arithmatex">\(\pmb x\)</span>是对应<span class="arithmatex">\(\lambda\)</span>的特征向量，则<span class="arithmatex">\(\overline \lambda\)</span>是<span class="arithmatex">\(\pmb A^H\)</span>的特征值，对应<span class="arithmatex">\(\overline{\lambda}\)</span>的特征向量仍为<span class="arithmatex">\(\pmb x\)</span></li>
 <li>设<span class="arithmatex">\(\pmb A\)</span>是正规矩阵，<span class="arithmatex">\(\lambda,\mu\)</span>是<span class="arithmatex">\(\pmb A\)</span>的特征值，<span class="arithmatex">\(\pmb x,\pmb y\)</span>是对应的特征向量，如果<span class="arithmatex">\(\lambda \neq \mu\)</span>，则<span class="arithmatex">\(\pmb x\)</span>与<span class="arithmatex">\(\pmb y\)</span>正交。</li>
-<li><span class="arithmatex">\(n\)</span>阶正规矩阵<span class="arithmatex">\(\pmb A\)</span>酉相似于对角矩阵的具体步骤<ul>
-<li>求出<span class="arithmatex">\(\pmb A\)</span>的全部特征值，设<span class="arithmatex">\(\lambda_1,\lambda_2,\cdots,\lambda_s\)</span>是<span class="arithmatex">\(\pmb A\)</span>的互不相同的特征值，其重数分别为<span class="arithmatex">\(r_1,r_2,\cdots,r_s,r_1+r_2+\cdots+r_s=n\)</span></li>
-<li>对于特征值<span class="arithmatex">\(\lambda_i\)</span>，求出对应的<span class="arithmatex">\(r_i\)</span>个线性无关的特征向量<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span></li>
-<li>用<span class="arithmatex">\(\rm Schmidt\)</span>正交化方法将<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span>正交化，再单位化得<span class="arithmatex">\(\pmb u_{i1},\pmb u_{i2},\cdots,\pmb u_{i{r_i}}\)</span>,则酉矩阵</li>
-</ul>
-</li>
+<li><span class="arithmatex">\(n\)</span>阶正规矩阵<span class="arithmatex">\(\pmb A\)</span>酉相似于对角矩阵的具体步骤
+          -  求出<span class="arithmatex">\(\pmb A\)</span>的全部特征值，设<span class="arithmatex">\(\lambda_1,\lambda_2,\cdots,\lambda_s\)</span>是<span class="arithmatex">\(\pmb A\)</span>的互不相同的特征值，其重数分别为<span class="arithmatex">\(r_1,r_2,\cdots,r_s,r_1+r_2+\cdots+r_s=n\)</span>
+          -  对于特征值<span class="arithmatex">\(\lambda_i\)</span>，求出对应的<span class="arithmatex">\(r_i\)</span>个线性无关的特征向量<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span>
+          -  用<span class="arithmatex">\(\rm Schmidt\)</span>正交化方法将<span class="arithmatex">\(\pmb p_{i1},\pmb p_{i2},\cdots,\pmb p_{i{r_i}}\)</span>正交化，再单位化得<span class="arithmatex">\(\pmb u_{i1},\pmb u_{i2},\cdots,\pmb u_{i{r_i}}\)</span>,则酉矩阵</li>
 </ul>
 <div class="arithmatex">\[
        \pmb U = (\pmb u_{11},\cdots,\pmb u_{1r_{1}},\pmb u_{21},\cdots,\pmb u_{2r_{2}},\cdots,\pmb u_{s1},\cdots,\pmb u_{sr_{s}})
@@ -5672,21 +5674,19 @@
 \]</div>
 <p>则称<span class="arithmatex">\(\pmb A\)</span>是<span class="arithmatex">\(\rm Hermite\)</span>正定矩阵（半正定矩阵）
 设<span class="arithmatex">\(\pmb A\)</span>是<span class="arithmatex">\(\rm Hermite\)</span>矩阵，则下列条件等价</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- $\pmb A$是$\rm Hermite$正定矩阵(半正定矩阵)
+- $\pmb A$的特征值全为正实数（非负实数）
+- 存在可逆矩阵（矩阵）$\pmb P \in \pmb C^{n\times n}_n$,使得$\pmb A = \pmb P^H \pmb P$
+- $n$个顺序主子式全为正$\Delta_k = det A_k \geq 0$（对半正定矩阵不成立）
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><span class="arithmatex">\(\pmb A\)</span>是<span class="arithmatex">\(\rm Hermite\)</span>正定矩阵(半正定矩阵)</li>
-<li><span class="arithmatex">\(\pmb A\)</span>的特征值全为正实数（非负实数）</li>
-<li>存在可逆矩阵（矩阵）<span class="arithmatex">\(\pmb P \in \pmb C^{n\times n}_n\)</span>,使得<span class="arithmatex">\(\pmb A = \pmb P^H \pmb P\)</span></li>
-<li>
-<p><span class="arithmatex">\(n\)</span>个顺序主子式全为正<span class="arithmatex">\(\Delta_k = det A_k \geq 0\)</span>（对半正定矩阵不成立）</p>
-</li>
-<li>
-<p>设<span class="arithmatex">\(\pmb A \in \pmb C^{n \times n}\)</span></p>
-<ul>
-<li><span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的特征值全为非负实数</li>
-<li><span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的非零特征值相同</li>
-<li><span class="arithmatex">\(rank(\pmb A^H \pmb A) = rank(\pmb A \pmb A^H) = rank(\pmb A)\)</span></li>
-</ul>
-</li>
+<li>设<span class="arithmatex">\(\pmb A \in \pmb C^{n \times n}\)</span>
+          - <span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的特征值全为非负实数
+          - <span class="arithmatex">\(\pmb A^H \pmb A\)</span>和<span class="arithmatex">\(\pmb A \pmb A^H\)</span>的非零特征值相同
+          - <span class="arithmatex">\(rank(\pmb A^H \pmb A) = rank(\pmb A \pmb A^H) = rank(\pmb A)\)</span></li>
 </ul>
 
 
@@ -5781,7 +5781,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

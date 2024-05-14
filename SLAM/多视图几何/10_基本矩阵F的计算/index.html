@@ -5823,9 +5823,11 @@ A \pmb f = 0
 <h5 id="算法">算法<a class="headerlink" href="#算法" title="Permanent link">&para;</a></h5>
 <ol>
 <li>归一化：根据<span class="arithmatex">\(\hat x_i=Tx_i\)</span>和<span class="arithmatex">\(\hat x_i^\prime = T^\prime x_i^\prime <span class="arithmatex">\(变换图像坐标。其中\)</span>T,T^\prime\)</span>是由平移和缩放组成的归一化变换</li>
-<li>按如下方法寻求对应于匹配<span class="arithmatex">\(\hat x_i \leftrightarrow \hat x_i^\prime\)</span>的基本矩阵<span class="arithmatex">\(\hat F^\prime\)</span></li>
+<li>按如下方法寻求对应于匹配<span class="arithmatex">\(\hat x_i \leftrightarrow \hat x_i^\prime\)</span>的基本矩阵<span class="arithmatex">\(\hat F^\prime\)</span><ul>
 <li>线性解：由<span class="arithmatex">\(\hat A\)</span>的对应最小奇异值的奇异向量确定<span class="arithmatex">\(\hat F\)</span>，其中<span class="arithmatex">\(\hat A\)</span>由匹配<span class="arithmatex">\(\hat x_i \leftrightarrow \hat x_i^\prime\)</span>形成</li>
 <li>强迫约束：用SVD并以<span class="arithmatex">\(\hat F^\prime <span class="arithmatex">\(代替\)</span>\hat F\)</span>使得<span class="arithmatex">\(\det \hat F^\prime =0\)</span></li>
+</ul>
+</li>
 <li>解除归一化：令<span class="arithmatex">\(F=T^{\prime T}\hat F^{\prime }T\)</span></li>
 </ol>
 <h2 id="代数最小化算法">代数最小化算法<a class="headerlink" href="#代数最小化算法" title="Permanent link">&para;</a></h2>
@@ -5862,10 +5864,12 @@ E=\begin{bmatrix}
 <h5 id="算法_2">算法<a class="headerlink" href="#算法_2" title="Permanent link">&para;</a></h5>
 <ol>
 <li>用线性算法来计算<span class="arithmatex">\(\hat F\)</span>的一个秩为<span class="arithmatex">\(2\)</span>的初始估计</li>
-<li>计算辅助变量<span class="arithmatex">\(\{\hat x_i,\hat x_i^\prime\}\)</span>的初始估计如下：</li>
+<li>计算辅助变量<span class="arithmatex">\(\{\hat x_i,\hat x_i^\prime\}\)</span>的初始估计如下：<ul>
 <li>选择摄像机矩阵<span class="arithmatex">\(P=[I \mid 0],P^\prime=[[e^\prime]_\times \hat F \mid e^\prime]\)</span>，其中<span class="arithmatex">\(e^\prime\)</span>由<span class="arithmatex">\(\hat F\)</span>得到</li>
 <li>用三角测量法，由对应点<span class="arithmatex">\(x_i \leftrightarrow x_i^\prime\)</span>和<span class="arithmatex">\(\hat F\)</span>确定<span class="arithmatex">\(\hat X_i\)</span>的一个估计</li>
 <li>与<span class="arithmatex">\(\hat F\)</span>相容的对应是<span class="arithmatex">\(\hat x_i=  P\hat X_i,\hat x_i^\prime =P^\prime \hat X_i\)</span></li>
+</ul>
+</li>
 <li>在<span class="arithmatex">\(\hat F\)</span>和<span class="arithmatex">\(\hat X_i\)</span>上，使用LM最小化上述代价函数，它有<span class="arithmatex">\(3n+12\)</span>个变量：<span class="arithmatex">\(3n\)</span>来自于<span class="arithmatex">\(n\)</span>个<span class="arithmatex">\(3D\)</span>点<span class="arithmatex">\(\hat X_i\)</span>，<span class="arithmatex">\(12\)</span>个来自于摄像机矩阵<span class="arithmatex">\(P^\prime = [M \mid t]\)</span>，同时<span class="arithmatex">\(\hat F = [t]_\times M\)</span>且<span class="arithmatex">\(\hat x_i = P\hat X_i,\hat x_i^\prime = P^\prime \hat X_i\)</span></li>
 </ol>
 <h3 id="秩2矩阵的参数化">秩2矩阵的参数化<a class="headerlink" href="#秩2矩阵的参数化" title="Permanent link">&para;</a></h3>
@@ -5913,13 +5917,13 @@ JJ^T = (Fx_i)_1^2+(Fx_i)_2^2 +(F^Tx_i^\prime )_1^2 +(F^Tx_i^\prime )_2^2
 </li>
 <li>
 <p><span class="arithmatex">\(\text{RANSCA}\)</span>鲁棒估计：重复<span class="arithmatex">\(N\)</span>次采样，其中<span class="arithmatex">\(N\)</span>是自适应确定的</p>
-</li>
-<li>
-<p>选择<span class="arithmatex">\(7\)</span>组对应构成的一个随机样本计算基本矩阵<span class="arithmatex">\(F，\)</span>得到一个或三个解</p>
-</li>
+<ul>
+<li>选择<span class="arithmatex">\(7\)</span>组对应构成的一个随机样本计算基本矩阵<span class="arithmatex">\(F，\)</span>得到一个或三个解</li>
 <li>对每组假设对应计算距离<span class="arithmatex">\(d_\perp\)</span></li>
 <li>计算与<span class="arithmatex">\(F\)</span>一致的内点数，即满足<span class="arithmatex">\(d_\perp&lt;t\)</span>像素的对应的数目</li>
 <li>如果<span class="arithmatex">\(F\)</span>有三个实解，计算每一个解的内点数并保留具有最多内点数的解</li>
+</ul>
+</li>
 </ol>
 <p>选择具有最多内点数的<span class="arithmatex">\(F\)</span>，在数目相等时，选择内点标准差最小的那个解</p>
 <ol>
@@ -5962,10 +5966,10 @@ JJ^T = (Fx_i)_1^2+(Fx_i)_2^2 +(F^Tx_i^\prime )_1^2 +(F^Tx_i^\prime )_2^2
 <li><span class="arithmatex">\(dim(N)=3\)</span>：两参数的解族</li>
 </ul>
 <p>发生于由一个单应相关联的<span class="arithmatex">\(n \geq 6\)</span>组完全精准的点对应<span class="arithmatex">\(x_i^\prime = Hx_i\)</span></p>
-<ul>
-<li>绕摄像机中心旋转（一种退化的运动）</li>
-<li>所有的世界点在一个平面上（一种退化的结构）</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- 绕摄像机中心旋转（一种退化的运动）
+- 所有的世界点在一个平面上（一种退化的结构）
+</code></pre></div></td></tr></table></div>
 <h2 id="计算f的几何解释">计算F的几何解释<a class="headerlink" href="#计算f的几何解释" title="Permanent link">&para;</a></h2>
 <h2 id="对极线的包络">对极线的包络<a class="headerlink" href="#对极线的包络" title="Permanent link">&para;</a></h2>
 <p>如果要在第二幅图像中寻找再第一幅图中<span class="arithmatex">\(x\)</span>的匹配点，我们会在<span class="arithmatex">\(Fx\)</span>这条极线上搜索，但由于误差存在有可能不在这条直线上。下面确定对极线的包络，即<span class="arithmatex">\(x\)</span>的匹配点在<span class="arithmatex">\(Fx\)</span>的多远的范围内出现</p>
@@ -6123,7 +6127,7 @@ a &amp; b &amp; c \\
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

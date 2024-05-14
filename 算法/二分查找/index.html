@@ -5540,9 +5540,11 @@
 <p>符合下列属性的数组 <code>arr</code> 称为 <strong>山脉数组</strong> ：</p>
 <ul>
 <li><code>arr.length &gt;= 3</code></li>
-<li>存在<code>i</code>使得：</li>
+<li>存在<code>i</code>使得：<ul>
 <li><code>arr[0] &lt; arr[1] &lt; ... arr[i-1] &lt; arr[i]</code></li>
 <li><code>arr[i] &gt; arr[i+1] &gt; ... &gt; arr[arr.length - 1]</code></li>
+</ul>
+</li>
 </ul>
 <p>给你由整数组成的山脉数组 <code>arr</code> ，返回满足 <code>arr[0] &lt; arr[1] &lt; ... arr[i - 1] &lt; arr[i] &gt; arr[i + 1] &gt; ... &gt; arr[arr.length - 1]</code>的下标 <code>i</code> 。</p>
 <p>你必须设计并实现时间复杂度为 <code>O(log(n))</code> 的解决方案。</p>
@@ -5937,7 +5939,7 @@ int peakIndexInMountainArray(vector&lt;int&gt;&amp; arr) {
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

@@ -5615,11 +5615,11 @@ y = \frac{1}{1+e^{-(w^Tx+b)}} \Rightarrow  \ln \frac{y}{1-y} = w^Tx+b
 - 当前属性集为空，或是所有样本在所有属性上取值相同，无法划分，将其标记为叶结点，类别设定为该结点所含样本最多的类别
 - 当前结点包含的样本集为空，将其标记为叶结点，但是将其类别设定为其父结点所含样本最多的类别
 - 其他情况的话，从<span class="arithmatex">\(A\)</span>中选择最优划分属性<span class="arithmatex">\(a_*\)</span>
-    - 假定属性<span class="arithmatex">\(a_*\)</span>有<span class="arithmatex">\(V\)</span>个可能的取值<span class="arithmatex">\(\{a_*^1,a_*^2,\cdots,a_*^V\}\)</span>
-    - 令<span class="arithmatex">\(D_v\)</span>表示<span class="arithmatex">\(D\)</span>中在<span class="arithmatex">\(a_*\)</span>上取值为<span class="arithmatex">\(a_*^v\)</span>的样本子集
-    - 为每个<span class="arithmatex">\(a_*^v\)</span>执行以下操作
-    - 如果<span class="arithmatex">\(D_v\)</span>为空，将分支结点标记为叶结点，其类别标记为<span class="arithmatex">\(D\)</span>中样本最多的类
-    - 否则，以<span class="arithmatex">\(TreeGenerate(D_v,A \mid\{a_*\})\)</span>为分支结点</p>
+          - 假定属性<span class="arithmatex">\(a_*\)</span>有<span class="arithmatex">\(V\)</span>个可能的取值<span class="arithmatex">\(\{a_*^1,a_*^2,\cdots,a_*^V\}\)</span>
+          - 令<span class="arithmatex">\(D_v\)</span>表示<span class="arithmatex">\(D\)</span>中在<span class="arithmatex">\(a_*\)</span>上取值为<span class="arithmatex">\(a_*^v\)</span>的样本子集
+          - 为每个<span class="arithmatex">\(a_*^v\)</span>执行以下操作
+          - 如果<span class="arithmatex">\(D_v\)</span>为空，将分支结点标记为叶结点，其类别标记为<span class="arithmatex">\(D\)</span>中样本最多的类
+          - 否则，以<span class="arithmatex">\(TreeGenerate(D_v,A \mid\{a_*\})\)</span>为分支结点</p>
 <h2 id="划分选择">划分选择<a class="headerlink" href="#划分选择" title="Permanent link">&para;</a></h2>
 <p>随着划分过程不断进行，我们希望决策树的分支结点所含的样本尽可能属于同一类别，即结点的纯度越来越高</p>
 <h3 id="信息增益">信息增益<a class="headerlink" href="#信息增益" title="Permanent link">&para;</a></h3>
@@ -5727,7 +5727,7 @@ Gain(D,a) = \rho \times Gain(\widetilde D,a) = \rho \times (H(\widetilde D) - \s
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

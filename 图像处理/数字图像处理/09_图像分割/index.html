@@ -5972,9 +5972,11 @@ R = w_1z_1+w_2z_2+\cdots+w_9z_9 = \sum_{k=1}^9w_kz_k
 <ul>
 <li>一阶导数的幅度可用于检测推向中某个点是否存在一个边缘</li>
 <li>二阶导数的符号可用于确定一个边缘像素位于该边缘的暗的一侧还是亮的一侧。</li>
-<li>二阶导数的附加性质：</li>
+<li>二阶导数的附加性质：<ul>
 <li>对图像中的每条边缘，二阶导数生成两个值</li>
 <li>二阶导数的零交叉点可用于定位粗边缘的中心</li>
+</ul>
+</li>
 </ul>
 <p>执行边缘检测的三个基本步骤</p>
 <ul>
@@ -6083,15 +6085,13 @@ G(x,y)=e^{\frac{x^2+y^2}{2\sigma^2}}    \tag{二维高斯函数}
 <p>霍夫变换是从图像中识别几何形状的基本方法。</p>
 <ul>
 <li>得到一副二值图像</li>
-<li>指定<span class="arithmatex">\(p\theta\)</span>平面中的细分<ul>
-<li>在极坐标中，可用参数极径和极角<span class="arithmatex">\((r,\theta)\)</span>表示</li>
-<li>直线的表达式为<span class="arithmatex">\(r = x \cos \theta + y \sin \theta\)</span></li>
-<li>对于点<span class="arithmatex">\((x_0,y_0)\)</span>,可以将通过这个点的一族直线定义为<span class="arithmatex">\(r_\theta = x_0 \cos \theta + y_0 \sin \theta\)</span>。这意味着每一对<span class="arithmatex">\((r_\theta,\theta)\)</span>代表一条通过点<span class="arithmatex">\((x_0,y_0)\)</span>的直线</li>
-<li>给定一个点<span class="arithmatex">\((x_0,y_0)\)</span>,我们在<span class="arithmatex">\(\theta - r\)</span>坐标系中绘制出所有通过它的直线，可画出一条正弦曲线</li>
-<li>对图像中所有点进行上述操作。如果两个不同点进行上述操作后得到的曲线在平面<span class="arithmatex">\(\theta-r\)</span>上相交，这就意味着它们通过同一条直线。</li>
-<li>一条直线能够通过在平面<span class="arithmatex">\(\theta-r\)</span>寻找交于一点的曲线数量来检测。</li>
-</ul>
-</li>
+<li>指定<span class="arithmatex">\(p\theta\)</span>平面中的细分
+          - 在极坐标中，可用参数极径和极角<span class="arithmatex">\((r,\theta)\)</span>表示
+          - 直线的表达式为<span class="arithmatex">\(r = x \cos \theta + y \sin \theta\)</span>
+          - 对于点<span class="arithmatex">\((x_0,y_0)\)</span>,可以将通过这个点的一族直线定义为<span class="arithmatex">\(r_\theta = x_0 \cos \theta + y_0 \sin \theta\)</span>。这意味着每一对<span class="arithmatex">\((r_\theta,\theta)\)</span>代表一条通过点<span class="arithmatex">\((x_0,y_0)\)</span>的直线
+          - 给定一个点<span class="arithmatex">\((x_0,y_0)\)</span>,我们在<span class="arithmatex">\(\theta - r\)</span>坐标系中绘制出所有通过它的直线，可画出一条正弦曲线
+          - 对图像中所有点进行上述操作。如果两个不同点进行上述操作后得到的曲线在平面<span class="arithmatex">\(\theta-r\)</span>上相交，这就意味着它们通过同一条直线。
+          - 一条直线能够通过在平面<span class="arithmatex">\(\theta-r\)</span>寻找交于一点的曲线数量来检测。</li>
 <li>对像素高度集中的地方检验其累加单元的数量</li>
 <li>检验选中单元中像素间的关系</li>
 </ul>
@@ -6265,7 +6265,7 @@ g(x,y)=
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>

@@ -5893,29 +5893,29 @@ E_n(f) = \frac{f^{(2n+2)}(\eta)}{(2n+2)!} \int_a^b \rho(x) \Big[\omega_{n+1}(x)\
 <div class="arithmatex">\[
   \int_{-1}^1f(x)dx \approx \sum_{i=0}^n A_if(x_i)
 \]</div>
-<ul>
-<li>节点：<span class="arithmatex">\(n+1\)</span>次<span class="arithmatex">\(\text{Lengendre}\)</span>多项式<span class="arithmatex">\(P_{n+1}(x)\)</span>的零点</li>
-<li>
-<p>系数：</p>
-<ul>
-<li><span class="arithmatex">\(A_i = \int_{-1}^1 l_i(x)dx\)</span></li>
-<li>待定系数法</li>
-<li><span class="arithmatex">\(A_i = \cfrac{2 }{(1-x_i^2)[p^\prime_{n+1}(x_i)]^2}\)</span></li>
-</ul>
-</li>
-<li>
-<p>截断误差：略</p>
-</li>
-<li>
-<p>一点<span class="arithmatex">\(\text{Gauss-Legendre}\)</span>求积公式</p>
-</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>- 节点：$n+1$次$\text{Lengendre}$多项式$P_{n+1}(x)$的零点
+- 系数：
+      - $A_i = \int_{-1}^1 l_i(x)dx$
+      - 待定系数法
+      - $A_i = \cfrac{2 }{(1-x_i^2)[p^\prime_{n+1}(x_i)]^2}$
+
+- 截断误差：略
+
+- 一点$\text{Gauss-Legendre}$求积公式
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \int_{-1}^1f(x)dx \approx 2f(0)
 \]</div>
-<ul>
-<li>两点<span class="arithmatex">\(\text{Gauss-Legendre}\)</span>求积公式</li>
-</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 两点$\text{Gauss-Legendre}$求积公式
+</code></pre></div></td></tr></table></div>
 <div class="arithmatex">\[
     \int_{-1}^1 f(x)dx \approx f(-\frac{\sqrt3}3) + f(\frac{\sqrt{3}}3)
 \]</div>
@@ -6071,7 +6071,7 @@ f^\prime(x_i ) - p_n^\prime(x_i) = R_n^\prime(x_i) = \frac{f^{(n+1)}(\xi_n)}{(n+
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-05-13
+    最近更新：, 2024-05-14
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>
