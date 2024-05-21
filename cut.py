@@ -40,6 +40,6 @@ def split_markdown_file(file_path):
         current_file.close()
 
 if __name__ == '__main__': 
-    file_path = '算法/深度广度优先搜索.md'
+    file_path = 'SLAM/自动驾驶中的SLAM.md'
     split_markdown_file(file_path)
 #scp -r site/* ubuntu@43.143.162.24:/home/ubuntu/web
