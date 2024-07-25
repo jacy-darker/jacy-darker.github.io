@@ -90,11 +90,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#我的视频" class="md-skip">
-          跳转至
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -5436,21 +5431,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#我的视频" class="md-nav__link">
-    我的视频
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -5468,11 +5448,22 @@
     <h1>VIRO</h1>
   
 
-<h2 id="我的视频">我的视频<a class="headerlink" href="#我的视频" title="Permanent link">&para;</a></h2>
 <video controls>
-  <source src="../../assets/videos/uwb_vo.mp4" type="video/mp4">
+  <source src="../../../assets/videos/VIRO.mp4" type="video/mp4">
   您的浏览器不支持视频标签。
 </video>
+
+<p><img alt="UAV" src="../../../assets/pic/项目/VIRO/UAV.jpg" /></p>
+<p>本文提出了一种新颖的紧耦合单目视觉与超宽带（UWB）技术相结合的同时定位与地图构建（SLAM）方法。该方法利用UWB距离信息恢复单目SLAM的尺度，误差率小于1%。我们的方法联合优化了相机与锚点之间的距离残差和地图点的重投影误差，以提高SLAM定位精度，并在挑战性环境中减轻视觉SLAM的退化。提出了一种新颖的UWB锚点位置优化方法，使系统能够在2秒内完成初始化。实验结果表明，与当前最先进的SLAM和视觉惯性里程计算法相比，所提出的融合方案在系统尺度估计和定位精度方面显著提高。</p>
+<p>提出的紧耦合UWB+VO SLAM系统的架构设计。</p>
+<p><img alt="paper-overview" src="../../../assets/pic/项目/VIRO/paper-overview.jpg" /></p>
+<p>本文提出了一种紧耦合视觉和UWB系统的SLAM方法，解决了UWB和视觉耦合的两个挑战。该方法通过两阶段初始化过程实现了锚点位置的快速估计，并持续优化锚点位置。通过在视觉SLAM跟踪和局部地图线程中引入联合优化方程，该方法在距离约束和相机位姿之间建立了紧密的耦合关系。我们的主要贡献包括：</p>
+<ol>
+<li>提出了一种UWB测量距离的滤波方法，去除不准确的UWB测量值，解决了UWB信号短期遮挡的问题。</li>
+<li>提出了一种新颖的两阶段初始化策略，完成了视觉和系统的初始化。在完成视觉初始化后，系统优化尺度和锚点位置，从而迅速完成系统初始化，有效解决了单目视觉SLAM中的尺度歧义问题。</li>
+<li>提出了一种紧耦合视觉和UWB测量信息的联合优化方法。在跟踪线程中，该方法将锚点和相机之间的距离残差添加到束调整方程中，以解决视觉SLAM的漂移问题。在局部地图优化线程中，联合优化锚点位置、相机位姿和地图点位置，提高了SLAM的精度。</li>
+</ol>
+<p><img alt="handle_equipment" src="../../../assets/pic/项目/VIRO/handle_equipment.jpg" /></p>
 
 
   
@@ -5530,7 +5521,7 @@
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-07-19
+    最近更新：, 2024-07-25
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>
