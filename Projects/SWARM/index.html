@@ -17,14 +17,14 @@
         <meta name="author" content="Jacy">
       
       
-        <link rel="canonical" href="http://www.jacycoder.com/Projects/PI_GCS/">
+        <link rel="canonical" href="http://www.jacycoder.com/Projects/SWARM/">
       
       <link rel="icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.11">
     
     
       
-        <title>PI GCS - 愤怒的卤蛋的代码之路</title>
+        <title>拒止环境下无人机集群控制技术 - 愤怒的卤蛋的代码之路</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PI GCS
+              拒止环境下无人机集群控制技术
             
           </span>
         </div>
@@ -220,13 +220,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
         项目研究
       </a>
     </li>
@@ -417,12 +419,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -518,6 +522,57 @@
       <a href="../Indoor_UAV_Detection_Tracking/" class="md-nav__link">
         室内无人机自主侦察与跟踪系统
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          拒止环境下无人机集群控制技术
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        拒止环境下无人机集群控制技术
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#我的视频" class="md-nav__link">
+    我的视频
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5493,14 +5548,51 @@
 
 
   
-    <h1>PI GCS</h1>
+    <h1>拒止环境下无人机集群控制技术</h1>
   
 
 <h2 id="我的视频">我的视频<a class="headerlink" href="#我的视频" title="Permanent link">&para;</a></h2>
 <video controls>
-  <source src="../../assets/videos/uwb_vo.mp4" type="video/mp4">
+  <source src="../../../assets/videos/swarm.mp4" type="video/mp4">
   您的浏览器不支持视频标签。
 </video>
+
+<p>针对在通信降级、导航失准、间隙通信、低速率传输等拒止环境情况下的编队控制需求，联合GNSS信号、数据链及视觉信息，完成稳定的自主定位以及多架固定翼无人机融合定位与编队飞行，包括自主编队切换、领机跟随、队形保持及自主避障返航等任务。</p>
+<p><img alt="qgc" src="../../../assets/pic/项目/swarm/qgc.jpg" /></p>
+<ul>
+<li>多定位源融合</li>
+<li>通过视觉定位并联合GNSS信息计算Sim3变换，优化全局定位信息</li>
+<li>
+<p>在GPS不可用时，通过机载电脑将定位信息编码为NMEA协议信号，生成卫星等数据发送给飞行控制器，实现在GNSS信号失效及数据链断连等情况下的稳定定位保持技术</p>
+</li>
+<li>
+<p>开发集群无人机地面控制系统</p>
+</li>
+<li>
+<p>使用QT+Ceisum编写了集群无人机地面控制软件，支持APM/PX4的飞控，并且可以控制Drone/VTOL飞行、集结、编队飞行，主要负责前端界面的编写。</p>
+</li>
+<li>
+<p>QT界面通过<code>QWebEngineView</code>加载由<code>Ceisum</code>搭建的网页，同时通过QWebChannel绑定数据结构cluster_info_来与前端js代码进行联系。<code>cluster_info</code>主要包含了一个<code>QVariantMap</code>的变量用于与前端的交互。</p>
+</li>
+<li>
+<p>前端<code>Ceisum</code>通过监听瓦片提供商来显示图层，支持以下多种功能</p>
+<ul>
+<li>显示每个无人机的飞行轨迹，实时显示无人机的模型</li>
+<li>
+<p>当鼠标在界面移动时，显示鼠标所在位置的经纬度</p>
+</li>
+<li>
+<p>通过鼠标右键可以给当前选中的无人机添加一个新的路径点，鼠标左键则可以取消一个路径点</p>
+</li>
+<li>
+<p>当选中的无人机发生变化时，视角将重新聚焦在选中的无人机上</p>
+</li>
+<li>
+<p>当通过界面右侧的功能按钮发布指令时，<code>cluster_info</code>的数据被更改，同时QT发送信号，js通过<code>QWebChannel</code>监听到这些信号并对界面进行更新，重新显示无人机的状态</p>
+</li>
+</ul>
+</li>
+</ul>
 
 
   
@@ -5520,7 +5612,7 @@
 
 <div id="__comments" class="giscus" data-no-instant></div>
 <div id="__comments_script"></div>
-<script>var comments=document.createElement("script"),commentsTheme="slate"===document.body.dataset.mdColorScheme?"dark":"light";Object.entries({async:!0,src:"https://giscus.app/client.js",crossOrigin:"anonymous","data-repo":"Jacy/gitment","data-repo-id":"MDEwOlJlcG9zaXRvcnkxNDQzODg5NjU=","data-category":"评论","data-category-id":"DIC_kwDOCJszZc4CS54y","data-mapping":"specific","data-term":"PI GCS","data-strict":"1","data-reactions-enabled":"1","data-emit-metadata":"0","data-input-position":"top","data-theme":commentsTheme,"data-lang":"zh-CN","data-loading":"lazy"}).forEach(e=>comments.setAttribute(e[0],e[1])),document.getElementById("__comments_script").replaceWith(comments)</script>
+<script>var comments=document.createElement("script"),commentsTheme="slate"===document.body.dataset.mdColorScheme?"dark":"light";Object.entries({async:!0,src:"https://giscus.app/client.js",crossOrigin:"anonymous","data-repo":"Jacy/gitment","data-repo-id":"MDEwOlJlcG9zaXRvcnkxNDQzODg5NjU=","data-category":"评论","data-category-id":"DIC_kwDOCJszZc4CS54y","data-mapping":"specific","data-term":"拒止环境下无人机集群控制技术","data-strict":"1","data-reactions-enabled":"1","data-emit-metadata":"0","data-input-position":"top","data-theme":commentsTheme,"data-lang":"zh-CN","data-loading":"lazy"}).forEach(e=>comments.setAttribute(e[0],e[1])),document.getElementById("__comments_script").replaceWith(comments)</script>
 
                 
               </article>
@@ -5538,6 +5630,42 @@
   </svg>
 </button>
 <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../Indoor_UAV_Detection_Tracking/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 室内无人机自主侦察与跟踪系统" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              室内无人机自主侦察与跟踪系统
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../VIRO/" class="md-footer__link md-footer__link--next" aria-label="下一页: UWB辅助单目视觉里程计定位" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              UWB辅助单目视觉里程计定位
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
