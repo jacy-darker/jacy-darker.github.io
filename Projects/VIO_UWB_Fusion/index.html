@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#概述" class="md-skip">
+        <a href="#摘要" class="md-skip">
           跳转至
         </a>
       
@@ -475,34 +475,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../HFRArm/" class="md-nav__link">
-        朝闻道机械臂
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../CO-DENSE/" class="md-nav__link">
-        CO-DENSE集群无人机稠密建图
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -533,13 +505,6 @@
       目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#概述" class="md-nav__link">
-    概述
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#摘要" class="md-nav__link">
@@ -580,6 +545,62 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HFRArm/" class="md-nav__link">
+        朝闻道机械臂
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CO-DENSE/" class="md-nav__link">
+        CO-DENSE集群无人机稠密建图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Indoor_UAV_Detection_Tracking/" class="md-nav__link">
+        室内无人机自主侦察与跟踪系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VIRO/" class="md-nav__link">
+        UWB辅助单目视觉里程计定位
+      </a>
     </li>
   
 
@@ -5519,13 +5540,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#概述" class="md-nav__link">
-    概述
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#摘要" class="md-nav__link">
     摘要
   </a>
@@ -5582,18 +5596,12 @@
 <video controls>
   <source src="../../../assets/videos/uwb_vo.mp4" type="video/mp4">
 </video>
-
-<h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h2>
-<p>该研究属于本科毕业设计《基于 UWB 的集群无人机协同定位》（团队课题）中的一部分。</p>
 <h2 id="摘要">摘要<a class="headerlink" href="#摘要" title="Permanent link">&para;</a></h2>
-<p>机器人定位是移动机器人应用中的一个基本主题，通过单目摄像头和低成本 惯性测量装置，视觉惯性里程计 (Visual-Inertial-Odometry,VIO) 被视为考虑尺寸、 重量、功率和成本的单机器人状态估计和导航的最小传感器配置。最近的技术进 步使 VIO 在许多情况下变得越来越健壮和稳定。然而，如果没有闭合回路，累积 误差引起的漂移仍然很难控制。虽然闭合回路是 SLAM 系统的组成部分，但是闭 合回路的要求在很大程度上取决于轨迹和环境。例如，生成高质量的闭包需要以 类似的视角重新访问同一位置，光照、相似环境等造成的感知异常情况对闭合回 路具有挑战性。加入没有累积误差的一个全局定位信息能更有效的对 VIO 的结果 进行修正。</p>
+<p>机器人定位是移动机器人应用中的一个基本主题，通过单目摄像头和低成本 惯性测量装置，视觉惯性里程计 (Visual-Inertial-Odometry,VIO) 被视为考虑尺寸、 重量、功率和成本的单机器人状态估计和导航的最小传感器配置。最近的技术进 步使 VIO 在许多情况下变得越来越健壮和稳定。然而，如果没有闭合回路，累积 误差引起的漂移仍然很难控制。虽然闭合回路是 SLAM 系统的组成部分，但是闭 合回路的要求在很大程度上取决于轨迹和环境。例如，生成高质量的闭包需要以类似的视角重新访问同一位置，光照、相似环境等造成的感知异常情况对闭合回 路具有挑战性。加入没有累积误差的一个全局定位信息能更有效的对VIO的结果进行修正。</p>
 <p>比较成熟的解决办法是将 GPS 信息与视觉信息进行融合，如 VINS-Fusion， GVINS 等。但是 GPS 在室内表现较差甚至无法访问，为此我们使用了室内定位更 加精确的超宽带(Ultra Wide Band,UWB)技术与 VIO 系统进行融合。本文提出了 一个 VIO 与 UWB 融合的定位系统，在保证实时定位的前提下，达到了更高的定位精度且没有累积误差。具体而言，本文的主要贡献如下:</p>
 <p>本研究方法和成熟的 VIO 算法 VINS，以及 UWB 与 VIO 融合的 VIR 算法做 了比较，同时进行了真机实验。实验结果表明精度相较于 VINS 和 VIR 有较大的 提升，能够用于室内的高精度定位，其计算出来的轨迹也可作为地面真值用于评 估其它定位精度较低的算法。</p>
 <h2 id="主要贡献">主要贡献<a class="headerlink" href="#主要贡献" title="Permanent link">&para;</a></h2>
-<ul>
-<li>设计了一种融合UWB的单目VIO-SLAM系统。该融合定位系统相比于VIO- SLAM 没有累积误差，且定位精度在 UWB 的测量误差在 10cm 时，能够达 到 3cm 的定位精度。</li>
-<li>提出了将UWB用于集群无人机协同定位的方式，该方法不依赖于任何UWB 基站，只需无人机集群之间发送各自坐标系下自己的位姿，同时配合 UWB 测得相对距离，就可以计算出无人机集群间的相对坐标变换。</li>
-</ul>
+<p>设计了一种融合UWB的单目VIO-SLAM系统。该融合定位系统相比于VIO- SLAM 没有累积误差，且定位精度在 UWB 的测量误差在 10cm 时，能够达到3cm的定位精度。</p>
 <h2 id="系统概述">系统概述<a class="headerlink" href="#系统概述" title="Permanent link">&para;</a></h2>
 <p><img src="../../../assets/pic/项目/uwb_vo/system.jpg" alt="system" style="" /></p>
 <p>得到 VIO 定位系统和 UWB 定位系统对机器人的定位信息后, 我们对两个定位数据进行了融合。在对两个系统进行融合的时候，我们采用松耦合的方式。 VIO 系统的误差主要来自于长时间的漂移，其短时间内的相对位姿变换能够达到较高的精度；与VIO相反，UWB系统主要来源于对无人机绝对位置的随机噪声误差，并没有累积误差。为此，我们通过最小化VIO相邻帧的相对位姿变换和UWB的定位数据，来求解无人机的位姿。</p>
@@ -5657,7 +5665,7 @@ $$</p>
     <nav class="md-footer__inner md-grid" aria-label="页脚" >
       
         
-        <a href="../CO-DENSE/" class="md-footer__link md-footer__link--prev" aria-label="上一页: CO-DENSE集群无人机稠密建图" rel="prev">
+        <a href="../XMRobot/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 家政服务机器人" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -5666,20 +5674,20 @@ $$</p>
               <span class="md-footer__direction">
                 上一页
               </span>
-              CO-DENSE集群无人机稠密建图
+              家政服务机器人
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../SLAM/%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95/01_2D%E5%B0%84%E5%BD%B1%E5%87%A0%E4%BD%95%E4%B8%8E%E5%8F%98%E6%8D%A2/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2D射影几何与变换" rel="next">
+        <a href="../HFRArm/" class="md-footer__link md-footer__link--next" aria-label="下一页: 朝闻道机械臂" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              2D射影几何与变换
+              朝闻道机械臂
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -5708,7 +5716,7 @@ $$</p>
 
 <div style="float:right" class="build_date_utc">
   <a href="https://github.com/Jacy/Jacy">
-    最近更新：, 2024-07-25
+    最近更新：, 2024-07-26
   </a>
 </div>
 <script>"Jacy.com"==window.location.hostname&&(document.getElementById("miitbeian").innerHTML='<a href="http://beian.miit.gov.cn/">黑ICP备19005132号-2</a>'),console.log("%c Jacy %c  %c","background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent"),console.log("少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.Jacy.org")</script>
