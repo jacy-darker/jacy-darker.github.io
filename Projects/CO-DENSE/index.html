@@ -5684,7 +5684,7 @@
 <li>一个点云融合系统，通过联合优化的相对Sim3变换，高效地将单个UAV的密集点云合并到统一的全球地图中。</li>
 </ul>
 <h2 id="系统概述">系统概述<a class="headerlink" href="#系统概述" title="Permanent link">&para;</a></h2>
-<p><img src="../../../assets/pic/项目/CO-DENSE/system.png" alt="system" style="" /></p>
+<p><img src="../../../assets/pic/项目/CO-DENSE/system.jpg" alt="system" style="" /></p>
 <p>该系统采用Mono SLAM用于单个UAV在大规模环境中的定位。通过控制云台在飞行过程中保持恒定的向下角度，我们确保相机在其局部框架中的主要不确定性主要涉及偏航方向。</p>
 <p>上图展示了全球定位系统的工作流程，特点是一个两阶段优化算法。RTE模块快速估计UAV之间的相对Sim3变换，而PGO模块优化整个群体的定位轨迹以减少误差累积。每个UAV独立执行分布式的两阶段姿态优化算法，将其局部框架<span class="arithmatex">\(\mathcal{L}_i\)</span>指定为世界框架<span class="arithmatex">\(\mathcal{W}\)</span>。下图描绘了系统的整体算法流程。这一系列优化产生精确的UAV定位数据，将点云数据重新映射到全球框架。</p>
 <p><img src="../../../assets/pic/项目/CO-DENSE/location.jpg" alt="location" style="" /></p>
